@@ -44,7 +44,7 @@
 </header>
 
 <main>
-  <div class="gate-wrap" id="gate-wrap" style="display: none;">
+  <div class="gate-wrap" id="gate-wrap">
     <div id="gate" class="card">
       <h3>Nhập mã quản trị</h3>
       <div class="field">
@@ -56,7 +56,7 @@
 
   <section>
     <div class="wrap">
-      <div id="admin-app" style="display: block;">
+      <div id="admin-app" style="display: none;">
         <div class="card" style="margin-bottom:24px;">
           <h3>Dữ liệu mẫu</h3>
           <p>Nạp nhanh vài dòng dữ liệu mẫu (giống trong tài liệu hướng dẫn) để xem thử giao diện hoạt động thế nào.</p>
@@ -273,6 +273,9 @@
 
   if (sessionStorage.getItem("careerqr_admin_ok") === "1") {
     unlockAdmin();
+  } else {
+    document.getElementById("gate-wrap").style.display = "flex";
+    document.getElementById("admin-app").style.display = "none";
   }
 
   // ---- Modal ----
