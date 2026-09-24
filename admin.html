@@ -143,13 +143,13 @@
   </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-<script src="assets/js/firebase-config.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js" defer></script>
+<script src="assets/js/firebase-config.js" defer></script>
+<script src="assets/js/app.js" defer></script>
 
-<script>
-  // Xóa bộ nhớ đệm cục bộ (IndexedDB) của Firestore để fix lỗi treo 10-15 phút 
+<script defer>
+  // Xóa bộ nhớ đệm cục bộ (IndexedDB) của Firestore để fix lỗi treo 10-15 phút
   // do các lệnh ghi (pending writes) bị kẹt từ những lần trước.
   try {
     firebase.firestore().clearPersistence();
@@ -230,13 +230,14 @@
     const cfg = COLLECTIONS[key];
     const wrap = document.getElementById(cfg.listId);
     const empty = document.getElementById(cfg.emptyId);
-    
+
     // Hiển thị trạng thái đang tải để biết hệ thống đang chạy
-    wrap.innerHTML = `<p class="text-faint">Đang tải dữ liệu từ máy chủ...</p>`;
+    wrap.innerHTML = `<p class="text-faint">Đang tải dữ liệu...</p>`;
     empty.style.display = "none";
 
-    // Sử dụng { source: 'server' } để ÉP đọc thẳng từ server, bỏ qua cache bị lỗi
-    db.collection(cfg.col).get({ source: 'server' }).then(snap => {
+    // Đọc bình thường (cache-first): Firestore sẽ trả cache ngay nếu có,
+    // rồi tự đồng bộ ngầm với server — nhanh hơn nhiều so với ép đọc server.
+    db.collection(cfg.col).get().then(snap => {
       wrap.innerHTML = "";
       if (snap.empty) { empty.style.display = "block"; return; }
       empty.style.display = "none";
@@ -347,6 +348,8 @@
 
       // Đọc lại trực tiếp từ server (bỏ qua cache cục bộ) để chắc chắn dữ liệu
       // đã thật sự lưu trên Firestore, không phải chỉ hiện tạm trên máy.
+      // (Giữ nguyên ép server ở BƯỚC KIỂM TRA NÀY vì nó chỉ chạy 1 lần sau khi
+      // bấm nút, không ảnh hưởng đến tốc độ load trang hay refreshList.)
       const check = await db.collection(COL.NGANH).get({ source: "server" });
       if (check.empty) throw new Error("Ghi có vẻ thành công nhưng không đọc lại được từ server — kiểm tra lại Firestore Rules.");
 
