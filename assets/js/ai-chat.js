@@ -19,7 +19,7 @@
 const AI_CONFIG = {
   API_KEY: "sk-4150297863e3eee405805e8609648e6c5cebb1b502ffb46e",
   API_ENDPOINT: "https://api.shopaikey.com/v1/chat/completions",
-  MODEL: "gpt-4o-mini"
+  MODEL: "gpt-4.1-mini-2025-04-14"
 };
 
 const AI_SYSTEM_PROMPT = `Bạn là trợ lý hướng nghiệp của CAREER QR, một công cụ giúp học sinh THPT tra cứu ngành học, trường đào tạo và tổ hợp xét tuyển.
