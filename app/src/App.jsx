@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, Search, Layers, Award, Home, Bookmark } from 'lucide-react';
+import { Compass, Search, Layers, Award, Home } from 'lucide-react';
 import HomeView from './views/HomeView';
 import SelfDiscoveryView from './views/SelfDiscoveryView';
 import SearchView from './views/SearchView';
@@ -39,32 +39,35 @@ export default function App() {
   };
 
   const navItems = [
-    { id: 'home', label: 'Trang chủ', icon: Home },
-    { id: 'self', label: 'Khám phá bản thân', icon: Compass },
-    { id: 'search', label: 'Tra cứu', icon: Search },
-    { id: 'compare', label: 'So sánh lựa chọn', icon: Layers },
-    { id: 'roadmap', label: 'Career Roadmap', icon: Award }
+    { id: 'home', label: 'Trang chủ', shortLabel: 'Trang chủ', icon: Home },
+    { id: 'self', label: 'Khám phá bản thân', shortLabel: 'Khám phá', icon: Compass },
+    { id: 'search', label: 'Tra cứu ngành/trường', shortLabel: 'Tra cứu', icon: Search },
+    { id: 'compare', label: 'Đấu trường so sánh', shortLabel: 'So sánh', icon: Layers },
+    { id: 'roadmap', label: 'Career Roadmap', shortLabel: 'Lộ trình', icon: Award }
   ];
 
   return (
     <div className="app-container">
-      {/* Sticky Top Header */}
+      {/* Sticky Top Header (Desktop & Tablet) */}
       <header className="app-header">
         <div className="header-inner">
           <div className="brand-wrap" onClick={() => setActiveTab('home')}>
             <svg className="brand-logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="12" height="12" rx="3" fill="#4F46E5" />
-              <rect x="18" y="2" width="12" height="12" rx="3" fill="#6366F1" opacity="0.3" />
-              <rect x="2" y="18" width="12" height="12" rx="3" fill="#06B6D4" opacity="0.3" />
+              <rect x="2" y="2" width="12" height="12" rx="3.5" fill="#4F46E5" />
+              <rect x="18" y="2" width="12" height="12" rx="3.5" fill="#0EA5E9" />
+              <rect x="2" y="18" width="12" height="12" rx="3.5" fill="#10B981" />
               <circle cx="24" cy="24" r="6" fill="#F59E0B" />
             </svg>
             <div>
-              <div className="brand-title">CAREER QR</div>
-              <span className="brand-subtitle">Career Balance 2026</span>
+              <div className="brand-title">
+                <span>CAREER QR</span>
+                <span className="brand-badge-year">2026</span>
+              </div>
+              <span className="brand-subtitle">La bàn Chọn Ngành THPT</span>
             </div>
           </div>
 
-          {/* Navigation Pill Bar */}
+          {/* Desktop Navigation Pill Bar */}
           <nav className="nav-tabs" aria-label="Điều hướng chính">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -83,11 +86,12 @@ export default function App() {
                   {item.id === 'compare' && bookmarkedMajors.length > 0 && (
                     <span style={{
                       fontSize: '0.7rem',
-                      background: isActive ? '#FFFFFF' : '#4F46E5',
-                      color: isActive ? '#4F46E5' : '#FFFFFF',
+                      background: isActive ? '#4F46E5' : '#EEF2FF',
+                      color: isActive ? '#FFFFFF' : '#4F46E5',
                       padding: '1px 6px',
                       borderRadius: '999px',
-                      fontWeight: '800'
+                      fontWeight: '800',
+                      marginLeft: '2px'
                     }}>
                       {bookmarkedMajors.length}
                     </span>
@@ -150,14 +154,40 @@ export default function App() {
       {/* Floating AI Assistant */}
       <AIChatModal currentContext={`Đang xem mục: ${navItems.find(n => n.id === activeTab)?.label}`} />
 
+      {/* Mobile Bottom Navigation Dock (Visible on Mobile Screens) */}
+      <nav className="mobile-bottom-dock" aria-label="Điều hướng di động">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.id;
+          return (
+            <button
+              key={item.id}
+              className={`mobile-dock-btn ${isActive ? 'active' : ''}`}
+              onClick={() => {
+                setActiveTab(item.id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              <div className="mobile-dock-icon-wrap">
+                <Icon size={20} />
+                {item.id === 'compare' && bookmarkedMajors.length > 0 && (
+                  <span className="mobile-dock-badge">{bookmarkedMajors.length}</span>
+                )}
+              </div>
+              <span>{item.shortLabel}</span>
+            </button>
+          );
+        })}
+      </nav>
+
       {/* Footer */}
       <footer className="app-footer">
         <div className="footer-inner">
           <div>
-            <strong>CAREER QR</strong> — Nền tảng định hướng nghề nghiệp & chọn trường cho học sinh THPT.
+            <strong>CAREER QR 2026</strong> — Nền tảng định hướng nghề nghiệp &amp; chọn trường đại học cho học sinh THPT Việt Nam.
           </div>
           <div>
-            Đồng hành cùng học sinh THPT & phụ huynh Việt Nam trên hành trình chọn đúng ngành, vững tương lai • Bảo mật thông tin 100%.
+            Đồng hành cùng học sinh &amp; phụ huynh chọn đúng ngành, vững tương lai • 100% Bảo mật dữ liệu trên máy bạn.
           </div>
         </div>
       </footer>
