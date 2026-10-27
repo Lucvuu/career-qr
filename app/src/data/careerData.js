@@ -522,10 +522,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-cntt-1",
       title: "Một ngày làm việc của Kỹ sư Trí tuệ Nhân tạo (AI Engineer) tại BigTech",
-      channel: "VTV7 Hướng Nghiệp",
+      channel: "Người Trong Muôn Nghề",
       duration: "09:15",
       type: "1 Ngày Làm Nghề",
-      youtubeId: "v4v_X2E1FQU",
+      youtubeId: "c2Ce2QV4veY",
       keyTakeaways: [
         "Công việc chính là phân tích bài toán thực tế, thiết kế giải thuật và code tính năng cùng đồng nghiệp quốc tế.",
         "Thời gian gõ code thực tế chỉ chiếm khoảng 40%, còn lại là trao đổi kiến trúc, họp sprint và kiểm thử chất lượng.",
@@ -541,10 +541,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-vimach-1",
       title: "Bên trong phòng Lab Thiết kế Vi mạch Bán dẫn: Cơn sốt nhân lực tỷ USD 2026",
-      channel: "VTV2 Khoa Giáo",
+      channel: "VTV24 Khoa Giáo",
       duration: "10:20",
       type: "Thực Tế Phòng Lab",
-      youtubeId: "3m0YQxXvYpI",
+      youtubeId: "xi-TdUo8e60",
       keyTakeaways: [
         "Việt Nam đang là tâm điểm đầu tư nhà máy bán dẫn của các tập đoàn thế giới (Nvidia, Synopsys, Marvell).",
         "Yêu cầu nền tảng cực chắc về Vật lý bán dẫn, Toán cao cấp và vi mạch số (VHDL/Verilog).",
@@ -560,10 +560,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-khdl-1",
       title: "Một ngày của Data Scientist: Trích xuất tri thức từ hàng triệu dòng dữ liệu",
-      channel: "Brands Vietnam",
+      channel: "Maz Học Data",
       duration: "08:45",
       type: "1 Ngày Làm Nghề",
-      youtubeId: "2vX5X1pX7kM",
+      youtubeId: "wO2qaeE8FTA",
       keyTakeaways: [
         "Biến các bảng số liệu khổng lồ thành mô hình dự báo hành vi người dùng và đề xuất chiến lược kinh doanh.",
         "Kết hợp kiềng ba chân: Toán xác suất thống kê + Lập trình Python/SQL + Trực giác nhạy bén về sản phẩm.",
@@ -582,7 +582,7 @@ export const CAREER_VIDEOS_BY_MAJOR = {
       channel: "VTV7 Hướng Nghiệp",
       duration: "14:50",
       type: "Review Sinh Viên",
-      youtubeId: "w1mK4v9xPq0",
+      youtubeId: "h8z4eNXbtbE",
       keyTakeaways: [
         "Thời gian đào tạo dài hạn (6 năm đại học + 18 tháng CCHN hoặc Bác sĩ nội trú) đòi hỏi lòng kiên trì và bền bỉ.",
         "Áp lực trực đêm, thi cử liên tục và khối lượng kiến thức giải phẫu, dược lý khổng lồ cần rèn luyện mỗi ngày.",
@@ -601,7 +601,7 @@ export const CAREER_VIDEOS_BY_MAJOR = {
       channel: "Brands Vietnam",
       duration: "07:30",
       type: "1 Ngày Làm Nghề",
-      youtubeId: "9kL8xM2qP1o",
+      youtubeId: "ne1QCmBw-MI",
       keyTakeaways: [
         "Theo dõi số liệu quảng cáo theo thời gian thực, đo lường chi phí mỗi khách hàng (CPA) và tỷ lệ chuyển đổi.",
         "Sáng tạo ý tưởng nội dung video ngắn (TikTok, Reels) bắt trúng tâm lý và cảm xúc của thế hệ Gen Z.",
@@ -617,10 +617,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-logistics-1",
       title: "Khám phá trung tâm Cảng biển & Chuỗi cung ứng Quốc tế: Logistics vận hành ra sao?",
-      channel: "Sinh Viên Bách Khoa Official",
+      channel: "VTV7 Hướng Nghiệp",
       duration: "10:45",
       type: "Thực Tế Phòng Lab",
-      youtubeId: "7qK3xL9vM1n",
+      youtubeId: "oBE4kHIvaps",
       keyTakeaways: [
         "Quản lý hành trình hàng hóa từ kho bãi thông minh, tàu container biển đến tay khách hàng khắp thế giới.",
         "Ứng dụng công nghệ theo dõi lộ trình GPS, tối ưu chi phí vận chuyển và giảm thiểu phát thải xanh.",
@@ -636,10 +636,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-dohoa-1",
       title: "Trải nghiệm làm UI/UX Designer: Thiết kế ứng dụng triệu người dùng",
-      channel: "Người Lạ Làm Nghề",
+      channel: "Arena Multimedia",
       duration: "12:15",
       type: "1 Ngày Làm Nghề",
-      youtubeId: "5mN8vK2xQ9p",
+      youtubeId: "CujT81z0vQU",
       keyTakeaways: [
         "Nghiên cứu hành trình trải nghiệm người dùng, vẽ wireframe và tạo prototype tương tác trên Figma.",
         "Cân bằng giữa tính thẩm mỹ thời thượng và sự tiện dụng thực tế, không để người dùng bối rối.",
@@ -655,10 +655,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-tamly-1",
       title: "Một ngày của Chuyên viên Tư vấn Tâm lý Học đường & Doanh nghiệp",
-      channel: "Dustin On The Go",
+      channel: "VTV7 Hướng Nghiệp",
       duration: "09:30",
       type: "Góc Nhìn Chuyên Gia",
-      youtubeId: "4xL9vM2qK7n",
+      youtubeId: "hbQDHin8s7g",
       keyTakeaways: [
         "Lắng nghe không phán xét, xây dựng không gian an toàn để thân chủ mở lòng về áp lực và tổn thương.",
         "Ứng dụng các liệu pháp hành vi nhận thức (CBT) và bài test tâm lý tiêu chuẩn khoa học quốc tế.",
@@ -674,10 +674,10 @@ export const CAREER_VIDEOS_BY_MAJOR = {
     {
       id: "vid-tdh-1",
       title: "Bên trong nhà máy Robot tự động hóa thông minh: Kỹ sư làm những gì?",
-      channel: "VTV2 Khoa Giáo",
+      channel: "VTV24 Tiêu Điểm",
       duration: "11:15",
       type: "Thực Tế Phòng Lab",
-      youtubeId: "8xM2qK7nP9v",
+      youtubeId: "s8ktd86j1Ek",
       keyTakeaways: [
         "Lập trình điều khiển cánh tay robot công nghiệp (KUKA, ABB) và hệ thống PLC điều hành nhà máy.",
         "Tích hợp cảm biến IoT và thị giác máy tính AI để dây chuyền tự phát hiện lỗi sản phẩm trong tích tắc.",
@@ -696,7 +696,7 @@ export const CAREER_VIDEOS_BY_MAJOR = {
       channel: "Brands Vietnam",
       duration: "08:20",
       type: "Góc Nhìn Chuyên Gia",
-      youtubeId: "1mN9vK2xL7q",
+      youtubeId: "ne1QCmBw-MI",
       keyTakeaways: [
         "Nắm vững luật thương mại quốc tế (Incoterms), phương thức thanh toán L/C và thủ tục hải quan.",
         "Kỹ năng đàm phán bằng tiếng Anh và ngoại ngữ thứ hai (Trung, Hàn, Nhật) mang lại ưu thế vượt bậc.",
@@ -720,18 +720,18 @@ const MAJOR_ALIASES = {
   "thiet-ke-do-hoa-ux": "dohoa",
   "logistics": "logistics",
   "tam-ly-hoc": "tamly",
-  "an-ninh-mang": "an-ninh-mang",
-  "ky-thuat-phan-mem": "ky-thuat-phan-mem",
-  "robot-ai": "robot-ai",
-  "oto-dien": "oto-dien",
-  "y-sinh": "y-sinh",
-  "rang-ham-mat": "rang-ham-mat",
-  "duoc-hoc": "duoc-hoc",
-  "fintech": "fintech",
-  "thuong-mai-dien-tu": "thuong-mai-dien-tu",
-  "kien-truc": "kien-truc",
-  "luat-kinh-te": "luat-kinh-te",
-  "truyen-thong-da-phuong-tien": "truyen-thong-da-phuong-tien"
+  "an-ninh-mang": "cntt",
+  "ky-thuat-phan-mem": "cntt",
+  "robot-ai": "tudonghoa",
+  "oto-dien": "tudonghoa",
+  "y-sinh": "vi-mach",
+  "rang-ham-mat": "ykhoa",
+  "duoc-hoc": "ykhoa",
+  "fintech": "khdl",
+  "thuong-mai-dien-tu": "marketing",
+  "kien-truc": "dohoa",
+  "luat-kinh-te": "kdqt",
+  "truyen-thong-da-phuong-tien": "marketing"
 };
 
 export function getVideosForMajor(majorId) {
@@ -739,7 +739,7 @@ export function getVideosForMajor(majorId) {
   const list = CAREER_VIDEOS_BY_MAJOR[normalizedId] || CAREER_VIDEOS_BY_MAJOR["cntt"] || [];
   return list.map(v => ({
     ...v,
-    youtubeUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(v.title + ' ' + v.channel)}`
+    youtubeUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`
   }));
 }
 

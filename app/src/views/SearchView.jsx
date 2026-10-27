@@ -43,8 +43,7 @@ export default function SearchView({
   const [selectedMajorModal, setSelectedMajorModal] = useState(null);
   const [activeVideoMajor, setActiveVideoMajor] = useState(null); // Major object for Cinema Modal
   const [activeEpisodeIndex, setActiveEpisodeIndex] = useState(0);
-  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
-  const [cinemaMode, setCinemaMode] = useState('interactive'); // 'interactive' | 'youtube'
+  const [cinemaMode, setCinemaMode] = useState('youtube'); // 'youtube' | 'interactive'
   const [activeTimelineStep, setActiveTimelineStep] = useState(0);
   const [savedMajorIds, setSavedMajorIds] = useState([]);
 
@@ -96,11 +95,10 @@ export default function SearchView({
     }
   };
 
-  const handleOpenCinema = (m, episodeIdx = 0) => {
+  const handleOpenCinema = (m, episodeIdx = 0, defaultMode = 'youtube') => {
     setActiveVideoMajor(m);
     setActiveEpisodeIndex(episodeIdx);
-    setIsPlayingVideo(false);
-    setCinemaMode('interactive');
+    setCinemaMode(defaultMode);
     setActiveTimelineStep(0);
   };
 
@@ -553,16 +551,43 @@ export default function SearchView({
                     </div>
 
                     {/* Card Actions */}
-                    <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px' }}>
-                      <button
-                        type="button"
-                        className="btn-edtech-primary"
-                        onClick={() => handleOpenCinema(m, 0)}
-                        style={{ padding: '8px 18px', fontSize: '0.86rem' }}
-                      >
-                        <Play size={14} fill="#FFFFFF" />
-                        <span>Xem rạp phim nghề ▶</span>
-                      </button>
+                    <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                        <button
+                          type="button"
+                          className="btn-edtech-primary"
+                          onClick={() => handleOpenCinema(m, 0, 'youtube')}
+                          style={{ padding: '8px 16px', fontSize: '0.86rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                        >
+                          <Play size={14} fill="#FFFFFF" />
+                          <span>Xem video nghề ▶</span>
+                        </button>
+
+                        <a
+                          href={`https://www.youtube.com/watch?v=${featured.youtubeId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{
+                            padding: '8px 14px',
+                            fontSize: '0.82rem',
+                            fontWeight: '800',
+                            borderRadius: '999px',
+                            background: '#FFF1F2',
+                            color: '#E11D48',
+                            border: '1.5px solid #FECDD3',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '5px',
+                            textDecoration: 'none',
+                            cursor: 'pointer'
+                          }}
+                          title="Mở xem trực tiếp trên tab YouTube mới (không lo bị chặn)"
+                        >
+                          <ExternalLink size={14} />
+                          <span>Mở YouTube ↗</span>
+                        </a>
+                      </div>
 
                       <button
                         type="button"
@@ -841,8 +866,33 @@ export default function SearchView({
 
                 return (
                   <>
-                    {/* DUAL-MODE EXPERIENCE SELECTOR (Interactive Simulation vs YouTube Embed) */}
+                    {/* DUAL-MODE EXPERIENCE SELECTOR (YouTube Embed vs Interactive Simulation) */}
                     <div style={{ display: 'flex', gap: '8px', marginBottom: '18px', background: '#F1F5F9', padding: '5px', borderRadius: '14px' }}>
+                      <button
+                        type="button"
+                        onClick={() => { setCinemaMode('youtube'); setIsPlayingVideo(true); }}
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          borderRadius: '10px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontWeight: '800',
+                          fontSize: '0.88rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          background: cinemaMode === 'youtube' ? '#FFFFFF' : 'transparent',
+                          color: cinemaMode === 'youtube' ? '#E11D48' : '#64748B',
+                          boxShadow: cinemaMode === 'youtube' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        <Tv size={16} />
+                        <span>▶ Video Trải Nghiệm Thực Tế (YouTube)</span>
+                      </button>
+
                       <button
                         type="button"
                         onClick={() => setCinemaMode('interactive')}
@@ -865,36 +915,42 @@ export default function SearchView({
                         }}
                       >
                         <Clock size={16} />
-                        <span>Mô phỏng 1 Ngày Làm Nghề (Tương tác trực quan)</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setCinemaMode('youtube')}
-                        style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          borderRadius: '10px',
-                          border: 'none',
-                          cursor: 'pointer',
-                          fontWeight: '800',
-                          fontSize: '0.88rem',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '6px',
-                          background: cinemaMode === 'youtube' ? '#FFFFFF' : 'transparent',
-                          color: cinemaMode === 'youtube' ? '#E11D48' : '#64748B',
-                          boxShadow: cinemaMode === 'youtube' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        <Tv size={16} />
-                        <span>Xem Trực Tiếp (YouTube)</span>
+                        <span>⏱ Mô Phỏng 1 Ngày Làm Nghề (Timeline)</span>
                       </button>
                     </div>
 
-                    {/* MODE 1: INTERACTIVE WORKDAY SIMULATOR (100% immune to YouTube embed errors!) */}
+                    {/* MODE 1: YOUTUBE EMBED PLAYER (with direct launch fallback) */}
+                    {cinemaMode === 'youtube' && (
+                      <div style={{ marginBottom: '20px' }}>
+                        {/* Notice for Students */}
+                        <div style={{ background: '#FFF1F2', border: '1.5px solid #FECDD3', padding: '12px 18px', borderRadius: '14px', fontSize: '0.86rem', color: '#9F1239', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span>📺 <strong>Nguồn phát:</strong> {currentVideo.channel} • Thời lượng: {currentVideo.duration}</span>
+                          </span>
+                          <a
+                            href={directYoutubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ background: '#E11D48', color: '#FFFFFF', padding: '7px 18px', borderRadius: '999px', fontWeight: '800', fontSize: '0.8rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', boxShadow: '0 4px 12px rgba(225, 29, 72, 0.3)' }}
+                          >
+                            <Play size={13} fill="#FFFFFF" />
+                            <span>Mở Xem Trên YouTube (Mở tab mới) ↗</span>
+                          </a>
+                        </div>
+
+                        {/* Responsive 16:9 Video Player Stage */}
+                        <div className="cinema-stage-16-9">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?autoplay=1&rel=0`}
+                            title={currentVideo.title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* MODE 2: INTERACTIVE WORKDAY SIMULATOR */}
                     {cinemaMode === 'interactive' && (
                       <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', borderRadius: '20px', padding: '24px', color: '#FFFFFF', marginBottom: '20px', boxShadow: '0 12px 30px -10px rgba(49, 46, 129, 0.4)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
@@ -972,55 +1028,6 @@ export default function SearchView({
                           <p style={{ margin: 0, color: '#E0E7FF', fontSize: '0.92rem', lineHeight: '1.6' }}>
                             {currentTimelineStep.desc}
                           </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* MODE 2: YOUTUBE EMBED PLAYER (with direct launch fallback) */}
-                    {cinemaMode === 'youtube' && (
-                      <div style={{ marginBottom: '20px' }}>
-                        {/* Notice for Students */}
-                        <div style={{ background: '#FFFBEB', border: '1px solid #FCD34D', padding: '10px 14px', borderRadius: '12px', fontSize: '0.84rem', color: '#92400E', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-                          <span>💡 <strong>Mẹo:</strong> Nếu video YouTube bên dưới báo lỗi do chính sách mạng, hãy bấm nút đỏ bên cạnh để xem trực tiếp không bị chặn:</span>
-                          <a
-                            href={directYoutubeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ background: '#EF4444', color: '#FFFFFF', padding: '6px 14px', borderRadius: '999px', fontWeight: '800', fontSize: '0.78rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                          >
-                            <Play size={13} fill="#FFFFFF" />
-                            <span>Mở Trên YouTube ↗</span>
-                          </a>
-                        </div>
-
-                        {/* Responsive 16:9 Video Player Stage */}
-                        <div className="cinema-stage-16-9">
-                          {isPlayingVideo ? (
-                            <iframe
-                              src={`https://www.youtube-nocookie.com/embed/${currentVideo.youtubeId}?autoplay=1&rel=0`}
-                              title={currentVideo.title}
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            />
-                          ) : (
-                            <div
-                              className="cinema-cover-preview"
-                              onClick={() => setIsPlayingVideo(true)}
-                            >
-                              <div className="video-story-pattern" />
-                              <div className="video-play-pulse-btn" style={{ width: '70px', height: '70px' }}>
-                                <Play size={30} fill="#F43F5E" style={{ marginLeft: '4px' }} />
-                              </div>
-                              <div style={{ position: 'relative', zIndex: 2, marginTop: '16px', textAlign: 'center', padding: '0 20px' }}>
-                                <div style={{ color: '#FFFFFF', fontSize: '1.2rem', fontWeight: '800', marginBottom: '6px' }}>
-                                  {currentVideo.title}
-                                </div>
-                                <div style={{ color: '#CBD5E1', fontSize: '0.85rem' }}>
-                                  Nguồn: <strong>{currentVideo.channel}</strong> • Thời lượng: {currentVideo.duration} • Bấm để phát trực tiếp
-                                </div>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
                     )}
