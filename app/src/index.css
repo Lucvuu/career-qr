@@ -141,13 +141,54 @@ a {
   max-width: 1240px;
   width: calc(100% - 32px);
   margin: 16px auto 0;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-card);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
   border-radius: var(--radius-pill);
-  box-shadow: 0 8px 30px -6px rgba(79, 70, 229, 0.09), 0 2px 6px rgba(30, 41, 59, 0.03);
+  box-shadow: 0 10px 30px -6px rgba(79, 70, 229, 0.12), 0 4px 12px rgba(30, 41, 59, 0.04);
   transition: all 0.25s ease;
+}
+
+/* ==========================================================================
+   CINEMA MODAL BACKDROP & SHELL OVERLAY
+   ========================================================================== */
+.cinema-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  overflow-y: auto;
+}
+
+.cinema-modal-shell {
+  background: #FFFFFF;
+  border-radius: 26px;
+  max-width: 960px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border: 1.5px solid #E0E7FF;
+  position: relative;
+  animation: modalScaleIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .header-inner {

@@ -28,6 +28,8 @@ import {
   getVideosForMajor, 
   getWorkdayTimeline 
 } from '../data/careerData';
+import ThematicVideoStage from '../components/ThematicVideoStage';
+import UniversityLogo from '../components/UniversityLogo';
 
 export default function SearchView({ 
   initialQuery = "", 
@@ -49,7 +51,7 @@ export default function SearchView({
 
   const groups = [
     'Công nghệ & Máy tính', 
-    'Kỹ thuật & Công nghệ',
+    'Kỹ thuật & Công nghệ', 
     'Y tế & Sức khỏe', 
     'Kinh doanh & Quản lý', 
     'Sư phạm & Giáo dục',
@@ -64,10 +66,21 @@ export default function SearchView({
     if (selectedCombo && !m.to_hop.includes(selectedCombo)) return false;
     if (searchKeyword.trim()) {
       const kw = searchKeyword.toLowerCase().trim();
+
+      // Check if keyword matches a university code or name to list that school's majors
+      const matchingUni = (UNIVERSITIES_DATA || []).find(u => 
+        u.code.toLowerCase() === kw || 
+        u.id.toLowerCase() === kw ||
+        u.name.toLowerCase().includes(kw)
+      );
+      const matchUniMajors = matchingUni ? matchingUni.majors.includes(m.id) : false;
+
       const match = m.ten_nganh.toLowerCase().includes(kw) ||
                     m.mo_ta.toLowerCase().includes(kw) ||
                     m.nang_luc.toLowerCase().includes(kw) ||
-                    m.to_hop.some(t => t.toLowerCase().includes(kw));
+                    m.to_hop.some(t => t.toLowerCase().includes(kw)) ||
+                    m.truong_tieu_bieu.some(t => t.toLowerCase().includes(kw)) ||
+                    matchUniMajors;
       if (!match) return false;
     }
     return true;
@@ -671,33 +684,36 @@ export default function SearchView({
               >
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <div style={{ 
-                        width: '50px', 
-                        height: '50px', 
-                        borderRadius: '16px', 
-                        background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)', 
-                        color: '#4338CA', 
-                        fontWeight: '900', 
-                        fontSize: '1rem',
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                        boxShadow: '0 2px 8px rgba(99, 102, 241, 0.15)'
-                      }}>
-                        {u.code}
-                      </div>
-                      <div>
-                        <h3 style={{ fontSize: '1.12rem', margin: '0 0 4px', color: '#1E293B', fontWeight: '800' }}>
-                          {u.name}
-                        </h3>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#64748B' }}>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', width: '100%' }}>
+                      <UniversityLogo code={u.code} name={u.name} size={54} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '4px' }}>
+                          <h3 style={{ fontSize: '1.14rem', margin: 0, color: '#1E293B', fontWeight: '800', lineHeight: '1.3' }}>
+                            {u.name}
+                          </h3>
+                          <span style={{ 
+                            fontSize: '0.68rem', 
+                            fontWeight: '900', 
+                            padding: '2px 8px', 
+                            borderRadius: '999px', 
+                            background: '#EEF2FF', 
+                            color: '#4338CA', 
+                            border: '1px solid #C7D2FE',
+                            whiteSpace: 'nowrap'
+                          }}>
+                            MÃ: {u.code}
+                          </span>
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#64748B', flexWrap: 'wrap' }}>
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', whiteSpace: 'nowrap', flexShrink: 0, background: '#F0F9FF', color: '#0369A1', padding: '2px 8px', borderRadius: '6px', fontWeight: '700' }}>
                             <MapPin size={13} color="#0284C7" />
                             {u.city}
                           </span>
-                          <span>•</span>
-                          <span style={{ fontWeight: '700', color: '#059669' }}>{u.type}</span>
+                          <span style={{ color: '#CBD5E1' }}>•</span>
+                          <span style={{ fontWeight: '700', color: '#059669', background: '#ECFDF5', padding: '2px 8px', borderRadius: '6px', whiteSpace: 'nowrap' }}>
+                            {u.type}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -764,7 +780,7 @@ export default function SearchView({
                     style={{ fontSize: '0.82rem', padding: '8px 14px' }}
                     onClick={() => {
                       setSelectedMajorModal(null);
-                      setSearchKeyword(u.name);
+                      setSearchKeyword(u.code);
                       setActiveTab('nganh');
                     }}
                   >
@@ -822,10 +838,34 @@ export default function SearchView({
       {activeVideoMajor && (
         <div
           className="cinema-modal-backdrop"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(15, 23, 42, 0.78)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px 20px',
+            overflowY: 'auto'
+          }}
           onClick={() => setActiveVideoMajor(null)}
         >
           <div
             className="cinema-modal-shell"
+            style={{
+              background: '#FFFFFF',
+              borderRadius: '26px',
+              maxWidth: '960px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15)',
+              border: '1.5px solid #E0E7FF',
+              position: 'relative'
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -919,35 +959,17 @@ export default function SearchView({
                       </button>
                     </div>
 
-                    {/* MODE 1: YOUTUBE EMBED PLAYER (with direct launch fallback) */}
+                    {/* MODE 1: THEMATIC EMBED PLAYER (Electronic Circuit for Vi Mạch, ECG for Y Khoa, etc.) */}
                     {cinemaMode === 'youtube' && (
-                      <div style={{ marginBottom: '20px' }}>
-                        {/* Notice for Students */}
-                        <div style={{ background: '#FFF1F2', border: '1.5px solid #FECDD3', padding: '12px 18px', borderRadius: '14px', fontSize: '0.86rem', color: '#9F1239', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <span>📺 <strong>Nguồn phát:</strong> {currentVideo.channel} • Thời lượng: {currentVideo.duration}</span>
-                          </span>
-                          <a
-                            href={directYoutubeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ background: '#E11D48', color: '#FFFFFF', padding: '7px 18px', borderRadius: '999px', fontWeight: '800', fontSize: '0.8rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', boxShadow: '0 4px 12px rgba(225, 29, 72, 0.3)' }}
-                          >
-                            <Play size={13} fill="#FFFFFF" />
-                            <span>Mở Xem Trên YouTube (Mở tab mới) ↗</span>
-                          </a>
-                        </div>
-
-                        {/* Responsive 16:9 Video Player Stage */}
-                        <div className="cinema-stage-16-9">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?autoplay=1&rel=0`}
-                            title={currentVideo.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                        </div>
-                      </div>
+                      <ThematicVideoStage
+                        majorId={activeVideoMajor.id}
+                        majorName={activeVideoMajor.ten_nganh}
+                        youtubeId={currentVideo.youtubeId}
+                        videoTitle={currentVideo.title}
+                        channel={currentVideo.channel}
+                        duration={currentVideo.duration}
+                        directYoutubeUrl={directYoutubeUrl}
+                      />
                     )}
 
                     {/* MODE 2: INTERACTIVE WORKDAY SIMULATOR */}
