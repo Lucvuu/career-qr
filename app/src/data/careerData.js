@@ -1233,7 +1233,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "30 – 45 tr/năm (chuẩn) • 60 – 85 tr/năm (tiên tiến)",
     majors: ["cntt", "vi-mach", "khdl", "tudonghoa", "ky-thuat-phan-mem", "robot-ai", "hang-khong"],
     highlight: "Đại học kỹ thuật & công nghệ số 1 Việt Nam, dẫn đầu chiến lược quốc gia về thiết kế vi mạch bán dẫn và AI.",
-    website: "https://hust.edu.vn"
+    website: "https://hust.edu.vn",
+    admissionsUrl: "https://ts.hust.edu.vn",
+    admissionMethods: [
+      "Thi Đánh giá tư duy ĐGTD (50-60% chỉ tiêu)",
+      "Điểm thi tốt nghiệp THPT 2026 (Khối A00, A01, D07)",
+      "Xét tuyển tài năng (HSG quốc gia/tỉnh, chứng chỉ SAT/ACT)",
+      "Xét kết hợp chứng chỉ ngoại ngữ quốc tế IELTS 6.0+"
+    ],
+    scholarships: "Quỹ học bổng tài năng 100% học phí; Quỹ học bổng doanh nghiệp (Samsung, Viettel, VinGroup, Foxconn) hơn 45 tỷ đồng/năm.",
+    employmentRate: "98.2% sinh viên có việc làm sau 6 tháng",
+    startingSalary: "15 – 35 triệu/tháng (khởi điểm ngành Chip & AI)",
+    facilities: "Khuôn viên 26 ha trung tâm Hà Nội, 200+ phòng lab hiện đại, thư viện Tạ Quang Bửu 24/7, ký túc xá 4.200 chỗ.",
+    topEmployers: ["Samsung R&D", "Viettel", "FPT", "VinFast", "Qualcomm", "Synopsys", "Bosch"]
   },
   {
     id: "uet",
@@ -1247,7 +1259,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "32 – 40 tr/năm",
     majors: ["cntt", "vi-mach", "khdl", "robot-ai", "an-ninh-mang"],
     highlight: "Cái nôi nghiên cứu khoa học máy tính và AI của ĐHQGHN, gắn kết chặt chẽ với Viện Hàn lâm KHCN.",
-    website: "https://uet.vnu.edu.vn"
+    website: "https://uet.vnu.edu.vn",
+    admissionsUrl: "https://tuyensinh.uet.vnu.edu.vn",
+    admissionMethods: [
+      "Thi Đánh giá năng lực ĐGNL ĐHQGHN (HSA)",
+      "Điểm thi THPT 2026 (A00, A01)",
+      "Xét chứng chỉ quốc tế SAT / A-Level / ACT",
+      "Xét tuyển kết hợp chứng chỉ IELTS 5.5+ và học bạ chuyên"
+    ],
+    scholarships: "Học bổng ươm mầm tài năng ĐHQGHN; Tài trợ nghiên cứu khoa học cùng viện nghiên cứu; Học bổng Toshiba, Honda, Posco.",
+    employmentRate: "97.8% có việc làm đúng chuyên ngành",
+    startingSalary: "14 – 32 triệu/tháng",
+    facilities: "Hệ thống phòng lab chuyên sâu AI, Vi mạch bán dẫn, Robotics hợp tác cùng Viện Hàn lâm KH&CN Việt Nam.",
+    topEmployers: ["Viettel AI", "FPT Software", "VNPT", "LG Electronics", "Renesas", "Tiki"]
   },
   {
     id: "neu",
@@ -1261,7 +1285,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "26 – 40 tr/năm (chuẩn) • 50 – 70 tr/năm (chất lượng cao)",
     majors: ["marketing", "kdqt", "khdl", "logistics", "tai-chinh-ngan-hang", "ke-toan-kiem-toan", "du-lich-khach-san"],
     highlight: "Ngôi trường kinh tế hàng đầu miền Bắc, mạng lưới cựu sinh viên doanh nhân và lãnh đạo tập đoàn lớn nhất.",
-    website: "https://neu.edu.vn"
+    website: "https://neu.edu.vn",
+    admissionsUrl: "https://daotao.neu.edu.vn",
+    admissionMethods: [
+      "Xét tuyển kết hợp ĐGNL ĐHQGHN / ĐGTD Bách Khoa",
+      "Xét kết hợp chứng chỉ quốc tế (IELTS 6.5+ / SAT 1200+)",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển học sinh giỏi trường THPT Chuyên"
+    ],
+    scholarships: "Quỹ khuyến học NEU hơn 30 tỷ/năm; Học bổng tài trợ từ Big4 kiểm toán (PwC, Deloitte, EY, KPMG), Vietcombank, MB Bank.",
+    employmentRate: "98.5% sinh viên có việc làm sau tốt nghiệp",
+    startingSalary: "12 – 28 triệu/tháng",
+    facilities: "Tòa nhà Thế kỷ với giảng đường thông minh, thư viện số hiện đại bậc nhất, vườn ươm khởi nghiệp NEU-Incubator.",
+    topEmployers: ["PwC", "Deloitte", "KPMG", "EY", "Vietcombank", "MB Bank", "Shopee", "Unilever"]
   },
   {
     id: "ftu",
@@ -1275,7 +1311,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "28 – 45 tr/năm",
     majors: ["kdqt", "marketing", "logistics", "tai-chinh-ngan-hang", "ngon-ngu-anh"],
     highlight: "Môi trường học tập năng động, ngoại ngữ xuất sắc, tỷ lệ việc làm tại các tập đoàn đa quốc gia và Big4 thuộc top đầu.",
-    website: "https://ftu.edu.vn"
+    website: "https://ftu.edu.vn",
+    admissionsUrl: "https://tuyensinh.ftu.edu.vn",
+    admissionMethods: [
+      "Xét kết hợp chứng chỉ ngoại ngữ quốc tế (IELTS 6.5+) và học bạ",
+      "Xét kết hợp chứng chỉ quốc tế và điểm thi THPT",
+      "Điểm thi ĐGNL ĐHQGHN & ĐGTD Bách Khoa",
+      "Điểm thi tốt nghiệp THPT 2026"
+    ],
+    scholarships: "Học bổng FTU Diamond, Quỹ học bổng doanh nghiệp đa quốc gia (Unilever, Nestlé, P&G, Sumitomo) tài trợ hàng chục tỷ.",
+    employmentRate: "99.1% có việc làm trong 6 tháng",
+    startingSalary: "14 – 35 triệu/tháng (thuộc top 1 khối kinh tế)",
+    facilities: "Trung tâm phát triển quốc tế, không gian Co-working space sáng tạo, hơn 40 câu lạc bộ sinh viên tài năng bậc nhất.",
+    topEmployers: ["McKinsey", "BCG", "Unilever", "P&G", "Nestlé", "Standard Chartered", "Shopee", "Heineken"]
   },
   {
     id: "hmu",
@@ -1289,7 +1337,18 @@ export const UNIVERSITIES_DATA = [
     tuition: "45 – 55 tr/năm",
     majors: ["ykhoa", "rang-ham-mat"],
     highlight: "Lịch sử hơn 120 năm, ngọn cờ đầu trong ngành Y tế Việt Nam, đào tạo đội ngũ giáo sư và bác sĩ đầu ngành.",
-    website: "https://hmu.edu.vn"
+    website: "https://hmu.edu.vn",
+    admissionsUrl: "https://hmu.edu.vn/tuyensinh",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026 (Khối B00: Toán – Hóa – Sinh)",
+      "Xét kết hợp điểm thi THPT và chứng chỉ tiếng Anh (IELTS 6.5+)",
+      "Xét tuyển thẳng học sinh giỏi Olympic quốc gia & quốc tế"
+    ],
+    scholarships: "Học bổng khuyến khích học tập tài năng y khoa; Học bổng từ các bệnh viện trung ương và tổ chức y tế quốc tế Pháp, Nhật.",
+    employmentRate: "100% bác sĩ có việc làm ngay khi tốt nghiệp",
+    startingSalary: "15 – 40 triệu/tháng (bác sĩ nội trú & lâm sàng)",
+    facilities: "Bệnh viện Đại học Y Hà Nội thực hành trực tiếp, trung tâm mô phỏng phẫu thuật lâm sàng 3D chuẩn quốc tế.",
+    topEmployers: ["Bệnh viện Bạch Mai", "Việt Đức", "K Trung ương", "Nhi Trung ương", "Vinmec", "Bệnh viện ĐH Y HN"]
   },
   {
     id: "ptit",
@@ -1303,7 +1362,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "25 – 36 tr/năm",
     majors: ["cntt", "marketing", "dohoa", "an-ninh-mang", "thuong-mai-dien-tu"],
     highlight: "Thế mạnh công nghệ thực chiến, hợp tác đào tạo và tuyển dụng trực tiếp với Samsung, VNPT, Viettel.",
-    website: "https://portal.ptit.edu.vn"
+    website: "https://portal.ptit.edu.vn",
+    admissionsUrl: "https://tuyensinh.ptit.edu.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển kết hợp ĐGNL ĐHQGHN / ĐGTD Bách Khoa",
+      "Xét tuyển tài năng chứng chỉ quốc tế (SAT / IELTS)",
+      "Xét học bạ THPT chuyên"
+    ],
+    scholarships: "Học bổng toàn phần tài năng công nghệ từ VNPT, Viettel, Samsung; Quỹ học bổng khuyến khích học tập hàng kỳ.",
+    employmentRate: "96.5% sinh viên có việc làm sau 6 tháng",
+    startingSalary: "12 – 28 triệu/tháng",
+    facilities: "Phòng thí nghiệm 5G/6G hiện đại, Lab An toàn thông tin chuẩn SOC, Studio đồ họa và Game Design tân tiến.",
+    topEmployers: ["Viettel Group", "VNPT", "Samsung Electronics", "FPT Telecom", "MobiFone", "VNG"]
   },
   {
     id: "hnue",
@@ -1317,7 +1388,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "Miễn 100% học phí + trợ cấp 3.63 tr/tháng",
     majors: ["su-pham-toan-tin", "su-pham-tieng-anh", "tamly"],
     highlight: "Trung tâm đào tạo giáo viên và chuyên gia giáo dục số 1 cả nước, thụ hưởng chính sách hỗ trợ toàn diện theo NĐ 116.",
-    website: "https://hnue.edu.vn"
+    website: "https://hnue.edu.vn",
+    admissionsUrl: "https://tuyensinh.hnue.edu.vn",
+    admissionMethods: [
+      "Kỳ thi Đánh giá năng lực độc lập của ĐH Sư phạm Hà Nội",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển thẳng học sinh giỏi quốc gia / tỉnh",
+      "Xét học bạ THPT chuyên"
+    ],
+    scholarships: "Miễn 100% học phí suốt 4 năm + trợ cấp sinh hoạt phí 3.630.000 đ/tháng theo Nghị định 116/CP; Học bổng Vallet danh giá.",
+    employmentRate: "96.0% có việc làm ngay sau khi tốt nghiệp",
+    startingSalary: "10 – 22 triệu/tháng (giáo viên trường quốc tế/công lập)",
+    facilities: "Trường THPT Chuyên ĐHSP thực hành, các phòng lab thí nghiệm vật lý - sinh học chuẩn quốc gia, thư viện giáo dục số.",
+    topEmployers: ["Hệ thống THPT Chuyên toàn quốc", "Vinschool", "FPT Schools", "Marie Curie", "Olympia Schools"]
   },
   {
     id: "dav",
@@ -1331,7 +1414,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "25 – 40 tr/năm",
     majors: ["ngoai-giao", "truyen-thong-da-phuong-tien", "ngon-ngu-anh", "kdqt"],
     highlight: "Đào tạo các thế hệ cán bộ ngoại giao, chuyên gia quan hệ quốc tế và phóng viên báo chí quốc tế hàng đầu.",
-    website: "https://dav.edu.vn"
+    website: "https://dav.edu.vn",
+    admissionsUrl: "https://dav.edu.vn/tuyen-sinh",
+    admissionMethods: [
+      "Xét kết hợp chứng chỉ ngoại ngữ quốc tế (IELTS 7.0+) và học bạ",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Điểm thi ĐGNL ĐHQGHN",
+      "Tuyển thẳng học sinh giỏi quốc gia môn Ngoại ngữ, Văn, Sử"
+    ],
+    scholarships: "Học bổng Bộ Ngoại giao, Học bổng Đại sứ quán các nước (Mỹ, Anh, Pháp, Nhật), Học bổng tài năng truyền thông quốc tế.",
+    employmentRate: "98.0% có việc làm đúng chuyên môn",
+    startingSalary: "13 – 30 triệu/tháng",
+    facilities: "Tòa nhà Hội thảo quốc tế hiện đại, phòng mô phỏng hội nghị Liên Hợp Quốc (MUN), thư viện chuyên khảo đối ngoại.",
+    topEmployers: ["Bộ Ngoại giao", "Đại sứ quán & Lãnh sự quán", "Thông tấn xã Việt Nam", "VTV", "Tập đoàn đa quốc gia FDI"]
   },
   {
     id: "ba",
@@ -1345,10 +1440,22 @@ export const UNIVERSITIES_DATA = [
     tuition: "24 – 38 tr/năm",
     majors: ["tai-chinh-ngan-hang", "fintech", "ke-toan-kiem-toan", "kdqt"],
     highlight: "Đào tạo chuyên sâu tài chính, ngân hàng số và công nghệ Fintech trực thuộc Ngân hàng Nhà nước Việt Nam.",
-    website: "https://hvnh.edu.vn"
+    website: "https://hvnh.edu.vn",
+    admissionsUrl: "https://hvnh.edu.vn/tuyensinh",
+    admissionMethods: [
+      "Kỳ thi ĐGNL Ngân hàng (V-SAT)",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét kết hợp chứng chỉ tiếng Anh quốc tế (IELTS 6.0+)",
+      "Xét tuyển dựa trên kết quả học tập THPT"
+    ],
+    scholarships: "Học bổng Thống đốc Ngân hàng Nhà nước, Học bổng từ các ngân hàng thương mại lớn (VietinBank, BIDV, Agribank, Vietcombank).",
+    employmentRate: "97.2% có việc làm sau 6 tháng",
+    startingSalary: "11 – 25 triệu/tháng",
+    facilities: "Ngân hàng mô phỏng thực hành Banking Core hiện đại, sàn giao dịch chứng khoán ảo, trung tâm đổi mới Fintech.",
+    topEmployers: ["Ngân hàng Nhà nước", "Vietcombank", "BIDV", "VietinBank", "Techcombank", "Chứng khoán SSI"]
   },
   {
-    id: "hlu",
+    id: "lph",
     code: "LPH",
     name: "Đại học Luật Hà Nội",
     region: "bac",
@@ -1359,7 +1466,18 @@ export const UNIVERSITIES_DATA = [
     tuition: "22 – 36 tr/năm",
     majors: ["luat-kinh-te"],
     highlight: "Cơ sở đào tạo luật pháp lớn nhất Việt Nam, cung ứng thẩm phán, kiểm sát viên và luật sư doanh nghiệp cấp cao.",
-    website: "https://hlu.edu.vn"
+    website: "https://hlu.edu.vn",
+    admissionsUrl: "https://hlu.edu.vn/tuyensinh",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026 (Khối A00, A01, C00, D01)",
+      "Xét tuyển dựa trên kết quả học bạ THPT (chuyên)",
+      "Xét tuyển kết hợp chứng chỉ ngoại ngữ quốc tế"
+    ],
+    scholarships: "Học bổng ngành Tư pháp, Học bổng từ các hãng luật quốc tế danh tiếng, Học bổng thủ khoa đầu vào và GPA xuất sắc.",
+    employmentRate: "96.8% sinh viên có việc làm",
+    startingSalary: "12 – 28 triệu/tháng (chuyên viên pháp chế & luật sư)",
+    facilities: "Phòng diễn án phiên tòa giả định chuẩn Tòa án nhân dân, thư viện luật học chuyên khảo đồ sộ nhất Việt Nam.",
+    topEmployers: ["Tòa án Nhân dân", "Viện Kiểm sát", "Hãng luật VILAF", "YKVN", "Pháp chế VinGroup", "Pháp chế Viettel"]
   },
   {
     id: "huce",
@@ -1373,7 +1491,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "22 – 35 tr/năm",
     majors: ["xay-dung", "kien-truc"],
     highlight: "Chiếc nôi đào tạo kỹ sư xây dựng, kiến trúc sư công trình và chuyên gia mô hình hóa BIM uy tín nhất miền Bắc.",
-    website: "https://huce.edu.vn"
+    website: "https://huce.edu.vn",
+    admissionsUrl: "https://tuyensinh.huce.edu.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Kỳ thi Đánh giá tư duy ĐGTD ĐH Bách Khoa Hà Nội",
+      "Thi môn Vẽ mỹ thuật kết hợp điểm văn hóa (Khối V00, H00)",
+      "Xét kết hợp chứng chỉ quốc tế và học bạ"
+    ],
+    scholarships: "Học bổng Đỗ Quốc Sam, Học bổng doanh nghiệp xây dựng Nhật Bản (Shimizu, Taisei, Kajima) và các tổng công ty xây dựng lớn.",
+    employmentRate: "95.5% sinh viên có việc làm",
+    startingSalary: "11 – 24 triệu/tháng",
+    facilities: "Xưởng kết cấu công trình chịu lực quy mô lớn, phòng thí nghiệm vật liệu nano xây dựng, xưởng điêu khắc và kiến trúc.",
+    topEmployers: ["Coteccons", "Tập đoàn Hòa Bình", "Vinaconex", "Delta Group", "Sun Group", "Portcoast"]
   },
   {
     id: "ussh-hn",
@@ -1387,7 +1517,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "16 – 28 tr/năm",
     majors: ["tamly", "truyen-thong-da-phuong-tien", "du-lich-khach-san"],
     highlight: "Trung tâm nghiên cứu khoa học xã hội uy tín, thế mạnh về tâm lý học hành vi, báo chí truyền thông và quản trị du lịch.",
-    website: "https://ussh.vnu.edu.vn"
+    website: "https://ussh.vnu.edu.vn",
+    admissionsUrl: "https://tuyensinh.ussh.edu.vn",
+    admissionMethods: [
+      "Điểm thi Đánh giá năng lực ĐGNL ĐHQGHN (HSA)",
+      "Điểm thi tốt nghiệp THPT 2026 (C00, D01, D04)",
+      "Xét tuyển kết hợp chứng chỉ ngoại ngữ quốc tế",
+      "Tuyển thẳng học sinh giỏi quốc gia"
+    ],
+    scholarships: "Học bổng VNU xuất sắc; Học bổng từ các quỹ quốc tế Ford, KOICA, Quỹ hỗ trợ tài năng truyền thông trẻ.",
+    employmentRate: "96.2% có việc làm sau 6 tháng",
+    startingSalary: "10 – 22 triệu/tháng",
+    facilities: "Studio truyền hình và phát thanh thực hành hiện đại, trung tâm tham vấn tâm lý học đường, bảo tàng nhân học.",
+    topEmployers: ["Đài Truyền hình Việt Nam (VTV)", "Báo Tuổi Trẻ", "Báo VnExpress", "Saigontourist", "Các tổ chức NGO"]
   },
 
   // --- MIỀN TRUNG & TÂY NGUYÊN ---
@@ -1403,7 +1545,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "25 – 36 tr/năm",
     majors: ["cntt", "vi-mach", "tudonghoa", "oto-dien", "xay-dung", "kien-truc"],
     highlight: "Đại học kỹ thuật hàng đầu miền Trung, trung tâm đào tạo nhân lực thiết kế chip và công nghệ số cho Đà Nẵng Silicon.",
-    website: "https://dut.udn.vn"
+    website: "https://dut.udn.vn",
+    admissionsUrl: "https://tuyensinh.dut.udn.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Thi Đánh giá năng lực ĐHQG TP.HCM / ĐHQGHN",
+      "Thi Đánh giá tư duy ĐH Bách Khoa Hà Nội",
+      "Xét học bạ THPT & Tuyển sinh riêng của trường"
+    ],
+    scholarships: "Học bổng đào tạo nhân lực Bán dẫn & Vi mạch của UBND TP Đà Nẵng; Học bổng Synopsys, Viettel, FPT Software miền Trung.",
+    employmentRate: "97.5% có việc làm trong 6 tháng",
+    startingSalary: "12 – 28 triệu/tháng",
+    facilities: "Trung tâm Nghiên cứu Vi mạch & Bán dẫn Đà Nẵng, Smart Factory Lab, xưởng cơ khí động lực quy mô lớn.",
+    topEmployers: ["Synopsys Đà Nẵng", "FPT Software", "Viettel R&D", "Thaco Chu Lai", "Enclave", "KMS Technology"]
   },
   {
     id: "due",
@@ -1417,7 +1571,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "24 – 38 tr/năm",
     majors: ["marketing", "kdqt", "du-lich-khach-san", "tai-chinh-ngan-hang", "thuong-mai-dien-tu"],
     highlight: "Cái nôi đào tạo khối ngành kinh tế, marketing và quản trị du lịch khách sạn lớn nhất khu vực miền Trung - Tây Nguyên.",
-    website: "https://due.udn.vn"
+    website: "https://due.udn.vn",
+    admissionsUrl: "https://tuyensinh.due.udn.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Xét tuyển kết hợp chứng chỉ quốc tế và học bạ",
+      "Xét tuyển riêng theo đề án trường"
+    ],
+    scholarships: "Học bổng tiếp sức tài năng kinh tế miền Trung; Học bổng từ các tập đoàn nghỉ dưỡng Sun Group, Vinpearl, Furama Resort.",
+    employmentRate: "97.0% có việc làm sau 6 tháng",
+    startingSalary: "10 – 22 triệu/tháng",
+    facilities: "Trung tâm khởi nghiệp và đổi mới sáng tạo DUE Innovation, khách sạn mô phỏng thực hành 5 sao.",
+    topEmployers: ["Sun Group", "Vinpearl", "Vietcombank Đà Nẵng", "Techcombank", "Furama Resort", "Shopee Express"]
   },
   {
     id: "hump",
@@ -1431,7 +1597,18 @@ export const UNIVERSITIES_DATA = [
     tuition: "42 – 55 tr/năm",
     majors: ["ykhoa", "rang-ham-mat", "duoc-hoc"],
     highlight: "Trung tâm y tế chuyên sâu của miền Trung, cơ sở bệnh viện thực hành hiện đại, đào tạo bác sĩ tay nghề vững vàng.",
-    website: "https://huemed-univ.edu.vn"
+    website: "https://huemed-univ.edu.vn",
+    admissionsUrl: "https://huemed-univ.edu.vn/tuyensinh",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026 (Khối B00: Toán – Hóa – Sinh)",
+      "Xét kết hợp điểm thi THPT với chứng chỉ tiếng Anh (IELTS 6.5+)",
+      "Tuyển thẳng học sinh giỏi Olympic quốc gia"
+    ],
+    scholarships: "Học bổng Giáo sư Vallet, Học bổng hội cựu sinh viên Y khoa Huế toàn cầu, Quỹ hỗ trợ bác sĩ tương lai.",
+    employmentRate: "98.5% bác sĩ có việc làm ngay",
+    startingSalary: "12 – 30 triệu/tháng",
+    facilities: "Bệnh viện Trường Đại học Y Dược Huế quy mô hơn 700 giường, trung tâm nội soi tiêu hóa và phẫu thuật nội soi tiên tiến.",
+    topEmployers: ["Bệnh viện Trung ương Huế", "Bệnh viện Đà Nẵng", "Hệ thống bệnh viện đa khoa miền Trung – Tây Nguyên"]
   },
   {
     id: "vku",
@@ -1445,7 +1622,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "18 – 28 tr/năm",
     majors: ["cntt", "vi-mach", "khdl", "dohoa"],
     highlight: "Được chính phủ Hàn Quốc (KOICA) tài trợ trang thiết bị, mũi nhọn đào tạo kỹ sư bán dẫn và trí tuệ nhân tạo miền Trung.",
-    website: "https://vku.udn.vn"
+    website: "https://vku.udn.vn",
+    admissionsUrl: "https://tuyensinh.vku.udn.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Xét học bạ THPT (điểm TB tổ hợp môn)",
+      "Tuyển sinh riêng theo tiêu chí KOICA Hàn Quốc"
+    ],
+    scholarships: "Chính phủ Hàn Quốc (KOICA) tài trợ học bổng học tập và trao đổi tại Seoul; Học bổng doanh nghiệp IT Hàn Quốc.",
+    employmentRate: "96.0% có việc làm sau 6 tháng",
+    startingSalary: "11 – 24 triệu/tháng",
+    facilities: "Khuôn viên công nghệ thông tin hiện đại bậc nhất miền Trung, Lab Vi mạch và Trí tuệ nhân tạo tài trợ bởi KOICA.",
+    topEmployers: ["LG Electronics R&D Đà Nẵng", "FPT Software", "Enclave", "NCS Korea", "Tập đoàn công nghệ Hàn Quốc"]
   },
 
   // --- MIỀN NAM & TP.HCM ---
@@ -1461,7 +1650,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "30 – 48 tr/năm",
     majors: ["cntt", "vi-mach", "tudonghoa", "oto-dien", "hang-khong", "xay-dung", "logistics"],
     highlight: "Đại học kỹ thuật hàng đầu phía Nam, đạt chuẩn kiểm định ABET của Hoa Kỳ, kết nối hàng trăm tập đoàn công nghệ toàn cầu.",
-    website: "https://hcmut.edu.vn"
+    website: "https://hcmut.edu.vn",
+    admissionsUrl: "https://tuyensinh.hcmut.edu.vn",
+    admissionMethods: [
+      "Mô hình xét tuyển kết hợp: ĐGNL ĐHQG TP.HCM (70%) + Điểm thi THPT 2026 + Học lực THPT",
+      "Xét tuyển thẳng theo quy định Bộ GD&ĐT",
+      "Ưu tiên xét tuyển học sinh giỏi trường chuyên/top đầu",
+      "Xét chứng chỉ quốc tế (SAT, ACT, IB, A-Level)"
+    ],
+    scholarships: "Quỹ học bổng Bách Khoa hơn 50 tỷ đồng/năm; Học bổng từ Intel Products Vietnam, Marvell, Renesas, Bosch, Samsung.",
+    employmentRate: "98.8% sinh viên có việc làm sau 6 tháng",
+    startingSalary: "15 – 35 triệu/tháng (khởi điểm)",
+    facilities: "2 cơ sở rộng lớn tại Q.10 và KĐT ĐHQG Thủ Đức, phòng sạch vi mạch sạch ISO-5, phòng thí nghiệm hàng không và hầm gió.",
+    topEmployers: ["Intel Products Vietnam", "Marvell Technology", "Bosch Vietnam", "Samsung Electronics", "VNG", "Renesas"]
   },
   {
     id: "uit",
@@ -1475,7 +1676,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "32 – 45 tr/năm",
     majors: ["cntt", "khdl", "vi-mach", "an-ninh-mang", "ky-thuat-phan-mem"],
     highlight: "Đại học chuyên sâu 100% ngành CNTT và Vi mạch, tỷ lệ sinh viên có việc làm trước khi tốt nghiệp đạt hơn 95%.",
-    website: "https://uit.edu.vn"
+    website: "https://uit.edu.vn",
+    admissionsUrl: "https://tuyensinh.uit.edu.vn",
+    admissionMethods: [
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Ưu tiên xét tuyển học sinh giỏi trường chuyên cả nước",
+      "Xét chứng chỉ quốc tế (IELTS kết hợp, SAT)"
+    ],
+    scholarships: "Học bổng thủ khoa và tài năng xuất sắc; Học bổng từ các tập đoàn công nghệ Grab, VNG, Shopee, Synopsys.",
+    employmentRate: "98.5% sinh viên có việc làm",
+    startingSalary: "16 – 36 triệu/tháng (thuộc top 1 CNTT miền Nam)",
+    facilities: "Tòa nhà công nghệ cao tại Khu ĐHQG Thủ Đức, Trung tâm an toàn thông tin chuyên biệt, phòng nghiên cứu Internet of Things.",
+    topEmployers: ["Grab", "Shopee", "VNG Corporation", "Zalo", "Axon", "Momo", "Synopsys", "KMS"]
   },
   {
     id: "ueh",
@@ -1489,7 +1702,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "28 – 45 tr/năm",
     majors: ["marketing", "kdqt", "logistics", "khdl", "fintech", "tai-chinh-ngan-hang", "ke-toan-kiem-toan"],
     highlight: "Top 1 đại học kinh tế miền Nam, chuyển mình thành đại học đa ngành và tiên phong đào tạo công nghệ ứng dụng.",
-    website: "https://ueh.edu.vn"
+    website: "https://ueh.edu.vn",
+    admissionsUrl: "https://tuyensinh.ueh.edu.vn",
+    admissionMethods: [
+      "Xét tuyển dựa trên kết quả thi ĐGNL ĐHQG TP.HCM",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển học sinh Giỏi THPT kết hợp chứng chỉ tiếng Anh quốc tế",
+      "Xét tuyển quá trình học tập THPT"
+    ],
+    scholarships: "Quỹ học bổng UEH hơn 40 tỷ/năm; Học bổng doanh nghiệp đa quốc gia (Unilever, Big4, Dragon Capital, Shopee).",
+    employmentRate: "98.6% sinh viên có việc làm sau tốt nghiệp",
+    startingSalary: "13 – 30 triệu/tháng",
+    facilities: "Hệ thống cơ sở thông minh trung tâm Q.1, Q.3 và cơ sở Nam TP.HCM, thư viện thông minh đạt chuẩn quốc tế, UEH MakerSpace.",
+    topEmployers: ["PwC", "EY", "KPMG", "Deloitte", "Shopee", "Unilever", "Lazada", "Dragon Capital", "VPBank"]
   },
   {
     id: "ump",
@@ -1503,7 +1728,18 @@ export const UNIVERSITIES_DATA = [
     tuition: "46 – 82 tr/năm",
     majors: ["ykhoa", "rang-ham-mat", "duoc-hoc"],
     highlight: "Thành lũy đào tạo y dược số 1 miền Nam, mạng lưới bệnh viện thực hành lớn nhất TP.HCM với các giáo sư đầu ngành.",
-    website: "https://ump.edu.vn"
+    website: "https://ump.edu.vn",
+    admissionsUrl: "https://tuyensinh.ump.edu.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026 (Khối B00: Toán – Hóa – Sinh)",
+      "Xét tuyển kết hợp chứng chỉ tiếng Anh quốc tế (IELTS 6.0+)",
+      "Tuyển thẳng học sinh giỏi Olympic quốc gia"
+    ],
+    scholarships: "Học bổng khuyến khích học tập toàn phần; Học bổng từ các tập đoàn dược phẩm đa quốc gia (Sanofi, Novartis, Pfizer).",
+    employmentRate: "99.5% có việc làm ngay khi tốt nghiệp",
+    startingSalary: "18 – 45 triệu/tháng (bác sĩ nội trú và chuyên khoa)",
+    facilities: "Bệnh viện Đại học Y Dược TP.HCM (3 cơ sở lớn), Trung tâm mô phỏng tiền lâm sàng tân tiến hàng đầu Đông Nam Á.",
+    topEmployers: ["Bệnh viện Chợ Rẫy", "Bệnh viện ĐH Y Dược TP.HCM", "Bệnh viện Từ Dũ", "Bệnh viện Thống Nhất", "Bệnh viện Nhi Đồng 1"]
   },
   {
     id: "pntu",
@@ -1517,7 +1753,18 @@ export const UNIVERSITIES_DATA = [
     tuition: "42 – 60 tr/năm",
     majors: ["ykhoa", "rang-ham-mat", "duoc-hoc"],
     highlight: "Đào tạo bác sĩ thực hành chất lượng cao cung ứng cho toàn bộ hệ thống y tế TP.HCM và các tỉnh lân cận.",
-    website: "https://pnt.edu.vn"
+    website: "https://pnt.edu.vn",
+    admissionsUrl: "https://pnt.edu.vn/tuyen-sinh",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026 (Khối B00)",
+      "Phân bổ chỉ tiêu riêng cho học sinh có hộ khẩu TP.HCM và toàn quốc",
+      "Tuyển thẳng học sinh giỏi Olympic quốc gia môn Sinh/Hóa"
+    ],
+    scholarships: "Học bổng ngân sách TP.HCM khen thưởng sinh viên thủ khoa; Học bổng hỗ trợ học tập cho sinh viên có hoàn cảnh khó khăn.",
+    employmentRate: "99.0% bác sĩ có việc làm ngay",
+    startingSalary: "16 – 35 triệu/tháng",
+    facilities: "Phòng khám Đa khoa Đại học Y khoa Phạm Ngọc Thạch, liên kết thực hành lâm sàng tại 25+ bệnh viện lớn của TP.HCM.",
+    topEmployers: ["Bệnh viện Nhân dân 115", "Bệnh viện Hùng Vương", "Bệnh viện Ung Bướu TP.HCM", "Bệnh viện Gia Định"]
   },
   {
     id: "hcmus",
@@ -1531,7 +1778,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "26 – 40 tr/năm",
     majors: ["cntt", "khdl", "vi-mach", "cong-nghe-sinh-hoc"],
     highlight: "Cơ sở nghiên cứu khoa học cơ bản hàng đầu, nơi ươm mầm các tài năng toán học, AI và công nghệ bán dẫn.",
-    website: "https://hcmus.edu.vn"
+    website: "https://hcmus.edu.vn",
+    admissionsUrl: "https://tuyensinh.hcmus.edu.vn",
+    admissionMethods: [
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Ưu tiên xét tuyển học sinh giỏi trường chuyên/top đầu",
+      "Xét tuyển kết hợp chứng chỉ ngoại ngữ quốc tế"
+    ],
+    scholarships: "Chương trình học bổng tài năng khoa học tự nhiên 100% học phí; Quỹ học bổng Odon Vallet; Học bổng viện nghiên cứu quốc tế.",
+    employmentRate: "97.4% có việc làm trong 6 tháng",
+    startingSalary: "12 – 28 triệu/tháng",
+    facilities: "Phòng thí nghiệm Trí tuệ nhân tạo (AILab), Viện nghiên cứu vật liệu tiên tiến, phòng sạch công nghệ nano vi cơ điện tử.",
+    topEmployers: ["Renesas Vietnam", "FPT Software", "VNG", "Viện Khoa học & Công nghệ", "Các công ty công nghệ sinh học"]
   },
   {
     id: "hcmute",
@@ -1545,7 +1804,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "28 – 38 tr/năm",
     majors: ["robot-ai", "oto-dien", "tudonghoa", "cntt", "dohoa"],
     highlight: "Nổi tiếng toàn quốc về kỹ năng thực hành, máy móc thiết bị xưởng hiện đại, sinh viên tốt nghiệp tay nghề cực giỏi.",
-    website: "https://hcmute.edu.vn"
+    website: "https://hcmute.edu.vn",
+    admissionsUrl: "https://tuyensinh.hcmute.edu.vn",
+    admissionMethods: [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Xét học bạ THPT (chuyên / điểm cao)",
+      "Tuyển sinh kết hợp chứng chỉ tiếng Anh quốc tế"
+    ],
+    scholarships: "Học bổng khuyến tài SPKT; Học bổng từ các tập đoàn chế tạo máy móc tự động hóa hàng đầu (Nidec, Schneider Electric, Daikin).",
+    employmentRate: "98.0% sinh viên có việc làm ngay khi ra trường",
+    startingSalary: "14 – 30 triệu/tháng",
+    facilities: "Khu xưởng thực hành hiện đại bậc nhất TP.HCM, dây chuyền Robot công nghiệp KUKA, xưởng ô tô điện mô phỏng cao cấp.",
+    topEmployers: ["Intel Products Vietnam", "Nidec Sankyo", "Toyota Vietnam", "Daikin", "Schneider Electric", "VinFast"]
   },
   {
     id: "ftu2",
@@ -1559,7 +1830,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "28 – 45 tr/năm",
     majors: ["kdqt", "marketing", "logistics", "tai-chinh-ngan-hang"],
     highlight: "Điểm chuẩn top đầu miền Nam, sinh viên năng động, phong trào khởi nghiệp và tiếng Anh giao tiếp đỉnh cao.",
-    website: "https://cs2.ftu.edu.vn"
+    website: "https://cs2.ftu.edu.vn",
+    admissionsUrl: "https://cs2.ftu.edu.vn/tuyen-sinh",
+    admissionMethods: [
+      "Xét kết hợp chứng chỉ ngoại ngữ quốc tế (IELTS 6.5+) và học bạ",
+      "Xét kết hợp chứng chỉ quốc tế và điểm thi THPT",
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Điểm thi tốt nghiệp THPT 2026"
+    ],
+    scholarships: "Quỹ học bổng FTU2 Talent; Học bổng tài trợ từ các hiệp hội logistics và tập đoàn đa quốc gia tại TP.HCM.",
+    employmentRate: "99.2% có việc làm trong 6 tháng",
+    startingSalary: "15 – 35 triệu/tháng",
+    facilities: "Cơ sở tại Q. Bình Thạnh năng động, kết nối trực tiếp với trung tâm tài chính và cảng biển lớn nhất Việt Nam.",
+    topEmployers: ["Unilever Vietnam", "Procter & Gamble", "Lazada", "Heineken", "Dragon Capital", "Maersk Logistics"]
   },
   {
     id: "uel",
@@ -1573,7 +1856,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "24 – 38 tr/năm",
     majors: ["luat-kinh-te", "fintech", "tai-chinh-ngan-hang", "kdqt"],
     highlight: "Sự kết hợp độc đáo giữa Kinh tế và Luật, đào tạo chuyên sâu luật sư thương mại quốc tế và chuyên viên pháp chế doanh nghiệp.",
-    website: "https://uel.edu.vn"
+    website: "https://uel.edu.vn",
+    admissionsUrl: "https://tuyensinh.uel.edu.vn",
+    admissionMethods: [
+      "Điểm thi ĐGNL ĐHQG TP.HCM",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Ưu tiên xét tuyển học sinh giỏi trường chuyên/top đầu",
+      "Xét tuyển kết hợp chứng chỉ quốc tế (IELTS, SAT)"
+    ],
+    scholarships: "Học bổng UEL Shine; Học bổng từ các hãng luật quốc tế và định chế tài chính (Baker McKenzie, KPMG, SSI).",
+    employmentRate: "97.8% có việc làm sau 6 tháng",
+    startingSalary: "13 – 28 triệu/tháng",
+    facilities: "Tòa nhà hiện đại tại TP. Thủ Đức, phòng diễn án phiên tòa kinh tế quốc tế, trung tâm mô phỏng tài chính chứng khoán.",
+    topEmployers: ["Baker McKenzie", "KPMG", "Chứng khoán SSI", "VPBank", "Techcombank", "Pháp chế tập đoàn Masan"]
   },
   {
     id: "fpt-rmit",
@@ -1587,7 +1882,19 @@ export const UNIVERSITIES_DATA = [
     tuition: "75 – 120 tr/năm (FPT) • 250 – 330 tr/năm (RMIT)",
     majors: ["cntt", "vi-mach", "dohoa", "marketing", "kdqt", "du-lich-khach-san"],
     highlight: "100% học bằng tiếng Anh, kỳ thực học On-the-job Training tại doanh nghiệp, bằng cấp quốc tế danh giá.",
-    website: "https://fpt.edu.vn"
+    website: "https://fpt.edu.vn",
+    admissionsUrl: "https://daihoc.fpt.edu.vn",
+    admissionMethods: [
+      "Xét xếp hạng học bạ THPT (Top 40 SchoolRank)",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển thẳng học sinh THPT Chuyên hoặc đạt giải quốc gia",
+      "Xét hồ sơ học thuật RMIT + Chứng chỉ IELTS 6.5+"
+    ],
+    scholarships: "Học bổng FPT Talent 50% - 100% toàn khóa học; Quỹ học bổng RMIT Vice-Chancellor trị giá hàng tỷ đồng.",
+    employmentRate: "98.0% sinh viên có việc làm toàn cầu",
+    startingSalary: "18 – 40 triệu/tháng (thuộc top lương khởi điểm cao nhất)",
+    facilities: "Khuôn viên sinh thái triệu đô tại Khu Công nghệ cao Hòa Lạc & Q.9 TP.HCM, cơ sở vật chất chuẩn quốc tế 5 sao.",
+    topEmployers: ["FPT Software toàn cầu", "Google", "Microsoft", "Shopee", "L'Oréal", "Ogilvy Vietnam"]
   }
 ];
 

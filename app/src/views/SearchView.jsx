@@ -20,7 +20,10 @@ import {
   Tv,
   Building2,
   MapPin,
-  Globe
+  Globe,
+  RotateCw,
+  Undo2,
+  GraduationCap
 } from 'lucide-react';
 import { 
   MAJORS_DATA, 
@@ -49,6 +52,13 @@ export default function SearchView({
   const [cinemaMode, setCinemaMode] = useState('youtube'); // 'youtube' | 'interactive'
   const [activeTimelineStep, setActiveTimelineStep] = useState(0);
   const [savedMajorIds, setSavedMajorIds] = useState([]);
+  const [flippedUniIds, setFlippedUniIds] = useState([]);
+
+  const toggleFlipUni = (uniId) => {
+    setFlippedUniIds(prev => 
+      prev.includes(uniId) ? prev.filter(id => id !== uniId) : [...prev, uniId]
+    );
+  };
 
   // Lock body scroll when any modal is open to ensure true viewport centering & no bleed-through
   useEffect(() => {
@@ -677,131 +687,252 @@ export default function SearchView({
             ))}
           </div>
 
-          {/* Universities Bento Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '22px' }}>
-            {filteredUniversities.map(u => (
-              <div 
-                key={u.id} 
-                className="card-box" 
-                style={{ 
-                  background: '#FFFFFF', 
-                  borderRadius: '24px', 
-                  padding: '24px', 
-                  border: '1px solid #E2E8F0',
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  justifyContent: 'space-between',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', width: '100%' }}>
-                      <UniversityLogo code={u.code} name={u.name} size={54} />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '4px' }}>
-                          <h3 style={{ fontSize: '1.14rem', margin: 0, color: '#1E293B', fontWeight: '800', lineHeight: '1.3' }}>
-                            {u.name}
-                          </h3>
-                          <span style={{ 
-                            fontSize: '0.68rem', 
-                            fontWeight: '900', 
-                            padding: '2px 8px', 
-                            borderRadius: '999px', 
-                            background: '#EEF2FF', 
-                            color: '#4338CA', 
-                            border: '1px solid #C7D2FE',
-                            whiteSpace: 'nowrap'
-                          }}>
-                            MÃ: {u.code}
-                          </span>
+          {/* Universities Bento Grid with 3D Flip Cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '24px' }}>
+            {filteredUniversities.map(u => {
+              const isFlipped = flippedUniIds.includes(u.id);
+
+              return (
+                <div key={u.id} className="uni-flip-card-wrapper">
+                  <div className={`uni-flip-card-inner ${isFlipped ? 'is-flipped' : ''}`}>
+                    
+                    {/* ===== FRONT FACE (MẶT TRƯỚC) ===== */}
+                    <div className="uni-card-face uni-card-front">
+                      <div>
+                        {/* University Brand Header */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
+                          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', width: '100%' }}>
+                            <UniversityLogo code={u.code} name={u.name} size={54} />
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '4px' }}>
+                                <h3 style={{ fontSize: '1.12rem', margin: 0, color: '#1E293B', fontWeight: '800', lineHeight: '1.3' }}>
+                                  {u.name}
+                                </h3>
+                                <span style={{ 
+                                  fontSize: '0.68rem', 
+                                  fontWeight: '900', 
+                                  padding: '2px 8px', 
+                                  borderRadius: '999px', 
+                                  background: '#EEF2FF', 
+                                  color: '#4338CA', 
+                                  border: '1px solid #C7D2FE',
+                                  whiteSpace: 'nowrap'
+                                }}>
+                                  MÃ: {u.code}
+                                </span>
+                              </div>
+
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#64748B', flexWrap: 'wrap' }}>
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', whiteSpace: 'nowrap', flexShrink: 0, background: '#F0F9FF', color: '#0369A1', padding: '2px 8px', borderRadius: '6px', fontWeight: '700' }}>
+                                  <MapPin size={13} color="#0284C7" />
+                                  {u.city}
+                                </span>
+                                <span style={{ color: '#CBD5E1' }}>•</span>
+                                <span style={{ fontWeight: '700', color: '#059669', background: '#ECFDF5', padding: '2px 8px', borderRadius: '6px', whiteSpace: 'nowrap' }}>
+                                  {u.type}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#64748B', flexWrap: 'wrap' }}>
-                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', whiteSpace: 'nowrap', flexShrink: 0, background: '#F0F9FF', color: '#0369A1', padding: '2px 8px', borderRadius: '6px', fontWeight: '700' }}>
-                            <MapPin size={13} color="#0284C7" />
-                            {u.city}
-                          </span>
-                          <span style={{ color: '#CBD5E1' }}>•</span>
-                          <span style={{ fontWeight: '700', color: '#059669', background: '#ECFDF5', padding: '2px 8px', borderRadius: '6px', whiteSpace: 'nowrap' }}>
-                            {u.type}
-                          </span>
+                        {/* Benchmarks & Tuition Badge */}
+                        <div style={{ background: '#FAF5FF', border: '1px solid #E9D5FF', borderRadius: '14px', padding: '12px 14px', marginBottom: '12px' }}>
+                          <div style={{ fontSize: '0.84rem', color: '#6B21A8', fontWeight: '700', marginBottom: '4px' }}>
+                            🎯 Điểm chuẩn tham khảo: <strong>{u.benchmarks}</strong>
+                          </div>
+                          <div style={{ fontSize: '0.82rem', color: '#475569' }}>
+                            💳 Học phí dự kiến: <strong>{u.tuition}</strong>
+                          </div>
                         </div>
+
+                        {/* Highlights */}
+                        <p style={{ fontSize: '0.86rem', color: '#334155', lineHeight: '1.55', margin: '0 0 12px' }}>
+                          {u.highlight}
+                        </p>
+
+                        {/* Top Majors Tags */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '14px' }}>
+                          {u.majors.map(mId => {
+                            const majorObj = MAJORS_DATA.find(m => m.id === mId);
+                            return (
+                              <span
+                                key={mId}
+                                style={{
+                                  fontSize: '0.73rem',
+                                  fontWeight: '700',
+                                  padding: '4px 8px',
+                                  borderRadius: '8px',
+                                  background: '#F1F5F9',
+                                  color: '#475569',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '4px'
+                                }}
+                              >
+                                <span>{majorObj?.icon || '🎓'}</span>
+                                <span>{majorObj?.ten_nganh || mId}</span>
+                              </span>
+                            );
+                          })}
+                        </div>
+
+                        {/* 3D Flip Trigger Call-To-Action */}
+                        <button
+                          type="button"
+                          className="uni-flip-trigger-btn"
+                          onClick={() => toggleFlipUni(u.id)}
+                          title="Bấm để lật thẻ xem chi tiết tuyển sinh, học bổng & việc làm"
+                        >
+                          <RotateCw size={15} className="spin-flip-icon" />
+                          <span>Lật thẻ xem chi tiết tuyển sinh & việc làm 2026</span>
+                        </button>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Benchmarks & Tuition Badge */}
-                  <div style={{ background: '#FAF5FF', border: '1px solid #E9D5FF', borderRadius: '14px', padding: '12px 14px', marginBottom: '14px' }}>
-                    <div style={{ fontSize: '0.85rem', color: '#6B21A8', fontWeight: '700', marginBottom: '4px' }}>
-                      🎯 Điểm chuẩn tham khảo: <strong>{u.benchmarks}</strong>
-                    </div>
-                    <div style={{ fontSize: '0.82rem', color: '#475569' }}>
-                      💳 Học phí dự kiến: <strong>{u.tuition}</strong>
-                    </div>
-                  </div>
+                      {/* Action Footer */}
+                      <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '12px', marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+                        <a
+                          href={u.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-edtech-secondary"
+                          style={{ fontSize: '0.82rem', padding: '8px 14px', textDecoration: 'none' }}
+                        >
+                          <Globe size={14} />
+                          <span>Website trường</span>
+                        </a>
 
-                  {/* Highlights */}
-                  <p style={{ fontSize: '0.88rem', color: '#334155', lineHeight: '1.55', margin: '0 0 16px' }}>
-                    {u.highlight}
-                  </p>
-
-                  {/* Top Majors Tags */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
-                    {u.majors.map(mId => {
-                      const majorObj = MAJORS_DATA.find(m => m.id === mId);
-                      return (
-                        <span
-                          key={mId}
-                          style={{
-                            fontSize: '0.74rem',
-                            fontWeight: '700',
-                            padding: '4px 9px',
-                            borderRadius: '8px',
-                            background: '#F1F5F9',
-                            color: '#475569',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px'
+                        <button
+                          type="button"
+                          className="btn-edtech-primary"
+                          style={{ fontSize: '0.82rem', padding: '8px 14px' }}
+                          onClick={() => {
+                            setSelectedMajorModal(null);
+                            setSearchKeyword(u.code);
+                            setActiveTab('nganh');
                           }}
                         >
-                          <span>{majorObj?.icon || '🎓'}</span>
-                          <span>{majorObj?.ten_nganh || mId}</span>
-                        </span>
-                      );
-                    })}
+                          <Search size={14} />
+                          <span>Xem ngành ({u.majors.length})</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* ===== BACK FACE (MẶT SAU: HỒ SƠ CHI TIẾT) ===== */}
+                    <div className="uni-card-face uni-card-back">
+                      <div>
+                        {/* Back Header */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', paddingBottom: '10px', borderBottom: '1.5px dashed #CBD5E1' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <UniversityLogo code={u.code} name={u.name} size={38} />
+                            <div>
+                              <div style={{ fontWeight: '800', color: '#1E293B', fontSize: '0.96rem', lineHeight: '1.2' }}>{u.name}</div>
+                              <div style={{ fontSize: '0.72rem', color: '#4F46E5', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                <Sparkles size={11} />
+                                <span>HỒ SƠ TUYỂN SINH & VIỆC LÀM 2026</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            type="button"
+                            className="uni-back-unflip-btn"
+                            onClick={() => toggleFlipUni(u.id)}
+                            title="Lật lại mặt trước"
+                          >
+                            <Undo2 size={13} />
+                            <span>Mặt trước</span>
+                          </button>
+                        </div>
+
+                        {/* Section 1: Phương thức xét tuyển */}
+                        <div className="uni-detail-section" style={{ borderLeft: '4px solid #4F46E5' }}>
+                          <div className="uni-detail-section-title" style={{ color: '#4338CA' }}>
+                            <GraduationCap size={15} />
+                            <span>Phương thức xét tuyển 2026</span>
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                            {(u.admissionMethods || [
+                              'Xét kết quả thi tốt nghiệp THPT 2026',
+                              'Xét Đánh giá năng lực / Đánh giá tư duy',
+                              'Xét tuyển tài năng & Chứng chỉ quốc tế (IELTS/SAT)'
+                            ]).map((method, idx) => (
+                              <div key={idx} style={{ fontSize: '0.79rem', color: '#334155', display: 'flex', alignItems: 'flex-start', gap: '6px', lineHeight: '1.4' }}>
+                                <span style={{ color: '#4F46E5', fontWeight: '900', fontSize: '0.72rem', marginTop: '2px' }}>✓</span>
+                                <span>{method}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Section 2: Việc làm & Thu nhập đầu ra */}
+                        <div className="uni-detail-section" style={{ borderLeft: '4px solid #059669' }}>
+                          <div className="uni-detail-section-title" style={{ color: '#047857' }}>
+                            <CheckCircle2 size={15} />
+                            <span>Thực tế việc làm & Thu nhập</span>
+                          </div>
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '8px' }}>
+                            <div style={{ background: '#ECFDF5', padding: '8px 10px', borderRadius: '10px', border: '1px solid #A7F3D0' }}>
+                              <div style={{ fontSize: '0.67rem', color: '#065F46', fontWeight: '800' }}>TỶ LỆ CÓ VIỆC LÀM</div>
+                              <div style={{ fontSize: '0.84rem', fontWeight: '900', color: '#047857' }}>{u.employmentRate || '97.5% sau 6 tháng'}</div>
+                            </div>
+                            <div style={{ background: '#EEF2FF', padding: '8px 10px', borderRadius: '10px', border: '1px solid #C7D2FE' }}>
+                              <div style={{ fontSize: '0.67rem', color: '#3730A3', fontWeight: '800' }}>LƯƠNG KHỞI ĐIỂM</div>
+                              <div style={{ fontSize: '0.84rem', fontWeight: '900', color: '#4338CA' }}>{u.startingSalary || '12 - 25 tr/tháng'}</div>
+                            </div>
+                          </div>
+                          {u.topEmployers && u.topEmployers.length > 0 && (
+                            <div style={{ fontSize: '0.74rem', color: '#475569' }}>
+                              <span style={{ fontWeight: '700', color: '#1E293B' }}>Đối tác tuyển dụng: </span>
+                              {u.topEmployers.join(', ')}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Section 3: Học bổng & Cơ sở vật chất */}
+                        <div className="uni-detail-section" style={{ borderLeft: '4px solid #D97706' }}>
+                          <div className="uni-detail-section-title" style={{ color: '#B45309' }}>
+                            <Award size={15} />
+                            <span>Học bổng & Cơ sở vật chất</span>
+                          </div>
+                          <p style={{ fontSize: '0.78rem', color: '#334155', margin: '0 0 6px', lineHeight: '1.45' }}>
+                            🎁 <strong>Học bổng:</strong> {u.scholarships || 'Nhiều suất học bổng tài năng 50% - 100% học phí và học bổng doanh nghiệp.'}
+                          </p>
+                          <p style={{ fontSize: '0.78rem', color: '#475569', margin: 0, lineHeight: '1.45' }}>
+                            🏛️ <strong>Cơ sở vật chất:</strong> {u.facilities || 'Khuôn viên hiện đại, ký túc xá tiện nghi, thư viện trung tâm & phòng thí nghiệm chuẩn quốc tế.'}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Back Footer Actions */}
+                      <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '10px', marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+                        <button
+                          type="button"
+                          className="btn-edtech-secondary"
+                          style={{ fontSize: '0.8rem', padding: '7px 12px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          onClick={() => toggleFlipUni(u.id)}
+                        >
+                          <Undo2 size={13} />
+                          <span>↩ Quay lại</span>
+                        </button>
+
+                        <a
+                          href={u.admissionsUrl || u.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-edtech-primary"
+                          style={{ fontSize: '0.8rem', padding: '7px 14px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                        >
+                          <span>Cổng tuyển sinh</span>
+                          <ExternalLink size={13} />
+                        </a>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
-
-                {/* Action Footer */}
-                <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
-                  <a
-                    href={u.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-edtech-secondary"
-                    style={{ fontSize: '0.82rem', padding: '8px 14px', textDecoration: 'none' }}
-                  >
-                    <Globe size={14} />
-                    <span>Website trường</span>
-                  </a>
-
-                  <button
-                    type="button"
-                    className="btn-edtech-primary"
-                    style={{ fontSize: '0.82rem', padding: '8px 14px' }}
-                    onClick={() => {
-                      setSelectedMajorModal(null);
-                      setSearchKeyword(u.code);
-                      setActiveTab('nganh');
-                    }}
-                  >
-                    <Search size={14} />
-                    <span>Xem ngành tại {u.code}</span>
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
