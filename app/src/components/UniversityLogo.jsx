@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { OFFICIAL_UNIVERSITY_LOGOS } from '../data/universityLogos';
 
 /**
  * High-Fidelity Official University Logo Crests for 26 Vietnamese Universities
@@ -537,6 +538,10 @@ export default function UniversityLogo({
   size = 56,
   showCodeBadge = false 
 }) {
+  const [imgError, setImgError] = useState(false);
+  const normalizedCode = (code || "").toUpperCase().trim();
+  const officialLogoPath = OFFICIAL_UNIVERSITY_LOGOS[normalizedCode];
+
   const profile = UNIVERSITY_BRAND_PROFILES[code] || {
     name: name || code,
     shortName: code,
@@ -557,7 +562,7 @@ export default function UniversityLogo({
 
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-      {/* Official Vector Logo Tile */}
+      {/* Official University Logo Tile */}
       <div 
         style={{
           width: `${size}px`,
@@ -572,11 +577,25 @@ export default function UniversityLogo({
           position: 'relative',
           overflow: 'hidden',
           flexShrink: 0,
-          padding: '3px'
+          padding: '4px'
         }}
-        title={`${profile.name} (${code})`}
+        title={`${profile.name || name} (${code})`}
       >
-        {profile.renderSvg ? profile.renderSvg() : null}
+        {!imgError && officialLogoPath ? (
+          <img 
+            src={officialLogoPath} 
+            alt={profile.name || name || code} 
+            onError={() => setImgError(true)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              display: 'block'
+            }}
+          />
+        ) : (
+          profile.renderSvg ? profile.renderSvg() : null
+        )}
       </div>
 
       {/* Optional Admission Code Badge */}
