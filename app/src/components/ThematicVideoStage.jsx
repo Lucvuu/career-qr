@@ -184,65 +184,16 @@ export default function ThematicVideoStage({
   const IconComponent = theme.Icon;
 
   return (
-    <div style={{ marginBottom: '22px' }}>
-      {/* 1. Quick Info Bar & Direct YouTube Launcher */}
-      <div 
-        style={{ 
-          background: '#FFF1F2', 
-          border: '1.5px solid #FECDD3', 
-          padding: '10px 16px', 
-          borderRadius: '16px', 
-          fontSize: '0.86rem', 
-          color: '#9F1239', 
-          marginBottom: '12px', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between', 
-          flexWrap: 'wrap', 
-          gap: '10px' 
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '1.25rem' }}>📺</span>
-          <span>
-            <strong>{videoTitle}</strong> ({channel} • {duration})
-          </span>
-        </div>
-
-        <a
-          href={directYoutubeUrl || `https://www.youtube.com/watch?v=${youtubeId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ 
-            background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)', 
-            color: '#FFFFFF', 
-            padding: '7px 18px', 
-            borderRadius: '999px', 
-            fontWeight: '800', 
-            fontSize: '0.8rem', 
-            textDecoration: 'none', 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '6px', 
-            boxShadow: '0 4px 14px rgba(239, 68, 68, 0.35)',
-            whiteSpace: 'nowrap'
-          }}
-          title="Mở video trực tiếp trong tab YouTube mới không bị chặn"
-        >
-          <Play size={13} fill="#FFFFFF" />
-          <span>Mở Trên YouTube (Mở tab mới) ↗</span>
-        </a>
-      </div>
-
-      {/* 2. THEMATIC CINEMA FRAME (Surrounds video with Electronic Circuit, ECG, or Creative Canvas) */}
+    <div style={{ marginBottom: '14px' }}>
+      {/* THEMATIC CINEMA FRAME (Surrounds video with Electronic Circuit, ECG, or Creative Canvas) */}
       <div 
         style={{
           position: 'relative',
           background: theme.bgGradient,
-          borderRadius: '22px',
+          borderRadius: '20px',
           border: `2px solid ${theme.borderColor}`,
           boxShadow: `0 14px 40px -10px ${theme.glowColor}, inset 0 0 25px rgba(0,0,0,0.6)`,
-          padding: '14px',
+          padding: '12px 14px',
           overflow: 'hidden'
         }}
       >
@@ -252,8 +203,8 @@ export default function ThematicVideoStage({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            paddingBottom: '10px',
-            marginBottom: '10px',
+            paddingBottom: '8px',
+            marginBottom: '8px',
             borderBottom: `1px solid rgba(255, 255, 255, 0.12)`,
             color: '#FFFFFF',
             fontSize: '0.78rem',
@@ -263,8 +214,8 @@ export default function ThematicVideoStage({
             gap: '8px'
           }}
         >
-          {/* Left: Telemetry / Field Tag */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Left: Telemetry / Field Tag & Video Title */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
             <div 
               style={{ 
                 display: 'inline-flex', 
@@ -281,20 +232,47 @@ export default function ThematicVideoStage({
               <IconComponent size={13} color={theme.accentColor} />
               <span>{theme.themeTag}</span>
             </div>
-            <span style={{ color: '#94A3B8', fontSize: '0.74rem' }}>{theme.title}</span>
+            <span style={{ color: '#F1F5F9', fontSize: '0.82rem', fontWeight: '700' }}>
+              {videoTitle} <span style={{ color: '#94A3B8', fontWeight: '400', fontSize: '0.76rem' }}>({channel} • {duration})</span>
+            </span>
           </div>
 
-          {/* Right: Live Monitor Status */}
+          {/* Right: Live Monitor Status & YouTube link */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span 
               style={{ 
                 color: theme.secondaryColor, 
                 fontWeight: '700',
+                fontSize: '0.75rem',
                 textShadow: `0 0 10px ${theme.secondaryColor}`
               }}
             >
               {theme.status}
             </span>
+
+            <a
+              href={directYoutubeUrl || `https://www.youtube.com/watch?v=${youtubeId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ 
+                background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)', 
+                color: '#FFFFFF', 
+                padding: '4px 12px', 
+                borderRadius: '999px', 
+                fontWeight: '800', 
+                fontSize: '0.74rem', 
+                textDecoration: 'none', 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '5px', 
+                boxShadow: '0 2px 8px rgba(239, 68, 68, 0.4)',
+                whiteSpace: 'nowrap'
+              }}
+              title="Mở video trong tab YouTube mới không bị chặn"
+            >
+              <Play size={11} fill="#FFFFFF" />
+              <span>Mở YouTube ↗</span>
+            </a>
           </div>
         </div>
 

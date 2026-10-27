@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   Search, 
   BookOpen, 
@@ -48,6 +49,17 @@ export default function SearchView({
   const [cinemaMode, setCinemaMode] = useState('youtube'); // 'youtube' | 'interactive'
   const [activeTimelineStep, setActiveTimelineStep] = useState(0);
   const [savedMajorIds, setSavedMajorIds] = useState([]);
+
+  // Lock body scroll when any modal is open to ensure true viewport centering & no bleed-through
+  useEffect(() => {
+    if (activeVideoMajor || selectedMajorModal) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [activeVideoMajor, selectedMajorModal]);
 
   const groups = [
     'Công nghệ & Máy tính', 
@@ -835,20 +847,20 @@ export default function SearchView({
       {/* =========================================================================
           TOUCHPOINT 3: INTERACTIVE CAREER CINEMA MODAL (activeVideoMajor)
           ========================================================================= */}
-      {activeVideoMajor && (
+      {activeVideoMajor && createPortal(
         <div
           className="cinema-modal-backdrop"
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(15, 23, 42, 0.78)',
+            background: 'rgba(15, 23, 42, 0.82)',
             backdropFilter: 'blur(14px)',
             WebkitBackdropFilter: 'blur(14px)',
             zIndex: 99999,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '24px 20px',
+            padding: '16px',
             overflowY: 'auto'
           }}
           onClick={() => setActiveVideoMajor(null)}
@@ -857,46 +869,122 @@ export default function SearchView({
             className="cinema-modal-shell"
             style={{
               background: '#FFFFFF',
-              borderRadius: '26px',
+              borderRadius: '22px',
               maxWidth: '960px',
               width: '100%',
-              maxHeight: '90vh',
-              overflowY: 'auto',
-              boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15)',
+              maxHeight: '94vh',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+              boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15)',
               border: '1.5px solid #E0E7FF',
               position: 'relative'
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div style={{ padding: '22px 28px', borderBottom: '1px solid #E2E8F0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#FAFAFA' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontSize: '2rem' }}>{activeVideoMajor.icon}</span>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '0.74rem', fontWeight: '800', padding: '3px 9px', borderRadius: '999px', background: '#FEF3C7', color: '#B45309' }}>
+            {/* Modal Header: Streamlined to ~48px without vertical waste */}
+            <div style={{
+              padding: '12px 20px',
+              borderBottom: '1px solid #E2E8F0',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              background: '#F8FAFC',
+              flexShrink: 0,
+              gap: '12px',
+              flexWrap: 'wrap'
+            }}>
+              {/* Left: Icon + Major title + tags */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                <span style={{ fontSize: '1.6rem', flexShrink: 0 }}>{activeVideoMajor.icon}</span>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: '0.72rem', fontWeight: '800', padding: '2px 8px', borderRadius: '999px', background: '#FEF3C7', color: '#B45309', whiteSpace: 'nowrap' }}>
                       {activeVideoMajor.nhom_nganh}
                     </span>
-                    <span style={{ fontSize: '0.74rem', fontWeight: '700', color: '#64748B' }}>
-                      Mã ngành: {activeVideoMajor.ma_nganh}
+                    <span style={{ fontSize: '0.72rem', fontWeight: '700', color: '#64748B', whiteSpace: 'nowrap' }}>
+                      Mã: {activeVideoMajor.ma_nganh}
                     </span>
                   </div>
-                  <h2 style={{ fontSize: '1.45rem', margin: '4px 0 0', color: '#1E293B' }}>
-                    Trải Nghiệm Nghề Nghiệp: {activeVideoMajor.ten_nganh}
-                  </h2>
+                  <h3 style={{ fontSize: '1.15rem', margin: '2px 0 0', color: '#0F172A', fontWeight: '800', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {activeVideoMajor.ten_nganh}
+                  </h3>
                 </div>
               </div>
 
-              <button
-                onClick={() => setActiveVideoMajor(null)}
-                style={{ background: '#F1F5F9', border: 'none', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#64748B' }}
-              >
-                <X size={20} />
-              </button>
+              {/* Right: Mode Switcher + Close Button */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                <div style={{ display: 'inline-flex', background: '#E2E8F0', padding: '3px', borderRadius: '10px', gap: '3px' }}>
+                  <button
+                    type="button"
+                    onClick={() => { setCinemaMode('youtube'); setIsPlayingVideo(true); }}
+                    style={{
+                      padding: '5px 12px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: '800',
+                      fontSize: '0.78rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      background: cinemaMode === 'youtube' ? '#FFFFFF' : 'transparent',
+                      color: cinemaMode === 'youtube' ? '#E11D48' : '#475569',
+                      boxShadow: cinemaMode === 'youtube' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <Tv size={13} />
+                    <span>Video Thực Tế</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setCinemaMode('interactive')}
+                    style={{
+                      padding: '5px 12px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: '800',
+                      fontSize: '0.78rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      background: cinemaMode === 'interactive' ? '#FFFFFF' : 'transparent',
+                      color: cinemaMode === 'interactive' ? '#4F46E5' : '#475569',
+                      boxShadow: cinemaMode === 'interactive' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <Clock size={13} />
+                    <span>Mô Phỏng 1 Ngày</span>
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => setActiveVideoMajor(null)}
+                  style={{
+                    background: '#FFFFFF',
+                    border: '1px solid #CBD5E1',
+                    borderRadius: '50%',
+                    width: '32px',
+                    height: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    color: '#475569'
+                  }}
+                  title="Đóng (Esc)"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
-            {/* Modal Body */}
-            <div style={{ padding: '24px 28px' }}>
+            {/* Modal Body: Scrollable with Video right at the top */}
+            <div style={{ padding: '14px 18px 20px', overflowY: 'auto', flex: 1 }}>
               {(() => {
                 const videos = getVideosForMajor(activeVideoMajor.id);
                 const currentVideo = videos[activeEpisodeIndex] || videos[0];
@@ -906,84 +994,58 @@ export default function SearchView({
 
                 return (
                   <>
-                    {/* DUAL-MODE EXPERIENCE SELECTOR (YouTube Embed vs Interactive Simulation) */}
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: '18px', background: '#F1F5F9', padding: '5px', borderRadius: '14px' }}>
-                      <button
-                        type="button"
-                        onClick={() => { setCinemaMode('youtube'); setIsPlayingVideo(true); }}
-                        style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          borderRadius: '10px',
-                          border: 'none',
-                          cursor: 'pointer',
-                          fontWeight: '800',
-                          fontSize: '0.88rem',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '6px',
-                          background: cinemaMode === 'youtube' ? '#FFFFFF' : 'transparent',
-                          color: cinemaMode === 'youtube' ? '#E11D48' : '#64748B',
-                          boxShadow: cinemaMode === 'youtube' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        <Tv size={16} />
-                        <span>▶ Video Trải Nghiệm Thực Tế (YouTube)</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setCinemaMode('interactive')}
-                        style={{
-                          flex: 1,
-                          padding: '10px 14px',
-                          borderRadius: '10px',
-                          border: 'none',
-                          cursor: 'pointer',
-                          fontWeight: '800',
-                          fontSize: '0.88rem',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '6px',
-                          background: cinemaMode === 'interactive' ? '#FFFFFF' : 'transparent',
-                          color: cinemaMode === 'interactive' ? '#4F46E5' : '#64748B',
-                          boxShadow: cinemaMode === 'interactive' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        <Clock size={16} />
-                        <span>⏱ Mô Phỏng 1 Ngày Làm Nghề (Timeline)</span>
-                      </button>
-                    </div>
-
-                    {/* MODE 1: THEMATIC EMBED PLAYER (Electronic Circuit for Vi Mạch, ECG for Y Khoa, etc.) */}
+                    {/* MODE 1: THEMATIC EMBED PLAYER (Zero gap: starts right here!) */}
                     {cinemaMode === 'youtube' && (
-                      <ThematicVideoStage
-                        majorId={activeVideoMajor.id}
-                        majorName={activeVideoMajor.ten_nganh}
-                        youtubeId={currentVideo.youtubeId}
-                        videoTitle={currentVideo.title}
-                        channel={currentVideo.channel}
-                        duration={currentVideo.duration}
-                        directYoutubeUrl={directYoutubeUrl}
-                      />
+                      <div>
+                        <ThematicVideoStage
+                          majorId={activeVideoMajor.id}
+                          majorName={activeVideoMajor.ten_nganh}
+                          youtubeId={currentVideo.youtubeId}
+                          videoTitle={currentVideo.title}
+                          channel={currentVideo.channel}
+                          duration={currentVideo.duration}
+                          directYoutubeUrl={directYoutubeUrl}
+                        />
+
+                        {/* Episode pills if multiple video sources exist */}
+                        {videos.length > 1 && (
+                          <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+                            <span style={{ fontSize: '0.78rem', fontWeight: '800', color: '#64748B' }}>Các tập phóng sự:</span>
+                            {videos.map((v, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() => setActiveEpisodeIndex(idx)}
+                                style={{
+                                  padding: '4px 12px',
+                                  borderRadius: '999px',
+                                  fontSize: '0.76rem',
+                                  fontWeight: '700',
+                                  border: activeEpisodeIndex === idx ? '1.5px solid #E11D48' : '1px solid #E2E8F0',
+                                  background: activeEpisodeIndex === idx ? '#FFF1F2' : '#FFFFFF',
+                                  color: activeEpisodeIndex === idx ? '#E11D48' : '#64748B',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                Tập {idx + 1}: {v.title}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     )}
 
                     {/* MODE 2: INTERACTIVE WORKDAY SIMULATOR */}
                     {cinemaMode === 'interactive' && (
-                      <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', borderRadius: '20px', padding: '24px', color: '#FFFFFF', marginBottom: '20px', boxShadow: '0 12px 30px -10px rgba(49, 46, 129, 0.4)' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
+                      <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', borderRadius: '18px', padding: '20px', color: '#FFFFFF', marginBottom: '16px', boxShadow: '0 12px 30px -10px rgba(49, 46, 129, 0.4)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <span style={{ fontSize: '2rem' }}>{activeVideoMajor.icon}</span>
+                            <span style={{ fontSize: '1.8rem' }}>{activeVideoMajor.icon}</span>
                             <div>
-                              <div style={{ fontSize: '0.78rem', color: '#A5B4FC', fontWeight: '800', textTransform: 'uppercase' }}>
-                                CHƯƠNG TRÌNH TRẢI NGHIỆM THỰC TẾ 2026
+                              <div style={{ fontSize: '0.75rem', color: '#A5B4FC', fontWeight: '800', textTransform: 'uppercase' }}>
+                                MÔ PHỎNG 1 NGÀY LÀM NGHỀ THỰC TẾ
                               </div>
-                              <div style={{ fontSize: '1.25rem', fontWeight: '800' }}>
-                                Một ngày làm việc thực tế: {activeVideoMajor.ten_nganh}
+                              <div style={{ fontSize: '1.15rem', fontWeight: '800' }}>
+                                {activeVideoMajor.ten_nganh}
                               </div>
                             </div>
                           </div>
@@ -995,44 +1057,44 @@ export default function SearchView({
                             style={{
                               display: 'inline-flex',
                               alignItems: 'center',
-                              gap: '8px',
-                              padding: '10px 18px',
+                              gap: '6px',
+                              padding: '8px 16px',
                               borderRadius: '999px',
                               background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
                               color: '#FFFFFF',
                               fontWeight: '800',
-                              fontSize: '0.84rem',
+                              fontSize: '0.8rem',
                               textDecoration: 'none',
                               boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)'
                             }}
                           >
-                            <Play size={15} fill="#FFFFFF" />
-                            <span>🔴 Xem Trên YouTube (Không Bị Chặn) ↗</span>
+                            <Play size={13} fill="#FFFFFF" />
+                            <span>Xem Trên YouTube ↗</span>
                           </a>
                         </div>
 
                         {/* 4 Interactive Hourly Steps */}
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '18px' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '8px', marginBottom: '14px' }}>
                           {timelineSteps.map((step, sIdx) => (
                             <div
                               key={sIdx}
                               onClick={() => setActiveTimelineStep(sIdx)}
                               style={{
-                                padding: '12px 14px',
-                                borderRadius: '14px',
+                                padding: '10px 12px',
+                                borderRadius: '12px',
                                 background: activeTimelineStep === sIdx ? 'rgba(255, 255, 255, 0.22)' : 'rgba(255, 255, 255, 0.08)',
                                 border: activeTimelineStep === sIdx ? '2px solid #818CF8' : '1px solid rgba(255, 255, 255, 0.12)',
                                 cursor: 'pointer',
                                 transition: 'all 0.2s ease'
                               }}
                             >
-                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-                                <span style={{ fontSize: '0.74rem', fontWeight: '800', color: activeTimelineStep === sIdx ? '#FDE047' : '#C7D2FE' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                                <span style={{ fontSize: '0.72rem', fontWeight: '800', color: activeTimelineStep === sIdx ? '#FDE047' : '#C7D2FE' }}>
                                   {step.time}
                                 </span>
-                                <span style={{ fontSize: '1.1rem' }}>{step.icon}</span>
+                                <span style={{ fontSize: '1rem' }}>{step.icon}</span>
                               </div>
-                              <div style={{ fontSize: '0.86rem', fontWeight: '800', lineHeight: '1.4' }}>
+                              <div style={{ fontSize: '0.82rem', fontWeight: '800', lineHeight: '1.3' }}>
                                 {step.stage}
                               </div>
                             </div>
@@ -1040,55 +1102,34 @@ export default function SearchView({
                         </div>
 
                         {/* Active Chapter Details */}
-                        <div style={{ background: 'rgba(255, 255, 255, 0.12)', borderRadius: '16px', padding: '18px 20px', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                            <span style={{ fontSize: '1.3rem' }}>{currentTimelineStep.icon}</span>
-                            <span style={{ fontWeight: '800', fontSize: '1.02rem', color: '#FFFFFF' }}>
+                        <div style={{ background: 'rgba(255, 255, 255, 0.12)', borderRadius: '14px', padding: '14px 16px', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                            <span style={{ fontSize: '1.2rem' }}>{currentTimelineStep.icon}</span>
+                            <span style={{ fontWeight: '800', fontSize: '0.96rem', color: '#FFFFFF' }}>
                               {currentTimelineStep.time} — {currentTimelineStep.stage}
                             </span>
                           </div>
-                          <p style={{ margin: 0, color: '#E0E7FF', fontSize: '0.92rem', lineHeight: '1.6' }}>
+                          <p style={{ margin: 0, color: '#E0E7FF', fontSize: '0.88rem', lineHeight: '1.5' }}>
                             {currentTimelineStep.desc}
                           </p>
                         </div>
                       </div>
                     )}
 
-                    {/* External Link Fallback */}
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
-                      <a
-                        href={`https://www.youtube.com/results?search_query=${encodeURIComponent(activeVideoMajor.ten_nganh + ' hướng nghiệp thực tế')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '6px',
-                          fontSize: '0.84rem',
-                          color: '#0284C7',
-                          fontWeight: '700',
-                          textDecoration: 'none'
-                        }}
-                      >
-                        <span>Mở tìm kiếm thêm video ngành này trên YouTube</span>
-                        <ExternalLink size={14} />
-                      </a>
-                    </div>
-
                     {/* AI 30-Second Summary Grid (2 Columns below player) */}
-                    <div className="cinema-ai-summary-grid">
+                    <div className="cinema-ai-summary-grid" style={{ marginBottom: '16px' }}>
                       {/* Left: 3 Key Points */}
-                      <div style={{ background: '#F0FDF4', border: '1.5px solid #BBF7D0', borderRadius: '18px', padding: '20px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                          <Sparkles size={18} color="#059669" />
-                          <h4 style={{ fontSize: '1.02rem', margin: 0, color: '#065F46' }}>
+                      <div style={{ background: '#F0FDF4', border: '1.5px solid #BBF7D0', borderRadius: '16px', padding: '16px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                          <Sparkles size={16} color="#059669" />
+                          <h4 style={{ fontSize: '0.96rem', margin: 0, color: '#065F46', fontWeight: '800' }}>
                             Tóm tắt 3 Điểm Cốt Lõi Cho Học Sinh
                           </h4>
                         </div>
                         <ul style={{ margin: 0, paddingLeft: '0', listStyle: 'none' }}>
                           {currentVideo.keyTakeaways.map((pt, i) => (
-                            <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '10px', fontSize: '0.88rem', color: '#166534', lineHeight: '1.5' }}>
-                              <CheckCircle2 size={16} color="#059669" style={{ flexShrink: 0, marginTop: '3px' }} />
+                            <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px', fontSize: '0.84rem', color: '#166534', lineHeight: '1.45' }}>
+                              <CheckCircle2 size={15} color="#059669" style={{ flexShrink: 0, marginTop: '2px' }} />
                               <span>{pt}</span>
                             </li>
                           ))}
@@ -1096,20 +1137,20 @@ export default function SearchView({
                       </div>
 
                       {/* Right: Myth vs Reality */}
-                      <div style={{ background: '#FFFDF9', border: '1.5px solid #FDE68A', borderRadius: '18px', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      <div style={{ background: '#FFFDF9', border: '1.5px solid #FDE68A', borderRadius: '16px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <AlertCircle size={18} color="#D97706" />
-                          <h4 style={{ fontSize: '1.02rem', margin: 0, color: '#B45309' }}>
+                          <AlertCircle size={16} color="#D97706" />
+                          <h4 style={{ fontSize: '0.96rem', margin: 0, color: '#B45309', fontWeight: '800' }}>
                             Góc Nhìn Thật (Myth vs Reality)
                           </h4>
                         </div>
 
-                        <div style={{ background: '#FEF2F2', padding: '10px 14px', borderRadius: '12px', border: '1px solid #FECDD3', fontSize: '0.85rem', color: '#991B1B', lineHeight: '1.5' }}>
+                        <div style={{ background: '#FEF2F2', padding: '8px 12px', borderRadius: '10px', border: '1px solid #FECDD3', fontSize: '0.82rem', color: '#991B1B', lineHeight: '1.45' }}>
                           <strong>❌ Nhiều bạn lầm tưởng:</strong>
                           <div style={{ marginTop: '2px' }}>{currentVideo.realityCheck.myth}</div>
                         </div>
 
-                        <div style={{ background: '#ECFDF5', padding: '10px 14px', borderRadius: '12px', border: '1px solid #A7F3D0', fontSize: '0.85rem', color: '#065F46', lineHeight: '1.5' }}>
+                        <div style={{ background: '#ECFDF5', padding: '8px 12px', borderRadius: '10px', border: '1px solid #A7F3D0', fontSize: '0.82rem', color: '#065F46', lineHeight: '1.45' }}>
                           <strong>✅ Thực tế khi đi học &amp; đi làm:</strong>
                           <div style={{ marginTop: '2px' }}>{currentVideo.realityCheck.truth}</div>
                         </div>
@@ -1117,31 +1158,33 @@ export default function SearchView({
                     </div>
 
                     {/* Action Footer */}
-                    <div style={{ borderTop: '1.5px solid #E2E8F0', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                      <div style={{ fontSize: '0.85rem', color: '#64748B' }}>
+                    <div style={{ borderTop: '1.5px solid #E2E8F0', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                      <div style={{ fontSize: '0.82rem', color: '#64748B' }}>
                         Điểm chuẩn tham khảo: <strong style={{ color: '#4F46E5' }}>{activeVideoMajor.diem_tb}</strong> • Học phí: {activeVideoMajor.hoc_phi}
                       </div>
 
-                      <div style={{ display: 'flex', gap: '10px' }}>
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                         <button
                           type="button"
                           className="btn-edtech-secondary"
+                          style={{ padding: '8px 14px', fontSize: '0.82rem' }}
                           onClick={() => {
                             handleBookmark(null, activeVideoMajor);
                             alert(`Đã lưu "${activeVideoMajor.ten_nganh}" vào Đấu trường so sánh!`);
                           }}
                         >
-                          <Heart size={16} />
-                          <span>Lưu vào Đấu trường So sánh</span>
+                          <Heart size={14} />
+                          <span>Lưu so sánh</span>
                         </button>
 
                         <button
                           type="button"
                           className="btn-edtech-primary"
+                          style={{ padding: '8px 16px', fontSize: '0.82rem' }}
                           onClick={() => handleSetRoadmap(activeVideoMajor.ten_nganh)}
                         >
-                          <Award size={16} />
-                          <span>Đặt làm Mục tiêu Career Passport 2026</span>
+                          <Award size={14} />
+                          <span>Đặt làm Mục tiêu Lộ trình 2026</span>
                         </button>
                       </div>
                     </div>
@@ -1150,18 +1193,20 @@ export default function SearchView({
               })()}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* DETAIL MODAL FOR SELECTED MAJOR */}
-      {selectedMajorModal && (
+      {selectedMajorModal && createPortal(
         <div
           style={{
             position: 'fixed',
             inset: 0,
             background: 'rgba(15, 23, 42, 0.65)',
             backdropFilter: 'blur(8px)',
-            zIndex: 9999,
+            WebkitBackdropFilter: 'blur(8px)',
+            zIndex: 99999,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1283,7 +1328,8 @@ export default function SearchView({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
