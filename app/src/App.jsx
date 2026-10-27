@@ -157,7 +157,17 @@ export default function App() {
       </main>
 
       {/* Floating AI Assistant */}
-      <AIChatModal currentContext={`Đang xem mục: ${navItems.find(n => n.id === activeTab)?.label}`} />
+      <AIChatModal 
+        currentContext={`Đang xem mục: ${navItems.find(n => n.id === activeTab)?.label}`}
+        onNavigate={(tab) => {
+          setActiveTab(tab);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onSearchQuery={(q) => setSearchQuery(q)}
+        onSelectForRoadmap={handleSelectForRoadmap}
+        onBookmarkMajor={handleBookmarkMajor}
+        bookmarkedMajors={bookmarkedMajors}
+      />
 
       {/* Mobile Bottom Navigation Dock (Visible on Mobile Screens) */}
       <nav className="mobile-bottom-dock" aria-label="Điều hướng di động">

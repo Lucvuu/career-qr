@@ -135,12 +135,20 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
 
       const matchedMajors = MAJORS_DATA.filter(m => selectedHobby.suggestedMajors.includes(m.id));
 
-      setResult({
+      const finalResult = {
         archetype: selectedHobby.archetype,
         scores: finalScores,
         majors: matchedMajors.length ? matchedMajors : MAJORS_DATA.slice(0, 3),
+        selectedSubjects: selectedSubjects.map(s => s.name),
         note: note
-      });
+      };
+
+      setResult(finalResult);
+      try {
+        localStorage.setItem('careerqr_student_profile', JSON.stringify(finalResult));
+      } catch (err) {
+        console.warn('Could not save profile:', err);
+      }
 
       setIsSubmitting(false);
 
