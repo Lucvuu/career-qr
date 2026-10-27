@@ -523,6 +523,31 @@ export const MAJOR_KNOWLEDGE_BASE = {
 /**
  * Extracts Region from user query ('bac' | 'nam' | 'trung' | null)
  */
+
+/**
+ * Extracts Province from query (e.g. thai nguyen, hai phong, quang ninh, thai binh, nam dinh, da nang, can tho...)
+ */
+export function extractProvince(query = '') {
+  const norm = normalizeVN(query);
+  if (norm.includes('thai nguyen')) return 'thainguyen';
+  if (norm.includes('hai phong')) return 'haiphong';
+  if (norm.includes('quang ninh')) return 'quangninh';
+  if (norm.includes('thai binh')) return 'thaibinh';
+  if (norm.includes('nam dinh')) return 'namdinh';
+  if (norm.includes('bac ninh')) return 'bacninh';
+  if (norm.includes('hung yen')) return 'hungyen';
+  if (norm.includes('vinh phuc') || norm.includes('phu tho')) return 'vinhphuc';
+  if (norm.includes('hai duong')) return 'haiduong';
+  if (norm.includes('thanh hoa') || norm.includes('nghe an') || norm.includes('vinh')) return 'thanhhoa';
+  if (norm.includes('da nang')) return 'danang';
+  if (norm.includes('hue')) return 'hue';
+  if (norm.includes('can tho')) return 'cantho';
+  if (norm.includes('binh duong') || norm.includes('dong nai')) return 'binhduong';
+  if (norm.includes('ha noi')) return 'hanoi';
+  if (norm.includes('tphcm') || norm.includes('sai gon') || norm.includes('ho chi minh')) return 'tphcm';
+  return null;
+}
+
 export function extractRegion(query = '') {
   const norm = normalizeVN(query);
   if (
@@ -727,6 +752,102 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
   const region = extractRegion(query);
   const targetSchool = extractTargetSchool(query);
   const intent = detectIntent(query, matchedMajors, score, region, targetSchool);
+
+  const province = extractProvince(query);
+  const normQuery = normalizeVN(query);
+
+  // INTENT SPECIAL: Gender / Reality Check inquiry (e.g. "con gai hoc logistics", "ap luc nganh y")
+  if (normQuery.includes('con gai') || normQuery.includes('nu') || normQuery.includes('vat va') || normQuery.includes('ap luc')) {
+    const targetMajor = matchedMajors[0] || MAJORS_DATA.find(m => m.id === 'logistics') || MAJORS_DATA[0];
+    let reply = `Chào bạn! Giải đáp thực tế về băn khoăn nghề nghiệp ngành **${targetMajor.ten_nganh}**:\n\n`;
+    reply += `⚡ **Sự thật & Áp lực thực tế**: ${targetMajor.realityCheck || 'Đòi hỏi sự kiên trì và tư duy logic vững vàng.'}\n\n`;
+    
+    if (targetMajor.id === 'logistics' || normQuery.includes('logistics')) {
+      reply += `👩 **Con gái học Logistics có vất vả không?**\n`;
+      reply += `• **Thực tế**: Hoàn toàn phù hợp và rất nhiều bạn nữ thành công rực rỡ!\n`;
+      reply += `• **Vị trí văn phòng lý tưởng (máy lạnh, không dầm mưa dãi nắng)**: Procurement (Thu mua nguyên liệu), Forwarder (Giao nhận vận tải quốc tế), Documentation (Chuyên viên chứng từ hải quan/C/O), Customer Service hãng tàu quốc tế, Order Management với mức lương 14 – 35 triệu/tháng.\n`;
+      reply += `• **Vị trí chỉ nên tránh nếu ngại di chuyển**: Giám sát kho bãi (Warehouse Supervisor) hoặc điều độ hiện trường cầu cảng.\n\n`;
+    } else if (targetMajor.id === 'vi-mach' || normQuery.includes('vi mach')) {
+      reply += `👩 **Nữ giới làm Vi mạch & Bán dẫn có lợi thế gì?**\n`;
+      reply += `• Kỹ sư IC Layout và Verification rất ưu tiên sự tỉ mỉ, kiên nhẫn và cẩn trọng của các kỹ sư nữ. Môi trường làm việc phòng Lab và máy tính hiện đại chuẩn quốc tế, chế độ đãi ngộ hàng đầu thị trường (18 – 45 triệu/tháng).\n\n`;
+    } else {
+      reply += `💡 **Ai nên cân nhắc kỹ**: ${targetMajor.whoShouldAvoid || 'Cần xem xét kỹ khả năng chịu áp lực và tính chất công việc.'}\n\n`;
+    }
+
+    reply += `🎯 **Mức điểm chuẩn tham khảo 2026**: **${targetMajor.diem_tb}** • Học phí: **${targetMajor.hoc_phi}**\n`;
+    reply += `🏛️ **Top trường đào tạo**: ${targetMajor.truong_tieu_bieu.join(', ')}`;
+    
+    const actions = [
+      { id: 'roadmap', label: `📘 Lập lộ trình cho ngành ${targetMajor.ten_nganh}`, majorName: targetMajor.ten_nganh },
+      { id: 'search', label: `🔍 Xem chi tiết ngành ${targetMajor.ten_nganh}` }
+    ];
+    return { text: reply, actions };
+  }
+
+  // INTENT SPECIAL: Provincial inquiry (e.g. "Thai Nguyen", "Hai Phong", "Can Tho")
+  if (province && province !== 'hanoi' && province !== 'tphcm') {
+    const provinceUnis = (UNIVERSITIES_DATA || []).filter(u => 
+      u.provinceCode === province || 
+      (province === 'thaibinh' && u.provinceCode === 'thaibinh-namdinh') ||
+      (province === 'namdinh' && u.provinceCode === 'thaibinh-namdinh') ||
+      (province === 'cantho' && u.provinceCode === 'cantho') ||
+      (province === 'danang' && u.provinceCode === 'danang-hue')
+    );
+
+    if (provinceUnis.length > 0) {
+      let reply = `Tổng hợp thông tin tuyển sinh & điểm chuẩn Đại học 2026 tại **khu vực em quan tâm**:\n\n`;
+      provinceUnis.forEach((u, idx) => {
+        reply += `${idx + 1}. **${u.name} (Mã: ${u.code})**\n`;
+        reply += `   • Điểm chuẩn tham khảo: **${u.benchmarks}**\n`;
+        reply += `   • Học phí dự kiến: **${u.tuition}**\n`;
+        if (u.campusVibe) {
+          reply += `   • Sinh hoạt phí: ${u.campusVibe.livingCostNote} • KTX: ${u.campusVibe.dorms}\n`;
+        }
+        reply += `   • Thế mạnh đào tạo: ${u.highlight}\n\n`;
+      });
+
+      reply += `💡 **Lời khuyên từ Cố vấn**: Học đại học tại các tỉnh/thành phố trung tâm vùng giúp em tiết kiệm từ 40% – 60% chi phí ăn ở so với Hà Nội hoặc TP.HCM, trong khi chất lượng bằng cấp hệ chính quy là hoàn toàn tương đương!`;
+
+      const actions = [
+        { id: 'search', label: `🔍 Xem trường tại khu vực này trong Tra cứu` }
+      ];
+      return { text: reply, actions };
+    }
+  }
+
+  // INTENT SPECIAL: Exact score inquiry (e.g. "24 diem khoi D01", "21 diem", "27 diem")
+  if (score) {
+    const matchingUnis = (UNIVERSITIES_DATA || []).filter(u => {
+      const lower = parseFloat(u.benchmarks?.split('–')[0]?.trim() || '20');
+      const upper = parseFloat(u.benchmarks?.split('–')[1]?.trim() || '28');
+      return score >= lower - 1.5 && score <= upper + 1.5;
+    }).slice(0, 5);
+
+    let reply = `Với mức điểm dự kiến khoảng **${score} điểm**, đây là phương án chiến lược phân tầng nguyện vọng 2026 dành cho em:\n\n`;
+    
+    reply += `🎯 **Tầng 1 — Nguyện vọng Mục tiêu & Bứt phá (Thử sức NV1)**:\n`;
+    matchingUnis.slice(0, 2).forEach(u => {
+      reply += `• **${u.name} (Mã: ${u.code})**: Điểm chuẩn tham khảo **${u.benchmarks}** • Học phí: ${u.tuition}. ${u.highlight}\n`;
+    });
+    reply += `\n`;
+
+    reply += `🛡️ **Tầng 2 — Nguyện vọng An toàn & Đỗ chắc chắn 100% (NV2, NV3)**:\n`;
+    matchingUnis.slice(2, 5).forEach(u => {
+      reply += `• **${u.name} (Mã: ${u.code})**: Điểm chuẩn tham khảo **${u.benchmarks}** • ${u.city}\n`;
+    });
+    reply += `\n`;
+
+    reply += `💡 **Chiến lược tối ưu hóa điểm số 2026**:\n`;
+    reply += `1. Nếu có chứng chỉ IELTS 6.0+, em nên nộp xét tuyển kết hợp sớm để hưởng quy đổi điểm 10 tiếng Anh.\n`;
+    reply += `2. Đăng ký thêm kỳ thi ĐGNL (HSA/APT) hoặc ĐGTD (TSA) để nhân đôi cơ hội đỗ đại học trước khi thi tốt nghiệp THPT!`;
+
+    const actions = [
+      { id: 'roadmap', label: '📘 Tạo Lộ trình hành động với mức điểm này' },
+      { id: 'compare', label: '⚖️ So sánh các ngành ở phân khúc điểm này' }
+    ];
+    return { text: reply, actions };
+  }
+
 
   // Reusable prompt footer that asks the student in-depth diagnostic questions
   const inDepthPromptFooter = `\n\n💬 **Cố vấn muốn hỏi kỹ hơn để tư vấn chuẩn xác 100% cho em**:\n1. 📍 **Em ở khu vực nào** (Hà Nội/Miền Bắc, TP.HCM/Miền Nam, hay Đà Nẵng/Miền Trung)?\n2. 🎯 **Mức điểm THPT em tự tin đạt được** là khoảng bao nhiêu (VD: 24, 26.5 điểm)?\n3. 🏫 **Em có đang nhắm ngôi trường đại học cụ thể nào** hay ngân sách học phí mong muốn không?`;

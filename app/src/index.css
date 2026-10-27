@@ -917,12 +917,11 @@ a {
   background: linear-gradient(135deg, #FFF1F2 0%, #FEF3C7 100%);
   border: 1.5px solid #FECDD3;
   border-radius: var(--radius-md);
-  padding: 10px 14px;
-  margin-bottom: 16px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  flex-direction: column;
+  gap: 6px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -933,18 +932,24 @@ a {
   box-shadow: 0 6px 18px -4px rgba(244, 63, 94, 0.25);
 }
 
+.video-banner-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .video-banner-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
-  flex: 1;
 }
 
 .video-banner-pill {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: var(--radius-pill);
   background: #FFE4E6;
   color: #E11D48;
@@ -952,19 +957,22 @@ a {
 }
 
 .video-banner-time {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #B45309;
   white-space: nowrap;
 }
 
 .video-banner-title {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #1E293B;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  line-height: 1.35;
 }
 
 .video-banner-btn {
@@ -1420,23 +1428,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #CBD5E1 transparent;
 }
 
-.uni-card-face::-webkit-scrollbar {
-  width: 5px;
-}
-.uni-card-face::-webkit-scrollbar-track {
-  background: transparent;
-}
-.uni-card-face::-webkit-scrollbar-thumb {
-  background-color: #CBD5E1;
-  border-radius: 10px;
-}
-
-/* FRONT FACE */
+/* FRONT FACE (NO SCROLLBAR, EQUAL HEIGHT, CLEAN BENTO CARD) */
 .uni-card-front {
   background: #FFFFFF;
   border: 1.5px solid #E2E8F0;
@@ -1444,6 +1438,7 @@ a {
   box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
   z-index: 2;
   transform: rotateY(0deg);
+  overflow: hidden; /* ABSOLUTELY NO VERTICAL SCROLLBAR ON FRONT FACE */
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -1452,16 +1447,30 @@ a {
   border-color: #C7D2FE;
 }
 
-/* BACK FACE */
+/* BACK FACE (DEEP PROFILE, SCROLLABLE IF CONTENT IS RICH) */
 .uni-card-back {
   background: linear-gradient(175deg, #FFFFFF 0%, #F8FAFC 100%);
   border: 1.5px solid #A5B4FC;
   padding: 22px;
   box-shadow: 0 12px 32px -4px rgba(79, 70, 229, 0.16);
   transform: rotateY(180deg);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
 }
 
-/* FLIP TRIGGER BUTTON */
+.uni-card-back::-webkit-scrollbar {
+  width: 5px;
+}
+.uni-card-back::-webkit-scrollbar-track {
+  background: transparent;
+}
+.uni-card-back::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 10px;
+}
+
+/* FLIP TRIGGER BUTTON - ALWAYS PINNED TO BOTTOM */
 .uni-flip-trigger-btn {
   width: 100%;
   display: inline-flex;
@@ -1476,7 +1485,7 @@ a {
   color: #4338CA;
   border: 1.5px solid #C7D2FE;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: auto; /* ALWAYS SITS SOLIDLY AT BOTTOM */
   margin-bottom: 4px;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 2px 6px rgba(99, 102, 241, 0.1);
@@ -1540,6 +1549,108 @@ a {
   letter-spacing: 0.03em;
   margin-bottom: 7px;
 }
+/* =========================================================================
+   SCROLL MARGIN OFFSET FOR FLOATING NAVBAR
+   ========================================================================= */
+.tab-pane-animate {
+  scroll-margin-top: 100px;
+}
 
+/* =========================================================================
+   EMERALD SUCCESS STYLES FOR CAREER ROADMAP (NO STRIKETHROUGH)
+   ========================================================================= */
+.milestone-card-emerald {
+  background: linear-gradient(135deg, #ECFDF5 0%, #F0FDF4 100%) !important;
+  border: 1.5px solid #10B981 !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12) !important;
+}
 
+.milestone-card-normal {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
 
+.milestone-card-normal:hover {
+  border-color: #C7D2FE;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.08);
+}
+
+.badge-emerald-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #059669;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+/* =========================================================================
+   INSTANT BATTLE MATRIX & SLIDERS STYLING
+   ========================================================================= */
+.battle-slider-track {
+  width: 100%;
+  accent-color: #4F46E5;
+  height: 6px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.preset-battle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #FFFFFF;
+  color: #334155;
+  border: 1.5px solid #CBD5E1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.preset-battle-btn:hover {
+  background: #EEF2FF;
+  color: #4338CA;
+  border-color: #818CF8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.battle-matrix-wrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
+  box-shadow: var(--shadow-md);
+}
+
+.battle-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.battle-matrix-table th,
+.battle-matrix-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 0.88rem;
+}
+
+.battle-matrix-table th {
+  background: #F8FAFC;
+  font-weight: 800;
+  color: #1E293B;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

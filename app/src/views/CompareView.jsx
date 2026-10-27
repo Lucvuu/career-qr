@@ -1,415 +1,534 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import confetti from 'canvas-confetti';
-import { Plus, Trash2, ArrowRight, RotateCcw, CheckCircle2, Sparkles, Scale, ArrowLeft } from 'lucide-react';
-import { MAJORS_DATA, COMPARE_QUESTIONS } from '../data/careerData';
+import { 
+  Scale, 
+  Trash2, 
+  Plus, 
+  Sparkles, 
+  Trophy, 
+  ArrowRight, 
+  TrendingUp, 
+  DollarSign, 
+  ShieldCheck, 
+  Zap, 
+  CheckCircle2, 
+  AlertCircle,
+  Award
+} from 'lucide-react';
+import { MAJORS_DATA } from '../data/careerData';
 
 export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelectForRoadmap }) {
-  const [selectedOptions, setSelectedOptions] = useState(
-    bookmarkedMajors.length >= 2
-      ? bookmarkedMajors.slice(0, 3).map(m => m.ten_nganh)
-      : ['Công nghệ thông tin', 'Marketing & Truyền thông số']
-  );
-  const [customInput, setCustomInput] = useState('');
-  const [quizStarted, setQuizStarted] = useState(false);
-  const [currentQIndex, setCurrentQIndex] = useState(0);
-  const [answers, setAnswers] = useState({}); // { [qIndex]: selectedOptionName }
-  const [result, setResult] = useState(null);
+  // Initial selected options (2 to 3 majors)
+  const [selectedMajorIds, setSelectedMajorIds] = useState(() => {
+    if (bookmarkedMajors && bookmarkedMajors.length >= 2) {
+      return bookmarkedMajors.slice(0, 3).map(m => m.id);
+    }
+    return ['marketing', 'kdqt'];
+  });
 
-  const handleAddCustom = () => {
-    if (customInput.trim() && !selectedOptions.includes(customInput.trim())) {
-      setSelectedOptions([...selectedOptions, customInput.trim()]);
-      setCustomInput('');
+  // 5 Personal Priority Sliders (Weights from 1 to 5)
+  const [weights, setWeights] = useState({
+    salary: 4,      // Ưu tiên lương cao & bứt phá thu nhập
+    easyScore: 3,   // Ưu tiên điểm vừa sức, an toàn đỗ
+    lowTuition: 3,  // Ưu tiên học phí tiết kiệm
+    lowPressure: 3, // Ưu tiên ít áp lực, học tập cân bằng
+    aiSafety: 4     // Ưu tiên an toàn trước AI, ít bị thay thế
+  });
+
+  const PRESET_BATTLES = [
+    {
+      label: "Marketing vs Kinh doanh quốc tế",
+      sub: "Kinh tế & Thương mại",
+      ids: ["marketing", "kdqt"],
+      icon: "📢"
+    },
+    {
+      label: "CNTT vs Kỹ thuật Vi mạch",
+      sub: "Công nghệ cao & Bán dẫn",
+      ids: ["cntt", "vi-mach"],
+      icon: "💻"
+    },
+    {
+      label: "Tài chính vs Kế toán - Kiểm toán",
+      sub: "Tài chính & Thuế",
+      ids: ["tai-chinh-ngan-hang", "ke-toan"],
+      icon: "💳"
+    },
+    {
+      label: "Y khoa vs Dược học",
+      sub: "Khối ngành Sức khỏe",
+      ids: ["ykhoa", "duoc-hoc"],
+      icon: "🩺"
+    },
+    {
+      label: "Ngôn ngữ Anh vs Ngôn ngữ Trung",
+      sub: "Ngoại ngữ & Đối ngoại",
+      ids: ["ngon-ngu-anh", "ngon-ngu-trung"],
+      icon: "🌐"
+    }
+  ];
+
+  const QUICK_ADD_MAJORS = [
+    { id: 'marketing', name: '+ Marketing số' },
+    { id: 'logistics', name: '+ Logistics & Chuỗi cung ứng' },
+    { id: 'cntt', name: '+ CNTT & Trí tuệ Nhân tạo' },
+    { id: 'vi-mach', name: '+ Vi mạch & Bán dẫn' },
+    { id: 'kdqt', name: '+ Kinh doanh quốc tế' },
+    { id: 'tai-chinh-ngan-hang', name: '+ Tài chính - Ngân hàng' },
+    { id: 'ngon-ngu-anh', name: '+ Ngôn ngữ Anh' },
+    { id: 'ykhoa', name: '+ Y khoa' },
+    { id: 'duoc-hoc', name: '+ Dược học' },
+    { id: 'dohoa', name: '+ Thiết kế Đồ họa' }
+  ];
+
+  // Resolve major objects
+  const selectedMajors = useMemo(() => {
+    return selectedMajorIds
+      .map(id => MAJORS_DATA.find(m => m.id === id))
+      .filter(Boolean);
+  }, [selectedMajorIds]);
+
+  const handleSelectPreset = (ids) => {
+    setSelectedMajorIds(ids);
+    confetti({
+      particleCount: 50,
+      spread: 60,
+      origin: { y: 0.6 }
+    });
+  };
+
+  const handleAddMajor = (id) => {
+    if (selectedMajorIds.length >= 3) {
+      alert("Đấu trường so sánh tối ưu nhất cho 2 - 3 ngành để có góc nhìn đối đầu trực diện rõ ràng nhất bạn nhé!");
+      return;
+    }
+    if (!selectedMajorIds.includes(id)) {
+      setSelectedMajorIds([...selectedMajorIds, id]);
     }
   };
 
-  const handleRemoveOption = (opt) => {
-    setSelectedOptions(selectedOptions.filter(o => o !== opt));
+  const handleRemoveMajor = (id) => {
+    if (selectedMajorIds.length <= 2) {
+      alert("Cần giữ ít nhất 2 ngành để duy trì bàn cân so sánh!");
+      return;
+    }
+    setSelectedMajorIds(selectedMajorIds.filter(mId => mId !== id));
   };
 
-  const handleAnswer = (optionName) => {
-    setAnswers({ ...answers, [currentQIndex]: optionName });
-  };
+  // Real-time Composite Score Calculation based on 5 Priority Sliders
+  const calculatedScores = useMemo(() => {
+    const totalWeights = weights.salary + weights.easyScore + weights.lowTuition + weights.lowPressure + weights.aiSafety;
 
-  const handleNext = () => {
-    if (currentQIndex + 1 < COMPARE_QUESTIONS.length) {
-      setCurrentQIndex(currentQIndex + 1);
-    } else {
-      // Calculate scores
-      const scores = {};
-      selectedOptions.forEach(opt => { scores[opt] = 0; });
+    return selectedMajors.map(m => {
+      // 1. Salary Score (0 - 100)
+      let salaryPoints = 75;
+      if (m.salaryRoadmap?.senior?.includes('40') || m.salaryRoadmap?.senior?.includes('50') || m.id === 'cntt' || m.id === 'vi-mach' || m.id === 'ykhoa') {
+        salaryPoints = 95;
+      } else if (m.salaryRoadmap?.senior?.includes('30') || m.salaryRoadmap?.senior?.includes('35')) {
+        salaryPoints = 85;
+      }
 
-      COMPARE_QUESTIONS.forEach((q, idx) => {
-        const chosen = answers[idx];
-        if (chosen && scores[chosen] !== undefined) {
-          scores[chosen] += q.w;
+      // 2. Easy Score (Dễ đỗ)
+      let scorePoints = 70;
+      const lowerBenchmark = parseFloat(m.diem_tb?.split('-')[0]?.trim() || '25');
+      if (lowerBenchmark < 22) scorePoints = 92;
+      else if (lowerBenchmark < 25) scorePoints = 82;
+      else if (lowerBenchmark < 27) scorePoints = 68;
+      else scorePoints = 55;
+
+      // 3. Low Tuition Score (Học phí thấp)
+      let tuitionPoints = 75;
+      if (m.hoc_phi?.toLowerCase().includes('miễn') || m.hoc_phi?.includes('14') || m.hoc_phi?.includes('18')) {
+        tuitionPoints = 95;
+      } else if (m.hoc_phi?.includes('20') || m.hoc_phi?.includes('25')) {
+        tuitionPoints = 80;
+      } else if (m.hoc_phi?.includes('35') || m.hoc_phi?.includes('40')) {
+        tuitionPoints = 65;
+      }
+
+      // 4. Low Pressure Score (Ít áp lực đào thải)
+      let pressurePoints = 75;
+      if (m.id === 'ykhoa') pressurePoints = 50; // Học y cực nặng
+      else if (m.id === 'vi-mach' || m.id === 'cntt') pressurePoints = 65; // Đào thải công nghệ nhanh
+      else if (m.id === 'supham-toan' || m.id === 'ngon-ngu-anh') pressurePoints = 85;
+
+      // 5. AI Safety Score
+      let aiSafetyPoints = 80;
+      const riskText = m.aiRiskLevel || 'Trung bình';
+      if (riskText.includes('Thấp') || riskText.includes('Rất thấp') || m.id === 'ykhoa' || m.id === 'vi-mach' || m.id === 'tamly') {
+        aiSafetyPoints = 94;
+      } else if (riskText.includes('Cao') || m.id === 'ke-toan') {
+        aiSafetyPoints = 58;
+      }
+
+      const composite = Math.round(
+        (salaryPoints * weights.salary +
+         scorePoints * weights.easyScore +
+         tuitionPoints * weights.lowTuition +
+         pressurePoints * weights.lowPressure +
+         aiSafetyPoints * weights.aiSafety) / totalWeights
+      );
+
+      return {
+        major: m,
+        compositeScore: composite,
+        details: {
+          salaryPoints,
+          scorePoints,
+          tuitionPoints,
+          pressurePoints,
+          aiSafetyPoints
         }
-      });
+      };
+    }).sort((a, b) => b.compositeScore - a.compositeScore);
+  }, [selectedMajors, weights]);
 
-      const ranked = selectedOptions
-        .map(opt => ({ name: opt, score: scores[opt] || 0 }))
-        .sort((a, b) => b.score - a.score);
-
-      setResult(ranked);
-
-      // Confetti celebration
-      confetti({
-        particleCount: 110,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-    }
-  };
-
-  const handleReset = () => {
-    setQuizStarted(false);
-    setCurrentQIndex(0);
-    setAnswers({});
-    setResult(null);
-  };
-
-  const currentQ = COMPARE_QUESTIONS[currentQIndex];
-
-  // Helper for category badge
-  const getCatBadge = (cat) => {
-    switch (cat) {
-      case 'so_thich': return { label: 'Sở thích & Đam mê', color: '#EEF2FF', text: '#4338CA', icon: '🎨' };
-      case 'nang_luc': return { label: 'Năng lực thế mạnh', color: '#ECFDF5', text: '#047857', icon: '🧠' };
-      case 'mon_hoc': return { label: 'Môn học & Tổ hợp', color: '#F0F9FF', text: '#0284C7', icon: '📚' };
-      case 'gia_tri': return { label: 'Giá trị sống cá nhân', color: '#FAF5FF', text: '#7E22CE', icon: '✨' };
-      case 'dieu_kien': return { label: 'Điều kiện & Học phí', color: '#FEF3C7', text: '#B45309', icon: '🏛️' };
-      case 'co_hoi': return { label: 'Cơ hội việc làm 5 năm tới', color: '#FFF1F2', text: '#E11D48', icon: '🚀' };
-      default: return { label: 'Quyết định hành động', color: '#F1F5F9', text: '#334155', icon: '🎯' };
-    }
-  };
+  const winner = calculatedScores[0];
 
   return (
     <div className="tab-pane-animate">
-      <div style={{ maxWidth: '820px', margin: '0 auto' }}>
-        <div style={{ marginBottom: '32px', textAlign: 'center' }}>
-          <div className="pill-badge" style={{ marginBottom: '10px' }}>⚖️ BƯỚC 3 / 4 • ĐẤU TRƯỜNG SO SÁNH</div>
-          <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>So sánh lựa chọn có trọng số</h1>
-          <p style={{ color: '#64748B', maxWidth: '62ch', margin: '0 auto', fontSize: '0.98rem' }}>
-            Đặt 2 - 3 ngành bạn đang phân vân lên bàn cân qua 20 câu hỏi tính điểm trọng số (thang 100 điểm) để tìm ra phương án tối ưu nhất.
-          </p>
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        <div className="pill-badge" style={{ marginBottom: '10px' }}>⚖️ ĐẤU TRƯỜNG SO SÁNH TRỰC DIỆN 2026</div>
+        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Bảng Đối Đầu Trực Diện Có Trọng Số</h1>
+        <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.98rem' }}>
+          Không cần trả lời 20 câu hỏi rườm rà. Đặt 2 - 3 ngành lên bàn cân, điều chỉnh 5 thanh trượt ưu tiên cá nhân để thuật toán công bố ngành chiến thắng theo thời gian thực!
+        </p>
+      </div>
+
+      {/* SECTION 1: 1-CLICK PRESET BATTLES (CẶP ĐẤU KINH ĐIỂN) */}
+      <div style={{ background: '#FFFFFF', borderRadius: '24px', padding: '22px 24px', border: '1px solid #E2E8F0', boxShadow: 'var(--shadow-card)', marginBottom: '28px' }}>
+        <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Zap size={16} color="#F59E0B" />
+          <span>Cặp đấu Kinh điển (1 Chạm nạp ngay 2 ngành phân vân):</span>
+        </div>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          {PRESET_BATTLES.map((preset, idx) => (
+            <button
+              key={idx}
+              type="button"
+              className="preset-battle-btn"
+              onClick={() => handleSelectPreset(preset.ids)}
+            >
+              <span>{preset.icon}</span>
+              <span>{preset.label}</span>
+            </button>
+          ))}
         </div>
 
-        {/* STEP 1: PICK OPTIONS */}
-        {!quizStarted && !result && (
-          <div className="card-box">
-            <h2 style={{ fontSize: '1.45rem', marginBottom: '8px' }}>1. Chọn các phương án bạn muốn so sánh</h2>
-            <p style={{ fontSize: '0.9rem', color: '#64748B', marginBottom: '22px' }}>
-              Cần ít nhất 2 phương án để bắt đầu (khuyên dùng 2-3 phương án):
-            </p>
-
-            {/* Selected Options Chips */}
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '24px' }}>
-              {selectedOptions.map((opt, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '9px 18px',
-                    borderRadius: '999px',
-                    background: '#EEF2FF',
-                    color: '#4338CA',
-                    fontWeight: '700',
-                    fontSize: '0.94rem',
-                    border: '1.5px solid #C7D2FE',
-                    boxShadow: 'var(--shadow-sm)'
-                  }}
-                >
-                  <span>{opt}</span>
-                  {selectedOptions.length > 2 && (
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveOption(opt)}
-                      style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', color: '#F43F5E' }}
-                    >
-                      <Trash2 size={15} />
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Quick add from catalog */}
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: '800', color: '#1E293B', marginBottom: '8px' }}>
-                Thêm nhanh từ danh mục ngành:
-              </label>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {MAJORS_DATA.filter(m => !selectedOptions.includes(m.ten_nganh)).slice(0, 5).map(m => (
-                  <button
-                    key={m.id}
-                    type="button"
-                    onClick={() => setSelectedOptions([...selectedOptions, m.ten_nganh])}
-                    style={{
-                      fontSize: '0.82rem',
-                      fontWeight: '600',
-                      padding: '6px 14px',
-                      borderRadius: '999px',
-                      border: '1.5px dashed #CBD5E1',
-                      background: '#FFFFFF',
-                      color: '#475569',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease'
-                    }}
-                  >
-                    + {m.ten_nganh}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Add custom input */}
-            <div style={{ display: 'flex', gap: '10px', marginBottom: '32px' }}>
-              <input
-                type="text"
-                value={customInput}
-                onChange={(e) => setCustomInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleAddCustom()}
-                placeholder="Hoặc tự nhập phương án khác (ví dụ: Ngôn ngữ Hàn, Quản trị khách sạn)..."
+        {/* Selected Chips & Quick Add */}
+        <div style={{ marginTop: '18px', paddingTop: '16px', borderTop: '1px dashed #E2E8F0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.84rem', fontWeight: '800', color: '#1E293B' }}>Đang so sánh:</span>
+            {selectedMajors.map(m => (
+              <span
+                key={m.id}
                 style={{
-                  flex: 1,
-                  padding: '12px 18px',
-                  borderRadius: '14px',
-                  border: '1.5px solid #CBD5E1',
-                  fontSize: '0.94rem',
-                  outline: 'none',
-                  background: '#FFFDF9'
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '6px 14px',
+                  borderRadius: '999px',
+                  background: '#EEF2FF',
+                  color: '#4338CA',
+                  fontWeight: '800',
+                  fontSize: '0.86rem',
+                  border: '1.5px solid #C7D2FE'
                 }}
-              />
+              >
+                <span>{m.icon}</span>
+                <span>{m.ten_nganh}</span>
+                {selectedMajors.length > 2 && (
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveMajor(m.id)}
+                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0, color: '#F43F5E', display: 'flex' }}
+                  >
+                    <Trash2 size={13} />
+                  </button>
+                )}
+              </span>
+            ))}
+          </div>
+
+          {/* Quick Add Chips */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: '700' }}>Thêm nhanh:</span>
+            {QUICK_ADD_MAJORS.filter(q => !selectedMajorIds.includes(q.id)).slice(0, 4).map(q => (
               <button
+                key={q.id}
                 type="button"
-                className="btn-edtech-secondary"
-                onClick={handleAddCustom}
-                style={{ padding: '0 20px', borderRadius: '14px' }}
-              >
-                <Plus size={18} />
-                <span>Thêm</span>
-              </button>
-            </div>
-
-            <button
-              className="btn-edtech-primary"
-              disabled={selectedOptions.length < 2}
-              onClick={() => setQuizStarted(true)}
-              style={{ width: '100%', padding: '16px 24px', fontSize: '1.05rem' }}
-            >
-              <Scale size={20} />
-              <span>Bắt đầu so sánh 20 tiêu chí</span>
-              <ArrowRight size={18} />
-            </button>
-          </div>
-        )}
-
-        {/* STEP 2: QUIZ IN PROGRESS (ARENA BALANCE) */}
-        {quizStarted && !result && currentQ && (
-          <div className="card-box">
-            {/* Header info */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                {(() => {
-                  const b = getCatBadge(currentQ.cat);
-                  return (
-                    <span style={{ fontSize: '0.78rem', fontWeight: '800', padding: '4px 10px', borderRadius: '999px', background: b.color, color: b.text }}>
-                      {b.icon} {b.label}
-                    </span>
-                  );
-                })()}
-              </div>
-
-              <div style={{ fontSize: '0.86rem', fontWeight: '800', color: '#4F46E5' }}>
-                Câu {currentQIndex + 1} / {COMPARE_QUESTIONS.length} • Trọng số: {currentQ.w}đ
-              </div>
-            </div>
-
-            {/* Progress bar */}
-            <div style={{ height: '8px', background: '#F1F5F9', borderRadius: '999px', overflow: 'hidden', marginBottom: '24px' }}>
-              <div
+                onClick={() => handleAddMajor(q.id)}
                 style={{
-                  height: '100%',
-                  width: `${((currentQIndex + 1) / COMPARE_QUESTIONS.length) * 100}%`,
-                  background: 'var(--primary-gradient)',
-                  borderRadius: '999px',
-                  transition: 'width 0.3s ease'
+                  fontSize: '0.76rem',
+                  padding: '4px 10px',
+                  borderRadius: '8px',
+                  background: '#F8FAFC',
+                  border: '1px solid #CBD5E1',
+                  color: '#334155',
+                  cursor: 'pointer',
+                  fontWeight: '700'
                 }}
-              />
-            </div>
+              >
+                {q.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
-            <h2 style={{ fontSize: '1.45rem', fontWeight: '800', marginBottom: '24px', lineHeight: '1.4', color: '#1E293B' }}>
-              {currentQ.text}
+      {/* SECTION 2: 5 REAL-TIME PRIORITY SLIDERS */}
+      <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', borderRadius: '24px', padding: '24px', color: '#FFFFFF', marginBottom: '28px', boxShadow: '0 12px 30px -8px rgba(49, 46, 129, 0.4)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '18px' }}>
+          <div>
+            <div style={{ fontSize: '0.78rem', color: '#A5B4FC', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              CÁ NHÂN HÓA BẰNG THUẬT TOÁN
+            </div>
+            <h2 style={{ fontSize: '1.35rem', margin: '2px 0 0', fontWeight: '900', color: '#FFFFFF' }}>
+              5 Thanh Trượt Trọng Số Ưu Tiên Cá Nhân
             </h2>
+          </div>
+          <span style={{ fontSize: '0.78rem', background: 'rgba(255, 255, 255, 0.15)', padding: '5px 12px', borderRadius: '999px', color: '#FDE047', fontWeight: '800' }}>
+            ⚡ Kéo trượt để xem điểm thay đổi Real-time
+          </span>
+        </div>
 
-            {/* Options selection */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
-              {selectedOptions.map((opt, i) => {
-                const isSelected = answers[currentQIndex] === opt;
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => handleAnswer(opt)}
-                    style={{
-                      padding: '18px 22px',
-                      borderRadius: '18px',
-                      border: isSelected ? '2px solid #4F46E5' : '1.5px solid #E2E8F0',
-                      background: isSelected ? '#EEF2FF' : '#FFFFFF',
-                      color: isSelected ? '#4338CA' : '#1E293B',
-                      fontFamily: 'inherit',
-                      fontSize: '1rem',
-                      fontWeight: isSelected ? '800' : '600',
-                      textAlign: 'left',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      transition: 'all 0.15s ease',
-                      boxShadow: isSelected ? '0 6px 18px -4px rgba(79, 70, 229, 0.2)' : 'var(--shadow-sm)'
-                    }}
-                  >
-                    <span>{opt}</span>
-                    {isSelected ? (
-                      <CheckCircle2 size={22} color="#4F46E5" />
-                    ) : (
-                      <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #CBD5E1' }} />
-                    )}
-                  </button>
-                );
-              })}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '18px' }}>
+          {/* Slider 1: Lương */}
+          <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
+              <span>💰 Ưu tiên Lương cao</span>
+              <span style={{ color: '#FDE047' }}>{weights.salary} / 5</span>
             </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="5" 
+              value={weights.salary} 
+              onChange={(e) => setWeights({ ...weights, salary: parseInt(e.target.value) })}
+              className="battle-slider-track"
+            />
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Mức thu nhập sau 3 - 5 năm</div>
+          </div>
 
-            {/* Navigation buttons */}
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <button
-                className="btn-edtech-secondary"
-                disabled={currentQIndex === 0}
-                onClick={() => setCurrentQIndex(currentQIndex - 1)}
-                style={{ opacity: currentQIndex === 0 ? 0.5 : 1 }}
-              >
-                <ArrowLeft size={16} />
-                <span>Quay lại</span>
-              </button>
+          {/* Slider 2: Điểm vừa sức */}
+          <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
+              <span>🎯 Ưu tiên Điểm vừa sức</span>
+              <span style={{ color: '#FDE047' }}>{weights.easyScore} / 5</span>
+            </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="5" 
+              value={weights.easyScore} 
+              onChange={(e) => setWeights({ ...weights, easyScore: parseInt(e.target.value) })}
+              className="battle-slider-track"
+            />
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Tránh rủi ro trượt nguyện vọng</div>
+          </div>
 
-              <button
-                className="btn-edtech-primary"
-                onClick={handleNext}
-                disabled={!answers[currentQIndex]}
-                style={{ opacity: !answers[currentQIndex] ? 0.6 : 1 }}
-              >
-                <span>{currentQIndex + 1 === COMPARE_QUESTIONS.length ? 'Xem kết quả bảng điểm' : 'Câu tiếp theo'}</span>
-                <ArrowRight size={18} />
-              </button>
+          {/* Slider 3: Học phí thấp */}
+          <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
+              <span>💳 Ưu tiên Học phí thấp</span>
+              <span style={{ color: '#FDE047' }}>{weights.lowTuition} / 5</span>
+            </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="5" 
+              value={weights.lowTuition} 
+              onChange={(e) => setWeights({ ...weights, lowTuition: parseInt(e.target.value) })}
+              className="battle-slider-track"
+            />
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Tiết kiệm tài chính gia đình</div>
+          </div>
+
+          {/* Slider 4: Ít áp lực */}
+          <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
+              <span>🌿 Ưu tiên Ít áp lực</span>
+              <span style={{ color: '#FDE047' }}>{weights.lowPressure} / 5</span>
+            </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="5" 
+              value={weights.lowPressure} 
+              onChange={(e) => setWeights({ ...weights, lowPressure: parseInt(e.target.value) })}
+              className="battle-slider-track"
+            />
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Cân bằng cuộc sống & học tập</div>
+          </div>
+
+          {/* Slider 5: An toàn AI */}
+          <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
+              <span>🛡️ An toàn trước AI</span>
+              <span style={{ color: '#FDE047' }}>{weights.aiSafety} / 5</span>
+            </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="5" 
+              value={weights.aiSafety} 
+              onChange={(e) => setWeights({ ...weights, aiSafety: parseInt(e.target.value) })}
+              className="battle-slider-track"
+            />
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Bền vững trong 10 năm tới</div>
+          </div>
+        </div>
+      </div>
+
+      {/* WINNER PODIUM ANNOUNCEMENT */}
+      {winner && (
+        <div style={{ background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', borderRadius: '24px', padding: '22px 28px', border: '2px solid #F59E0B', marginBottom: '28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', boxShadow: '0 8px 24px rgba(245, 158, 11, 0.2)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#F59E0B', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(245, 158, 11, 0.4)', flexShrink: 0 }}>
+              <Trophy size={30} />
+            </div>
+            <div>
+              <div style={{ fontSize: '0.78rem', fontWeight: '900', color: '#B45309', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                🏆 NGÀNH CHIẾN THẮNG PHÙ HỢP NHẤT VỚI BẠN
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: '900', color: '#78350F' }}>
+                {winner.major.ten_nganh} ({winner.compositeScore} / 100 Điểm)
+              </div>
+              <div style={{ fontSize: '0.84rem', color: '#92400E', marginTop: '2px' }}>
+                Dựa trên cấu hình trọng số ưu tiên hiện tại của bạn, ngành này tối ưu hóa tốt nhất giữa cơ hội thu nhập và sự an toàn!
+              </div>
             </div>
           </div>
-        )}
 
-        {/* STEP 3: RESULTS PODIUM (PLAN A & PLAN B) */}
-        {result && (
-          <div className="tab-pane-animate">
-            {/* Top Winner Highlight */}
-            <div
-              style={{
-                background: 'linear-gradient(135deg, #F59E0B 0%, #EA580C 100%)',
-                color: '#FFFFFF',
-                borderRadius: '26px',
-                padding: '32px',
-                boxShadow: '0 20px 40px -10px rgba(245, 158, 11, 0.35)',
-                marginBottom: '28px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '16px'
-              }}
-            >
-              <div>
-                <div style={{ fontSize: '0.8rem', fontWeight: '800', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.95, marginBottom: '6px' }}>
-                  🏆 PHƯƠNG ÁN ƯU TIÊN SỐ 1 (PLAN A)
-                </div>
-                <h2 style={{ fontSize: '2.1rem', fontWeight: '900', color: '#FFFFFF', margin: 0 }}>
-                  {result[0].name}
-                </h2>
-                <p style={{ color: '#FFFFFF', opacity: 0.9, fontSize: '0.94rem', margin: '8px 0 0' }}>
-                  Đạt độ tương thích cao nhất về thế mạnh, sở thích và kỳ vọng nghề nghiệp của bạn.
-                </p>
-              </div>
+          <button
+            type="button"
+            className="btn-edtech-primary"
+            style={{ padding: '12px 22px', fontSize: '0.9rem', background: 'linear-gradient(135deg, #B45309 0%, #78350F 100%)', boxShadow: '0 4px 14px rgba(120, 53, 15, 0.3)' }}
+            onClick={() => {
+              if (onSelectForRoadmap) onSelectForRoadmap(winner.major.ten_nganh);
+              onNavigate('roadmap');
+            }}
+          >
+            <span>Đưa vào Lộ trình Đại học 2026</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      )}
 
-              <div
-                style={{
-                  background: 'rgba(255, 255, 255, 0.25)',
-                  backdropFilter: 'blur(10px)',
-                  padding: '14px 28px',
-                  borderRadius: '999px',
-                  fontSize: '1.4rem',
-                  fontWeight: '900',
-                  fontFamily: 'var(--font-display)',
-                  border: '1.5px solid rgba(255,255,255,0.4)'
-                }}
-              >
-                {result[0].score} / 100 điểm
-              </div>
-            </div>
-
-            {/* Score Breakdown Cards */}
-            <div className="card-box" style={{ marginBottom: '28px' }}>
-              <h3 style={{ fontSize: '1.35rem', marginBottom: '6px' }}>Bảng xếp hạng mức độ phù hợp</h3>
-              <p style={{ fontSize: '0.9rem', color: '#64748B', marginBottom: '24px' }}>
-                Tổng điểm của từng phương án tương ứng với độ khớp qua 20 tiêu chí thực tế.
-              </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {result.map((item, idx) => (
-                  <div key={idx} style={{ background: '#FFFDF9', padding: '16px 20px', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontWeight: '700', fontSize: '0.96rem' }}>
-                      <span style={{ color: idx === 0 ? '#B45309' : '#1E293B', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>{idx === 0 ? '🥇 Phương án 1 (Plan A):' : idx === 1 ? '🥈 Phương án 2 (Plan B):' : '🥉 Phương án 3:'}</span>
-                        <strong>{item.name}</strong>
-                      </span>
-                      <span style={{ color: idx === 0 ? '#B45309' : '#4F46E5', fontFamily: 'var(--font-display)', fontWeight: '900', fontSize: '1.05rem' }}>
-                        {item.score} / 100
-                      </span>
-                    </div>
-
-                    <div style={{ height: '12px', background: '#E2E8F0', borderRadius: '999px', overflow: 'hidden' }}>
-                      <div
-                        style={{
-                          height: '100%',
-                          width: `${item.score}%`,
-                          background: idx === 0 ? 'linear-gradient(90deg, #F59E0B, #EA580C)' : 'linear-gradient(90deg, #4F46E5, #0EA5E9)',
-                          borderRadius: '999px',
-                          transition: 'width 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
-                        }}
-                      />
+      {/* SECTION 3: INSTANT SIDE-BY-SIDE MATRIX TABLE */}
+      <div className="battle-matrix-wrap" style={{ marginBottom: '36px' }}>
+        <table className="battle-matrix-table">
+          <thead>
+            <tr>
+              <th style={{ width: '22%' }}>Tiêu chí So sánh</th>
+              {selectedMajors.map(m => (
+                <th key={m.id} style={{ width: `${78 / selectedMajors.length}%` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '1.4rem' }}>{m.icon}</span>
+                    <div>
+                      <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#1E293B' }}>{m.ten_nganh}</div>
+                      <div style={{ fontSize: '0.72rem', color: '#64748B', textTransform: 'none' }}>Mã: {m.ma_nganh}</div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {/* Row 1: Điểm chuẩn trung bình */}
+            <tr>
+              <td><strong>🎯 Điểm chuẩn tham khảo</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id}>
+                  <span style={{ fontSize: '1.05rem', fontWeight: '900', color: '#4F46E5' }}>{m.diem_tb}</span>
+                  <div style={{ fontSize: '0.75rem', color: '#64748B', marginTop: '2px' }}>Khối: {m.to_hop.join(', ')}</div>
+                </td>
+              ))}
+            </tr>
 
-            {/* Next actions */}
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <button
-                className="btn-edtech-primary"
-                onClick={() => {
-                  onSelectForRoadmap(result[0].name, result[1]?.name || '');
-                  onNavigate('roadmap');
-                }}
-              >
-                <Sparkles size={18} />
-                <span>Lập Career Roadmap cho {result[0].name}</span>
-                <ArrowRight size={18} />
-              </button>
+            {/* Row 2: Học phí dự kiến */}
+            <tr>
+              <td><strong>💳 Học phí dự kiến</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id} style={{ color: '#1E293B', fontWeight: '700' }}>
+                  {m.hoc_phi}
+                </td>
+              ))}
+            </tr>
 
-              <button className="btn-edtech-secondary" onClick={handleReset}>
-                <RotateCcw size={18} />
-                <span>So sánh lại</span>
-              </button>
-            </div>
-          </div>
-        )}
+            {/* Row 3: Lương khởi điểm (Fresher) */}
+            <tr>
+              <td><strong>🌱 Lương khởi điểm (0-1 năm)</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id} style={{ color: '#059669', fontWeight: '800' }}>
+                  {m.salaryRoadmap?.fresher || '10 – 15 triệu/tháng'}
+                </td>
+              ))}
+            </tr>
+
+            {/* Row 4: Thu nhập sau 5 năm (Senior) */}
+            <tr>
+              <td><strong>👑 Thu nhập sau 5 năm (Senior)</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id} style={{ color: '#15803D', fontWeight: '900', fontSize: '0.96rem' }}>
+                  {m.salaryRoadmap?.senior || '25 – 45 triệu/tháng'}
+                </td>
+              ))}
+            </tr>
+
+            {/* Row 5: Khát nhân lực */}
+            <tr>
+              <td><strong>🔥 Nhu cầu thị trường</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id}>
+                  <span style={{ background: '#FEF2F2', color: '#DC2626', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '800' }}>
+                    {m.demandLevel || 'Rất cao'}
+                  </span>
+                </td>
+              ))}
+            </tr>
+
+            {/* Row 6: Rủi ro AI thay thế */}
+            <tr>
+              <td><strong>🤖 Rủi ro bị AI thay thế</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id}>
+                  <span style={{ background: '#F0FDF4', color: '#16A34A', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '800' }}>
+                    {m.aiRiskLevel || 'Thấp (15%)'}
+                  </span>
+                </td>
+              ))}
+            </tr>
+
+            {/* Row 7: Góc khuất & Áp lực thực tế */}
+            <tr>
+              <td><strong>⚠️ Góc khuất & Áp lực nghề</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id} style={{ fontSize: '0.82rem', color: '#64748B', lineHeight: '1.45' }}>
+                  {m.realityCheck ? m.realityCheck.slice(0, 110) + '...' : 'Đòi hỏi sự kiên trì và cập nhật kiến thức liên tục.'}
+                </td>
+              ))}
+            </tr>
+
+            {/* Row 8: Top trường đào tạo tiêu biểu */}
+            <tr>
+              <td><strong>🏛️ Top trường đào tạo</strong></td>
+              {selectedMajors.map(m => (
+                <td key={m.id}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem', color: '#334155' }}>
+                    {m.truong_tieu_bieu.slice(0, 3).map((tr, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <span style={{ color: '#4F46E5', fontWeight: '900' }}>•</span>
+                        <span>{tr}</span>
+                      </div>
+                    ))}
+                  </div>
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -144,11 +144,12 @@ export default function AIChatModal({
   }, [messages, isOpen]);
 
   const quickPrompts = [
-    "🎯 Em dự kiến 25 – 27 điểm ở Hà Nội, nên chọn ngành và trường nào?",
-    "📍 Em ở TP.HCM muốn học CNTT hoặc Vi mạch, tài chính 30-45tr/năm",
-    "🩺 Học lực 24 – 26 điểm (B00) ở miền Nam có vào được Y Dược không?",
-    "🏫 Em muốn thi ĐH Bách Khoa / Kinh tế Quốc dân cần chuẩn bị gì?",
-    "🧭 Khảo sát 3 câu: Giúp em chọn trường & ngành chuẩn 2026"
+    "🎯 24 điểm khối D01 ở Hà Nội học trường nào?",
+    "⛰️ Các trường Đại học tại Thái Nguyên điểm chuẩn thế nào?",
+    "⚓ Học ở Hải Phòng có ngành Logistics / Hàng hải nào tốt?",
+    "🔬 27 điểm muốn học Bán dẫn & Vi mạch chọn trường nào?",
+    "🩺 23 - 25 điểm khối B00 học Y Dược ở đâu vừa sức?",
+    "💼 Con gái học Logistics & Chuỗi cung ứng có vất vả không?"
   ];
 
   const handleSend = (customText = null) => {
@@ -424,13 +425,12 @@ export default function AIChatModal({
           {/* Quick Prompts Bar */}
           <div 
             style={{ 
-              padding: '8px 12px', 
+              padding: '10px 14px', 
               background: '#F8FAFC', 
               borderBottom: '1px solid #E2E8F0', 
               display: 'flex', 
-              gap: '6px', 
-              overflowX: 'auto',
-              scrollbarWidth: 'none'
+              flexWrap: 'wrap', 
+              gap: '6px'
             }}
           >
             {quickPrompts.map((qp, i) => (

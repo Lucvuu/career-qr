@@ -32,7 +32,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
   const radarCenter = { x: 180, y: 115 };
   const maxRadius = 58;
   const hollandDimensions = [
-    { key: 'R', label: 'R - Kỹ thuật', score: 82, angle: -Math.PI / 2, labelX: 180, labelY: 42, anchor: 'middle' },
+    { key: 'R', label: 'R - Kỹ thuật (75%)', score: 75, angle: -Math.PI / 2, labelX: 180, labelY: 42, anchor: 'middle' },
     { key: 'I', label: 'I - Nghiên cứu (90%)', score: 90, angle: -Math.PI / 6, labelX: 250, labelY: 84, anchor: 'start' },
     { key: 'A', label: 'A - Nghệ thuật (88%)', score: 88, angle: Math.PI / 6, labelX: 250, labelY: 152, anchor: 'start' },
     { key: 'S', label: 'S - Xã hội (78%)', score: 78, angle: Math.PI / 2, labelX: 180, labelY: 196, anchor: 'middle' },
@@ -99,11 +99,12 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             </p>
 
             {/* 4. CTA Group */}
-            <div className="hero-cta-horizontal">
+            <div className="hero-cta-horizontal" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
               <button 
                 className="btn-edtech-primary" 
                 onClick={() => onNavigate('self')}
                 id="btn-hero-primary-discovery"
+                style={{ whiteSpace: 'nowrap' }}
               >
                 <span>Khám phá ngành hợp với bạn</span>
                 <ArrowRight size={18} />
@@ -113,6 +114,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                 className="btn-edtech-secondary" 
                 onClick={() => onNavigate('compare')}
                 id="btn-hero-secondary-compare"
+                style={{ whiteSpace: 'nowrap' }}
               >
                 <Scale size={17} color="#0284C7" strokeWidth={2} />
                 <span>So sánh 2 ngành đang phân vân</span>
@@ -179,9 +181,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                   </div>
                 </div>
 
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '4px 10px', borderRadius: '9999px', background: '#F8FAFC', border: '1px solid #E2E8F0', fontSize: '0.74rem', color: '#475569', fontWeight: '700' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '4px 10px', borderRadius: '9999px', background: '#F8FAFC', border: '1px solid #E2E8F0', fontSize: '0.74rem', color: '#475569', fontWeight: '700', whiteSpace: 'nowrap', flexShrink: 0 }}>
                   <Sparkles size={13} color="#4F46E5" />
-                  <span>Mẫu phân tích</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>Mẫu phân tích</span>
                 </div>
               </div>
 

@@ -530,34 +530,59 @@ export const UNIVERSITY_BRAND_PROFILES = {
 
 /**
  * UniversityLogo Component
- * Renders an official vector emblem badge with responsive size and branding.
+ * Renders an official vector emblem badge or high-res logo with responsive size and branding.
  */
 export default function UniversityLogo({ 
   code = "", 
   name = "", 
+  shortName = "",
+  website = "",
+  logoUrl = "",
   size = 56,
   showCodeBadge = false 
 }) {
   const [imgError, setImgError] = useState(false);
   const normalizedCode = (code || "").toUpperCase().trim();
-  const officialLogoPath = OFFICIAL_UNIVERSITY_LOGOS[normalizedCode];
+  
+  // Extract clean domain for favicon lookup if available
+  let domainFavicon = "";
+  if (website) {
+    try {
+      const urlObj = new URL(website.startsWith('http') ? website : `https://${website}`);
+      domainFavicon = `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=128`;
+    } catch (e) {
+      // ignore
+    }
+  }
 
-  const profile = UNIVERSITY_BRAND_PROFILES[code] || {
+  const primaryLogoSrc = logoUrl || OFFICIAL_UNIVERSITY_LOGOS[normalizedCode] || domainFavicon;
+
+  const profile = UNIVERSITY_BRAND_PROFILES[normalizedCode] || {
     name: name || code,
-    shortName: code,
-    gradient: "linear-gradient(135deg, #4F46E5 0%, #312E81 100%)",
-    primaryColor: "#4F46E5",
-    bgTint: "#EEF2FF",
-    textColor: "#4338CA",
-    borderColor: "#C7D2FE",
-    renderSvg: () => (
-      <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="46" fill="#312E81" stroke="#818CF8" strokeWidth="3"/>
-        <text x="50" y="58" textAnchor="middle" fill="#FFFFFF" fontSize="16" fontWeight="900" fontFamily="sans-serif">
-          {code.slice(0, 4)}
-        </text>
-      </svg>
-    )
+    shortName: shortName || code,
+    gradient: "linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%)",
+    primaryColor: "#2563EB",
+    bgTint: "#EFF6FF",
+    textColor: "#1D4ED8",
+    borderColor: "#BFDBFE",
+    renderSvg: () => {
+      const displayAbbr = shortName || (code.length > 5 ? code.slice(0, 4) : code);
+      return (
+        <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Academic Crest Shield */}
+          <path d="M50 6 L86 18 V52 C86 74 50 94 50 94 C50 94 14 74 14 52 V18 Z" fill="#1E293B" stroke="#3B82F6" strokeWidth="3"/>
+          <path d="M50 12 L80 22 V50 C80 69 50 86 50 86 C50 86 20 69 20 50 V22 Z" fill="#0F172A"/>
+          {/* Golden academic star */}
+          <path d="M50 22 L52.5 28.5 L59 29 L54 33 L55.5 39.5 L50 36 L44.5 39.5 L46 33 L41 29 L47.5 28.5 Z" fill="#F59E0B"/>
+          {/* Open knowledge book */}
+          <path d="M36 45 Q50 48 50 52 Q50 48 64 45 L64 49 Q50 52 50 56 Q50 52 36 49 Z" fill="#93C5FD"/>
+          {/* Bold university abbreviation */}
+          <text x="50" y="73" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="900" fontFamily="sans-serif" letterSpacing="0.5">
+            {displayAbbr}
+          </text>
+        </svg>
+      );
+    }
   };
 
   return (
@@ -581,9 +606,9 @@ export default function UniversityLogo({
         }}
         title={`${profile.name || name} (${code})`}
       >
-        {!imgError && officialLogoPath ? (
+        {!imgError && primaryLogoSrc ? (
           <img 
-            src={officialLogoPath} 
+            src={primaryLogoSrc} 
             alt={profile.name || name || code} 
             onError={() => setImgError(true)}
             style={{
@@ -618,3 +643,4 @@ export default function UniversityLogo({
     </div>
   );
 }
+
