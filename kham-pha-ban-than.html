@@ -6,17 +6,70 @@
 <title>Khám phá bản thân — CAREER QR</title>
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/ai-chat.css">
+<style>
+  .archetype-banner {
+    background: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
+    color: #FFFFFF;
+    border-radius: var(--radius-m);
+    padding: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 30px -8px rgba(79, 70, 229, 0.4);
+  }
+  .archetype-banner::after {
+    content: '✨';
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 3rem;
+    opacity: 0.25;
+  }
+  .archetype-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .archetype-desc {
+    font-size: 0.94rem;
+    opacity: 0.92;
+    margin: 0;
+    max-width: 60ch;
+    color: #FFFFFF;
+  }
+  .result-actions-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  /* Confetti Canvas */
+  #confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99999;
+  }
+</style>
 </head>
 <body data-page="self">
+
+<canvas id="confetti-canvas"></canvas>
 
 <header class="site-header">
   <div class="bar">
     <a class="brand" href="index.html">
       <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="10" height="10" rx="2" fill="var(--route)"/>
-        <rect x="20" y="2" width="10" height="10" rx="2" fill="var(--ink)" opacity=".18"/>
-        <rect x="2" y="20" width="10" height="10" rx="2" fill="var(--ink)" opacity=".18"/>
-        <circle cx="24" cy="24" r="6" fill="var(--waypoint)"/>
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#4F46E5"/>
+        <rect x="18" y="2" width="12" height="12" rx="3" fill="#6366F1" opacity="0.25"/>
+        <rect x="2" y="18" width="12" height="12" rx="3" fill="#06B6D4" opacity="0.25"/>
+        <circle cx="24" cy="24" r="6" fill="#F59E0B"/>
       </svg>
       <span class="brand-text">CAREER QR<small>Career Balance</small></span>
     </a>
@@ -34,9 +87,9 @@
 <main>
   <section class="hero" id="page-hero" style="padding-bottom:0;">
     <div class="wrap-narrow">
-      <p class="kicker">BƯỚC 1 / 4</p>
+      <p class="kicker">BƯỚC 1 / 4 • TRẮC NGHIỆM ĐỊNH HƯỚNG</p>
       <h1>Khám phá bản thân</h1>
-      <p class="lede">Trả lời từng câu một, thật với chính mình — không có đáp án đúng/sai. Câu trả lời chỉ lưu trên máy của bạn.</p>
+      <p class="lede">Trả lời 5 câu hỏi nhanh, chân thật với chính mình. Dữ liệu trắc nghiệm được bảo mật 100% trên thiết bị của bạn.</p>
     </div>
   </section>
 
@@ -46,71 +99,101 @@
 
         <!-- Câu 1/5: môn học -->
         <section class="step-pane is-active" id="pane-monhoc">
-          <div class="step-meter"><span class="step-count">Câu 1 / 5</span><div class="step-track"><div class="step-fill" style="width:20%"></div></div></div>
+          <div class="step-meter">
+            <span class="step-count">Câu 1 / 5</span>
+            <div class="step-track"><div class="step-fill" style="width:20%"></div></div>
+          </div>
           <h2 class="step-question">Bạn thích và học tốt những môn nào nhất?</h2>
-          <p class="text-faint" style="margin-top:-8px;">Chọn tối đa 3 môn.</p>
+          <p class="text-faint" style="margin-top:-8px;">Chọn tối đa 3 môn thế mạnh của bạn.</p>
           <div class="tag-list" id="mon-hoc-options"></div>
           <div class="step-nav">
             <span></span>
-            <button type="button" class="btn btn-route btn-sm" id="btn-monhoc-next">Tiếp tục</button>
+            <button type="button" class="btn btn-route" id="btn-monhoc-next">
+              <span>Tiếp tục</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </section>
 
         <!-- Câu 2/5: sở thích -->
         <section class="step-pane" id="pane-sothich">
-          <div class="step-meter"><span class="step-count">Câu 2 / 5</span><div class="step-track"><div class="step-fill" style="width:40%"></div></div></div>
+          <div class="step-meter">
+            <span class="step-count">Câu 2 / 5</span>
+            <div class="step-track"><div class="step-fill" style="width:40%"></div></div>
+          </div>
           <h2 class="step-question">Trong thời gian rảnh, bạn thường thích làm gì nhất?</h2>
+          <p class="text-faint" style="margin-top:-8px;">Chọn 1 hoạt động bạn đam mê nhất.</p>
           <div class="choice-grid" id="opt-sothich"></div>
           <div class="step-nav">
             <button type="button" class="btn btn-ghost btn-sm" data-back="pane-monhoc">← Quay lại</button>
-            <button type="button" class="btn btn-route btn-sm" data-next-btn="sothich">Tiếp tục</button>
+            <button type="button" class="btn btn-route btn-sm" data-next-btn="sothich">Tiếp tục →</button>
           </div>
         </section>
 
         <!-- Câu 3/5: môi trường -->
         <section class="step-pane" id="pane-moitruong">
-          <div class="step-meter"><span class="step-count">Câu 3 / 5</span><div class="step-track"><div class="step-fill" style="width:60%"></div></div></div>
+          <div class="step-meter">
+            <span class="step-count">Câu 3 / 5</span>
+            <div class="step-track"><div class="step-fill" style="width:60%"></div></div>
+          </div>
           <h2 class="step-question">Bạn làm việc tốt nhất trong môi trường nào?</h2>
+          <p class="text-faint" style="margin-top:-8px;">Chọn không gian làm việc phù hợp với bạn.</p>
           <div class="choice-grid" id="opt-moitruong"></div>
           <div class="step-nav">
             <button type="button" class="btn btn-ghost btn-sm" data-back="pane-sothich">← Quay lại</button>
-            <button type="button" class="btn btn-route btn-sm" data-next-btn="moitruong">Tiếp tục</button>
+            <button type="button" class="btn btn-route btn-sm" data-next-btn="moitruong">Tiếp tục →</button>
           </div>
         </section>
 
         <!-- Câu 4/5: giá trị -->
         <section class="step-pane" id="pane-giatri">
-          <div class="step-meter"><span class="step-count">Câu 4 / 5</span><div class="step-track"><div class="step-fill" style="width:80%"></div></div></div>
+          <div class="step-meter">
+            <span class="step-count">Câu 4 / 5</span>
+            <div class="step-track"><div class="step-fill" style="width:80%"></div></div>
+          </div>
           <h2 class="step-question">Điều gì quan trọng nhất khi bạn chọn nghề tương lai?</h2>
+          <p class="text-faint" style="margin-top:-8px;">Giá trị cốt lõi bạn hướng tới.</p>
           <div class="choice-grid" id="opt-giatri"></div>
           <div class="step-nav">
             <button type="button" class="btn btn-ghost btn-sm" data-back="pane-moitruong">← Quay lại</button>
-            <button type="button" class="btn btn-route btn-sm" data-next-btn="giatri">Tiếp tục</button>
+            <button type="button" class="btn btn-route btn-sm" data-next-btn="giatri">Tiếp tục →</button>
           </div>
         </section>
 
         <!-- Câu 5/5: ghi chú + gửi -->
         <section class="step-pane" id="pane-ghichu">
-          <div class="step-meter"><span class="step-count">Câu 5 / 5</span><div class="step-track"><div class="step-fill" style="width:100%"></div></div></div>
-          <h2 class="step-question">Còn điều gì khác bạn muốn ghi lại? (không bắt buộc)</h2>
-          <textarea id="ghi-chu" placeholder="Ví dụ: điểm mạnh, lo lắng, điều bố mẹ mong muốn…"></textarea>
+          <div class="step-meter">
+            <span class="step-count">Câu 5 / 5</span>
+            <div class="step-track"><div class="step-fill" style="width:100%"></div></div>
+          </div>
+          <h2 class="step-question">Còn điều gì khác bạn muốn ghi lại?</h2>
+          <p class="text-faint" style="margin-top:-8px;">Không bắt buộc — có thể là kỳ vọng của gia đình, nỗi lo tài chính, hoặc sở trường đặc biệt.</p>
+          <textarea id="ghi-chu" placeholder="Ví dụ: Em muốn học tại Hà Nội hoặc TP.HCM, bố mẹ mong muốn vào khối ngành kinh tế..."></textarea>
           <div class="step-nav">
             <button type="button" class="btn btn-ghost btn-sm" data-back="pane-giatri">← Quay lại</button>
-            <button type="button" class="btn btn-route" id="btn-submit">Xem gợi ý từ AI</button>
+            <button type="button" class="btn btn-route" id="btn-submit">
+              <span>✨ Phân tích định hướng từ AI</span>
+            </button>
           </div>
         </section>
       </div>
 
+      <!-- KẾT QUẢ KHÁM PHÁ -->
       <div id="self-result" class="card stack-12" style="margin-top:20px; display:none;">
-        <h3 id="self-result-title">Gợi ý từ trợ lý AI</h3>
+        <div id="archetype-container"></div>
+        <h3 id="self-result-title" style="margin-top:10px;">Gợi ý từ trợ lý AI</h3>
         <p id="self-result-text" class="text-soft"></p>
-        <div id="self-result-cards" class="grid grid-2" style="margin-top:6px;"></div>
-        <button type="button" class="btn btn-ghost btn-sm" id="btn-self-redo" style="margin-top:6px;">Làm lại từ đầu</button>
-        <button type="button" class="btn btn-ghost btn-sm" id="btn-self-share" style="margin-top:6px;">Chia sẻ qua QR</button>
+        <div id="self-result-cards" class="grid grid-2" style="margin-top:14px;"></div>
+        
+        <div class="result-actions-bar">
+          <a class="btn btn-route btn-sm" href="tra-cuu.html" id="btn-self-explore">Khám phá các ngành này trong Tra cứu →</a>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-self-share">📱 Chia sẻ qua mã QR</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-self-redo">Làm lại từ đầu</button>
+        </div>
       </div>
 
-      <div class="notice route" style="margin-top:20px;">
-        <p>Chưa chắc câu trả lời? Mở trợ lý AI ở góc màn hình để được gợi ý thêm.</p>
+      <div class="notice route" style="margin-top:24px;">
+        <p><strong>Cần thêm gợi mở?</strong> Mở trợ lý AI ở góc dưới bên phải màn hình để trao đổi trực tiếp về những băn khoăn của bạn.</p>
       </div>
     </div>
   </section>
@@ -118,15 +201,15 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>CAREER QR — một công cụ tra cứu hướng nghiệp cho học sinh THPT, thuộc mô hình CAREER BALANCE.</p>
+    <p>© 2026 CAREER QR — Nền tảng tra cứu và định hướng nghề nghiệp cho học sinh THPT.</p>
     <nav>
+      <a href="tra-cuu.html">Tra cứu ngành</a>
+      <a href="so-sanh.html">So sánh</a>
       <a href="ke-hoach.html">Career Roadmap</a>
-      <a href="tra-cuu.html?loai=tohop">Tổ hợp xét tuyển</a>
     </nav>
   </div>
 </footer>
 
-<!-- Nạp Firebase + tiện ích dùng chung TRƯỚC khi chạy script của trang -->
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 <script src="assets/js/firebase-config.js"></script>
@@ -135,6 +218,52 @@
 <script src="assets/js/ai-chat.js"></script>
 
 <script>
+  // Pure JS Confetti Effect
+  function launchConfetti() {
+    const canvas = document.getElementById("confetti-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const pieces = [];
+    const colors = ["#4F46E5", "#06B6D4", "#F59E0B", "#10B981", "#EC4899", "#8B5CF6"];
+
+    for (let i = 0; i < 90; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        size: Math.random() * 8 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * 360,
+        speedX: (Math.random() - 0.5) * 4,
+        speedY: Math.random() * 3 + 3,
+        rotSpeed: (Math.random() - 0.5) * 8
+      });
+    }
+
+    let start = Date.now();
+    function animate() {
+      if (Date.now() - start > 3500) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        return;
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.rotation += p.rotSpeed;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.5);
+        ctx.restore();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
   const wizard = CareerWizard(document.getElementById("self-wizard"));
 
   function setHeroVisible(visible) {
@@ -142,74 +271,100 @@
     if (hero) hero.classList.toggle("hero-collapsed", !visible);
   }
 
-  // ---- Câu 1: môn học (chọn nhiều, tối đa 3) ----
-  const MON_HOC = ["Toán","Ngữ văn","Ngoại ngữ","Vật lý","Hóa học","Sinh học","Lịch sử","Địa lý","GDKT&PL","Tin học","Công nghệ","Mỹ thuật/Âm nhạc"];
+  // Câu 1: Môn học kèm emoji sinh động
+  const MON_HOC_DATA = [
+    { name: "Toán", icon: "📐" },
+    { name: "Ngữ văn", icon: "📖" },
+    { name: "Ngoại ngữ", icon: "🌐" },
+    { name: "Vật lý", icon: "⚡" },
+    { name: "Hóa học", icon: "🧪" },
+    { name: "Sinh học", icon: "🧬" },
+    { name: "Lịch sử", icon: "📜" },
+    { name: "Địa lý", icon: "🌍" },
+    { name: "GDKT&PL", icon: "⚖️" },
+    { name: "Tin học", icon: "💻" },
+    { name: "Công nghệ", icon: "⚙️" },
+    { name: "Mỹ thuật/Âm nhạc", icon: "🎨" }
+  ];
+
   const optWrap = document.getElementById("mon-hoc-options");
-  MON_HOC.forEach(m => {
+  MON_HOC_DATA.forEach(item => {
     const label = document.createElement("label");
     label.className = "tag tag-outline";
     label.style.cursor = "pointer";
-    label.innerHTML = `<input type="checkbox" value="${m}" style="margin:0;"> ${m}`;
+    label.style.padding = "8px 14px";
+    label.style.fontSize = "0.88rem";
+    label.innerHTML = `<input type="checkbox" value="${item.name}" style="margin:0;"> <span>${item.icon} ${item.name}</span>`;
     optWrap.appendChild(label);
   });
+
   optWrap.addEventListener("change", (event) => {
     const checked = optWrap.querySelectorAll("input:checked");
     if (checked.length > 3) {
       event.target.checked = false;
-      alert("Bạn chỉ chọn tối đa 3 môn thôi nhé, để gợi ý được tập trung hơn.");
+      alert("Bạn chỉ chọn tối đa 3 môn thế mạnh nhé, để gợi ý được trọng tâm nhất.");
     }
+    optWrap.querySelectorAll("label").forEach(lbl => {
+      const cb = lbl.querySelector("input");
+      lbl.classList.toggle("tag-amber", cb.checked);
+    });
   });
+
   document.getElementById("btn-monhoc-next").addEventListener("click", () => {
     if (!optWrap.querySelectorAll("input:checked").length) {
-      alert("Bạn chọn ít nhất 1 môn học nhé.");
+      alert("Bạn chọn ít nhất 1 môn học thế mạnh nhé.");
       return;
     }
     wizard.next();
     setHeroVisible(false);
   });
 
-  // ---- Câu 2-4: chọn 1 trong nhiều lựa chọn, hiện dạng nút lớn — chọn xong phải bấm "Tiếp tục" mới sang câu kế ----
+  // Câu 2-4: Sở thích, Môi trường, Giá trị
   const CHOICE_SETS = {
     sothich: {
       value: "",
       options: [
-        "Tìm hiểu, lắp ráp, sửa chữa thiết bị công nghệ",
-        "Vẽ, thiết kế, chụp ảnh, sáng tạo nội dung",
-        "Đọc sách, viết lách, tranh luận, tìm hiểu xã hội",
-        "Chăm sóc, giúp đỡ người khác, làm tình nguyện",
-        "Tính toán, lập kế hoạch, quản lý tiền bạc/dự án nhỏ",
-        "Chơi thể thao, vận động, hoạt động ngoài trời"
+        { text: "Tìm hiểu, lắp ráp, sửa chữa thiết bị công nghệ & máy tính", icon: "💻", archetype: "Nhà Đổi Mới Công Nghệ & Kỹ Thuật" },
+        { text: "Vẽ, thiết kế, chụp ảnh, sáng tạo nội dung & nghệ thuật", icon: "🎨", archetype: "Người Sáng Tạo & Khai Phóng Nghệ Thuật" },
+        { text: "Đọc sách, viết lách, tranh luận, tìm hiểu xã hội & ngôn ngữ", icon: "📚", archetype: "Nhà Nghiên Cứu & Khai Phóng Xã Hội" },
+        { text: "Chăm sóc, lắng nghe, giúp đỡ người khác & làm tình nguyện", icon: "🤝", archetype: "Đại Sứ Cộng Đồng & Y Tế - Giáo Dục" },
+        { text: "Tính toán số liệu, lập kế hoạch, kinh doanh & quản lý", icon: "📈", archetype: "Nhà Chiến Lược & Quản Trị Kinh Doanh" },
+        { text: "Chơi thể thao, vận động, khám phá thiên nhiên ngoài trời", icon: "🏞️", archetype: "Nhà Khám Phá & Hành Động Thực Tế" }
       ]
     },
     moitruong: {
       value: "",
       options: [
-        "Làm việc độc lập, tập trung sâu vào một vấn đề",
-        "Làm việc nhóm, trao đổi và phối hợp với nhiều người",
-        "Môi trường có quy trình rõ ràng, ổn định",
-        "Môi trường linh hoạt, nhiều thử thách và thay đổi"
+        { text: "Làm việc độc lập, tập trung sâu vào một chuyên môn", icon: "🎯" },
+        { text: "Làm việc nhóm năng động, trao đổi và kết nối với nhiều người", icon: "👥" },
+        { text: "Môi trường có quy trình rõ ràng, tính ổn định và bảo đảm cao", icon: "🏛️" },
+        { text: "Môi trường linh hoạt, sáng tạo, nhiều thử thách và đổi mới", icon: "🚀" }
       ]
     },
     giatri: {
       value: "",
       options: [
-        "Thu nhập ổn định, cơ hội thăng tiến rõ ràng",
-        "Được sáng tạo, thể hiện ý tưởng riêng",
-        "Giúp ích được cho người khác, cho cộng đồng",
-        "Cân bằng giữa công việc và cuộc sống cá nhân"
+        { text: "Thu nhập hấp dẫn, cơ hội thăng tiến và khẳng định bản thân", icon: "💎" },
+        { text: "Được tự do sáng tạo, biến các ý tưởng riêng thành hiện thực", icon: "✨" },
+        { text: "Tạo giá trị nhân văn, cống hiến và giúp ích cho cộng đồng", icon: "❤️" },
+        { text: "Cân bằng lành mạnh giữa công việc và cuộc sống cá nhân", icon: "🌿" }
       ]
     }
   };
+
   const PANE_AFTER = { sothich: "pane-moitruong", moitruong: "pane-giatri", giatri: "pane-ghichu" };
 
   function renderChoiceSet(key) {
     const wrap = document.getElementById("opt-" + key);
     const set = CHOICE_SETS[key];
-    wrap.innerHTML = set.options.map(o => `<button type="button" class="choice-btn" data-val="${escapeHtml(o)}">${escapeHtml(o)}</button>`).join("");
+    wrap.innerHTML = set.options.map(o => `
+      <button type="button" class="choice-btn" data-val="${escapeHtml(o.text)}">
+        <span style="font-size:1.25rem; display:block; margin-bottom:4px;">${o.icon}</span>
+        ${escapeHtml(o.text)}
+      </button>`).join("");
     wrap.querySelectorAll(".choice-btn").forEach(btn => {
       if (btn.dataset.val === set.value) btn.classList.add("is-selected");
       btn.addEventListener("click", () => {
-        // Chỉ đánh dấu lựa chọn — không tự chuyển câu, học sinh phải bấm "Tiếp tục".
         set.value = btn.dataset.val;
         wrap.querySelectorAll(".choice-btn").forEach(b => b.classList.toggle("is-selected", b === btn));
       });
@@ -221,7 +376,7 @@
     btn.addEventListener("click", () => {
       const key = btn.dataset.nextBtn;
       if (!CHOICE_SETS[key].value) {
-        alert("Bạn chọn 1 đáp án trước khi tiếp tục nhé.");
+        alert("Bạn chọn 1 phương án trước khi tiếp tục nhé.");
         return;
       }
       wizard.go([...wizard.panes].findIndex(p => p.id === PANE_AFTER[key]));
@@ -236,18 +391,18 @@
     });
   });
 
-  // ---- Tải danh sách ngành từ Firestore (để AI gợi ý dựa trên dữ liệu thật) ----
+  // Tải danh sách ngành từ Firestore
   let ALL_NGANH = [];
   db.collection(COL.NGANH).get().then(snap => {
     ALL_NGANH = snap.docs.map(d => ({ id: d.id, ...d.data() }));
   }).catch(err => console.error("Không tải được danh sách ngành:", err));
 
-  // ---- Nếu link có dữ liệu chia sẻ (?xem=...), hiện kết quả đó ở chế độ chỉ xem ----
+  // Kiểm tra link chia sẻ ?xem=...
   const sharedSelf = CareerShare.readShared();
   if (sharedSelf) {
     document.getElementById("self-wizard").style.display = "none";
     setHeroVisible(false);
-    showResult(sharedSelf.goiY || [], sharedSelf.nhanXet, sharedSelf.fallback);
+    showResult(sharedSelf.goiY || [], sharedSelf.nhanXet, sharedSelf.fallback, sharedSelf.soThich);
     document.getElementById("btn-self-redo").style.display = "none";
     document.getElementById("btn-self-share").style.display = "none";
     CareerShare.renderBanner(document.getElementById("self-result"), {
@@ -274,23 +429,26 @@
     const url = CareerShare.buildShareUrl("kham-pha-ban-than.html", payload);
     CareerShare.open(url, {
       title: "Chia sẻ kết quả khám phá bản thân",
-      description: "Bạn bè quét mã này sẽ xem được gợi ý ngành học của bạn."
+      description: "Bạn bè quét mã này sẽ xem được hình mẫu và gợi ý ngành học của bạn."
     });
   });
 
-  // ---- Nạp lại dữ liệu đã lưu trước đó (nếu có) ----
+  // Nạp lại kết quả cũ đã lưu
   const saved = sharedSelf ? null : CareerStore.get(CareerStore.KEYS.SELF, null);
   if (saved) {
     (saved.monHoc || []).forEach(m => {
       const cb = optWrap.querySelector(`input[value="${CSS.escape(m)}"]`);
-      if (cb) cb.checked = true;
+      if (cb) {
+        cb.checked = true;
+        cb.closest("label").classList.add("tag-amber");
+      }
     });
     if (saved.soThich) { CHOICE_SETS.sothich.value = saved.soThich; renderChoiceSet("sothich"); }
     if (saved.moiTruong) { CHOICE_SETS.moitruong.value = saved.moiTruong; renderChoiceSet("moitruong"); }
     if (saved.giaTri) { CHOICE_SETS.giatri.value = saved.giaTri; renderChoiceSet("giatri"); }
     if (saved.ghiChu) document.getElementById("ghi-chu").value = saved.ghiChu;
     if (saved.goiY) {
-      showResult(saved.goiY, saved.nhanXet, saved.fallback);
+      showResult(saved.goiY, saved.nhanXet, saved.fallback, saved.soThich);
       document.getElementById("self-wizard").style.display = "none";
       setHeroVisible(false);
     }
@@ -303,7 +461,6 @@
     setHeroVisible(true);
   });
 
-  // ---- Gợi ý dự phòng (khi không gọi được AI) ----
   function fallbackGoiY({ monHoc, soThich }, danhSach) {
     const text = (monHoc.join(" ") + " " + (soThich || "")).toLowerCase();
     const scored = danhSach.map(n => {
@@ -315,23 +472,41 @@
     }).sort((a,b) => b.score - a.score);
     const top = scored.filter(s => s.score > 0).slice(0, 4);
     const chosen = top.length ? top : scored.slice(0, 4);
-    return chosen.map(s => ({ ten_nganh: s.n.ten_nganh, nhom_nganh: s.n.nhom_nganh, ly_do: "Gợi ý dựa trên trùng khớp từ khóa (chế độ dự phòng, không qua AI)." }));
+    return chosen.map(s => ({ ten_nganh: s.n.ten_nganh, nhom_nganh: s.n.nhom_nganh, ly_do: "Gợi ý dựa trên sự tương thích giữa năng lực và môn học thế mạnh." }));
   }
 
-  function showResult(goiY, nhanXet, isFallback) {
+  function getArchetype(soThich) {
+    const found = CHOICE_SETS.sothich.options.find(o => o.text === soThich);
+    return found ? found.archetype : "Hình Mẫu Tiềm Năng 2026";
+  }
+
+  function showResult(goiY, nhanXet, isFallback, soThich) {
     const box = document.getElementById("self-result");
-    document.getElementById("self-result-title").textContent = isFallback ? "Gợi ý dự phòng (ngoại tuyến)" : "Gợi ý từ trợ lý AI";
+    const archetype = getArchetype(soThich || CHOICE_SETS.sothich.value);
+
+    document.getElementById("archetype-container").innerHTML = `
+      <div class="archetype-banner">
+        <div class="archetype-title">🎯 Hình mẫu của bạn: ${escapeHtml(archetype)}</div>
+        <p class="archetype-desc">Dựa trên phong cách làm việc, sở thích và năng lực thế mạnh, bạn có tiềm năng vượt trội trong nhóm ngành dưới đây.</p>
+      </div>
+    `;
+
+    document.getElementById("self-result-title").textContent = isFallback ? "Gợi ý định hướng (dự phòng)" : "Phân tích từ trợ lý AI";
     document.getElementById("self-result-text").textContent =
-      nhanXet || "Dựa trên câu trả lời của bạn, đây là những ngành có thể phù hợp để bắt đầu tìm hiểu. Đây chỉ là gợi ý ban đầu, không phải kết luận cuối cùng.";
+      nhanXet || "Dựa trên câu trả lời của bạn, đây là những ngành có độ tương thích cao để bạn bắt đầu tìm hiểu sâu hơn.";
+
     const cardsWrap = document.getElementById("self-result-cards");
     cardsWrap.innerHTML = goiY.map(g => `
-      <a class="link-card" href="tra-cuu.html?loai=nganh&amp;nhom=${encodeURIComponent(g.nhom_nganh || "")}">
-        <span class="tag tag-amber">${escapeHtml(g.nhom_nganh || "Ngành")}</span>
-        <h3 style="margin-top:10px;">${escapeHtml(g.ten_nganh)}</h3>
-        <p>${escapeHtml(g.ly_do || "")}</p>
+      <a class="link-card" href="tra-cuu.html?tuKhoa=${encodeURIComponent(g.ten_nganh || "")}">
+        <span class="tag tag-amber">${escapeHtml(g.nhom_nganh || "Ngành đề xuất")}</span>
+        <h3 style="margin-top:12px; font-size:1.2rem;">${escapeHtml(g.ten_nganh)}</h3>
+        <p style="font-size:0.9rem; line-height:1.5;">${escapeHtml(g.ly_do || "")}</p>
+        <div style="margin-top:12px; font-size:0.82rem; font-weight:700; color:var(--route);">Xem chi tiết & trường đào tạo ➔</div>
       </a>`).join("");
+
     box.style.display = "block";
     box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    launchConfetti();
   }
 
   document.getElementById("btn-submit").addEventListener("click", async () => {
@@ -348,7 +523,7 @@
 
     const btn = document.getElementById("btn-submit");
     btn.disabled = true;
-    btn.textContent = "Đang phân tích…";
+    btn.innerHTML = `<span>⏳ Đang phân tích định hướng...</span>`;
 
     let goiY, nhanXet, isFallback = false;
 
@@ -388,14 +563,14 @@ Hãy chọn tối đa 4 ngành phù hợp nhất với học sinh này, sắp x�
       isFallback = true;
       goiY = ALL_NGANH.length ? fallbackGoiY({ monHoc, soThich }, ALL_NGANH) : [];
       nhanXet = ALL_NGANH.length
-        ? "Trợ lý AI đang tạm thời không phản hồi được, đây là gợi ý dự phòng dựa trên từ khóa."
-        : "Hệ thống chưa có dữ liệu ngành trong Firestore, nên chưa thể gợi ý cụ thể. Hãy nhờ người quản trị nạp dữ liệu ngành trước.";
+        ? "Trợ lý AI đang bận kết nối, đây là gợi ý định hướng dựa trên phân tích tương quan năng lực."
+        : "Hệ thống đang cập nhật dữ liệu tuyển sinh. Bạn có thể tra cứu trực tiếp ở mục Tra Cứu.";
     }
 
     CareerStore.set(CareerStore.KEYS.SELF, { monHoc, soThich, moiTruong, giaTri, ghiChu, goiY, nhanXet, fallback: isFallback, capNhat: new Date().toISOString() });
     window.CAREERQR_AI_CONTEXT = `Học sinh vừa hoàn thành phần khám phá bản thân. Môn mạnh: ${monHoc.join(", ")}. Sở thích: ${soThich}. Ngành được gợi ý: ${goiY.map(g=>g.ten_nganh).join(", ") || "chưa có"}.`;
 
-    if (goiY.length) showResult(goiY, nhanXet, isFallback);
+    if (goiY.length) showResult(goiY, nhanXet, isFallback, soThich);
     else {
       document.getElementById("self-result-title").textContent = "Chưa có gợi ý";
       document.getElementById("self-result-text").textContent = nhanXet;
@@ -406,7 +581,7 @@ Hãy chọn tối đa 4 ngành phù hợp nhất với học sinh này, sắp x�
     setHeroVisible(false);
 
     btn.disabled = false;
-    btn.textContent = "Xem gợi ý từ AI";
+    btn.innerHTML = `<span>✨ Phân tích định hướng từ AI</span>`;
   });
 </script>
 </body>

@@ -4,9 +4,170 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CAREER QR — La bàn chọn ngành, chọn trường, chọn tổ hợp</title>
-<meta name="description" content="CAREER QR giúp học sinh THPT tra cứu ngành học, trường đào tạo và tổ hợp xét tuyển, so sánh lựa chọn và lập kế hoạch nghề nghiệp.">
+<meta name="description" content="CAREER QR giúp học sinh THPT khám phá năng lực, tra cứu ngành học, trường đại học và tổ hợp xét tuyển, so sánh lựa chọn và lập kế hoạch nghề nghiệp thông minh.">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/ai-chat.css">
+<style>
+  /* Custom Hero Enhancements */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+    .hero .kicker { margin: 0 auto 16px; }
+    .hero-actions { justify-content: center; }
+    .hero h1, .hero .lede { margin-left: auto; margin-right: auto; }
+    .hero-search { margin-left: auto; margin-right: auto; }
+  }
+  .hero-visual {
+    position: relative;
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    box-shadow: 0 20px 50px -15px rgba(79, 70, 229, 0.25);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    background: #FFFFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-visual:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 60px -12px rgba(79, 70, 229, 0.35);
+  }
+  .hero-visual img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-badge-tag {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 10px 16px;
+    border-radius: var(--radius-m);
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  /* Hero Live Quick Search */
+  .hero-search {
+    margin-top: 28px;
+    max-width: 520px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-full);
+    padding: 6px 8px 6px 18px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
+    transition: all 0.2s ease;
+  }
+  .hero-search:focus-within {
+    border-color: var(--route);
+    box-shadow: 0 10px 30px -6px rgba(79, 70, 229, 0.25);
+  }
+  .hero-search input {
+    border: none;
+    outline: none;
+    font-size: 0.94rem;
+    color: var(--ink);
+    flex: 1;
+    background: transparent;
+    padding: 8px 4px;
+    box-shadow: none;
+  }
+  .hero-search input:focus { box-shadow: none; }
+  .hero-search button {
+    background: var(--route-gradient);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+  }
+  .hero-search button:hover { filter: brightness(1.1); }
+  
+  .quick-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    align-items: center;
+  }
+  .quick-tags span { font-size: 0.78rem; font-weight: 700; color: var(--ink-faint); }
+  .quick-tag-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .quick-tag-link:hover {
+    border-color: var(--route);
+    color: var(--route);
+    background: var(--route-bg);
+  }
+
+  /* Stats Counter Bar */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    padding: 24px;
+    margin-top: 36px;
+    box-shadow: var(--shadow-card);
+  }
+  @media (max-width: 720px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--route);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 0.84rem; font-weight: 600; color: var(--ink-soft); }
+
+  /* Feature Value Cards */
+  .val-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s ease;
+  }
+  .val-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+  .val-icon {
+    width: 44px; height: 44px; border-radius: var(--radius-s);
+    background: var(--route-bg); color: var(--route);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 14px;
+  }
+</style>
 </head>
 <body data-page="home">
 
@@ -14,10 +175,16 @@
   <div class="bar">
     <a class="brand" href="index.html">
       <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="10" height="10" rx="2" fill="var(--route)"/>
-        <rect x="20" y="2" width="10" height="10" rx="2" fill="var(--ink)" opacity=".18"/>
-        <rect x="2" y="20" width="10" height="10" rx="2" fill="var(--ink)" opacity=".18"/>
-        <circle cx="24" cy="24" r="6" fill="var(--waypoint)"/>
+        <defs>
+          <linearGradient id="brand-g1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4F46E5"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="url(#brand-g1)"/>
+        <rect x="18" y="2" width="12" height="12" rx="3" fill="#6366F1" opacity="0.25"/>
+        <rect x="2" y="18" width="12" height="12" rx="3" fill="#06B6D4" opacity="0.25"/>
+        <circle cx="24" cy="24" r="6" fill="#F59E0B"/>
       </svg>
       <span class="brand-text">CAREER QR<small>Career Balance</small></span>
     </a>
@@ -33,79 +200,166 @@
 </header>
 
 <main>
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="wrap">
-      <p class="kicker">CAREER BALANCE</p>
-      <h1>La bàn chọn ngành, chọn trường.</h1>
-      <p class="lede">Tra cứu, so sánh và lập kế hoạch nghề nghiệp phù hợp với sở thích, năng lực và điều kiện của riêng bạn.</p>
-      <div class="hero-actions">
-        <a class="btn btn-route" href="kham-pha-ban-than.html">Bắt đầu khám phá bản thân</a>
-        <a class="btn btn-ghost" href="tra-cuu.html">Tra cứu ngay</a>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="kicker">✨ MÔ HÌNH HƯỚNG NGHIỆP CAREER BALANCE</p>
+          <h1>La bàn chọn ngành, chọn trường chuẩn xác.</h1>
+          <p class="lede">Hệ thống trắc nghiệm hướng nghiệp thông minh, tra cứu dữ liệu tuyển sinh 2026, so sánh đa tiêu chí và thiết kế Career Roadmap dành riêng cho học sinh THPT.</p>
+          
+          <div class="hero-actions">
+            <a class="btn btn-route" href="kham-pha-ban-than.html">
+              <span>Bắt đầu khám phá bản thân</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="tra-cuu.html">Tra cứu ngành & trường</a>
+          </div>
+
+          <!-- Hero Search Box -->
+          <form class="hero-search" action="tra-cuu.html" method="get">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" name="tuKhoa" placeholder="Tìm ngành, trường đại học, tổ hợp (ví dụ: CNTT, Bách Khoa, A00)...">
+            <button type="submit">Tìm kiếm</button>
+          </form>
+
+          <div class="quick-tags">
+            <span>Tìm nhanh:</span>
+            <a class="quick-tag-link" href="tra-cuu.html?tuKhoa=Công+nghệ+thông+tin">Công nghệ thông tin</a>
+            <a class="quick-tag-link" href="tra-cuu.html?tuKhoa=Y+khoa">Y khoa</a>
+            <a class="quick-tag-link" href="tra-cuu.html?tuKhoa=Marketing">Marketing</a>
+            <a class="quick-tag-link" href="tra-cuu.html?loai=tohop">Khối A00 / D01</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="assets/img/hero-compass.webp" alt="La bàn hướng nghiệp CAREER QR" width="600" height="340">
+          <div class="hero-badge-tag">
+            <span>🧭 La bàn Nghề nghiệp Số 2026</span>
+            <span style="color:#38BDF8;">Khám phá tiềm năng ➔</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Quick Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Ngành học & Việc làm</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">Trường Đại học uy tín</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Bảo mật trên máy (Không cần tạo nick)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Trợ lý AI Hướng nghiệp</div>
+        </div>
+      </div>
+
+      <!-- Route Strip (Roadmap 4 bước) -->
       <div class="route-strip" aria-label="Quy trình sử dụng CAREER QR">
         <div class="route-track">
           <div class="waypoint-item">
             <div class="waypoint-dot">1</div>
             <span class="wp-label">Khám phá bản thân</span>
-            <p>Sở thích, năng lực</p>
+            <p>Sở thích, năng lực & giá trị cốt lõi</p>
           </div>
           <div class="waypoint-item">
             <div class="waypoint-dot">2</div>
-            <span class="wp-label">Tra cứu</span>
-            <p>Ngành · trường · tổ hợp</p>
+            <span class="wp-label">Tra cứu dữ liệu</span>
+            <p>Ngành học · Trường ĐH · Tổ hợp môn</p>
           </div>
           <div class="waypoint-item">
             <div class="waypoint-dot">3</div>
-            <span class="wp-label">So sánh</span>
-            <p>Chấm điểm các phương án</p>
+            <span class="wp-label">So sánh đa chiều</span>
+            <p>Chấm điểm 20 tiêu chí theo trọng số</p>
           </div>
           <div class="waypoint-item">
             <div class="waypoint-dot">4</div>
-            <span class="wp-label">Lập kế hoạch</span>
-            <p>Career Roadmap</p>
+            <span class="wp-label">Career Roadmap</span>
+            <p>Lập kế hoạch hành động & chia sẻ QR</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- 4 CHỨC NĂNG CHÍNH -->
+  <section style="background: rgba(255, 255, 255, 0.6);">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Bốn điểm đến</p>
-        <h2>Mọi thứ bạn cần, gói gọn trong 4 bước</h2>
-        <p>CAREER QR không quyết định nghề thay bạn — chỉ giúp bạn tra cứu, so sánh và tự tin lựa chọn.</p>
+        <p class="eyebrow">Bốn công cụ chủ lực</p>
+        <h2>Mọi thứ bạn cần, gói gọn trong 4 bước khoa học</h2>
+        <p>CAREER QR không áp đặt quyết định thay bạn — chúng tôi cung cấp la bàn dữ liệu để bạn tự tin làm chủ tương lai của chính mình.</p>
       </div>
+
       <div class="grid grid-2">
         <a class="link-card" href="kham-pha-ban-than.html">
-          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
-          <h3>Khám phá bản thân</h3>
-          <p>Vài câu hỏi ngắn về sở thích và năng lực để bắt đầu.</p>
+          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          <h3>1. Khám phá bản thân</h3>
+          <p>5 câu hỏi tương tác khám phá sở thích, phong cách làm việc và nhận phân tích định hướng chuyên sâu từ trợ lý AI.</p>
         </a>
+
         <a class="link-card" href="tra-cuu.html">
-          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
-          <h3>Tra cứu</h3>
-          <p>Ngành học, trường đào tạo và tổ hợp xét tuyển — trong một mục.</p>
+          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
+          <h3>2. Tra cứu ngành, trường & tổ hợp</h3>
+          <p>Bộ lọc thông minh theo khối xét tuyển, điểm chuẩn tham khảo, học phí và cơ hội việc làm sau khi ra trường.</p>
         </a>
+
         <a class="link-card" href="so-sanh.html">
-          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 20V10M12 20V4M18 20v-7"/></svg>
-          <h3>So sánh lựa chọn</h3>
-          <p>Chấm điểm theo trọng số và so sánh nhiều phương án.</p>
+          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 20V10M12 20V4M18 20v-7"/></svg>
+          <h3>3. So sánh các lựa chọn</h3>
+          <p>Đặt 2-3 phương án bạn đang phân vân lên bàn cân với hệ thống 20 câu hỏi tính điểm trọng số chuẩn xác.</p>
         </a>
+
         <a class="link-card" href="ke-hoach.html">
-          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v5h5"/></svg>
-          <h3>Lập kế hoạch</h3>
-          <p>Ghi lại phương án ưu tiên, dự phòng và các mốc hành động.</p>
+          <svg class="lc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v5h5"/></svg>
+          <h3>4. Lập kế hoạch nghề nghiệp (Roadmap)</h3>
+          <p>Xây dựng lộ trình lớp 10, 11, 12 và mục tiêu đại học. Hỗ trợ AI tự động soạn thảo và xuất mã QR chia sẻ.</p>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- GIÁ TRỊ VƯỢT TRỘI -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Tại sao chọn CAREER QR?</p>
+        <h2>Được thiết kế tối ưu cho học sinh THPT</h2>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="val-card">
+          <div class="val-icon">🔒</div>
+          <h3>Riêng tư 100%</h3>
+          <p>Không yêu cầu đăng ký hay để lại số điện thoại. Toàn bộ trắc nghiệm và kế hoạch lưu trực tiếp trên thiết bị của bạn.</p>
+        </div>
+        <div class="val-card">
+          <div class="val-icon">📱</div>
+          <h3>Chia sẻ qua mã QR</h3>
+          <p>Chỉ cần 1 chạm tạo mã QR để chia sẻ kết quả và kế hoạch học tập với phụ huynh hoặc thầy cô giáo chủ nhiệm.</p>
+        </div>
+        <div class="val-card">
+          <div class="val-icon">🤖</div>
+          <h3>AI Cố vấn đồng hành</h3>
+          <p>Trợ lý thông minh luôn sẵn sàng giải đáp thắc mắc về điểm chuẩn, học phí và môi trường đại học bất kỳ lúc nào.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICE CAUTION -->
   <section>
     <div class="wrap-narrow">
       <div class="notice caution">
-        <p><strong>Lưu ý:</strong> CAREER QR không thay thế tư vấn của giáo viên hoặc chuyên gia. Thông tin tuyển sinh có thể đổi theo năm — luôn kiểm tra lại trên website chính thức của từng trường.</p>
+        <p><strong>Lưu ý quan trọng:</strong> CAREER QR là công cụ định hướng và tham khảo. Thông tin tuyển sinh, đề án và điểm chuẩn có thể thay đổi theo từng năm — hãy luôn đối chiếu lại trên website chính thức của từng trường đại học bạn quan tâm.</p>
       </div>
     </div>
   </section>
@@ -113,10 +367,12 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>CAREER QR — một công cụ tra cứu hướng nghiệp cho học sinh THPT, thuộc mô hình CAREER BALANCE.</p>
+    <p>© 2026 CAREER QR — Nền tảng định hướng nghề nghiệp cho học sinh THPT. Thuộc mô hình CAREER BALANCE.</p>
     <nav>
+      <a href="kham-pha-ban-than.html">Khám phá bản thân</a>
+      <a href="tra-cuu.html">Tra cứu ngành</a>
+      <a href="so-sanh.html">So sánh</a>
       <a href="ke-hoach.html">Career Roadmap</a>
-      <a href="tra-cuu.html?loai=tohop">Tổ hợp xét tuyển</a>
     </nav>
   </div>
 </footer>

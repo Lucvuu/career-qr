@@ -18,10 +18,10 @@
   <div class="bar">
     <a class="brand" href="index.html">
       <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="10" height="10" rx="2" fill="var(--route)"/>
-        <rect x="20" y="2" width="10" height="10" rx="2" fill="var(--ink)" opacity=".18"/>
-        <rect x="2" y="20" width="10" height="10" rx="2" fill="var(--ink)" opacity=".18"/>
-        <circle cx="24" cy="24" r="6" fill="var(--waypoint)"/>
+        <rect x="2" y="2" width="12" height="12" rx="3" fill="#4F46E5"/>
+        <rect x="18" y="2" width="12" height="12" rx="3" fill="#6366F1" opacity="0.25"/>
+        <rect x="2" y="18" width="12" height="12" rx="3" fill="#06B6D4" opacity="0.25"/>
+        <circle cx="24" cy="24" r="6" fill="#F59E0B"/>
       </svg>
       <span class="brand-text">CAREER QR<small>Career Balance</small></span>
     </a>
@@ -224,12 +224,18 @@
   function cardHtmlNganh(n) {
     const tohops = splitCodes(n.to_hop).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
     return `
-      <button class="link-card" style="text-align:left; border:1px solid var(--line); cursor:pointer; font:inherit;" data-id="${escapeHtml(n.id)}">
-        <span class="tag-outline tag" style="margin-bottom:10px;">${escapeHtml(n.nhom_nganh || "Chưa phân nhóm")}</span>
-        <h3>${escapeHtml(n.ten_nganh)}</h3>
-        <p>${escapeHtml(n.nang_luc || "")}</p>
-        <div class="tag-list" style="margin-top:10px;">${tohops}</div>
-      </button>`;
+      <div class="link-card" style="text-align:left; border:1px solid var(--line); font:inherit; display:flex; flex-direction:column; justify-content:space-between; cursor:pointer;" data-id="${escapeHtml(n.id)}">
+        <div>
+          <span class="tag tag-amber" style="margin-bottom:10px;">${escapeHtml(n.nhom_nganh || "Chưa phân nhóm")}</span>
+          <h3 style="margin-top:6px; font-size:1.15rem;">${escapeHtml(n.ten_nganh)}</h3>
+          <p style="font-size:0.88rem; line-height:1.5;">${escapeHtml(n.nang_luc || "")}</p>
+          <div class="tag-list" style="margin-top:12px;">${tohops}</div>
+        </div>
+        <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.82rem; font-weight:700; color:var(--route);">Xem chi tiết & trường ➔</span>
+          <button type="button" class="btn btn-ghost btn-sm btn-bookmark" data-bookmark-id="${escapeHtml(n.id)}" style="padding:4px 10px; font-size:0.78rem;" title="Lưu vào danh sách so sánh">❤️ Lưu</button>
+        </div>
+      </div>`;
   }
 
   function applyFiltersNganh(prefill = {}) {
@@ -257,8 +263,24 @@
     const empty = document.getElementById("nganh-empty");
     list.innerHTML = filtered.map(cardHtmlNganh).join("");
     empty.style.display = filtered.length ? "none" : "block";
-    list.querySelectorAll("[data-id]").forEach(btn => {
-      btn.addEventListener("click", () => openDetailNganh(btn.dataset.id));
+
+    list.querySelectorAll("[data-id]").forEach(card => {
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".btn-bookmark")) return;
+        openDetailNganh(card.dataset.id);
+      });
+    });
+
+    list.querySelectorAll(".btn-bookmark").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const n = ALL_NGANH.find(x => x.id === btn.dataset.bookmarkId);
+        if (n) {
+          CareerStore.addSavedNganh({ id: n.id, ten_nganh: n.ten_nganh, nhom_nganh: n.nhom_nganh, to_hop: n.to_hop });
+          btn.textContent = "✅ Đã lưu";
+          btn.style.color = "var(--route)";
+        }
+      });
     });
   }
   ["f-nhom","f-tohop-n","f-keyword"].forEach(id => {
@@ -392,14 +414,15 @@
   }
 
   /* ---------------- Vào thẳng theo tham số URL (liên kết từ trang khác) ---------------- */
-  const initialLoai = params.get("loai") || (params.get("nhom") || params.get("tohop") ? "nganh" : (params.get("tinh") ? "truong" : ""));
+  const urlKw = params.get("tuKhoa") || params.get("tukhoa") || "";
+  const initialLoai = params.get("loai") || (params.get("nhom") || params.get("tohop") || urlKw ? "nganh" : (params.get("tinh") ? "truong" : ""));
   if (initialLoai && TITLES[initialLoai]) {
     openLoai(initialLoai, {
       nhom: params.get("nhom") || "",
       tohop: params.get("tohop") || "",
       nganh: params.get("nganh") || "",
       tinh: params.get("tinh") || "",
-      tukhoa: params.get("tukhoa") || ""
+      tukhoa: urlKw
     });
   }
 
