@@ -129,6 +129,11 @@ export default function App() {
           <SearchView
             initialQuery={searchQuery}
             onBookmarkMajor={handleBookmarkMajor}
+            onNavigate={(tab) => {
+              setActiveTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectForRoadmap={handleSelectForRoadmap}
           />
         )}
 
