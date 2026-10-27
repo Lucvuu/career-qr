@@ -14,10 +14,11 @@ import {
   Award,
   Play,
   ExternalLink,
-  Search
+  Search,
+  Clock
 } from 'lucide-react';
 import { generateSmartAIResponse } from '../utils/careerAI';
-import { MAJORS_DATA, getVideosForMajor } from '../data/careerData';
+import { MAJORS_DATA, getVideosForMajor, getWorkdayTimeline } from '../data/careerData';
 
 /**
  * Lightweight React renderer that splits by newline,
@@ -101,25 +102,31 @@ export default function AIChatModal({
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      text: 'Chào bạn! 👋 Mình là **Cố vấn AI Hướng nghiệp 2026** của CAREER QR.\n\nMình có thể giúp bạn giải đáp chuyên sâu về **cơ hội việc làm 5 năm tới**, **học phí các trường công lập 2026**, **phân tích điểm chuẩn**, hoặc **so sánh trực diện giữa 2 ngành** bạn đang phân vân.\n\nHãy nhấn vào các gợi ý bên dưới hoặc gõ câu hỏi cho mình nhé!',
+      text: 'Chào bạn! 👋 Mình là **Cố vấn AI Tuyển sinh & Hướng nghiệp 2026** của CAREER QR.\n\n🎯 Để tư vấn chính xác và cá nhân hóa nhất cho bạn, bạn hãy chia sẻ với mình 3 thông tin quan trọng này nhé:\n• **1. Khu vực bạn muốn học đại học:** (Hà Nội & miền Bắc, TP.HCM & miền Nam, hay Đà Nẵng & miền Trung?)\n• **2. Mức điểm bạn tự tin hoặc dự kiến đạt được:** (ví dụ: 22–24, 25–27, hay 28+ điểm THPT / ĐGNL?)\n• **3. Ngành hoặc trường mục tiêu bạn đang quan tâm:** (Bách Khoa, Ngoại thương, Kinh tế Quốc dân, Y Dược, FPT...?)\n\nHoặc bạn có thể bấm trực tiếp các gợi ý bên dưới để nhận ngay phương án chuẩn xác!',
       actions: [
         {
-          id: 'video-vm',
-          label: '🎥 Ngành Vi mạch ra trường làm gì?',
+          id: 'prompt-1',
+          label: '🎯 Dự kiến 25-27đ ở Hà Nội',
           type: 'prompt',
-          query: '🎥 Ngành Vi mạch bán dẫn ra trường làm gì?'
+          query: '🎯 Em dự kiến 25 – 27 điểm ở Hà Nội, nên chọn ngành và trường nào?'
         },
         {
-          id: 'tuition-gen',
-          label: '🏫 Học phí ĐH công lập 2026',
+          id: 'prompt-2',
+          label: '📍 Học CNTT/Vi mạch tại TP.HCM',
           type: 'prompt',
-          query: '🏫 Học phí các trường ĐH công lập 2026'
+          query: '📍 Em ở TP.HCM muốn học CNTT hoặc Vi mạch, tài chính 30-45tr/năm'
         },
         {
-          id: 'compare-cntt-mkt',
-          label: '⚡ So sánh CNTT và Marketing',
+          id: 'prompt-3',
+          label: '🩺 Điểm 24-26 khối B00 vào Y Dược',
           type: 'prompt',
-          query: '⚡ Khối A01 & D01 nên chọn CNTT hay Marketing?'
+          query: '🩺 Học lực 24 – 26 điểm (B00) ở miền Nam có vào được Y Dược không?'
+        },
+        {
+          id: 'prompt-4',
+          label: '🏫 Thi ĐH Bách Khoa cần gì?',
+          type: 'prompt',
+          query: '🏫 Em muốn thi ĐH Bách Khoa / Kinh tế Quốc dân cần chuẩn bị gì?'
         }
       ]
     }
@@ -137,10 +144,11 @@ export default function AIChatModal({
   }, [messages, isOpen]);
 
   const quickPrompts = [
-    "🎥 Ngành Vi mạch bán dẫn ra trường làm gì?",
-    "⚡ Khối A01 & D01 nên chọn CNTT hay Marketing?",
-    "🩺 Học Y đa khoa cần chuẩn bị gì?",
-    "🏫 Học phí các trường ĐH công lập 2026"
+    "🎯 Em dự kiến 25 – 27 điểm ở Hà Nội, nên chọn ngành và trường nào?",
+    "📍 Em ở TP.HCM muốn học CNTT hoặc Vi mạch, tài chính 30-45tr/năm",
+    "🩺 Học lực 24 – 26 điểm (B00) ở miền Nam có vào được Y Dược không?",
+    "🏫 Em muốn thi ĐH Bách Khoa / Kinh tế Quốc dân cần chuẩn bị gì?",
+    "🧭 Khảo sát 3 câu: Giúp em chọn trường & ngành chuẩn 2026"
   ];
 
   const handleSend = (customText = null) => {
@@ -636,12 +644,41 @@ export default function AIChatModal({
               </button>
             </div>
 
-            {/* Video Player */}
+            {/* Video Player & Direct Launcher Banner */}
+            <div style={{ background: '#0F172A', padding: '14px 20px', borderBottom: '1px solid #1E293B', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+              <span style={{ color: '#94A3B8', fontSize: '0.82rem' }}>
+                Nguồn: <strong style={{ color: '#FFFFFF' }}>{activeVideoModal.video.channel}</strong> • {activeVideoModal.video.duration}
+              </span>
+
+              <a
+                href={activeVideoModal.video.youtubeUrl || `https://www.youtube.com/results?search_query=${encodeURIComponent(activeVideoModal.major.ten_nganh + ' một ngày làm việc hướng nghiệp thực tế')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+                  color: '#FFFFFF',
+                  padding: '7px 16px',
+                  borderRadius: '999px',
+                  fontWeight: '800',
+                  fontSize: '0.8rem',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  boxShadow: '0 4px 12px rgba(239, 68, 68, 0.4)'
+                }}
+              >
+                <Play size={13} fill="#FFFFFF" />
+                <span>🔴 Mở Xem Trên YouTube (Không Bị Chặn) ↗</span>
+              </a>
+            </div>
+
+            {/* Video Player Stage */}
             <div style={{ background: '#000000', position: 'relative', paddingTop: '56.25%' }}>
               {activeVideoModal.isPlaying ? (
                 <iframe
                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                  src={`https://www.youtube.com/embed/${activeVideoModal.video.youtubeId}?autoplay=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${activeVideoModal.video.youtubeId}?autoplay=1&rel=0`}
                   title={activeVideoModal.video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -680,14 +717,35 @@ export default function AIChatModal({
                     {activeVideoModal.video.title}
                   </div>
                   <div style={{ color: '#94A3B8', fontSize: '0.82rem', marginTop: '6px' }}>
-                    {activeVideoModal.video.channel} • {activeVideoModal.video.duration} • Nhấn để phát video
+                    Bấm để phát hoặc chọn nút đỏ phía trên để xem trực tiếp
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Modal Body: Reality Check & Key Takeaways */}
+            {/* Modal Body: Workday Timeline + Reality Check */}
             <div style={{ padding: '20px 24px', background: '#F8FAFC' }}>
+              {/* Interactive 4-chapter Workday Timeline */}
+              {(() => {
+                const timeline = getWorkdayTimeline(activeVideoModal.major.id);
+                return (
+                  <div style={{ marginBottom: '16px', background: '#FFFFFF', border: '1px solid #E2E8F0', padding: '14px 16px', borderRadius: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem', fontWeight: '800', color: '#4F46E5', textTransform: 'uppercase', marginBottom: '10px' }}>
+                      <Clock size={15} />
+                      <span>Mô phỏng 1 ngày làm việc điển hình</span>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px' }}>
+                      {timeline.map((step, sIdx) => (
+                        <div key={sIdx} style={{ background: '#F8FAFC', padding: '8px 10px', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
+                          <div style={{ fontSize: '0.72rem', fontWeight: '800', color: '#4F46E5' }}>{step.time}</div>
+                          <div style={{ fontSize: '0.78rem', fontWeight: '700', color: '#1E293B', marginTop: '2px' }}>{step.stage}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+
               <div style={{ marginBottom: '14px', background: '#EFF6FF', border: '1px solid #BFDBFE', padding: '12px 16px', borderRadius: '14px' }}>
                 <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#1D4ED8', textTransform: 'uppercase', marginBottom: '4px' }}>
                   🎯 GÓC NHÌN THỰC TẾ (REALITY CHECK)

@@ -16,9 +16,18 @@ import {
   Flame, 
   Award,
   Clock,
-  Tv
+  Tv,
+  Building2,
+  MapPin,
+  Globe
 } from 'lucide-react';
-import { MAJORS_DATA, COMBINATIONS_DATA, getVideosForMajor } from '../data/careerData';
+import { 
+  MAJORS_DATA, 
+  COMBINATIONS_DATA, 
+  UNIVERSITIES_DATA,
+  getVideosForMajor, 
+  getWorkdayTimeline 
+} from '../data/careerData';
 
 export default function SearchView({ 
   initialQuery = "", 
@@ -26,14 +35,17 @@ export default function SearchView({
   onNavigate, 
   onSelectForRoadmap 
 }) {
-  const [activeTab, setActiveTab] = useState('nganh'); // 'nganh' | 'video' | 'tohop'
+  const [activeTab, setActiveTab] = useState('nganh'); // 'nganh' | 'truong' | 'video' | 'tohop'
   const [searchKeyword, setSearchKeyword] = useState(initialQuery);
   const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedCombo, setSelectedCombo] = useState('');
+  const [selectedUniversityRegion, setSelectedUniversityRegion] = useState('all'); // 'all' | 'bac' | 'trung' | 'nam'
   const [selectedMajorModal, setSelectedMajorModal] = useState(null);
   const [activeVideoMajor, setActiveVideoMajor] = useState(null); // Major object for Cinema Modal
   const [activeEpisodeIndex, setActiveEpisodeIndex] = useState(0);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [cinemaMode, setCinemaMode] = useState('interactive'); // 'interactive' | 'youtube'
+  const [activeTimelineStep, setActiveTimelineStep] = useState(0);
   const [savedMajorIds, setSavedMajorIds] = useState([]);
 
   const groups = [
@@ -41,10 +53,11 @@ export default function SearchView({
     'Kỹ thuật & Công nghệ',
     'Y tế & Sức khỏe', 
     'Kinh doanh & Quản lý', 
+    'Sư phạm & Giáo dục',
     'Nghệ thuật & Sáng tạo', 
     'Khoa học Xã hội'
   ];
-  const combos = ['A00', 'A01', 'B00', 'C00', 'D01', 'D07'];
+  const combos = ['A00', 'A01', 'B00', 'C00', 'D01', 'D07', 'V00', 'H00'];
 
   // Filter logic
   const filteredMajors = MAJORS_DATA.filter(m => {
@@ -56,6 +69,20 @@ export default function SearchView({
                     m.mo_ta.toLowerCase().includes(kw) ||
                     m.nang_luc.toLowerCase().includes(kw) ||
                     m.to_hop.some(t => t.toLowerCase().includes(kw));
+      if (!match) return false;
+    }
+    return true;
+  });
+
+  const filteredUniversities = (UNIVERSITIES_DATA || []).filter(u => {
+    if (selectedUniversityRegion !== 'all' && u.region !== selectedUniversityRegion) return false;
+    if (searchKeyword.trim()) {
+      const kw = searchKeyword.toLowerCase().trim();
+      const match = u.name.toLowerCase().includes(kw) ||
+                    u.code.toLowerCase().includes(kw) ||
+                    u.city.toLowerCase().includes(kw) ||
+                    u.highlight.toLowerCase().includes(kw) ||
+                    u.benchmarks.toLowerCase().includes(kw);
       if (!match) return false;
     }
     return true;
@@ -73,6 +100,8 @@ export default function SearchView({
     setActiveVideoMajor(m);
     setActiveEpisodeIndex(episodeIdx);
     setIsPlayingVideo(false);
+    setCinemaMode('interactive');
+    setActiveTimelineStep(0);
   };
 
   const handleSetRoadmap = (majorName) => {
@@ -90,13 +119,13 @@ export default function SearchView({
       {/* HEADER SECTION */}
       <div style={{ marginBottom: '32px', textAlign: 'center' }}>
         <div className="pill-badge" style={{ marginBottom: '10px' }}>🔍 BƯỚC 2 / 4 • CƠ SỞ DỮ LIỆU &amp; TRẢI NGHIỆM NGHỀ</div>
-        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Tra cứu ngành học &amp; Trải nghiệm thực tế</h1>
-        <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.98rem' }}>
-          Tra cứu thông tin ngành đào tạo chuẩn 2026, xem video thực tế <strong>"Một Ngày Làm Nghề"</strong> và xóa bỏ các lầm tưởng phổ biến trước khi chọn trường.
+        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Tra cứu ngành học, trường đại học &amp; Trải nghiệm thực tế</h1>
+        <p style={{ color: '#64748B', maxWidth: '68ch', margin: '0 auto', fontSize: '0.98rem' }}>
+          Tra cứu thông tin hơn 30 ngành trọng điểm, 26+ trường ĐH 3 miền chuẩn tuyển sinh 2026, mô phỏng <strong>"Một Ngày Làm Nghề"</strong> và xóa bỏ các lầm tưởng phổ biến.
         </p>
       </div>
 
-      {/* TOP SEGMENTED CONTROL BAR (3 TABS) */}
+      {/* TOP SEGMENTED CONTROL BAR (4 TABS) */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '32px' }}>
         {/* Tab 1: Ngành đào tạo */}
         <button
@@ -121,7 +150,40 @@ export default function SearchView({
           <span>Ngành đào tạo ({filteredMajors.length})</span>
         </button>
 
-        {/* Tab 2: Video Trải nghiệm Nghề (Thực tế) - Highlighted Rose/Coral */}
+        {/* Tab 2: Trường Đại học 3 Miền */}
+        <button
+          onClick={() => setActiveTab('truong')}
+          style={{
+            padding: '12px 22px',
+            borderRadius: '999px',
+            border: activeTab === 'truong' ? 'none' : '1.5px solid #CBD5E1',
+            background: activeTab === 'truong' ? 'var(--primary-gradient)' : '#FFFFFF',
+            color: activeTab === 'truong' ? '#FFFFFF' : '#1E293B',
+            fontWeight: '700',
+            fontSize: '0.92rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: activeTab === 'truong' ? '0 8px 20px -4px rgba(79, 70, 229, 0.35)' : 'var(--shadow-sm)',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <Building2 size={18} />
+          <span>Trường Đại học ({filteredUniversities.length})</span>
+          <span style={{ 
+            fontSize: '0.68rem', 
+            fontWeight: '800', 
+            padding: '2px 7px', 
+            borderRadius: '999px', 
+            background: activeTab === 'truong' ? '#FFFFFF' : '#4F46E5', 
+            color: activeTab === 'truong' ? '#4F46E5' : '#FFFFFF' 
+          }}>
+            3 MIỀN
+          </span>
+        </button>
+
+        {/* Tab 3: Video Trải nghiệm Nghề (Thực tế) - Highlighted Rose/Coral */}
         <button
           onClick={() => setActiveTab('video')}
           style={{
@@ -141,7 +203,7 @@ export default function SearchView({
           }}
         >
           <Tv size={18} />
-          <span>▶ Video Trải nghiệm Nghề (Thực tế)</span>
+          <span>▶ Rạp Phim Nghề Nghiệp</span>
           <span style={{ 
             fontSize: '0.68rem', 
             fontWeight: '800', 
@@ -154,7 +216,7 @@ export default function SearchView({
           </span>
         </button>
 
-        {/* Tab 3: Tổ hợp xét tuyển */}
+        {/* Tab 4: Tổ hợp xét tuyển */}
         <button
           onClick={() => setActiveTab('tohop')}
           style={{
@@ -532,7 +594,167 @@ export default function SearchView({
       )}
 
       {/* =========================================================================
-          TAB 3: TỔ HỢP XÉT TUYỂN
+          TAB 2: TRƯỜNG ĐẠI HỌC 3 MIỀN (BẮC - TRUNG - NAM)
+          ========================================================================= */}
+      {activeTab === 'truong' && (
+        <div>
+          {/* Region Selector Pills */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '24px' }}>
+            {[
+              { id: 'all', label: 'Tất cả 3 miền' },
+              { id: 'bac', label: '🏛️ Miền Bắc & Hà Nội' },
+              { id: 'trung', label: '🌊 Miền Trung & Đà Nẵng' },
+              { id: 'nam', label: '🌴 Miền Nam & TP.HCM' }
+            ].map(rg => (
+              <button
+                key={rg.id}
+                type="button"
+                onClick={() => setSelectedUniversityRegion(rg.id)}
+                style={{
+                  padding: '9px 18px',
+                  borderRadius: '999px',
+                  border: selectedUniversityRegion === rg.id ? '2px solid #4F46E5' : '1px solid #CBD5E1',
+                  background: selectedUniversityRegion === rg.id ? '#EEF2FF' : '#FFFFFF',
+                  color: selectedUniversityRegion === rg.id ? '#4338CA' : '#475569',
+                  fontWeight: selectedUniversityRegion === rg.id ? '800' : '600',
+                  fontSize: '0.88rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                {rg.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Universities Bento Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '22px' }}>
+            {filteredUniversities.map(u => (
+              <div 
+                key={u.id} 
+                className="card-box" 
+                style={{ 
+                  background: '#FFFFFF', 
+                  borderRadius: '24px', 
+                  padding: '24px', 
+                  border: '1px solid #E2E8F0',
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  justifyContent: 'space-between',
+                  boxShadow: 'var(--shadow-sm)'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ 
+                        width: '50px', 
+                        height: '50px', 
+                        borderRadius: '16px', 
+                        background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)', 
+                        color: '#4338CA', 
+                        fontWeight: '900', 
+                        fontSize: '1rem',
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        boxShadow: '0 2px 8px rgba(99, 102, 241, 0.15)'
+                      }}>
+                        {u.code}
+                      </div>
+                      <div>
+                        <h3 style={{ fontSize: '1.12rem', margin: '0 0 4px', color: '#1E293B', fontWeight: '800' }}>
+                          {u.name}
+                        </h3>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#64748B' }}>
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                            <MapPin size={13} color="#0284C7" />
+                            {u.city}
+                          </span>
+                          <span>•</span>
+                          <span style={{ fontWeight: '700', color: '#059669' }}>{u.type}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Benchmarks & Tuition Badge */}
+                  <div style={{ background: '#FAF5FF', border: '1px solid #E9D5FF', borderRadius: '14px', padding: '12px 14px', marginBottom: '14px' }}>
+                    <div style={{ fontSize: '0.85rem', color: '#6B21A8', fontWeight: '700', marginBottom: '4px' }}>
+                      🎯 Điểm chuẩn tham khảo: <strong>{u.benchmarks}</strong>
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: '#475569' }}>
+                      💳 Học phí dự kiến: <strong>{u.tuition}</strong>
+                    </div>
+                  </div>
+
+                  {/* Highlights */}
+                  <p style={{ fontSize: '0.88rem', color: '#334155', lineHeight: '1.55', margin: '0 0 16px' }}>
+                    {u.highlight}
+                  </p>
+
+                  {/* Top Majors Tags */}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
+                    {u.majors.map(mId => {
+                      const majorObj = MAJORS_DATA.find(m => m.id === mId);
+                      return (
+                        <span
+                          key={mId}
+                          style={{
+                            fontSize: '0.74rem',
+                            fontWeight: '700',
+                            padding: '4px 9px',
+                            borderRadius: '8px',
+                            background: '#F1F5F9',
+                            color: '#475569',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}
+                        >
+                          <span>{majorObj?.icon || '🎓'}</span>
+                          <span>{majorObj?.ten_nganh || mId}</span>
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Action Footer */}
+                <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+                  <a
+                    href={u.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-edtech-secondary"
+                    style={{ fontSize: '0.82rem', padding: '8px 14px', textDecoration: 'none' }}
+                  >
+                    <Globe size={14} />
+                    <span>Website trường</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    className="btn-edtech-primary"
+                    style={{ fontSize: '0.82rem', padding: '8px 14px' }}
+                    onClick={() => {
+                      setSelectedMajorModal(null);
+                      setSearchKeyword(u.name);
+                      setActiveTab('nganh');
+                    }}
+                  >
+                    <Search size={14} />
+                    <span>Xem ngành tại {u.code}</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          TAB 4: TỔ HỢP XÉT TUYỂN
           ========================================================================= */}
       {activeTab === 'tohop' && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
@@ -595,7 +817,7 @@ export default function SearchView({
                     </span>
                   </div>
                   <h2 style={{ fontSize: '1.45rem', margin: '4px 0 0', color: '#1E293B' }}>
-                    Rạp Phim Nghề Nghiệp: {activeVideoMajor.ten_nganh}
+                    Trải Nghiệm Nghề Nghiệp: {activeVideoMajor.ten_nganh}
                   </h2>
                 </div>
               </div>
@@ -613,61 +835,195 @@ export default function SearchView({
               {(() => {
                 const videos = getVideosForMajor(activeVideoMajor.id);
                 const currentVideo = videos[activeEpisodeIndex] || videos[0];
+                const timelineSteps = getWorkdayTimeline(activeVideoMajor.id);
+                const currentTimelineStep = timelineSteps[activeTimelineStep] || timelineSteps[0];
+                const directYoutubeUrl = currentVideo.youtubeUrl || `https://www.youtube.com/results?search_query=${encodeURIComponent(activeVideoMajor.ten_nganh + ' một ngày làm việc hướng nghiệp thực tế')}`;
 
                 return (
                   <>
-                    {/* Episode Switcher Pills */}
-                    {videos.length > 1 && (
-                      <div className="cinema-episode-pills">
-                        <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#64748B', display: 'flex', alignItems: 'center', marginRight: '6px' }}>
-                          Tập phát sóng:
-                        </span>
-                        {videos.map((vid, idx) => (
-                          <button
-                            key={vid.id || idx}
-                            type="button"
-                            className={`cinema-episode-btn ${activeEpisodeIndex === idx ? 'active' : ''}`}
-                            onClick={() => {
-                              setActiveEpisodeIndex(idx);
-                              setIsPlayingVideo(false);
+                    {/* DUAL-MODE EXPERIENCE SELECTOR (Interactive Simulation vs YouTube Embed) */}
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '18px', background: '#F1F5F9', padding: '5px', borderRadius: '14px' }}>
+                      <button
+                        type="button"
+                        onClick={() => setCinemaMode('interactive')}
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          borderRadius: '10px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontWeight: '800',
+                          fontSize: '0.88rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          background: cinemaMode === 'interactive' ? '#FFFFFF' : 'transparent',
+                          color: cinemaMode === 'interactive' ? '#4F46E5' : '#64748B',
+                          boxShadow: cinemaMode === 'interactive' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        <Clock size={16} />
+                        <span>Mô phỏng 1 Ngày Làm Nghề (Tương tác trực quan)</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setCinemaMode('youtube')}
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          borderRadius: '10px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontWeight: '800',
+                          fontSize: '0.88rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          background: cinemaMode === 'youtube' ? '#FFFFFF' : 'transparent',
+                          color: cinemaMode === 'youtube' ? '#E11D48' : '#64748B',
+                          boxShadow: cinemaMode === 'youtube' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        <Tv size={16} />
+                        <span>Xem Trực Tiếp (YouTube)</span>
+                      </button>
+                    </div>
+
+                    {/* MODE 1: INTERACTIVE WORKDAY SIMULATOR (100% immune to YouTube embed errors!) */}
+                    {cinemaMode === 'interactive' && (
+                      <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', borderRadius: '20px', padding: '24px', color: '#FFFFFF', marginBottom: '20px', boxShadow: '0 12px 30px -10px rgba(49, 46, 129, 0.4)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <span style={{ fontSize: '2rem' }}>{activeVideoMajor.icon}</span>
+                            <div>
+                              <div style={{ fontSize: '0.78rem', color: '#A5B4FC', fontWeight: '800', textTransform: 'uppercase' }}>
+                                CHƯƠNG TRÌNH TRẢI NGHIỆM THỰC TẾ 2026
+                              </div>
+                              <div style={{ fontSize: '1.25rem', fontWeight: '800' }}>
+                                Một ngày làm việc thực tế: {activeVideoMajor.ten_nganh}
+                              </div>
+                            </div>
+                          </div>
+
+                          <a
+                            href={directYoutubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              padding: '10px 18px',
+                              borderRadius: '999px',
+                              background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+                              color: '#FFFFFF',
+                              fontWeight: '800',
+                              fontSize: '0.84rem',
+                              textDecoration: 'none',
+                              boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)'
                             }}
                           >
-                            <span>Tập {idx + 1}: {vid.type}</span>
-                            <span style={{ fontSize: '0.72rem', opacity: 0.85 }}>({vid.duration})</span>
-                          </button>
-                        ))}
+                            <Play size={15} fill="#FFFFFF" />
+                            <span>🔴 Xem Trên YouTube (Không Bị Chặn) ↗</span>
+                          </a>
+                        </div>
+
+                        {/* 4 Interactive Hourly Steps */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '18px' }}>
+                          {timelineSteps.map((step, sIdx) => (
+                            <div
+                              key={sIdx}
+                              onClick={() => setActiveTimelineStep(sIdx)}
+                              style={{
+                                padding: '12px 14px',
+                                borderRadius: '14px',
+                                background: activeTimelineStep === sIdx ? 'rgba(255, 255, 255, 0.22)' : 'rgba(255, 255, 255, 0.08)',
+                                border: activeTimelineStep === sIdx ? '2px solid #818CF8' : '1px solid rgba(255, 255, 255, 0.12)',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s ease'
+                              }}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                                <span style={{ fontSize: '0.74rem', fontWeight: '800', color: activeTimelineStep === sIdx ? '#FDE047' : '#C7D2FE' }}>
+                                  {step.time}
+                                </span>
+                                <span style={{ fontSize: '1.1rem' }}>{step.icon}</span>
+                              </div>
+                              <div style={{ fontSize: '0.86rem', fontWeight: '800', lineHeight: '1.4' }}>
+                                {step.stage}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Active Chapter Details */}
+                        <div style={{ background: 'rgba(255, 255, 255, 0.12)', borderRadius: '16px', padding: '18px 20px', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                            <span style={{ fontSize: '1.3rem' }}>{currentTimelineStep.icon}</span>
+                            <span style={{ fontWeight: '800', fontSize: '1.02rem', color: '#FFFFFF' }}>
+                              {currentTimelineStep.time} — {currentTimelineStep.stage}
+                            </span>
+                          </div>
+                          <p style={{ margin: 0, color: '#E0E7FF', fontSize: '0.92rem', lineHeight: '1.6' }}>
+                            {currentTimelineStep.desc}
+                          </p>
+                        </div>
                       </div>
                     )}
 
-                    {/* Responsive 16:9 Video Player Stage */}
-                    <div className="cinema-stage-16-9">
-                      {isPlayingVideo ? (
-                        <iframe
-                          src={`https://www.youtube-nocookie.com/embed/${currentVideo.youtubeId}?autoplay=1&rel=0`}
-                          title={currentVideo.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      ) : (
-                        <div
-                          className="cinema-cover-preview"
-                          onClick={() => setIsPlayingVideo(true)}
-                        >
-                          <div className="video-story-pattern" />
-                          <div className="video-play-pulse-btn" style={{ width: '70px', height: '70px' }}>
-                            <Play size={30} fill="#F43F5E" style={{ marginLeft: '4px' }} />
-                          </div>
-                          <div style={{ position: 'relative', zIndex: 2, marginTop: '16px', textAlign: 'center', padding: '0 20px' }}>
-                            <div style={{ color: '#FFFFFF', fontSize: '1.2rem', fontWeight: '800', marginBottom: '6px' }}>
-                              {currentVideo.title}
-                            </div>
-                            <div style={{ color: '#CBD5E1', fontSize: '0.85rem' }}>
-                              Nguồn: <strong>{currentVideo.channel}</strong> • Thời lượng: {currentVideo.duration} • Bấm để phát trực tiếp
-                            </div>
-                          </div>
+                    {/* MODE 2: YOUTUBE EMBED PLAYER (with direct launch fallback) */}
+                    {cinemaMode === 'youtube' && (
+                      <div style={{ marginBottom: '20px' }}>
+                        {/* Notice for Students */}
+                        <div style={{ background: '#FFFBEB', border: '1px solid #FCD34D', padding: '10px 14px', borderRadius: '12px', fontSize: '0.84rem', color: '#92400E', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                          <span>💡 <strong>Mẹo:</strong> Nếu video YouTube bên dưới báo lỗi do chính sách mạng, hãy bấm nút đỏ bên cạnh để xem trực tiếp không bị chặn:</span>
+                          <a
+                            href={directYoutubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ background: '#EF4444', color: '#FFFFFF', padding: '6px 14px', borderRadius: '999px', fontWeight: '800', fontSize: '0.78rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          >
+                            <Play size={13} fill="#FFFFFF" />
+                            <span>Mở Trên YouTube ↗</span>
+                          </a>
                         </div>
-                      )}
-                    </div>
+
+                        {/* Responsive 16:9 Video Player Stage */}
+                        <div className="cinema-stage-16-9">
+                          {isPlayingVideo ? (
+                            <iframe
+                              src={`https://www.youtube-nocookie.com/embed/${currentVideo.youtubeId}?autoplay=1&rel=0`}
+                              title={currentVideo.title}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          ) : (
+                            <div
+                              className="cinema-cover-preview"
+                              onClick={() => setIsPlayingVideo(true)}
+                            >
+                              <div className="video-story-pattern" />
+                              <div className="video-play-pulse-btn" style={{ width: '70px', height: '70px' }}>
+                                <Play size={30} fill="#F43F5E" style={{ marginLeft: '4px' }} />
+                              </div>
+                              <div style={{ position: 'relative', zIndex: 2, marginTop: '16px', textAlign: 'center', padding: '0 20px' }}>
+                                <div style={{ color: '#FFFFFF', fontSize: '1.2rem', fontWeight: '800', marginBottom: '6px' }}>
+                                  {currentVideo.title}
+                                </div>
+                                <div style={{ color: '#CBD5E1', fontSize: '0.85rem' }}>
+                                  Nguồn: <strong>{currentVideo.channel}</strong> • Thời lượng: {currentVideo.duration} • Bấm để phát trực tiếp
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
 
                     {/* External Link Fallback */}
                     <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
