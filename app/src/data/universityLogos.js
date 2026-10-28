@@ -1,4 +1,4 @@
-// Official university logos mapping for all 26 top universities
+// Official university logos mapping for top universities (supports both MoET codes & shortNames)
 export const OFFICIAL_UNIVERSITY_LOGOS = {
   "BKA": "./logos/bka.svg",
   "QHI": "./logos/qhi.png",
@@ -6,13 +6,16 @@ export const OFFICIAL_UNIVERSITY_LOGOS = {
   "NTH": "./logos/nth.png",
   "YHB": "./logos/yhb.jpg",
   "DKG": "./logos/dkg.png",
+  "DKH": "./logos/dkg.png",
   "FPT": "./logos/fpt.png",
   "QSQ": "./logos/qsq.png",
   "GHA": "./logos/gha.jpg",
   "TMA": "./logos/tma.jpg",
   "DDK": "./logos/ddk.png",
   "DED": "./logos/ded.png",
+  "DDS": "./logos/ded.png",
   "DDC": "./logos/ddc.jpg",
+  "DDQ": "./logos/ddc.jpg",
   "DDT": "./logos/ddt.png",
   "QSB": "./logos/qsb.png",
   "KSA": "./logos/ksa.png",
@@ -23,7 +26,10 @@ export const OFFICIAL_UNIVERSITY_LOGOS = {
   "RMIT": "./logos/rmit.png",
   "VGU": "./logos/vgu.png",
   "TDT": "./logos/tdt.png",
+  "TDTU": "./logos/tdt.png",
+  "DTT": "./logos/tdt.png",
   "HUTECH": "./logos/hutech.png",
+  "DKC": "./logos/hutech.png",
   "VNUHCM": "./logos/vnuhcm.png",
   "GTS": "./logos/gts.png"
 };

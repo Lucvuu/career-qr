@@ -541,8 +541,9 @@ export default function UniversityLogo({
   size = 56,
   showCodeBadge = false 
 }) {
-  const [imgError, setImgError] = useState(false);
+  const [failedSrc, setFailedSrc] = useState(null);
   const normalizedCode = (code || "").toUpperCase().trim();
+  const normalizedShortName = (shortName || "").toUpperCase().trim();
   
   // Extract clean domain for favicon lookup if available
   let domainFavicon = "";
@@ -550,14 +551,22 @@ export default function UniversityLogo({
     try {
       const urlObj = new URL(website.startsWith('http') ? website : `https://${website}`);
       domainFavicon = `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=128`;
-    } catch (e) {
-      // ignore
+    } catch {
+      // ignore invalid URL
     }
   }
 
-  const primaryLogoSrc = logoUrl || OFFICIAL_UNIVERSITY_LOGOS[normalizedCode] || domainFavicon;
+  const primaryLogoSrc =
+    logoUrl ||
+    OFFICIAL_UNIVERSITY_LOGOS[normalizedCode] ||
+    OFFICIAL_UNIVERSITY_LOGOS[normalizedShortName] ||
+    domainFavicon;
 
-  const profile = UNIVERSITY_BRAND_PROFILES[normalizedCode] || {
+  const imgError = Boolean(primaryLogoSrc && failedSrc === primaryLogoSrc);
+
+  const profile =
+    UNIVERSITY_BRAND_PROFILES[normalizedCode] ||
+    UNIVERSITY_BRAND_PROFILES[normalizedShortName] || {
     name: name || code,
     shortName: shortName || code,
     gradient: "linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%)",
@@ -610,7 +619,8 @@ export default function UniversityLogo({
           <img 
             src={primaryLogoSrc} 
             alt={profile.name || name || code} 
-            onError={() => setImgError(true)}
+            loading="lazy"
+            onError={() => setFailedSrc(primaryLogoSrc)}
             style={{
               width: '100%',
               height: '100%',

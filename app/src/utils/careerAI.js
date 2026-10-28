@@ -1,7 +1,7 @@
 // SMART VIETNAMESE AI CAREER CO-PILOT ENGINE (2026 EDITION)
 // Grounded in MAJORS_DATA, Regional University Admission Benchmarks, and Diagnostic Counseling
 
-import { MAJORS_DATA } from '../data/careerData.js';
+import { MAJORS_DATA, UNIVERSITIES_DATA } from '../data/careerData.js';
 
 /**
  * Normalizes Vietnamese text by stripping diacritics, replacing đ/Đ with d/D,

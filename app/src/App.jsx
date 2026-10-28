@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, Search, Layers, Award, Home } from 'lucide-react';
+import { Compass, Search, Layers, Award, Home, RotateCcw } from 'lucide-react';
 import HomeView from './views/HomeView';
 import SelfDiscoveryView from './views/SelfDiscoveryView';
 import SearchView from './views/SearchView';
@@ -7,13 +7,76 @@ import CompareView from './views/CompareView';
 import RoadmapView from './views/RoadmapView';
 import AIChatModal from './components/AIChatModal';
 
+class ViewErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, errorMessage: '' };
+  }
+
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true,
+      errorMessage: error?.message || 'Đã xảy ra lỗi hiển thị giao diện.'
+    };
+  }
+
+  componentDidCatch(error, info) {
+    console.error('CAREER QR ViewErrorBoundary:', error, info);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.resetKey !== this.props.resetKey && this.state.hasError) {
+      this.setState({ hasError: false, errorMessage: '' });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div
+          style={{
+            background: '#FFFFFF',
+            border: '1.5px solid #FECDD3',
+            borderRadius: '24px',
+            padding: '40px 24px',
+            textAlign: 'center',
+            maxWidth: '560px',
+            margin: '32px auto'
+          }}
+        >
+          <div style={{ fontSize: '2.4rem', marginBottom: '10px' }}>⚠️</div>
+          <h2 style={{ fontSize: '1.25rem', color: '#1E293B', marginBottom: '8px' }}>
+            Không thể tải mục này do dữ liệu trình duyệt cũ
+          </h2>
+          <p style={{ color: '#64748B', fontSize: '0.9rem', marginBottom: '18px' }}>
+            {this.state.errorMessage}
+          </p>
+          <button
+            type="button"
+            className="btn-edtech-primary"
+            onClick={() => {
+              this.setState({ hasError: false, errorMessage: '' });
+              if (this.props.onRecover) this.props.onRecover();
+            }}
+          >
+            <RotateCcw size={16} />
+            <span>Tải lại giao diện ngay</span>
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
   const [bookmarkedMajors, setBookmarkedMajors] = useState(() => {
     try {
       const saved = localStorage.getItem('careerqr_bookmarked_majors');
-      return saved ? JSON.parse(saved) : [];
+      const parsed = saved ? JSON.parse(saved) : [];
+      return Array.isArray(parsed) ? parsed.filter((m) => m && typeof m === 'object' && m.id) : [];
     } catch {
       return [];
     }
@@ -29,9 +92,19 @@ export default function App() {
   }, [bookmarkedMajors]);
 
   const handleBookmarkMajor = (major) => {
-    if (!bookmarkedMajors.some(m => m.id === major.id)) {
-      setBookmarkedMajors([...bookmarkedMajors, major]);
-    }
+    if (!major?.id) return;
+    setBookmarkedMajors((prev) =>
+      prev.some((m) => m.id === major.id) ? prev : [...prev, major]
+    );
+  };
+
+  const handleToggleBookmarkMajor = (major) => {
+    if (!major?.id) return;
+    setBookmarkedMajors((prev) =>
+      prev.some((m) => m.id === major.id)
+        ? prev.filter((m) => m.id !== major.id)
+        : [...prev, major]
+    );
   };
 
   const handleSelectForRoadmap = (primary, backup) => {
@@ -105,6 +178,13 @@ export default function App() {
 
       {/* Main Views */}
       <main className="main-content">
+        <ViewErrorBoundary
+          resetKey={activeTab}
+          onRecover={() => {
+            setSearchQuery('');
+            setActiveTab('search');
+          }}
+        >
         {activeTab === 'home' && (
           <HomeView
             onNavigate={(tab) => {
@@ -128,7 +208,10 @@ export default function App() {
         {activeTab === 'search' && (
           <SearchView
             initialQuery={searchQuery}
+            onClearQuery={() => setSearchQuery('')}
+            bookmarkedMajors={bookmarkedMajors}
             onBookmarkMajor={handleBookmarkMajor}
+            onToggleBookmarkMajor={handleToggleBookmarkMajor}
             onNavigate={(tab) => {
               setActiveTab(tab);
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -154,6 +237,7 @@ export default function App() {
             initialBackup={roadmapChoices.backup}
           />
         )}
+        </ViewErrorBoundary>
       </main>
 
       {/* Floating AI Assistant */}
