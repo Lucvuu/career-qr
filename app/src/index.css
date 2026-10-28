@@ -1407,6 +1407,22 @@ a {
   white-space: nowrap;
 }
 
+.video-banner-action-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #BE123C;
+  background: #FFF1F2;
+  border: 1px solid #FECDD3;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
 .video-banner-title {
   font-size: 0.8rem;
   font-weight: 700;

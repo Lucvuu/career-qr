@@ -1,4 +1,4 @@
-// Enriched 65+ Universities Data for Career QR 2026 across Vietnam
+// Enriched 111 Universities across Vietnam for Career QR 2026
 export const UNIVERSITIES_DATA = [
   {
     "id": "hust",
@@ -13,7 +13,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.5 – 29.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "30 – 45 tr/năm (chuẩn) • 60 – 85 tr/năm (tiên tiến)",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "cntt",
       "vi-mach",
@@ -87,7 +87,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "neu",
@@ -102,7 +104,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "26.5 – 28.6 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "26 – 40 tr/năm (chuẩn) • 50 – 70 tr/năm (chất lượng cao)",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "marketing",
       "kdqt",
@@ -173,7 +175,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "A00, A01, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "ftu",
@@ -188,7 +192,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "27.2 – 28.8 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "28 – 45 tr/năm (chuẩn) • 65 – 85 tr/năm (tiên tiến)",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "kdqt",
       "marketing",
@@ -259,7 +263,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 28,
         "combo": "D01, A00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "uet",
@@ -274,7 +280,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "26.5 – 28.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "32 – 40 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "cntt",
       "vi-mach",
@@ -345,7 +351,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "hmu",
@@ -360,7 +368,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.0 – 29.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "45 – 55 tr/năm (tự chủ y khoa)",
-    "tuitionLevel": "high-intl",
+    "tuitionLevel": "international",
     "majors": [
       "ykhoa",
       "rang-ham-mat",
@@ -429,7 +437,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 24.5,
         "combo": "B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "ptit",
@@ -444,7 +454,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.5 – 27.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "24 – 35 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "cntt",
       "an-ninh-mang",
@@ -513,7 +523,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 26.3,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "ajc",
@@ -528,7 +540,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.0 – 28.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "20 – 35 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "truyenthong",
       "bao-chi",
@@ -589,7 +601,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.8,
         "combo": "C00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "hnue",
@@ -604,7 +618,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.0 – 29.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "Miễn 100% học phí + trợ cấp 3.63 tr/tháng (NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -673,7 +687,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 28.2,
         "combo": "D01, C00"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "hlu",
@@ -688,7 +704,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.5 – 28.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "luat-kinh-te",
       "luat-quoc-te",
@@ -748,7 +764,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.4,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "tmu",
@@ -763,7 +781,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.8 – 27.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "marketing",
       "thuong-mai-dien-tu",
@@ -826,7 +844,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.1,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "hanu",
@@ -841,7 +861,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.0 – 27.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "ngon-ngu-anh",
       "ngon-ngu-trung",
@@ -903,7 +923,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27,
         "combo": "D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "huce",
@@ -918,7 +940,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "20.5 – 25.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "xay-dung",
       "kien-truc",
@@ -979,7 +1001,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 23.5,
         "combo": "H00, V00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "utc",
@@ -994,7 +1018,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.5 – 26.2 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "22 – 35 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "logistics",
       "oto-dien",
@@ -1056,7 +1080,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "A00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "haui",
@@ -1071,7 +1097,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.0 – 26.0 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "24 – 36 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "oto-dien",
       "tudonghoa",
@@ -1134,7 +1160,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.2,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "fpt-hn",
@@ -1149,7 +1177,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "Xét học bạ (Top 40 SchoolRank) / THPT 21+",
     "benchmarkScoreRange": "20-23",
     "tuition": "85 – 120 tr/năm",
-    "tuitionLevel": "high-intl",
+    "tuitionLevel": "international",
     "majors": [
       "cntt",
       "vi-mach",
@@ -1212,7 +1240,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 21.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "quoc-te",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "ictu",
@@ -1227,7 +1257,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "18.0 – 22.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "18 – 26 tr/năm (rất tiết kiệm)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "cntt",
       "truyenthong",
@@ -1290,7 +1320,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 21,
         "combo": "D01, A00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "tnut",
@@ -1305,7 +1337,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "18.0 – 22.0 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "18 – 25 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "oto-dien",
       "tudonghoa",
@@ -1367,7 +1399,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 20.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "tnue",
@@ -1382,7 +1416,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.5 – 27.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "Miễn 100% học phí + trợ cấp 3.63 tr/tháng (NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -1443,7 +1477,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 26.5,
         "combo": "D01, C00"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "tump",
@@ -1458,7 +1494,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.0 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "32 – 45 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "ykhoa",
       "rang-ham-mat",
@@ -1519,7 +1555,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 24,
         "combo": "A00, B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "tueba",
@@ -1534,7 +1572,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "18.0 – 22.0 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "16 – 22 tr/năm (học phí rất mềm)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "marketing",
       "tai-chinh-ngan-hang",
@@ -1595,7 +1633,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 21,
         "combo": "D01, A00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "tuaf",
@@ -1610,7 +1650,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.5 – 21.0 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "15 – 20 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "nong-nghiep-cong-nghe-cao",
       "cong-nghe-sinh-hoc",
@@ -1662,7 +1702,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 18.5,
         "combo": "B00, A00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "dtf",
@@ -1677,7 +1719,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.5 – 24.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "16 – 24 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "ngon-ngu-anh",
       "ngon-ngu-trung",
@@ -1737,7 +1779,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thainguyen"
   },
   {
     "id": "vmu",
@@ -1752,7 +1796,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "20.0 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "22 – 35 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "khoa-hoc-hang-hai",
       "logistics",
@@ -1814,7 +1858,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.5,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "haiphong-quangninh"
   },
   {
     "id": "hpmu",
@@ -1829,7 +1875,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.5 – 27.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "38 – 48 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "ykhoa",
       "rang-ham-mat",
@@ -1889,7 +1935,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25,
         "combo": "A00, B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "haiphong-quangninh"
   },
   {
     "id": "tbump",
@@ -1904,7 +1952,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.0 – 26.8 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "35 – 45 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "ykhoa",
       "duoc-hoc",
@@ -1963,7 +2011,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 23,
         "combo": "B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "ndun",
@@ -1978,7 +2028,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.0 – 23.0 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "22 – 30 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "dieu-duong",
       "dieu-duong",
@@ -2029,7 +2079,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 19.5,
         "combo": "B00, B08"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "utehy",
@@ -2044,7 +2096,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.0 – 24.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "18 – 25 tr/năm (rất hợp lý)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "oto-dien",
       "tudonghoa",
@@ -2105,7 +2157,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 23.5,
         "combo": "A00, A01, D01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "sp2",
@@ -2120,7 +2174,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.0 – 28.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "Miễn 100% học phí + trợ cấp 3.63 tr/tháng (NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -2181,7 +2235,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.8,
         "combo": "D01, C00"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "hlo",
@@ -2196,7 +2252,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "18.0 – 24.0 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "16 – 24 tr/năm (được Tỉnh Quảng Ninh hỗ trợ học phí)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "quan-tri-khach-san",
       "ngon-ngu-anh",
@@ -2257,7 +2313,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "haiphong-quangninh"
   },
   {
     "id": "dut",
@@ -2272,7 +2330,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.5 – 27.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "cntt",
       "vi-mach",
@@ -2335,7 +2393,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 26,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "due",
@@ -2350,7 +2410,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "23.0 – 27.0 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "marketing",
       "kdqt",
@@ -2413,7 +2473,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 26.2,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "hmed",
@@ -2428,7 +2490,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.5 – 28.0 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "38 – 50 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "ykhoa",
       "rang-ham-mat",
@@ -2488,7 +2550,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.5,
         "combo": "A00, B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "vinh",
@@ -2503,7 +2567,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.0 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "18 – 28 tr/năm (rất tiết kiệm)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -2564,7 +2628,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "thanh-nghe-tinh"
   },
   {
     "id": "hcmut",
@@ -2579,7 +2645,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "ĐGNL 750 – 950 / THPT 25.5 – 28.5",
     "benchmarkScoreRange": "above26",
     "tuition": "30 – 50 tr/năm (chuẩn) • 60 – 80 tr/năm (chất lượng cao)",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "cntt",
       "vi-mach",
@@ -2644,7 +2710,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "ueh",
@@ -2659,7 +2727,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.0 – 28.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "30 – 48 tr/năm (chuẩn) • 65 – 85 tr/năm (tiếng Anh toàn phần)",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "marketing",
       "kdqt",
@@ -2722,7 +2790,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.8,
         "combo": "A00, A01, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "uit",
@@ -2737,7 +2807,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.5 – 28.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "32 – 45 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "cntt",
       "an-ninh-mang",
@@ -2800,7 +2870,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "ump",
@@ -2815,7 +2887,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "25.5 – 29.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "45 – 77 tr/năm (chuẩn tự chủ)",
-    "tuitionLevel": "high-intl",
+    "tuitionLevel": "international",
     "majors": [
       "ykhoa",
       "rang-ham-mat",
@@ -2877,7 +2949,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 26.8,
         "combo": "A00, B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "hcmute",
@@ -2892,7 +2966,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.0 – 27.2 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "28 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "free",
     "majors": [
       "oto-dien",
       "tudonghoa",
@@ -2956,7 +3030,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.8,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "ctu",
@@ -2971,7 +3047,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "18.5 – 26.0 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "18 – 28 tr/năm (rất hợp lý)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "cntt",
       "nong-nghiep-cong-nghe-cao",
@@ -3033,7 +3109,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 23,
         "combo": "A00, B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "cantho-dbscl"
   },
   {
     "id": "hus-vnu",
@@ -3048,7 +3126,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.0 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "18 – 35 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "khdl",
       "sinh-hoc",
@@ -3103,7 +3181,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 24.8,
         "combo": "B00, A00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "ussh-vnu",
@@ -3118,7 +3198,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.0 – 29.0 điểm THPT (Khối C00)",
     "benchmarkScoreRange": "above26",
     "tuition": "15 – 30 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "truyenthong",
       "bao-chi",
@@ -3173,7 +3253,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "C00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "ued-vnu",
@@ -3188,7 +3270,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.5 – 28.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "0 đ (Miễn học phí + hỗ trợ 3.63 tr/tháng sinh hoạt phí theo NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -3242,7 +3324,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 28.2,
         "combo": "D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "wru",
@@ -3257,7 +3341,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.0 – 25.8 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "20 – 32 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "cntt",
       "xaydung",
@@ -3312,7 +3396,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "mhn",
@@ -3327,7 +3413,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.5 – 24.8 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "18 – 26 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "luat-kinh-te",
       "cntt",
@@ -3381,7 +3467,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 23.8,
         "combo": "H00, V00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "mta",
@@ -3396,7 +3484,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.0 – 27.8 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "0 đ (Bao cấp toàn bộ học phí, ăn ở, quân trang và phụ cấp hàng tháng)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "vi-mach",
       "an-ninh-mang",
@@ -3450,7 +3538,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "csnd",
@@ -3465,7 +3555,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.5 – 26.5 (theo thang điểm BCA)",
     "benchmarkScoreRange": "above26",
     "tuition": "0 đ (Đài thọ toàn bộ ăn ở, quân tư trang và phụ cấp hàng tháng)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "luat-kinh-te",
       "an-ninh-mang",
@@ -3515,7 +3605,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.5,
         "combo": "A00, C03, D01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "hanoi"
   },
   {
     "id": "dhhp",
@@ -3530,7 +3622,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.0 – 24.0 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "16 – 24 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -3584,7 +3676,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 21.5,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "haiphong-quangninh"
   },
   {
     "id": "qui",
@@ -3599,7 +3693,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.0 – 19.0 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "15 – 22 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "co-dien-tu",
       "oto-dien",
@@ -3652,7 +3746,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 18.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "haiphong-quangninh"
   },
   {
     "id": "tbu",
@@ -3667,7 +3763,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.0 – 19.5 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "14 – 20 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "luat-kinh-te",
       "ke-toan",
@@ -3719,7 +3815,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 18.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "tdb",
@@ -3734,7 +3832,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "18.0 – 23.0 điểm (kèm thi Năng khiếu)",
     "benchmarkScoreRange": "20-23",
     "tuition": "14 – 18 tr/năm (rất rẻ)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "giao-duc-the-chat",
       "huan-luyen-the-thao",
@@ -3776,7 +3874,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 21.5,
         "combo": "T00, M00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "msu-hy",
@@ -3791,7 +3891,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.0 – 21.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "16 – 22 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "tai-chinh-ngan-hang",
       "ke-toan",
@@ -3837,7 +3937,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 20.5,
         "combo": "A00, A01, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "nute",
@@ -3852,7 +3954,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.0 – 19.5 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "15 – 21 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "oto-dien",
       "co-dien-tu",
@@ -3897,7 +3999,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 19,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "hvu",
@@ -3912,7 +4016,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.0 – 24.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "15 – 22 tr/năm (Sư phạm miễn học phí theo NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -3957,7 +4061,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 24.5,
         "combo": "C00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "hmtu",
@@ -3972,7 +4078,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.0 – 25.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "20 – 32 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "y-khoa",
       "xet-nghiem-y-hoc",
@@ -4023,7 +4129,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.8,
         "combo": "B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "sdu",
@@ -4038,7 +4146,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.0 – 19.5 điểm THPT",
     "benchmarkScoreRange": "under20",
     "tuition": "15 – 21 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "oto-dien",
       "co-dien-tu",
@@ -4085,7 +4193,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 19,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "dongbang-songhong"
   },
   {
     "id": "hdu",
@@ -4100,7 +4210,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.0 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "14 – 20 tr/năm (Sư phạm miễn học phí theo NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -4148,7 +4258,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "thanh-nghe-tinh"
   },
   {
     "id": "vmu-y",
@@ -4163,7 +4275,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "19.0 – 24.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "22 – 35 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "under25",
     "majors": [
       "y-khoa",
       "dược-học",
@@ -4206,7 +4318,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 24.5,
         "combo": "B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "thanh-nghe-tinh"
   },
   {
     "id": "vku",
@@ -4221,7 +4335,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.0 – 25.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "16 – 24 tr/năm (rất hấp dẫn)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "cntt",
       "vi-mach",
@@ -4276,7 +4390,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "ued-udn",
@@ -4291,7 +4407,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.0 – 27.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "0 đ (Sư phạm miễn học phí + hỗ trợ 3.63 tr/tháng theo NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -4338,7 +4454,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27,
         "combo": "C00, D01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "ufl-udn",
@@ -4353,7 +4471,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.0 – 26.8 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "18 – 28 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "ngon-ngu-anh",
       "ngon-ngu-trung",
@@ -4407,7 +4525,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.3,
         "combo": "D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "hce",
@@ -4422,7 +4542,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "17.0 – 23.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "16 – 24 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "tai-chinh-ngan-hang",
       "marketing",
@@ -4469,7 +4589,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "danang-hue"
   },
   {
     "id": "qnu",
@@ -4484,7 +4606,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.5 – 25.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "15 – 22 tr/năm (Sư phạm miễn học phí theo NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "robot-ai",
       "khdl",
@@ -4538,7 +4660,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "namtrungbo-taynguyen"
   },
   {
     "id": "ntu",
@@ -4553,7 +4677,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.0 – 23.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "16 – 25 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "hang-hai",
       "cong-nghe-thuc-pham",
@@ -4600,7 +4724,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "namtrungbo-taynguyen"
   },
   {
     "id": "dlu",
@@ -4615,7 +4741,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.0 – 25.0 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "15 – 22 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "nong-nghiep-cong-nghe-cao",
       "supham-toan",
@@ -4669,7 +4795,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "namtrungbo-taynguyen"
   },
   {
     "id": "ttn",
@@ -4684,7 +4812,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "15.0 – 25.0 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "14 – 22 tr/năm (Y khoa khoảng 30 tr/năm)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "y-khoa",
       "thu-y",
@@ -4737,7 +4865,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 19,
         "combo": "A00, B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "namtrungbo-taynguyen"
   },
   {
     "id": "ftu2",
@@ -4752,7 +4882,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "27.5 – 28.8 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "28 – 45 tr/năm (chuẩn) • 65 – 85 tr/năm (tiên tiến)",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "kdqt",
       "marketing",
@@ -4807,7 +4937,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 28.5,
         "combo": "D01, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "pnt",
@@ -4822,7 +4954,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.5 – 27.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "35 – 55 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "y-khoa",
       "rang-ham-mat",
@@ -4875,7 +5007,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27,
         "combo": "B00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "hcmue",
@@ -4890,7 +5024,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "24.0 – 28.5 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "0 đ (Miễn học phí + hỗ trợ 3.63 tr/tháng theo NĐ 116)",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "free",
     "majors": [
       "supham-toan",
       "supham-van",
@@ -4945,7 +5079,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.5,
         "combo": "C00, D01"
       }
-    ]
+    ],
+    "typeCategory": "su-pham",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "ulaw",
@@ -4960,7 +5096,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "23.5 – 28.0 điểm THPT",
     "benchmarkScoreRange": "above26",
     "tuition": "38 – 55 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "luat-kinh-te",
       "luat-quoc-te",
@@ -5012,7 +5148,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 27.2,
         "combo": "A00, D01, C00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "tdtu",
@@ -5027,7 +5165,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "23.0 – 27.0 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "30 – 50 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "marketing",
       "dohoa",
@@ -5082,7 +5220,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.8,
         "combo": "H00, V00"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "ufm",
@@ -5097,7 +5237,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.5 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "28 – 42 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "marketing",
       "thuong-mai-dien-tu",
@@ -5153,7 +5293,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.8,
         "combo": "A00, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "iuh",
@@ -5168,7 +5310,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.5 – 25.8 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "28 – 40 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "oto-dien",
       "co-dien-tu",
@@ -5223,7 +5365,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.5,
         "combo": "A00, A01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-trong-diem",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "uah",
@@ -5238,7 +5382,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "22.0 – 26.5 điểm (kèm thi Năng khiếu Vẽ)",
     "benchmarkScoreRange": "23-26",
     "tuition": "24 – 38 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "kien-truc",
       "thiet-ke-noi-that",
@@ -5290,7 +5434,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 25.5,
         "combo": "H00, H01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "rmit",
@@ -5305,7 +5451,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "Xét học bạ (GPA 7.0+) & IELTS 6.5+",
     "benchmarkScoreRange": "above26",
     "tuition": "300 – 350 tr/năm (chuẩn bằng Úc)",
-    "tuitionLevel": "above40",
+    "tuitionLevel": "international",
     "majors": [
       "kdqt",
       "marketing",
@@ -5360,7 +5506,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 26.5,
         "combo": "Xét IELTS & GPA"
       }
-    ]
+    ],
+    "typeCategory": "quoc-te",
+    "provinceGroup": "tphcm-dongnambo"
   },
   {
     "id": "tdmu",
@@ -5375,7 +5523,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "16.0 – 24.5 điểm THPT",
     "benchmarkScoreRange": "20-23",
     "tuition": "18 – 26 tr/năm",
-    "tuitionLevel": "under20",
+    "tuitionLevel": "under25",
     "majors": [
       "luat-kinh-te",
       "cntt",
@@ -5423,7 +5571,9 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 22.5,
         "combo": "A00, A01, D01"
       }
-    ]
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "cantho-dbscl"
   },
   {
     "id": "ctump",
@@ -5438,7 +5588,7 @@ export const UNIVERSITIES_DATA = [
     "benchmarks": "21.0 – 26.5 điểm THPT",
     "benchmarkScoreRange": "23-26",
     "tuition": "35 – 52 tr/năm",
-    "tuitionLevel": "20-40",
+    "tuitionLevel": "25-50",
     "majors": [
       "y-khoa",
       "rang-ham-mat",
@@ -5497,6 +5647,1931 @@ export const UNIVERSITIES_DATA = [
         "forecast2026": 24.8,
         "combo": "A00, B00"
       }
+    ],
+    "typeCategory": "cong-lap-dia-phuong",
+    "provinceGroup": "cantho-dbscl"
+  },
+  {
+    "id": "vinuni",
+    "code": "VIN",
+    "name": "Trường Đại học VinUni",
+    "shortName": "VinUni",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "Xét tuyển hồ sơ & Phỏng vấn Ivy League",
+    "benchmarkScoreRange": "above26",
+    "tuition": "815 tr/năm (Học bổng tài năng 50% - 100% học phí)",
+    "tuitionLevel": "international",
+    "majors": [
+      "cntt",
+      "vi-mach",
+      "khdl",
+      "ykhoa",
+      "dieuduong",
+      "kdqt"
+    ],
+    "highlight": "Đại học tinh hoa chuẩn Ivy League (hợp tác Cornell & UPenn), cơ sở vật chất 5 sao QS, 100% sinh viên được hỗ trợ học bổng từ 35% đến 100%.",
+    "website": "https://vinuni.edu.vn",
+    "admissionsUrl": "https://vinuni.edu.vn/admissions",
+    "benchmarkHistory": {
+      "2023": "Xét hồ sơ SAT/IELTS",
+      "2024": "Xét hồ sơ SAT 1400+",
+      "2025": "Xét hồ sơ + Phỏng vấn",
+      "forecast2026": "IELTS 6.5+ & SAT 1350+"
+    },
+    "admissionMethods": [
+      "Hồ sơ năng lực cá nhân & Hoạt động ngoại khóa",
+      "Phỏng vấn trực tiếp bằng tiếng Anh với Giáo sư",
+      "Điểm SAT/ACT hoặc giải thưởng Quốc tế"
+    ],
+    "campusVibe": {
+      "dorms": "KTX chuẩn resort 5 sao tại Vinhomes Ocean Park",
+      "livingCostNote": "Bao gồm trọn gói trong học bổng nội trú",
+      "clubsAndLife": "40+ CLB học thuật & khởi nghiệp quốc tế, môi trường 100% tiếng Anh"
+    },
+    "scholarships": "Học bổng tài năng 50%, 80%, 100% và Học bổng toàn phần (học phí + sinh hoạt phí) từ Quỹ VinGroup.",
+    "employmentRate": "100% sinh viên tốt nghiệp được nhận việc tại các tập đoàn toàn cầu hoặc học bổng Thạc sĩ Ivy League",
+    "startingSalary": "25 – 60 triệu/tháng",
+    "facilities": "Khuôn viên 23 ha kiến trúc Gothic sang trọng, trung tâm mô phỏng Y khoa chuẩn quốc tế, siêu máy tính AI Nvidia.",
+    "topEmployers": [
+      "VinGroup",
+      "Google",
+      "McKinsey",
+      "Boston Consulting Group",
+      "Samsung R&D",
+      "VinBrain"
+    ]
+  },
+  {
+    "id": "buv",
+    "code": "BUV",
+    "name": "Trường Đại học Anh Quốc Việt Nam",
+    "shortName": "BUV",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hưng Yên",
+    "provinceCode": "bacninh-hungyen",
+    "provinceGroup": "dongbang-songhong",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "Xét học bạ THPT & IELTS 6.0+",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "160 – 220 tr/năm (Cấp bằng ĐH London & ĐH Staffordshire)",
+    "tuitionLevel": "international",
+    "majors": [
+      "marketing",
+      "kdqt",
+      "tai-chinh-ngan-hang",
+      "dohoa",
+      "thuong-mai-dien-tu"
+    ],
+    "highlight": "Đại học đầu tiên tại Việt Nam đạt chuẩn kiểm định chất lượng QAA (Vương Quốc Anh), cấp bằng trực tiếp từ University of London & Staffordshire University.",
+    "website": "https://www.buv.edu.vn",
+    "admissionsUrl": "https://www.buv.edu.vn/tuyen-sinh",
+    "benchmarkHistory": {
+      "2023": "Học bạ 7.5+",
+      "2024": "Học bạ 7.5+",
+      "2025": "Học bạ 8.0+",
+      "forecast2026": "IELTS 6.0+ & GPA 7.5+"
+    },
+    "admissionMethods": [
+      "Xét kết quả học bạ THPT + IELTS 6.0+",
+      "Xét tuyển học bổng Quán quân & Trái tim Sư tử",
+      "Điểm A-Level / Tú tài Quốc tế IB"
+    ],
+    "campusVibe": {
+      "dorms": "Khu căn hộ sinh viên Ecopark xanh mát",
+      "livingCostNote": "Chi phí sinh hoạt 4.5 – 6 tr/tháng",
+      "clubsAndLife": "Khuôn viên xanh Ecopark 5 sao, studio sản xuất game, phòng mô phỏng giao dịch Bloomberg"
+    },
+    "scholarships": "Quỹ học bổng BUV lên đến 87 tỷ đồng/năm (100%, 75%, 50% học phí).",
+    "employmentRate": "100% sinh viên có việc làm hoặc học tiếp lên cao học trong vòng 3 tháng",
+    "startingSalary": "16 – 32 triệu/tháng",
+    "facilities": "Khuôn viên 6.5 ha chuẩn QS 5 sao, thư viện số kết nối trực tiếp thư viện Vương Quốc Anh.",
+    "topEmployers": [
+      "Deloitte",
+      "PwC",
+      "Standard Chartered",
+      "Unilever",
+      "Shopee",
+      "Grab"
+    ]
+  },
+  {
+    "id": "fulbright",
+    "code": "FUV",
+    "name": "Trường Đại học Fulbright Việt Nam",
+    "shortName": "Fulbright",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "Xét hồ sơ khai phóng & Phỏng vấn",
+    "benchmarkScoreRange": "above26",
+    "tuition": "460 – 540 tr/năm (Hỗ trợ tài chính dựa trên nhu cầu Need-based)",
+    "tuitionLevel": "international",
+    "majors": [
+      "khdl",
+      "cntt",
+      "tamly",
+      "kdqt",
+      "kinh-te"
+    ],
+    "highlight": "Mô hình giáo dục khai phóng (Liberal Arts) chuẩn Mỹ đầu tiên tại Việt Nam, quỹ hỗ trợ tài chính độc lập xét theo hoàn cảnh kinh tế gia đình.",
+    "website": "https://fulbright.edu.vn",
+    "admissionsUrl": "https://fulbright.edu.vn/apply",
+    "benchmarkHistory": {
+      "2023": "Xét hồ sơ + Bài luận",
+      "2024": "Xét hồ sơ + Phỏng vấn",
+      "2025": "Học bổng Need-based",
+      "forecast2026": "Tuyển sinh 2 chu kỳ thu đông"
+    },
+    "admissionMethods": [
+      "Bài luận cá nhân & Hồ sơ sản phẩm sáng tạo",
+      "Phỏng vấn cá nhân hóa cùng hội đồng giảng viên",
+      "Không yêu cầu điểm thi chuẩn hóa"
+    ],
+    "campusVibe": {
+      "dorms": "Căn hộ cao cấp tại Quận 7 TP.HCM",
+      "livingCostNote": "6 – 8 tr/tháng tại TP.HCM",
+      "clubsAndLife": "Văn hóa tranh biện cởi mở, tự do khám phá chuyên ngành trong 2 năm đầu"
+    },
+    "scholarships": "Chính sách hỗ trợ tài chính Need-based aid hỗ trợ lên đến 100% học phí và sinh hoạt phí.",
+    "employmentRate": "97% sinh viên được tuyển dụng vào các tổ chức phi chính phủ và tập đoàn công nghệ",
+    "startingSalary": "18 – 40 triệu/tháng",
+    "facilities": "Campus hiện đại tại Khu Công nghệ cao TP.HCM, không gian MakerSpace công nghệ cao.",
+    "topEmployers": [
+      "McKinsey",
+      "VNG",
+      "VinAI",
+      "Fulbright Network",
+      "United Nations"
+    ]
+  },
+  {
+    "id": "usth",
+    "code": "KCN",
+    "name": "Trường Đại học Khoa học và Công nghệ Hà Nội",
+    "shortName": "USTH (ĐH Việt Pháp)",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "22.5 – 26.8 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "53 – 105 tr/năm (Đào tạo 100% bằng tiếng Anh)",
+    "tuitionLevel": "international",
+    "majors": [
+      "vi-mach",
+      "cntt",
+      "hang-khong",
+      "khdl",
+      "y-sinh",
+      "duoc"
+    ],
+    "highlight": "Trường đại học công lập quốc tế trực thuộc Viện Hàn lâm KH&CN Việt Nam và Chính phủ Pháp, cấp bằng chuẩn châu Âu, mạnh vượt bậc về Bán dẫn và Kỹ thuật Hàng không.",
+    "website": "https://usth.edu.vn",
+    "admissionsUrl": "https://tuyensinh.usth.edu.vn",
+    "benchmarkHistory": {
+      "2023": "23.0 – 26.5",
+      "2024": "22.5 – 26.8",
+      "2025": "23.0 – 27.0",
+      "forecast2026": "23.5 – 27.2"
+    },
+    "admissionMethods": [
+      "Xét tuyển thẳng theo đề án USTH & Phỏng vấn",
+      "Điểm thi tốt nghiệp THPT 2026 (A00, A01, B00, D07)",
+      "Đánh giá năng lực ĐHQGHN (HSA)"
+    ],
+    "campusVibe": {
+      "dorms": "KTX Viện Hàn lâm tại Cầu Giấy",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Cộng đồng nghiên cứu khoa học trẻ, cơ hội thực tập 6 tháng tại Pháp có lương"
+    },
+    "scholarships": "Học bổng lên đến 100% học phí của Chính phủ Pháp và Viện Hàn lâm KH&CN.",
+    "employmentRate": "98.5% sinh viên có việc làm hoặc nhận học bổng du học Thạc sĩ châu Âu",
+    "startingSalary": "14 – 32 triệu/tháng",
+    "facilities": "Hệ thống phòng lab nghiên cứu chung với Viện Hàn lâm, trung tâm bảo dưỡng mô phỏng máy bay Airbus.",
+    "topEmployers": [
+      "Airbus",
+      "Vietnam Airlines",
+      "FPT Software",
+      "Viettel Aerospace",
+      "STMicroelectronics"
+    ]
+  },
+  {
+    "id": "vju",
+    "code": "VJU",
+    "name": "Trường Đại học Việt Nhật - ĐHQGHN",
+    "shortName": "VJU",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "21.0 – 25.5 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "58 – 65 tr/năm (Đào tạo song ngữ Anh - Nhật)",
+    "tuitionLevel": "international",
+    "majors": [
+      "vi-mach",
+      "tudonghoa",
+      "kdqt",
+      "cntt"
+    ],
+    "highlight": "Biểu tượng hợp tác chiến lược Việt Nam - Nhật Bản, thế mạnh vi mạch bán dẫn, cơ điện tử và cơ hội sang Nhật làm việc 100% sau tốt nghiệp.",
+    "website": "https://vju.vnu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.vju.ac.vn",
+    "benchmarkHistory": {
+      "2023": "21.0 – 24.5",
+      "2024": "21.5 – 25.5",
+      "2025": "22.0 – 25.8",
+      "forecast2026": "22.5 – 26.0"
+    },
+    "admissionMethods": [
+      "Xét tuyển điểm thi tốt nghiệp THPT",
+      "Đánh giá năng lực ĐHQGHN (HSA)",
+      "Xét hồ sơ phỏng vấn theo phong cách Nhật Bản"
+    ],
+    "campusVibe": {
+      "dorms": "KTX ĐHQGHN tại Mỹ Đình & Hòa Lạc",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Lễ hội văn hóa trà đạo, CLB Aikido, học bổng trao đổi văn hóa Tokyo"
+    },
+    "scholarships": "Học bổng từ các tập đoàn hàng đầu Nhật Bản (JICA, Mitsui, Denso, Fast Retailing).",
+    "employmentRate": "98% sinh viên làm việc tại các tập đoàn Nhật Bản hoặc du học Tokyo",
+    "startingSalary": "15 – 35 triệu/tháng (tại VN) • 45 – 70 triệu/tháng (tại Nhật)",
+    "facilities": "Phòng lab bán dẫn hợp tác ĐH Tokyo, trang thiết bị nhập khẩu 100% từ Nhật.",
+    "topEmployers": [
+      "Denso",
+      "Toyota",
+      "Panasonic",
+      "Renesas",
+      "Murata",
+      "Fujitsu"
+    ]
+  },
+  {
+    "id": "vnu-is",
+    "code": "QHQ",
+    "name": "Trường Quốc tế - ĐHQGHN",
+    "shortName": "VNU-IS",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "22.0 – 26.2 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "45 – 85 tr/năm (100% tiếng Anh)",
+    "tuitionLevel": "international",
+    "majors": [
+      "cntt",
+      "marketing",
+      "kdqt",
+      "tai-chinh-ngan-hang",
+      "khdl"
+    ],
+    "highlight": "Đơn vị đào tạo quốc tế năng động của ĐHQGHN, cấp bằng ĐHQGHN hoặc song bằng trực tiếp với các đại học Hoa Kỳ, Anh, Pháp.",
+    "website": "https://www.is.vnu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.is.vnu.edu.vn",
+    "benchmarkHistory": {
+      "2023": "22.0 – 25.8",
+      "2024": "22.5 – 26.2",
+      "2025": "23.0 – 26.5",
+      "forecast2026": "23.0 – 26.5"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT kết hợp chứng chỉ IELTS 5.5+",
+      "Đánh giá năng lực HSA",
+      "Xét tuyển thẳng học sinh giỏi"
+    ],
+    "campusVibe": {
+      "dorms": "KTX Mỹ Đình & Làng Đại học Hòa Lạc",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Môi trường quốc tế sôi động, sinh viên đến từ hơn 15 quốc gia"
+    },
+    "scholarships": "Học bổng Chắp cánh ước mơ và học bổng đối tác quốc tế trị giá hàng tỷ đồng.",
+    "employmentRate": "97.8% có việc làm đúng chuyên ngành",
+    "startingSalary": "13 – 28 triệu/tháng",
+    "facilities": "Cơ sở Làng Đại học Hòa Lạc hiện đại và khuôn viên Cầu Giấy trung tâm.",
+    "topEmployers": [
+      "Samsung",
+      "Viettel",
+      "Shopee",
+      "EY",
+      "KPMG",
+      "LG Electronics"
+    ]
+  },
+  {
+    "id": "vgu",
+    "code": "VGU",
+    "name": "Trường Đại học Việt Đức",
+    "shortName": "VGU",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "Bình Dương",
+    "provinceCode": "tphcm-dongnambo",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "21.5 – 26.0 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "80 – 120 tr/năm (Chuẩn CHLB Đức)",
+    "tuitionLevel": "international",
+    "majors": [
+      "cntt",
+      "vi-mach",
+      "tudonghoa",
+      "oto-dien",
+      "kdqt",
+      "kinh-te"
+    ],
+    "highlight": "Đại học công lập đối tác chiến lược giữa Chính phủ Việt Nam và CHLB Đức, cơ sở 50 ha hiện đại nhất Đông Nam Á, cấp bằng Đức được công nhận toàn cầu.",
+    "website": "https://vgu.edu.vn",
+    "admissionsUrl": "https://vgu.edu.vn/vi/admission",
+    "benchmarkHistory": {
+      "2023": "21.0 – 25.5",
+      "2024": "21.5 – 26.0",
+      "2025": "22.0 – 26.2",
+      "forecast2026": "22.5 – 26.5"
+    },
+    "admissionMethods": [
+      "Bài thi đánh giá năng lực TestAS của Đức",
+      "Điểm thi THPT kết hợp IELTS",
+      "Xét tuyển học bạ các trường THPT chuyên"
+    ],
+    "campusVibe": {
+      "dorms": "Khu KTX 50 ha tiêu chuẩn châu Âu tại Bình Dương",
+      "livingCostNote": "4 – 5.5 tr/tháng",
+      "clubsAndLife": "Môi trường nghiên cứu chuẩn Đức, cơ hội sang Đức làm đồ án tốt nghiệp"
+    },
+    "scholarships": "Học bổng DAAD và học bổng tài năng VGU lên đến 100% học phí.",
+    "employmentRate": "99% sinh viên có việc làm tại Đức và các tập đoàn châu Âu",
+    "startingSalary": "18 – 45 triệu/tháng",
+    "facilities": "Khuôn viên 50.5 ha vốn ODA Ngân hàng Thế giới, phòng thí nghiệm cơ điện tử & ô tô hiện đại nhất khu vực.",
+    "topEmployers": [
+      "Bosch",
+      "Mercedes-Benz",
+      "Siemens",
+      "BMW",
+      "Schaeffler",
+      "Intel"
+    ]
+  },
+  {
+    "id": "iu-vnu",
+    "code": "QSQ",
+    "name": "Trường Đại học Quốc tế - ĐHQG TP.HCM",
+    "shortName": "IU",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "22.0 – 26.5 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "50 – 90 tr/năm (100% tiếng Anh)",
+    "tuitionLevel": "international",
+    "majors": [
+      "cntt",
+      "vi-mach",
+      "khdl",
+      "logistics",
+      "kdqt",
+      "y-sinh",
+      "duoc"
+    ],
+    "highlight": "Đại học công lập đầu tiên tại Việt Nam giảng dạy hoàn toàn bằng tiếng Anh, đạt chuẩn kiểm định ABET và AUN-QA danh giá.",
+    "website": "https://hcmiu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hcmiu.edu.vn",
+    "benchmarkHistory": {
+      "2023": "21.5 – 26.0",
+      "2024": "22.0 – 26.5",
+      "2025": "22.5 – 26.8",
+      "forecast2026": "22.5 – 26.8"
+    },
+    "admissionMethods": [
+      "Đánh giá năng lực ĐHQG TP.HCM (700+ điểm)",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển kết hợp chứng chỉ quốc tế"
+    ],
+    "campusVibe": {
+      "dorms": "KTX ĐHQG TP.HCM hiện đại tại Thủ Đức",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Văn hóa tranh biện tiếng Anh, phong trào sinh viên quốc tế năng động"
+    },
+    "scholarships": "Quỹ học bổng khuyến tài từ 50% đến 100% học phí toàn khóa học.",
+    "employmentRate": "98% sinh viên có việc làm sau 6 tháng tốt nghiệp",
+    "startingSalary": "14 – 30 triệu/tháng",
+    "facilities": "Tòa nhà hiện đại tại Khu đô thị ĐHQG TP.HCM, thư viện liên thông quốc tế.",
+    "topEmployers": [
+      "Intel Vietnam",
+      "Unilever",
+      "P&G",
+      "Nestlé",
+      "KPMG",
+      "Shopee"
+    ]
+  },
+  {
+    "id": "swinburne",
+    "code": "SWIN",
+    "name": "Swinburne Việt Nam",
+    "shortName": "Swinburne",
+    "region": "bac",
+    "regionLabel": "Toàn quốc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Quốc tế & Liên kết Quốc tế",
+    "typeCategory": "quoc-te",
+    "benchmarks": "Xét học bạ & Phỏng vấn tiếng Anh",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "130 – 160 tr/năm (Chuẩn ĐH Công nghệ Swinburne Úc)",
+    "tuitionLevel": "international",
+    "majors": [
+      "cntt",
+      "khdl",
+      "marketing",
+      "truyenthong",
+      "kdqt"
+    ],
+    "highlight": "Đại học Công nghệ Swinburne (Top 1% thế giới) hợp tác cùng FPT, đào tạo công nghệ và kinh doanh thực chiến, cấp bằng Úc chính gốc.",
+    "website": "https://swinburne-vn.edu.vn",
+    "admissionsUrl": "https://swinburne-vn.edu.vn/tuyen-sinh",
+    "benchmarkHistory": {
+      "2023": "Học bạ 7.5+",
+      "2024": "Học bạ 7.5+",
+      "2025": "Học bạ 8.0+",
+      "forecast2026": "IELTS 6.0+ & GPA 7.5+"
+    },
+    "admissionMethods": [
+      "Xét học bạ THPT & Phỏng vấn cùng giảng viên quốc tế",
+      "Điểm thi THPT kết hợp tiếng Anh"
+    ],
+    "campusVibe": {
+      "dorms": "Liên kết KTX và căn hộ tiện ích",
+      "livingCostNote": "5 – 7 tr/tháng",
+      "clubsAndLife": "Môi trường học tập linh hoạt chuyển tiếp sang cơ sở Melbourne (Úc)"
+    },
+    "scholarships": "Học bổng Change-Maker từ 20% đến 100% học phí.",
+    "employmentRate": "100% sinh viên được đảm bảo cơ hội việc làm trong hệ sinh thái FPT & đối tác",
+    "startingSalary": "15 – 35 triệu/tháng",
+    "facilities": "3 cơ sở hiện đại tại Hà Nội, Đà Nẵng, TP.HCM.",
+    "topEmployers": [
+      "FPT Software",
+      "Amazon Web Services",
+      "Microsoft",
+      "KPMG",
+      "NAB Innovation"
+    ]
+  },
+  {
+    "id": "phenikaa",
+    "code": "PKA",
+    "name": "Trường Đại học Phenikaa",
+    "shortName": "Phenikaa",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "19.0 – 24.5 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "28 – 55 tr/năm (Khối Y Dược 65 – 85 tr/năm)",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "vi-mach",
+      "cntt",
+      "ykhoa",
+      "duoc",
+      "tudonghoa",
+      "oto-dien",
+      "marketing"
+    ],
+    "highlight": "Đại học tư thục hàng đầu về nghiên cứu khoa học, viện nghiên cứu Bán dẫn & Xe tự hành Phenikaa-X, bệnh viện thực hành 800 giường riêng biệt.",
+    "website": "https://phenikaa-uni.edu.vn",
+    "admissionsUrl": "https://tuyensinh.phenikaa-uni.edu.vn",
+    "benchmarkHistory": {
+      "2023": "19.0 – 24.0",
+      "2024": "19.5 – 24.5",
+      "2025": "20.0 – 25.0",
+      "forecast2026": "20.5 – 25.2"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét học bạ THPT (tổng điểm 3 môn từ 20đ)",
+      "Đánh giá tư duy TSA Bách Khoa hoặc HSA"
+    ],
+    "campusVibe": {
+      "dorms": "KTX 1.500 chỗ chuẩn khách sạn ngay trong khuôn viên",
+      "livingCostNote": "3.5 – 5 tr/tháng",
+      "clubsAndLife": "Khuôn viên 14 ha xanh mát tại Hà Đông, sân cỏ nhân tạo, nhà thi đấu đa năng"
+    },
+    "scholarships": "Quỹ học bổng Phenikaa hơn 50 tỷ đồng/năm (100% học phí toàn khóa).",
+    "employmentRate": "97.2% sinh viên có việc làm sau 6 tháng",
+    "startingSalary": "11 – 28 triệu/tháng",
+    "facilities": "Khuôn viên 14 ha, xưởng chế tạo robot, phòng lab vi mạch sạch chuẩn ISO.",
+    "topEmployers": [
+      "Tập đoàn Phenikaa",
+      "Viettel",
+      "FPT",
+      "Vinmec",
+      "Bệnh viện Bạch Mai"
+    ]
+  },
+  {
+    "id": "cmc",
+    "code": "CMC",
+    "name": "Trường Đại học CMC",
+    "shortName": "CMC Uni",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "18.5 – 23.5 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "35 – 55 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "cntt",
+      "vi-mach",
+      "khdl",
+      "dohoa",
+      "kdqt"
+    ],
+    "highlight": "Đại học số trực thuộc Tập đoàn Công nghệ CMC, cam kết 100% việc làm cho sinh viên ngành công nghệ tại CMC và Samsung sau tốt nghiệp.",
+    "website": "https://cmc-u.edu.vn",
+    "admissionsUrl": "https://tuyensinh.cmc-u.edu.vn",
+    "benchmarkHistory": {
+      "2023": "18.0 – 23.0",
+      "2024": "18.5 – 23.5",
+      "2025": "19.0 – 24.0",
+      "forecast2026": "19.5 – 24.2"
+    },
+    "admissionMethods": [
+      "Xét học bạ THPT",
+      "Điểm thi THPT 2026",
+      "Xét tuyển thẳng theo đề án của Tập đoàn CMC"
+    ],
+    "campusVibe": {
+      "dorms": "Liên kết KTX Mỹ Đình",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Văn hóa công nghệ sáng tạo, tham gia dự án thực tế của CMC từ năm thứ 2"
+    },
+    "scholarships": "Quỹ học bổng 'CMC - Khát vọng đổi mới' 96 tỷ đồng.",
+    "employmentRate": "100% cam kết việc làm cho ngành CNTT",
+    "startingSalary": "12 – 25 triệu/tháng",
+    "facilities": "Cơ sở vật chất hiện đại, phòng lab trí tuệ nhân tạo và an toàn thông tin.",
+    "topEmployers": [
+      "Tập đoàn CMC",
+      "Samsung SDS",
+      "Microsoft VN",
+      "FPT",
+      "VNPT"
+    ]
+  },
+  {
+    "id": "thanglong",
+    "code": "DTL",
+    "name": "Trường Đại học Thăng Long",
+    "shortName": "Thăng Long",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "21.5 – 25.8 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "32 – 42 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "cntt",
+      "marketing",
+      "tai-chinh-ngan-hang",
+      "truyenthong",
+      "dohoa",
+      "dieuduong"
+    ],
+    "highlight": "Trường đại học tư thục đầu tiên tại Việt Nam, khuôn viên sinh viên đẹp như phim Hàn Quốc, kỷ luật thi cử nghiêm túc và thực chất hàng đầu.",
+    "website": "https://thanglong.edu.vn",
+    "admissionsUrl": "https://tuyensinh.thanglong.edu.vn",
+    "benchmarkHistory": {
+      "2023": "21.0 – 25.2",
+      "2024": "21.5 – 25.8",
+      "2025": "22.0 – 26.0",
+      "forecast2026": "22.2 – 26.2"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT 2026 (chiếm 70%)",
+      "Xét tuyển kết hợp chứng chỉ ngoại ngữ IELTS 5.5+",
+      "Xét học bạ THPT"
+    ],
+    "campusVibe": {
+      "dorms": "Hệ thống chung cư sinh viên bao quanh trường",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Vườn trường xanh, hội trường âm nhạc hiện đại, các sự kiện âm nhạc sinh viên bùng nổ"
+    },
+    "scholarships": "Học bổng Thăng Long trao tặng sinh viên đạt thủ khoa và sinh viên xuất sắc mỗi kỳ.",
+    "employmentRate": "96.5% sinh viên có việc làm sau 6 tháng",
+    "startingSalary": "10 – 22 triệu/tháng",
+    "facilities": "Khuôn viên tại đường Nghiêm Xuân Yế - Hoàng Mai, trang thiết bị phòng máy Mac, studio âm thanh chuyên nghiệp.",
+    "topEmployers": [
+      "VPBank",
+      "Techcombank",
+      "FPT",
+      "VTV",
+      "MISA",
+      "Bệnh viện Hồng Ngọc"
+    ]
+  },
+  {
+    "id": "dainam",
+    "code": "DDN",
+    "name": "Trường Đại học Đại Nam",
+    "shortName": "Đại Nam",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "17.0 – 22.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "24 – 42 tr/năm (Khối Y Dược 60 – 75 tr/năm)",
+    "tuitionLevel": "under25",
+    "majors": [
+      "duoc",
+      "ykhoa",
+      "cntt",
+      "marketing",
+      "logistics",
+      "thuong-mai-dien-tu"
+    ],
+    "highlight": "Đại học ứng dụng năng động, mạnh về đào tạo Dược học, Y khoa, Vi mạch và Logistics, cam kết đào tạo kỹ năng mềm và tiếng Anh thực chiến.",
+    "website": "https://dainam.edu.vn",
+    "admissionsUrl": "https://tuyensinh.dainam.edu.vn",
+    "benchmarkHistory": {
+      "2023": "16.5 – 22.0",
+      "2024": "17.0 – 22.5",
+      "2025": "17.5 – 22.8",
+      "forecast2026": "17.5 – 23.0"
+    },
+    "admissionMethods": [
+      "Xét học bạ THPT (tổng điểm 3 môn từ 18đ)",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển thẳng theo đề án của trường"
+    ],
+    "campusVibe": {
+      "dorms": "KTX 1.400 chỗ tiện nghi tại Hà Đông",
+      "livingCostNote": "3.5 – 4.5 tr/tháng",
+      "clubsAndLife": "Hoạt động trải nghiệm thể chất, võ thuật tự vệ, trại hè hướng nghiệp"
+    },
+    "scholarships": "Quỹ học bổng 55 tỷ đồng hỗ trợ sinh viên nghèo vượt khó và học sinh giỏi.",
+    "employmentRate": "95% sinh viên có việc làm sau 1 năm",
+    "startingSalary": "9 – 18 triệu/tháng",
+    "facilities": "Khuôn viên gần 10 ha tại Phú Lãm - Hà Đông, hệ thống nhà thuốc mô phỏng và phòng lab Dược đạt chuẩn.",
+    "topEmployers": [
+      "FPT Long Châu",
+      "Pharmacity",
+      "Bệnh viện 103",
+      "Viettel Post",
+      "VietinBank"
+    ]
+  },
+  {
+    "id": "vanlang",
+    "code": "DVL",
+    "name": "Trường Đại học Văn Lang",
+    "shortName": "Văn Lang",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "18.0 – 22.5 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "38 – 58 tr/năm (Khối Răng Hàm Mặt, Y khoa cao hơn)",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "dohoa",
+      "truyenthong",
+      "marketing",
+      "cntt",
+      "ykhoa",
+      "rang-ham-mat",
+      "kientruc"
+    ],
+    "highlight": "Đại học tư thục nổi tiếng bậc nhất miền Nam về Thiết kế đồ họa, Truyền thông số, Kiến trúc và Nghệ thuật; campus 3 đẳng cấp hàng đầu TP.HCM.",
+    "website": "https://www.vlu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.vlu.edu.vn",
+    "benchmarkHistory": {
+      "2023": "17.5 – 22.5",
+      "2024": "18.0 – 22.5",
+      "2025": "18.5 – 23.0",
+      "forecast2026": "18.5 – 23.0"
+    },
+    "admissionMethods": [
+      "Xét điểm học bạ THPT",
+      "Điểm thi THPT 2026",
+      "Điểm ĐGNL ĐHQG TP.HCM",
+      "Thi môn năng khiếu Vẽ"
+    ],
+    "campusVibe": {
+      "dorms": "Khu KTX tiện nghi tại Gò Vấp",
+      "livingCostNote": "5 – 7 tr/tháng tại TP.HCM",
+      "clubsAndLife": "Show thời trang sinh viên, liên hoan phim ngắn, không gian nghệ thuật sáng tạo"
+    },
+    "scholarships": "Học bổng tài năng Văn Lang lên tới 100% học phí toàn khóa.",
+    "employmentRate": "96.8% sinh viên có việc làm sau tốt nghiệp",
+    "startingSalary": "11 – 25 triệu/tháng",
+    "facilities": "Khuôn viên Cơ sở 3 (Bình Thạnh/Gò Vấp) hơn 5 ha chuẩn QS 4 sao, hồ bơi chuẩn Olympic, studio trường quay 4K.",
+    "topEmployers": [
+      "VNG",
+      "Ogilvy",
+      "Dentsu",
+      "Điền Quân Media",
+      "Vinmec",
+      "Biti's"
+    ]
+  },
+  {
+    "id": "hoasen",
+    "code": "DHS",
+    "name": "Trường Đại học Hoa Sen",
+    "shortName": "Hoa Sen",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "18.0 – 21.0 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "45 – 75 tr/năm (Chuẩn kiểm định NECHE Hoa Kỳ)",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "marketing",
+      "kdqt",
+      "dohoa",
+      "thuong-mai-dien-tu",
+      "truyenthong",
+      "tamly"
+    ],
+    "highlight": "Đại học tôn trọng sự khác biệt, đạt kiểm định quốc tế NECHE (Hoa Kỳ) và ACBSP, mạnh về Kinh doanh, Du lịch, Thiết kế và Truyền thông.",
+    "website": "https://www.hoasen.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hoasen.edu.vn",
+    "benchmarkHistory": {
+      "2023": "17.0 – 21.0",
+      "2024": "17.5 – 21.0",
+      "2025": "18.0 – 21.5",
+      "forecast2026": "18.0 – 21.5"
+    },
+    "admissionMethods": [
+      "Xét học bạ THPT",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển thẳng theo đề án Hoa Sen"
+    ],
+    "campusVibe": {
+      "dorms": "Liên kết hệ thống lưu trú sinh viên",
+      "livingCostNote": "5.5 – 7.5 tr/tháng",
+      "clubsAndLife": "Môi trường học tập cởi mở, sinh viên tự tin thuyết trình tiếng Anh và tổ chức sự kiện chuyên nghiệp"
+    },
+    "scholarships": "Học bổng Tinh hoa, Học bổng Tài năng trẻ lên đến hàng tỷ đồng.",
+    "employmentRate": "95.5% sinh viên có việc làm trước khi nhận bằng tốt nghiệp",
+    "startingSalary": "10 – 24 triệu/tháng",
+    "facilities": "Các cơ sở tại trung tâm Quận 1 và Quận 3 TP.HCM, trang bị phòng thực hành nhà hàng - khách sạn 5 sao.",
+    "topEmployers": [
+      "Marriott",
+      "InterContinental",
+      "Shopee",
+      "Grab",
+      "KPMG",
+      "Ogilvy"
+    ]
+  },
+  {
+    "id": "hutech",
+    "code": "DKC",
+    "name": "Trường Đại học Công nghệ TP.HCM",
+    "shortName": "HUTECH",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "17.0 – 21.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "36 – 45 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "cntt",
+      "oto-dien",
+      "tudonghoa",
+      "marketing",
+      "kdqt",
+      "duoc",
+      "dohoa"
+    ],
+    "highlight": "Đại học đa ngành ứng dụng thực chiến quy mô lớn tại TP.HCM, liên kết hơn 1.000 doanh nghiệp hàng đầu để sinh viên thực tập từ năm 2.",
+    "website": "https://www.hutech.edu.vn",
+    "admissionsUrl": "https://www.hutech.edu.vn/tuyensinh",
+    "benchmarkHistory": {
+      "2023": "17.0 – 21.0",
+      "2024": "17.5 – 21.5",
+      "2025": "18.0 – 22.0",
+      "forecast2026": "18.0 – 22.0"
+    },
+    "admissionMethods": [
+      "Xét tuyển điểm thi tốt nghiệp THPT 2026",
+      "Xét điểm học bạ THPT (tổng điểm 3 môn từ 18đ)",
+      "Điểm thi ĐGNL ĐHQG TP.HCM"
+    ],
+    "campusVibe": {
+      "dorms": "Khu lưu trú sinh viên liên kết tại Bình Thạnh và Thủ Đức",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "50+ CLB tài năng sinh viên, giải đấu thể thao HUTECH Games cuồng nhiệt"
+    },
+    "scholarships": "Quỹ học bổng doanh nghiệp HUTECH hơn 30 tỷ đồng/năm.",
+    "employmentRate": "96% sinh viên có việc làm sau khi tốt nghiệp",
+    "startingSalary": "10 – 20 triệu/tháng",
+    "facilities": "Trung tâm đào tạo nhân lực chất lượng cao tại Khu Công nghệ cao TP.HCM, xưởng ô tô thực hành hiện đại.",
+    "topEmployers": [
+      "FPT Software",
+      "VinFast",
+      "Samsung",
+      "Tiki",
+      "MobiFone",
+      "BIDV"
+    ]
+  },
+  {
+    "id": "uef",
+    "code": "UEF",
+    "name": "Trường Đại học Kinh tế - Tài chính TP.HCM",
+    "shortName": "UEF",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "17.0 – 21.0 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "38 – 52 tr/năm (Song ngữ Anh - Việt)",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "tai-chinh-ngan-hang",
+      "kdqt",
+      "marketing",
+      "logistics",
+      "thuong-mai-dien-tu"
+    ],
+    "highlight": "Đại học đào tạo chuẩn song ngữ quốc tế hàng đầu miền Nam về khối ngành Kinh tế, Tài chính và Quản trị.",
+    "website": "https://www.uef.edu.vn",
+    "admissionsUrl": "https://www.uef.edu.vn/tuyen-sinh",
+    "benchmarkHistory": {
+      "2023": "17.0 – 20.5",
+      "2024": "17.5 – 21.0",
+      "2025": "18.0 – 21.5",
+      "forecast2026": "18.0 – 21.5"
+    },
+    "admissionMethods": [
+      "Xét học bạ THPT",
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Đánh giá năng lực ĐHQG-HCM"
+    ],
+    "campusVibe": {
+      "dorms": "Liên kết KTX",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Môi trường giao lưu quốc tế với hơn 30 trường đại học đối tác toàn cầu"
+    },
+    "scholarships": "Học bổng doanh nghiệp 25%, 50%, 100% học phí.",
+    "employmentRate": "96.5% sinh viên có việc làm",
+    "startingSalary": "10 – 22 triệu/tháng",
+    "facilities": "Cơ sở tại đường Điện Biên Phủ - Bình Thạnh, thư viện điện tử đa phương tiện.",
+    "topEmployers": [
+      "Vietcombank",
+      "KPMG",
+      "Standard Chartered",
+      "Hapag-Lloyd",
+      "Shopee"
+    ]
+  },
+  {
+    "id": "hiu",
+    "code": "HIU",
+    "name": "Trường Đại học Quốc tế Hồng Bàng",
+    "shortName": "HIU",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "16.0 – 22.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "32 – 55 tr/năm (Khối Sức khỏe 70 – 110 tr/năm)",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "ykhoa",
+      "rang-ham-mat",
+      "duoc",
+      "dieuduong",
+      "cntt",
+      "kdqt"
+    ],
+    "highlight": "Tòa nhà 'Con tàu tri thức' nổi tiếng tại Bình Thạnh, thế mạnh vượt trội về khối ngành Khoa học Sức khỏe (Y, Nha, Dược, Điều dưỡng).",
+    "website": "https://hiu.vn",
+    "admissionsUrl": "https://tuyensinh.hiu.vn",
+    "benchmarkHistory": {
+      "2023": "16.0 – 22.5",
+      "2024": "16.5 – 22.5",
+      "2025": "17.0 – 23.0",
+      "forecast2026": "17.0 – 23.0"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT 2026",
+      "Xét học bạ THPT",
+      "Điểm thi ĐGNL ĐHQG TP.HCM"
+    ],
+    "campusVibe": {
+      "dorms": "Hệ thống lưu trú sinh viên",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Khu thực hành tiền lâm sàng răng hàm mặt và bệnh viện mô phỏng Y khoa"
+    },
+    "scholarships": "Quỹ học bổng HIU Care và học bổng tài năng doanh nghiệp.",
+    "employmentRate": "95% sinh viên có việc làm",
+    "startingSalary": "9 – 20 triệu/tháng",
+    "facilities": "Tòa nhà 25 tầng trung tâm Bình Thạnh, hệ thống 120 phòng thí nghiệm y dược hiện đại.",
+    "topEmployers": [
+      "Bệnh viện FV",
+      "Bệnh viện Thống Nhất",
+      "Pharmacity",
+      "Bệnh viện Chợ Rẫy"
+    ]
+  },
+  {
+    "id": "duytan",
+    "code": "DDT",
+    "name": "Trường Đại học Duy Tân",
+    "shortName": "Duy Tân",
+    "region": "trung",
+    "regionLabel": "Miền Trung",
+    "city": "Đà Nẵng",
+    "provinceCode": "danang-hue",
+    "provinceGroup": "danang-hue",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "16.0 – 22.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "24 – 42 tr/năm (Khối Y Dược 55 – 70 tr/năm)",
+    "tuitionLevel": "under25",
+    "majors": [
+      "cntt",
+      "vi-mach",
+      "ykhoa",
+      "duoc",
+      "kdqt",
+      "marketing",
+      "kientruc"
+    ],
+    "highlight": "Đại học tư thục đầu tiên của Việt Nam lọt Top 500 Đại học tốt nhất Thế giới (THE Rankings), tiên phong đào tạo Bán dẫn và An ninh mạng tại miền Trung.",
+    "website": "https://duytan.edu.vn",
+    "admissionsUrl": "https://tuyensinh.duytan.edu.vn",
+    "benchmarkHistory": {
+      "2023": "16.0 – 22.5",
+      "2024": "16.5 – 22.5",
+      "2025": "17.0 – 23.0",
+      "forecast2026": "17.0 – 23.0"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển học bạ THPT",
+      "Đánh giá năng lực ĐHQG-HCM & HSA"
+    ],
+    "campusVibe": {
+      "dorms": "KTX sinh viên tại Đà Nẵng",
+      "livingCostNote": "3 – 4.5 tr/tháng tại TP biển Đà Nẵng",
+      "clubsAndLife": "Vô địch An ninh mạng quốc tế, không gian công nghệ số ven sông Hàn"
+    },
+    "scholarships": "Quỹ học bổng toàn phần và bán phần hơn 40 tỷ đồng/năm.",
+    "employmentRate": "97.5% sinh viên có việc làm sau khi ra trường",
+    "startingSalary": "10 – 25 triệu/tháng",
+    "facilities": "5 cơ sở khang trang tại trung tâm TP. Đà Nẵng, trung tâm mô phỏng Y khoa 3D.",
+    "topEmployers": [
+      "FPT Software Đà Nẵng",
+      "Enclave",
+      "Bệnh viện Đà Nẵng",
+      "Sun Group",
+      "Vinpearl"
+    ]
+  },
+  {
+    "id": "nttu",
+    "code": "NTT",
+    "name": "Trường Đại học Nguyễn Tất Thành",
+    "shortName": "NTTU",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Tư thục năng động",
+    "typeCategory": "tu-thuc",
+    "benchmarks": "16.0 – 22.0 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "28 – 45 tr/năm (Y khoa 80 tr/năm)",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "duoc",
+      "ykhoa",
+      "cntt",
+      "marketing",
+      "kdqt",
+      "oto-dien"
+    ],
+    "highlight": "Đại học tư thục đạt chuẩn quốc tế QS 4 sao (Anh Quốc), thế mạnh đào tạo Dược học, Y tế, Kỹ thuật và Công nghệ thực phẩm ứng dụng.",
+    "website": "https://ntt.edu.vn",
+    "admissionsUrl": "https://tuyensinh.ntt.edu.vn",
+    "benchmarkHistory": {
+      "2023": "15.5 – 21.5",
+      "2024": "16.0 – 22.0",
+      "2025": "16.5 – 22.5",
+      "forecast2026": "16.5 – 22.5"
+    },
+    "admissionMethods": [
+      "Xét học bạ THPT",
+      "Điểm thi THPT 2026",
+      "Điểm ĐGNL ĐHQG TP.HCM"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tiện nghi tại Quận 4 & Quận 12",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Đa dạng hoạt động câu lạc bộ kỹ năng, hỗ trợ khởi nghiệp sinh viên"
+    },
+    "scholarships": "Học bổng khuyến học hơn 50 tỷ đồng/năm.",
+    "employmentRate": "96% sinh viên có việc làm",
+    "startingSalary": "9 – 18 triệu/tháng",
+    "facilities": "Khuôn viên công nghệ cao tại Quận 9 và các cơ sở hiện đại tại Quận 4.",
+    "topEmployers": [
+      "Pharmacity",
+      "Bệnh viện Nhi Đồng 2",
+      "CP Group",
+      "FPT",
+      "Thaco"
+    ]
+  },
+  {
+    "id": "hup",
+    "code": "DKH",
+    "name": "Trường Đại học Dược Hà Nội",
+    "shortName": "HUP",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "24.5 – 27.2 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "24 – 38 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "duoc",
+      "y-sinh",
+      "sinh-hoc"
+    ],
+    "highlight": "Cái nôi đào tạo Dược sĩ hàng đầu Việt Nam hơn 100 năm lịch sử, đơn vị dẫn dắt nghiên cứu và bào chế dược phẩm quốc gia.",
+    "website": "https://hup.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hup.edu.vn",
+    "benchmarkHistory": {
+      "2023": "25.0 – 27.5",
+      "2024": "24.5 – 27.2",
+      "2025": "25.0 – 27.5",
+      "forecast2026": "25.2 – 27.5"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT (Khối A00, B00)",
+      "Xét tuyển kết hợp học sinh giỏi quốc gia/tỉnh",
+      "Điểm đánh giá tư duy TSA Bách Khoa"
+    ],
+    "campusVibe": {
+      "dorms": "KTX ngay phố Lê Thánh Tông trung tâm Hà Nội",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Truyền thống học thuật uyên bác, vườn dược liệu thực nghiệm phong phú"
+    },
+    "scholarships": "Học bổng khuyến khích học tập và tài trợ từ các tập đoàn dược phẩm quốc tế (Sanofi, Novartis, Dược Hậu Giang).",
+    "employmentRate": "99% sinh viên có việc làm ngay sau khi tốt nghiệp",
+    "startingSalary": "13 – 28 triệu/tháng",
+    "facilities": "Tòa nhà di sản kiến trúc Pháp tại trung tâm Hoàn Kiếm, viện nghiên cứu dược liệu hiện đại.",
+    "topEmployers": [
+      "Sanofi",
+      "AstraZeneca",
+      "Dược Hậu Giang",
+      "Viện Kiểm nghiệm Thuốc TW",
+      "Traphaco"
+    ]
+  },
+  {
+    "id": "aof",
+    "code": "HTC",
+    "name": "Học viện Tài chính",
+    "shortName": "AOF",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "25.2 – 28.2 điểm THPT",
+    "benchmarkScoreRange": "above26",
+    "tuition": "22 – 40 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "tai-chinh-ngan-hang",
+      "ke-toan",
+      "kdqt",
+      "cntt",
+      "marketing"
+    ],
+    "highlight": "Cái nôi đào tạo chuyên gia Tài chính, Kế toán và Kiểm toán số 1 Việt Nam trực thuộc Bộ Tài chính, mạng lưới cựu sinh viên giữ nhiều trọng trách quốc gia.",
+    "website": "https://hvtc.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hvtc.edu.vn",
+    "benchmarkHistory": {
+      "2023": "25.8 – 28.5",
+      "2024": "25.2 – 28.2",
+      "2025": "25.5 – 28.4",
+      "forecast2026": "25.8 – 28.5"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT (A00, A01, D01, D07)",
+      "Xét tuyển kết hợp chứng chỉ IELTS 5.5+",
+      "Xét tuyển học sinh giỏi THPT"
+    ],
+    "campusVibe": {
+      "dorms": "KTX sinh viên tại Đông Ngạc - Bắc Từ Liêm",
+      "livingCostNote": "4 – 5.5 tr/tháng",
+      "clubsAndLife": "CLB Kế toán Kiểm toán A&A, Festival Tài chính thường niên thu hút hàng nghìn sinh viên"
+    },
+    "scholarships": "Học bổng khuyến khích học tập và học bổng ACCA/CPA từ Big4 kiểm toán.",
+    "employmentRate": "98.4% có việc làm trong 6 tháng",
+    "startingSalary": "11 – 25 triệu/tháng",
+    "facilities": "Hệ thống phòng mô phỏng sàn giao dịch tài chính, trung tâm khảo thí hiện đại.",
+    "topEmployers": [
+      "PwC",
+      "Deloitte",
+      "EY",
+      "KPMG",
+      "Kho bạc Nhà nước",
+      "Vietcombank",
+      "MBBank"
+    ]
+  },
+  {
+    "id": "ba",
+    "code": "NHH",
+    "name": "Học viện Ngân hàng",
+    "shortName": "BA",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "25.5 – 28.1 điểm THPT",
+    "benchmarkScoreRange": "above26",
+    "tuition": "25 – 42 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "tai-chinh-ngan-hang",
+      "kdqt",
+      "cntt",
+      "khdl",
+      "marketing",
+      "luat-kinh-te"
+    ],
+    "highlight": "Trường đại học trọng điểm ngành Tài chính - Ngân hàng trực thuộc Ngân hàng Nhà nước Việt Nam, tiên phong đào tạo Fintech và Ngân hàng số.",
+    "website": "https://www.hvnh.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hvnh.edu.vn",
+    "benchmarkHistory": {
+      "2023": "25.6 – 28.2",
+      "2024": "25.5 – 28.1",
+      "2025": "25.8 – 28.3",
+      "forecast2026": "25.8 – 28.4"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT (A00, A01, D01, D07)",
+      "Kỳ thi đánh giá năng lực V-SAT Ngân hàng",
+      "Xét tuyển kết hợp chứng chỉ ngoại ngữ"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại phố Chùa Bộc - Đống Đa trung tâm thủ đô",
+      "livingCostNote": "4.5 – 6.5 tr/tháng",
+      "clubsAndLife": "Khuôn viên năng động ngay phố thời trang Chùa Bộc, giải bóng đá sinh viên BA Cup"
+    },
+    "scholarships": "Quỹ học bổng Thống đốc Ngân hàng Nhà nước và các NHTM lớn.",
+    "employmentRate": "98.1% có việc làm đúng ngành ngân hàng - tài chính",
+    "startingSalary": "12 – 26 triệu/tháng",
+    "facilities": "Khuôn viên trung tâm Đống Đa, phòng lab thực hành Core Banking hiện đại.",
+    "topEmployers": [
+      "Ngân hàng Nhà nước",
+      "Vietcombank",
+      "BIDV",
+      "VietinBank",
+      "Agribank",
+      "Techcombank"
+    ]
+  },
+  {
+    "id": "dav",
+    "code": "HQT",
+    "name": "Học viện Ngoại giao",
+    "shortName": "DAV",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "26.5 – 28.9 điểm THPT",
+    "benchmarkScoreRange": "above26",
+    "tuition": "24 – 45 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "truyenthong",
+      "kdqt",
+      "luat-kinh-te",
+      "ngon-ngu-anh",
+      "marketing"
+    ],
+    "highlight": "Cơ sở đào tạo chuyên gia đối ngoại, nhà ngoại giao và truyền thông quốc tế hàng đầu Việt Nam trực thuộc Bộ Ngoại giao.",
+    "website": "https://dav.edu.vn",
+    "admissionsUrl": "https://tuyensinh.dav.edu.vn",
+    "benchmarkHistory": {
+      "2023": "26.8 – 29.0",
+      "2024": "26.5 – 28.9",
+      "2025": "26.8 – 29.1",
+      "forecast2026": "27.0 – 29.2"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT kết hợp chứng chỉ ngoại ngữ (IELTS 7.0+)",
+      "Xét tuyển học bạ THPT chuyên",
+      "Điểm thi tốt nghiệp THPT 2026 (Khối D01, A01, C00)"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại đường Chùa Láng",
+      "livingCostNote": "5 – 7 tr/tháng",
+      "clubsAndLife": "Hội nghị mô phỏng Liên Hợp Quốc (DAVMUN), giao lưu nguyên thủ quốc gia và đại sứ thế giới"
+    },
+    "scholarships": "Học bổng Bộ Ngoại giao và học bổng hiệp hội đối ngoại quốc tế.",
+    "employmentRate": "98.7% sinh viên có việc làm sau khi ra trường",
+    "startingSalary": "14 – 32 triệu/tháng",
+    "facilities": "Tòa nhà campus mới sang trọng tại phố Chùa Láng, hội trường đa năng chuẩn hội nghị quốc tế.",
+    "topEmployers": [
+      "Bộ Ngoại giao",
+      "Đại sứ quán các nước",
+      "VTV",
+      "Tập đoàn Đa quốc gia",
+      "Liên Hợp Quốc"
+    ]
+  },
+  {
+    "id": "hau",
+    "code": "KTA",
+    "name": "Trường Đại học Kiến trúc Hà Nội",
+    "shortName": "HAU",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "21.0 – 26.5 điểm THPT & Vẽ",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "22 – 36 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "kientruc",
+      "dohoa",
+      "xaydung",
+      "noi-that"
+    ],
+    "highlight": "Cái nôi đào tạo Kiến trúc sư, Nhà quy hoạch đô thị và Nhà thiết kế nội thất danh tiếng nhất miền Bắc.",
+    "website": "https://hau.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hau.edu.vn",
+    "benchmarkHistory": {
+      "2023": "21.0 – 26.0",
+      "2024": "21.0 – 26.5",
+      "2025": "21.5 – 26.8",
+      "forecast2026": "21.5 – 26.8"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT kết hợp thi môn Vẽ năng khiếu (Khối V00, H00)",
+      "Xét tuyển thẳng học sinh đoạt giải kiến trúc"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại đường Nguyễn Trãi - Thanh Xuân",
+      "livingCostNote": "4 – 5.5 tr/tháng",
+      "clubsAndLife": "Xưởng đồ án mở 24/7, lễ hội triển lãm kiến trúc độc đáo của sinh viên"
+    },
+    "scholarships": "Học bổng khuyến học từ các tập đoàn xây dựng và hiệp hội kiến trúc sư.",
+    "employmentRate": "97.5% có việc làm ngay khi làm đồ án tốt nghiệp",
+    "startingSalary": "12 – 28 triệu/tháng",
+    "facilities": "Xưởng điêu khắc, xưởng mô hình kiến trúc laser/3D, phòng triển lãm nghệ thuật.",
+    "topEmployers": [
+      "Viện Quy hoạch Đô thị Quốc gia",
+      "Sun Group",
+      "VinGroup",
+      "Coteccons",
+      "Hòa Bình"
+    ]
+  },
+  {
+    "id": "humg",
+    "code": "MDA",
+    "name": "Trường Đại học Mỏ - Địa chất",
+    "shortName": "HUMG",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập",
+    "typeCategory": "cong-lap-dia-phuong",
+    "benchmarks": "18.0 – 23.5 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "18 – 26 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "cntt",
+      "tudonghoa",
+      "oto-dien",
+      "moi-truong",
+      "dia-chat"
+    ],
+    "highlight": "Đại học kỹ thuật đa ngành hàng đầu về Kỹ thuật Địa chất, Dầu khí, Tự động hóa và Trắc địa - Bản đồ số GIS.",
+    "website": "https://humg.edu.vn",
+    "admissionsUrl": "https://tuyensinh.humg.edu.vn",
+    "benchmarkHistory": {
+      "2023": "17.5 – 23.0",
+      "2024": "18.0 – 23.5",
+      "2025": "18.5 – 23.8",
+      "forecast2026": "18.5 – 24.0"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT (A00, A01, D01)",
+      "Xét học bạ THPT (từ 18đ)",
+      "Đánh giá tư duy Bách Khoa TSA"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại Cổ Nhuế - Bắc Từ Liêm",
+      "livingCostNote": "3.5 – 4.8 tr/tháng",
+      "clubsAndLife": "Các chuyến đi thực địa địa chất kỳ thú khắp mọi miền đất nước"
+    },
+    "scholarships": "Học bổng từ Tập đoàn Dầu khí PVN và Tập đoàn Than Khoáng sản TKV.",
+    "employmentRate": "96% có việc làm trong 1 năm",
+    "startingSalary": "10 – 24 triệu/tháng",
+    "facilities": "Bảo tàng địa chất phong phú nhất Việt Nam, phòng lab phân tích mẫu khoáng sản.",
+    "topEmployers": [
+      "PVN",
+      "TKV",
+      "Viettel Geospace",
+      "Tổng công ty Khảo sát Trắc địa",
+      "Bosch"
+    ]
+  },
+  {
+    "id": "vnua",
+    "code": "HVN",
+    "name": "Học viện Nông nghiệp Việt Nam",
+    "shortName": "VNUA",
+    "region": "bac",
+    "regionLabel": "Miền Bắc",
+    "city": "Hà Nội",
+    "provinceCode": "hanoi",
+    "provinceGroup": "hanoi",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "17.5 – 23.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "16 – 24 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "sinh-hoc",
+      "cntt",
+      "logistics",
+      "kdqt",
+      "moi-truong",
+      "thu-y"
+    ],
+    "highlight": "Khuôn viên đại học xanh rộng lớn nhất miền Bắc (gần 200 ha tại Gia Lâm), đơn vị nghiên cứu nông nghiệp công nghệ cao và công nghệ sinh học số 1 cả nước.",
+    "website": "https://vnua.edu.vn",
+    "admissionsUrl": "https://tuyensinh.vnua.edu.vn",
+    "benchmarkHistory": {
+      "2023": "17.0 – 23.0",
+      "2024": "17.5 – 23.5",
+      "2025": "18.0 – 23.8",
+      "forecast2026": "18.0 – 24.0"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT (A00, B00, A01, D01)",
+      "Xét học bạ THPT",
+      "Xét tuyển thẳng theo đề án của Học viện"
+    ],
+    "campusVibe": {
+      "dorms": "KTX sinh thái hồ sen Gia Lâm mát mẻ",
+      "livingCostNote": "3.5 – 4.5 tr/tháng",
+      "clubsAndLife": "4 hồ nước sinh thái rộng lớn, vườn ươm khởi nghiệp nông nghiệp công nghệ cao"
+    },
+    "scholarships": "Quỹ học bổng hơn 40 tỷ đồng/năm từ các tập đoàn nông nghiệp hàng đầu (CP, De Heus, VinEco).",
+    "employmentRate": "97.3% có việc làm sau khi ra trường",
+    "startingSalary": "10 – 22 triệu/tháng",
+    "facilities": "Khuôn viên 192 ha, bệnh viện thú y hiện đại nhất Đông Nam Á, trung tâm công nghệ sinh học.",
+    "topEmployers": [
+      "CP Group",
+      "De Heus",
+      "Masan MEATLife",
+      "Vinamilk",
+      "TH True Milk",
+      "Dapaco"
+    ]
+  },
+  {
+    "id": "hcmus",
+    "code": "QST",
+    "name": "Trường Đại học Khoa học Tự nhiên - ĐHQG TP.HCM",
+    "shortName": "HCMUS",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "24.0 – 28.5 điểm THPT",
+    "benchmarkScoreRange": "above26",
+    "tuition": "28 – 48 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "cntt",
+      "khdl",
+      "vi-mach",
+      "sinh-hoc",
+      "y-sinh",
+      "moi-truong"
+    ],
+    "highlight": "Trung tâm đào tạo và nghiên cứu khoa học cơ bản & CNTT đỉnh cao của miền Nam, cái nôi của nhiều đội tuyển vô địch Olympic tin học và ICPC toàn cầu.",
+    "website": "https://hcmus.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hcmus.edu.vn",
+    "benchmarkHistory": {
+      "2023": "24.5 – 28.2",
+      "2024": "24.0 – 28.5",
+      "2025": "24.5 – 28.6",
+      "forecast2026": "24.8 – 28.8"
+    },
+    "admissionMethods": [
+      "Điểm thi ĐGNL ĐHQG TP.HCM (chiếm 50-60%)",
+      "Điểm thi tốt nghiệp THPT 2026 (A00, A01, B00)",
+      "Xét tuyển tài năng quốc tế"
+    ],
+    "campusVibe": {
+      "dorms": "KTX ĐHQG TP.HCM quy mô 40.000 chỗ tại Dĩ An",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Văn hóa học thuật nghiêm túc, CLB Tin học học thuật mạnh bậc nhất cả nước"
+    },
+    "scholarships": "Quỹ học bổng khuyến tài ĐHQG TP.HCM và học bổng doanh nghiệp công nghệ cao.",
+    "employmentRate": "98.9% sinh viên có việc làm sau 6 tháng",
+    "startingSalary": "14 – 35 triệu/tháng",
+    "facilities": "Cơ sở Nguyễn Văn Cừ Quận 5 và cơ sở Linh Trung Thủ Đức, phòng lab trí tuệ nhân tạo AILab.",
+    "topEmployers": [
+      "Google",
+      "Meta",
+      "Zalo / VNG",
+      "Axon",
+      "Shopee",
+      "Intel Vietnam",
+      "FPT Software"
+    ]
+  },
+  {
+    "id": "uel",
+    "code": "QSX",
+    "name": "Trường Đại học Kinh tế - Luật - ĐHQG TP.HCM",
+    "shortName": "UEL",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "25.0 – 27.8 điểm THPT",
+    "benchmarkScoreRange": "above26",
+    "tuition": "28 – 45 tr/năm",
+    "tuitionLevel": "25-50",
+    "majors": [
+      "luat-kinh-te",
+      "tai-chinh-ngan-hang",
+      "kdqt",
+      "marketing",
+      "khdl",
+      "fintech"
+    ],
+    "highlight": "Sự kết hợp độc nhất giữa Kinh tế và Luật học, đào tạo thế hệ chuyên gia tài chính, luật sư kinh tế và phân tích dữ liệu kinh doanh dẫn đầu miền Nam.",
+    "website": "https://www.uel.edu.vn",
+    "admissionsUrl": "https://tuyensinh.uel.edu.vn",
+    "benchmarkHistory": {
+      "2023": "25.2 – 27.6",
+      "2024": "25.0 – 27.8",
+      "2025": "25.4 – 28.0",
+      "forecast2026": "25.5 – 28.0"
+    },
+    "admissionMethods": [
+      "Đánh giá năng lực ĐHQG TP.HCM (750+ điểm)",
+      "Điểm thi THPT (A00, A01, D01, D07)",
+      "Xét chứng chỉ IELTS 6.0+ quy đổi"
+    ],
+    "campusVibe": {
+      "dorms": "KTX ĐHQG TP.HCM tại Thủ Đức",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Phiên tòa giả định quốc tế, sàn chứng khoán ảo UEL, các giải tranh biện pháp lý sắc sảo"
+    },
+    "scholarships": "Học bổng tài năng ĐHQG-HCM và các hãng luật quốc tế hàng đầu.",
+    "employmentRate": "98.5% sinh viên có việc làm đúng chuyên ngành",
+    "startingSalary": "12 – 28 triệu/tháng",
+    "facilities": "Campus xanh hiện đại tại TP. Thủ Đức, phòng mô phỏng Tòa án thực tế và phòng dữ liệu Bloomberg.",
+    "topEmployers": [
+      "Big4 Kiểm toán",
+      "Các văn phòng Luật sư quốc tế",
+      "Vietcombank",
+      "MBBank",
+      "Shopee"
+    ]
+  },
+  {
+    "id": "hub",
+    "code": "NHS",
+    "name": "Trường Đại học Ngân hàng TP.HCM",
+    "shortName": "HUB",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Công lập trọng điểm",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "24.5 – 26.8 điểm THPT",
+    "benchmarkScoreRange": "23-26",
+    "tuition": "20 – 38 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "tai-chinh-ngan-hang",
+      "kdqt",
+      "cntt",
+      "marketing",
+      "ke-toan",
+      "luat-kinh-te"
+    ],
+    "highlight": "Trường đại học trọng điểm ngành Tài chính Ngân hàng trực thuộc Ngân hàng Nhà nước tại khu vực phía Nam, mạng lưới cựu sinh viên giữ vị trí điều hành tại hầu hết các ngân hàng lớn.",
+    "website": "https://hub.edu.vn",
+    "admissionsUrl": "https://tuyensinh.hub.edu.vn",
+    "benchmarkHistory": {
+      "2023": "24.8 – 26.5",
+      "2024": "24.5 – 26.8",
+      "2025": "24.8 – 27.0",
+      "forecast2026": "25.0 – 27.0"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT (A00, A01, D01, D07)",
+      "Đánh giá năng lực V-SAT HUB",
+      "ĐGNL ĐHQG TP.HCM"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại Thủ Đức rợp bóng cây",
+      "livingCostNote": "4 – 5.5 tr/tháng",
+      "clubsAndLife": "Khuôn viên rộng lớn tại Hoàng Diệu 2 Thủ Đức, chợ sinh viên và văn hóa ẩm thực phong phú"
+    },
+    "scholarships": "Quỹ học bổng Thống đốc và các tổ chức tín dụng hàng đầu.",
+    "employmentRate": "97.8% có việc làm trong 6 tháng",
+    "startingSalary": "11 – 25 triệu/tháng",
+    "facilities": "Cơ sở tại Quận 1 và khuôn viên xanh tại Thủ Đức, trung tâm thực hành ngân hàng Core Banking.",
+    "topEmployers": [
+      "Vietcombank",
+      "BIDV",
+      "ACB",
+      "HDBank",
+      "Sacombank",
+      "VPBank",
+      "KPMG"
+    ]
+  },
+  {
+    "id": "uth",
+    "code": "GTS",
+    "name": "Trường Đại học Giao thông Vận tải TP.HCM",
+    "shortName": "UTH",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Công lập",
+    "typeCategory": "cong-lap-dia-phuong",
+    "benchmarks": "20.5 – 25.8 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "18 – 32 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "logistics",
+      "oto-dien",
+      "cntt",
+      "tudonghoa",
+      "xaydung",
+      "hang-khong"
+    ],
+    "highlight": "Đại học kỹ thuật trực thuộc Bộ GTVT, đứng đầu khu vực phía Nam về đào tạo Logistics, Kinh tế Vận tải, Cảng biển và Kỹ thuật Ô tô.",
+    "website": "https://ut.edu.vn",
+    "admissionsUrl": "https://tuyensinh.ut.edu.vn",
+    "benchmarkHistory": {
+      "2023": "20.0 – 25.5",
+      "2024": "20.5 – 25.8",
+      "2025": "21.0 – 26.0",
+      "forecast2026": "21.2 – 26.2"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT (A00, A01, D01, D07)",
+      "Xét điểm học bạ THPT",
+      "Đánh giá năng lực ĐHQG-HCM"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại Bình Thạnh và Quận 12",
+      "livingCostNote": "4.5 – 6 tr/tháng",
+      "clubsAndLife": "Các cuộc thi thiết kế mô hình tàu thủy, xe tiết kiệm nhiên liệu Eco-marathon"
+    },
+    "scholarships": "Học bổng từ Cục Hàng hải, Hiệp hội Logistics Việt Nam và các tập đoàn vận tải biển.",
+    "employmentRate": "98.2% sinh viên Logistics và Ô tô có việc làm trước khi tốt nghiệp",
+    "startingSalary": "11 – 26 triệu/tháng",
+    "facilities": "Hệ thống mô phỏng buồng lái tàu biển 360 độ hiện đại, xưởng ô tô thực hành.",
+    "topEmployers": [
+      "Tân Cảng Sài Gòn",
+      "Maersk Line",
+      "Coteccons",
+      "VinFast",
+      "Gemadept"
+    ]
+  },
+  {
+    "id": "sgu",
+    "code": "SGD",
+    "name": "Trường Đại học Sài Gòn",
+    "shortName": "SGU",
+    "region": "nam",
+    "regionLabel": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "provinceCode": "tphcm",
+    "provinceGroup": "tphcm-dongnambo",
+    "type": "Công lập địa phương",
+    "typeCategory": "cong-lap-dia-phuong",
+    "benchmarks": "21.0 – 26.8 điểm THPT",
+    "benchmarkScoreRange": "20-23",
+    "tuition": "Miễn học phí (Sư phạm) • 16 – 28 tr/năm (các ngành khác)",
+    "tuitionLevel": "free",
+    "majors": [
+      "supham-toan",
+      "cntt",
+      "marketing",
+      "tai-chinh-ngan-hang",
+      "ngon-ngu-anh"
+    ],
+    "highlight": "Đại học công lập trực thuộc UBND TP.HCM có khuôn viên kiến trúc Pháp cổ kính tuyệt đẹp tại Quận 5, miễn học phí khối Sư phạm cùng mức học phí rất dễ tiếp cận.",
+    "website": "https://sgu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.sgu.edu.vn",
+    "benchmarkHistory": {
+      "2023": "21.5 – 26.5",
+      "2024": "21.0 – 26.8",
+      "2025": "21.5 – 27.0",
+      "forecast2026": "21.8 – 27.0"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Đánh giá năng lực ĐHQG-HCM",
+      "Xét tuyển thẳng học sinh giỏi"
+    ],
+    "campusVibe": {
+      "dorms": "KTX sinh viên tại Quận 8",
+      "livingCostNote": "4 – 5.5 tr/tháng",
+      "clubsAndLife": "Khuôn viên cổ kính di sản tại đường An Dương Vương, phong trào sinh viên thành phố sôi nổi"
+    },
+    "scholarships": "Chính sách miễn 100% học phí + trợ cấp 3.63 tr/tháng ngành Sư phạm theo Nghị định 116.",
+    "employmentRate": "96.5% có việc làm trong 1 năm",
+    "startingSalary": "8 – 20 triệu/tháng",
+    "facilities": "Khuôn viên di sản Pháp trăm năm tuổi, phòng thực hành máy tính và lab sư phạm.",
+    "topEmployers": [
+      "Sở GD&ĐT TP.HCM",
+      "Các trường phổ thông quốc tế",
+      "VietinBank",
+      "FPT",
+      "Shopee"
+    ]
+  },
+  {
+    "id": "ctuet",
+    "code": "CKC",
+    "name": "Trường Đại học Kỹ thuật - Công nghệ Cần Thơ",
+    "shortName": "CTUET",
+    "region": "nam",
+    "regionLabel": "ĐBSCL",
+    "city": "Cần Thơ",
+    "provinceCode": "cantho",
+    "provinceGroup": "cantho-dbscl",
+    "type": "Công lập",
+    "typeCategory": "cong-lap-dia-phuong",
+    "benchmarks": "17.0 – 23.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "16 – 22 tr/năm",
+    "tuitionLevel": "under25",
+    "majors": [
+      "cntt",
+      "vi-mach",
+      "tudonghoa",
+      "oto-dien",
+      "logistics"
+    ],
+    "highlight": "Đại học kỹ thuật công lập trẻ trung và năng động của TP. Cần Thơ, tiên phong mở ngành Thiết kế vi mạch bán dẫn và AI cho toàn vùng Đồng bằng sông Cửu Long.",
+    "website": "https://ctuet.edu.vn",
+    "admissionsUrl": "https://tuyensinh.ctuet.edu.vn",
+    "benchmarkHistory": {
+      "2023": "16.5 – 22.8",
+      "2024": "17.0 – 23.5",
+      "2025": "17.5 – 24.0",
+      "forecast2026": "17.5 – 24.0"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT (A00, A01, D01)",
+      "Xét học bạ THPT (từ 18đ)",
+      "Đánh giá năng lực ĐHQG-HCM"
+    ],
+    "campusVibe": {
+      "dorms": "KTX tại trung tâm Ninh Kiều Cần Thơ",
+      "livingCostNote": "3 – 4.2 tr/tháng",
+      "clubsAndLife": "Môi trường học tập gần gũi, chi phí sinh hoạt Tây Đô vô cùng dễ thở"
+    },
+    "scholarships": "Học bổng khuyến khích học tập từ UBND TP. Cần Thơ.",
+    "employmentRate": "96% sinh viên có việc làm",
+    "startingSalary": "9 – 20 triệu/tháng",
+    "facilities": "Xưởng thực hành cơ điện tử, lab vi mạch liên kết Trung tâm Công nghệ cao TP.HCM.",
+    "topEmployers": [
+      "FPT Cần Thơ",
+      "VNPT Tây Nam Bộ",
+      "Thaco Ô tô Cần Thơ",
+      "Tập đoàn Lộc Trời"
+    ]
+  },
+  {
+    "id": "agu",
+    "code": "QSA",
+    "name": "Trường Đại học An Giang - ĐHQG TP.HCM",
+    "shortName": "AGU",
+    "region": "nam",
+    "regionLabel": "ĐBSCL",
+    "city": "An Giang",
+    "provinceCode": "cantho",
+    "provinceGroup": "cantho-dbscl",
+    "type": "Công lập thành viên ĐHQG",
+    "typeCategory": "cong-lap-trong-diem",
+    "benchmarks": "16.0 – 22.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "Miễn học phí (Sư phạm) • 14 – 20 tr/năm (ngành khác)",
+    "tuitionLevel": "free",
+    "majors": [
+      "supham-toan",
+      "cntt",
+      "nong-nghiep",
+      "kdqt",
+      "moi-truong"
+    ],
+    "highlight": "Thành viên chính thức của ĐHQG TP.HCM tại miền Tây, chất lượng kiểm định chuẩn quốc tế AUN-QA nhưng học phí và điểm chuẩn rất vừa sức cho học sinh ĐBSCL.",
+    "website": "https://www.agu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.agu.edu.vn",
+    "benchmarkHistory": {
+      "2023": "16.0 – 22.0",
+      "2024": "16.0 – 22.5",
+      "2025": "16.5 – 23.0",
+      "forecast2026": "16.8 – 23.0"
+    },
+    "admissionMethods": [
+      "Điểm thi THPT 2026",
+      "ĐGNL ĐHQG TP.HCM",
+      "Xét học bạ THPT"
+    ],
+    "campusVibe": {
+      "dorms": "KTX 2.000 chỗ khang trang tại Long Xuyên",
+      "livingCostNote": "2.8 – 3.8 tr/tháng",
+      "clubsAndLife": "Khuôn viên rộng đẹp bên sông Hậu, các dự án nghiên cứu biến đổi khí hậu Mekong"
+    },
+    "scholarships": "Chính sách học bổng ĐHQG TP.HCM và học bổng du học sau đại học.",
+    "employmentRate": "95.5% sinh viên có việc làm",
+    "startingSalary": "8 – 18 triệu/tháng",
+    "facilities": "Khuôn viên 40 ha hiện đại tại TP. Long Xuyên, phòng thí nghiệm công nghệ sinh học.",
+    "topEmployers": [
+      "Tập đoàn Lộc Trời",
+      "Sở GD&ĐT An Giang & Kiên Giang",
+      "Agribank",
+      "CP Group"
+    ]
+  },
+  {
+    "id": "tvu",
+    "code": "DVT",
+    "name": "Trường Đại học Trà Vinh",
+    "shortName": "TVU",
+    "region": "nam",
+    "regionLabel": "ĐBSCL",
+    "city": "Trà Vinh",
+    "provinceCode": "cantho",
+    "provinceGroup": "cantho-dbscl",
+    "type": "Công lập",
+    "typeCategory": "cong-lap-dia-phuong",
+    "benchmarks": "15.5 – 22.5 điểm THPT",
+    "benchmarkScoreRange": "under20",
+    "tuition": "15 – 24 tr/năm (Khối Y Dược 40 – 50 tr/năm)",
+    "tuitionLevel": "under25",
+    "majors": [
+      "ykhoa",
+      "rang-ham-mat",
+      "duoc",
+      "cntt",
+      "nong-nghiep",
+      "ngonngu"
+    ],
+    "highlight": "Đại học xanh lọt Top 100 WURI toàn cầu về giá trị đổi mới, thế mạnh đào tạo Y khoa, Răng Hàm Mặt và Ngôn ngữ - Văn hóa Khmer Nam Bộ.",
+    "website": "https://tvu.edu.vn",
+    "admissionsUrl": "https://tuyensinh.tvu.edu.vn",
+    "benchmarkHistory": {
+      "2023": "15.0 – 22.0",
+      "2024": "15.5 – 22.5",
+      "2025": "16.0 – 22.8",
+      "forecast2026": "16.0 – 23.0"
+    },
+    "admissionMethods": [
+      "Điểm thi tốt nghiệp THPT 2026",
+      "Xét tuyển điểm học bạ THPT",
+      "Đánh giá năng lực ĐHQG-HCM"
+    ],
+    "campusVibe": {
+      "dorms": "KTX xanh 3.500 chỗ ngay trong trường",
+      "livingCostNote": "2.8 – 3.8 tr/tháng",
+      "clubsAndLife": "Khuôn viên rợp bóng cây cổ thụ, bệnh viện thực hành trực thuộc trường"
+    },
+    "scholarships": "Học bổng vượt khó và học bổng đào tạo nhân lực vùng ĐBSCL.",
+    "employmentRate": "95% sinh viên có việc làm",
+    "startingSalary": "8 – 18 triệu/tháng",
+    "facilities": "Bệnh viện Đại học Trà Vinh, phòng mô phỏng khám bệnh thông minh.",
+    "topEmployers": [
+      "Bệnh viện Đa khoa các tỉnh miền Tây",
+      "Tập đoàn Thủy sản Minh Phú",
+      "Viettel"
     ]
   }
 ];

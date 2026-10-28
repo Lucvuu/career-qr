@@ -4,10 +4,12 @@
 import { MAJORS_DATA } from './majorsData.js';
 import { UNIVERSITIES_DATA } from './universitiesData.js';
 import { COMBINATIONS_DATA, EXAM_METHODS_2026 } from './combinationsData.js';
+import { CAREER_VIDEOS_DATA, CAREER_SERIES_TABS, CAREER_CATEGORIES, getVideosByFilter } from './careerVideosData.js';
 
 export { MAJORS_DATA } from './majorsData.js';
 export { UNIVERSITIES_DATA } from './universitiesData.js';
 export { COMBINATIONS_DATA, EXAM_METHODS_2026 } from './combinationsData.js';
+export { CAREER_VIDEOS_DATA, CAREER_SERIES_TABS, CAREER_CATEGORIES, getVideosByFilter } from './careerVideosData.js';
 
 export const HOLLAND_ARCHETYPES = [
   { code: "R", name: "Thực tế & Kỹ thuật (Realistic)", icon: "🛠️", desc: "Thích làm việc với máy móc, công cụ, thiết bị điện tử, vật liệu cụ thể và hoạt động thực tế ngoài trời." },
@@ -280,6 +282,13 @@ const MAJOR_ALIASES = {
 
 export function getVideosForMajor(majorId) {
   const normalizedId = MAJOR_ALIASES[majorId] || majorId;
+  const fromVideosData = (CAREER_VIDEOS_DATA || []).filter(v => v.majorId === majorId || v.majorId === normalizedId);
+  if (fromVideosData.length > 0) {
+    return fromVideosData.map(v => ({
+      ...v,
+      youtubeUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`
+    }));
+  }
   const list = CAREER_VIDEOS_BY_MAJOR[normalizedId] || CAREER_VIDEOS_BY_MAJOR["cntt"] || [];
   return list.map(v => ({
     ...v,

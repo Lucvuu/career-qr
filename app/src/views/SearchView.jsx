@@ -62,9 +62,9 @@ export default function SearchView({
     }
   }, [initialQuery]);
 
-  // University Filter States
-  const [selectedUniversityRegion, setSelectedUniversityRegion] = useState('all'); // 'all' | 'bac' | 'trung' | 'nam'
-  const [selectedProvince, setSelectedProvince] = useState('all');
+  // University Filter States (Multi-dimensional)
+  const [selectedUniversityType, setSelectedUniversityType] = useState('all'); // 'all' | 'cong-lap-trong-diem' | 'cong-lap-dia-phuong' | 'quoc-te' | 'tu-thuc' | 'su-pham'
+  const [selectedProvinceGroup, setSelectedProvinceGroup] = useState('all');
   const [selectedScoreRange, setSelectedScoreRange] = useState('all');
   const [selectedTuitionRange, setSelectedTuitionRange] = useState('all');
 
@@ -106,32 +106,42 @@ export default function SearchView({
   ];
   const combos = ['A00', 'A01', 'B00', 'C00', 'D01', 'D07', 'V00', 'H00'];
 
-  const PROVINCES = [
-    { id: 'all', label: 'Tất cả tỉnh thành' },
+  const UNIVERSITY_TYPES = [
+    { id: 'all', label: 'Tất cả loại hình' },
+    { id: 'cong-lap-trong-diem', label: '🏛️ Công lập Trọng điểm' },
+    { id: 'cong-lap-dia-phuong', label: '🎯 Công lập Địa phương (Vừa sức)' },
+    { id: 'quoc-te', label: '🌐 Quốc tế & Liên kết' },
+    { id: 'tu-thuc', label: '⚡ Tư thục Năng động' },
+    { id: 'su-pham', label: '🎓 Sư phạm & LLVT' }
+  ];
+
+  const PROVINCE_GROUPS = [
+    { id: 'all', label: 'Tất cả 3 miền' },
     { id: 'hanoi', label: '🏛️ Hà Nội' },
     { id: 'thainguyen', label: '⛰️ Thái Nguyên' },
-    { id: 'haiphong', label: '⚓ Hải Phòng' },
-    { id: 'quangninh', label: '💎 Quảng Ninh' },
-    { id: 'thaibinh-namdinh', label: '🌾 Thái Bình & Nam Định' },
-    { id: 'bacninh-hungyen', label: '🏭 Bắc Ninh & Hưng Yên' },
-    { id: 'danang-hue', label: '🌊 Đà Nẵng & Huế' },
-    { id: 'tphcm', label: '🏙️ TP.HCM' },
-    { id: 'cantho', label: '🛶 Cần Thơ & ĐBSCL' }
+    { id: 'haiphong-quangninh', label: '⚓ Hải Phòng & Quảng Ninh' },
+    { id: 'dongbang-songhong', label: '🌾 Nam Định, Thái Bình, Hưng Yên, Bắc Ninh...' },
+    { id: 'thanh-nghe-tinh', label: '🌿 Thanh - Nghệ - Tĩnh' },
+    { id: 'danang-hue', label: '🌊 Huế & Đà Nẵng' },
+    { id: 'namtrungbo-taynguyen', label: '☀️ Nam Trung Bộ & Tây Nguyên' },
+    { id: 'tphcm-dongnambo', label: '🏙️ TP.HCM & Đông Nam Bộ' },
+    { id: 'cantho-dbscl', label: '🛶 Cần Thơ & ĐBSCL' }
   ];
 
   const SCORE_RANGES = [
     { id: 'all', label: 'Tất cả mức điểm' },
-    { id: 'under20', label: '< 20 điểm' },
+    { id: 'under20', label: '< 20 điểm (Vừa sức)' },
     { id: '20-23', label: '20 – 23 điểm' },
     { id: '23-26', label: '23 – 26 điểm' },
-    { id: 'above26', label: 'Trên 26 điểm' }
+    { id: 'above26', label: 'Từ 26+ điểm (Top đầu)' }
   ];
 
   const TUITION_RANGES = [
     { id: 'all', label: 'Tất cả học phí' },
-    { id: 'under20', label: 'Dưới 20 tr/năm' },
-    { id: '20-40', label: '20 – 40 tr/năm' },
-    { id: 'above40', label: 'Trên 40 tr / Quốc tế' }
+    { id: 'free', label: '🎁 Miễn học phí / Sư phạm' },
+    { id: 'under25', label: 'Dưới 25 tr/năm' },
+    { id: '25-50', label: '25 – 50 tr/năm' },
+    { id: 'international', label: 'Chương trình Quốc tế / Học bổng' }
   ];
 
   // Filter logic for Majors
@@ -158,18 +168,10 @@ export default function SearchView({
     return true;
   });
 
-  // Filter logic for Universities
+  // Filter logic for Universities (Multi-dimensional)
   const filteredUniversities = (UNIVERSITIES_DATA || []).filter(u => {
-    if (selectedUniversityRegion !== 'all' && u.region !== selectedUniversityRegion) return false;
-    if (selectedProvince !== 'all') {
-      if (selectedProvince === 'thaibinh-namdinh') {
-        if (u.provinceCode !== 'thaibinh' && u.provinceCode !== 'thaibinh-namdinh') return false;
-      } else if (selectedProvince === 'bacninh-hungyen') {
-        if (u.provinceCode !== 'bacninh-hungyen' && u.provinceCode !== 'haiduong') return false;
-      } else if (u.provinceCode !== selectedProvince) {
-        return false;
-      }
-    }
+    if (selectedUniversityType !== 'all' && u.typeCategory !== selectedUniversityType) return false;
+    if (selectedProvinceGroup !== 'all' && u.provinceGroup !== selectedProvinceGroup) return false;
     if (selectedScoreRange !== 'all' && u.benchmarkScoreRange !== selectedScoreRange) return false;
     if (selectedTuitionRange !== 'all' && u.tuitionLevel !== selectedTuitionRange) return false;
 
@@ -178,9 +180,10 @@ export default function SearchView({
       const match = u.name.toLowerCase().includes(kw) ||
                     u.code.toLowerCase().includes(kw) ||
                     (u.shortName && u.shortName.toLowerCase().includes(kw)) ||
-                    u.city.toLowerCase().includes(kw) ||
-                    u.highlight.toLowerCase().includes(kw) ||
-                    u.benchmarks.toLowerCase().includes(kw);
+                    (u.city && u.city.toLowerCase().includes(kw)) ||
+                    (u.type && u.type.toLowerCase().includes(kw)) ||
+                    (u.highlight && u.highlight.toLowerCase().includes(kw)) ||
+                    (u.benchmarks && u.benchmarks.toLowerCase().includes(kw));
       if (!match) return false;
     }
     return true;
@@ -439,12 +442,9 @@ export default function SearchView({
                         }}
                       >
                         <div className="video-banner-top-row">
-                          <div className="video-banner-left">
-                            <span className="video-banner-pill">🎥 {featuredVideo.type}</span>
-                            <span className="video-banner-time">⏱ {featuredVideo.duration}</span>
-                          </div>
-                          <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E11D48', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                            Xem ▶
+                          <span className="video-banner-pill">🎬 {featuredVideo.type || '1 Ngày Làm Nghề'}</span>
+                          <span className="video-banner-action-badge">
+                            {featuredVideo.duration || '09:15'} • Xem ngay ▶
                           </span>
                         </div>
                         <span className="video-banner-title">{featuredVideo.title}</span>
@@ -527,56 +527,92 @@ export default function SearchView({
           ========================================================================= */}
       {activeTab === 'truong' && (
         <div>
-          {/* Smart Regional & Local Filters */}
-          <div style={{ background: '#FFFFFF', borderRadius: '24px', padding: '20px', border: '1px solid #E0E7FF', boxShadow: 'var(--shadow-card)', marginBottom: '28px' }}>
+          {/* Smart Multi-Dimensional University Filters */}
+          <div style={{ background: '#FFFFFF', borderRadius: '24px', padding: '22px', border: '1px solid #E0E7FF', boxShadow: 'var(--shadow-card)', marginBottom: '28px' }}>
             
-            {/* 1. Region Selector Pills (3 Miền) */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
-              {[
-                { id: 'all', label: 'Tất cả 3 miền' },
-                { id: 'bac', label: '🏛️ Miền Bắc & Hà Nội' },
-                { id: 'trung', label: '🌊 Miền Trung & Tây Nguyên' },
-                { id: 'nam', label: '🌴 Miền Nam & TP.HCM' }
-              ].map(rg => (
+            {/* Header info & reset */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '18px', paddingBottom: '12px', borderBottom: '1px solid #F1F5F9' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '1.05rem', fontWeight: '800', color: '#1E293B' }}>
+                  🏛️ Hệ Sinh Thái 110+ Đại Học & Học Viện Toàn Quốc
+                </span>
+                <span style={{ fontSize: '0.8rem', fontWeight: '800', padding: '3px 10px', borderRadius: '999px', background: '#EEF2FF', color: '#4F46E5', border: '1px solid #C7D2FE' }}>
+                  Tìm thấy {filteredUniversities.length} trường
+                </span>
+              </div>
+
+              {(selectedUniversityType !== 'all' || selectedProvinceGroup !== 'all' || selectedScoreRange !== 'all' || selectedTuitionRange !== 'all') && (
                 <button
-                  key={rg.id}
                   type="button"
-                  onClick={() => setSelectedUniversityRegion(rg.id)}
+                  onClick={() => {
+                    setSelectedUniversityType('all');
+                    setSelectedProvinceGroup('all');
+                    setSelectedScoreRange('all');
+                    setSelectedTuitionRange('all');
+                  }}
                   style={{
-                    padding: '8px 16px',
+                    fontSize: '0.78rem',
+                    fontWeight: '700',
+                    color: '#E11D48',
+                    background: '#FFE4E6',
+                    border: '1px solid #FECDD3',
+                    padding: '4px 12px',
                     borderRadius: '999px',
-                    border: selectedUniversityRegion === rg.id ? '2px solid #4F46E5' : '1px solid #CBD5E1',
-                    background: selectedUniversityRegion === rg.id ? '#EEF2FF' : '#FFFFFF',
-                    color: selectedUniversityRegion === rg.id ? '#4338CA' : '#475569',
-                    fontWeight: selectedUniversityRegion === rg.id ? '800' : '600',
-                    fontSize: '0.86rem',
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease'
+                    cursor: 'pointer'
                   }}
                 >
-                  {rg.label}
+                  ✕ Đặt lại tất cả bộ lọc
                 </button>
-              ))}
+              )}
             </div>
 
-            {/* 2. Province Selector Chips (Tỉnh / Thành phố) */}
-            <div style={{ marginBottom: '14px' }}>
-              <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '8px' }}>
-                📍 Chọn Tỉnh / Thành phố:
+            {/* 1. University Type Filter */}
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.04em' }}>
+                🏫 Phân loại theo Loại hình trường:
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {UNIVERSITY_TYPES.map(tp => (
+                  <button
+                    key={tp.id}
+                    type="button"
+                    onClick={() => setSelectedUniversityType(tp.id)}
+                    style={{
+                      padding: '7px 14px',
+                      borderRadius: '999px',
+                      border: selectedUniversityType === tp.id ? '2px solid #4F46E5' : '1px solid #CBD5E1',
+                      background: selectedUniversityType === tp.id ? '#EEF2FF' : '#FFFFFF',
+                      color: selectedUniversityType === tp.id ? '#4338CA' : '#475569',
+                      fontWeight: selectedUniversityType === tp.id ? '800' : '600',
+                      fontSize: '0.82rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    {tp.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. Province / Region Selector Chips */}
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.04em' }}>
+                📍 Khu vực & Tỉnh thành (Bắc - Trung - Nam):
               </div>
               <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                {PROVINCES.map(prov => (
+                {PROVINCE_GROUPS.map(prov => (
                   <button
                     key={prov.id}
                     type="button"
-                    onClick={() => setSelectedProvince(prov.id)}
+                    onClick={() => setSelectedProvinceGroup(prov.id)}
                     style={{
-                      padding: '5px 12px',
-                      borderRadius: '8px',
+                      padding: '6px 12px',
+                      borderRadius: '10px',
                       fontSize: '0.78rem',
-                      fontWeight: selectedProvince === prov.id ? '800' : '600',
-                      background: selectedProvince === prov.id ? '#4F46E5' : '#F1F5F9',
-                      color: selectedProvince === prov.id ? '#FFFFFF' : '#475569',
+                      fontWeight: selectedProvinceGroup === prov.id ? '800' : '600',
+                      background: selectedProvinceGroup === prov.id ? '#4F46E5' : '#F1F5F9',
+                      color: selectedProvinceGroup === prov.id ? '#FFFFFF' : '#475569',
                       border: 'none',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
@@ -589,10 +625,10 @@ export default function SearchView({
             </div>
 
             {/* 3. Score & Tuition Filter Chips */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px', paddingTop: '12px', borderTop: '1px dashed #E2E8F0' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px', paddingTop: '14px', borderTop: '1px dashed #E2E8F0' }}>
               <div>
                 <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  🎯 Phân khúc Điểm chuẩn:
+                  🎯 Phân khúc Điểm chuẩn xét tuyển:
                 </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   {SCORE_RANGES.map(sc => (
@@ -601,13 +637,13 @@ export default function SearchView({
                       type="button"
                       onClick={() => setSelectedScoreRange(sc.id)}
                       style={{
-                        padding: '4px 10px',
-                        borderRadius: '6px',
-                        fontSize: '0.76rem',
+                        padding: '5px 12px',
+                        borderRadius: '8px',
+                        fontSize: '0.78rem',
                         fontWeight: selectedScoreRange === sc.id ? '800' : '600',
                         background: selectedScoreRange === sc.id ? '#059669' : '#F8FAFC',
                         color: selectedScoreRange === sc.id ? '#FFFFFF' : '#475569',
-                        border: selectedScoreRange === sc.id ? '1px solid #059669' : '1px solid #CBD5E1',
+                        border: selectedScoreRange === sc.id ? '1.5px solid #059669' : '1px solid #CBD5E1',
                         cursor: 'pointer'
                       }}
                     >
@@ -619,7 +655,7 @@ export default function SearchView({
 
               <div>
                 <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  💳 Mức học phí dự kiến:
+                  💳 Khả năng Tài chính / Học phí gia đình:
                 </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   {TUITION_RANGES.map(tu => (
@@ -628,13 +664,13 @@ export default function SearchView({
                       type="button"
                       onClick={() => setSelectedTuitionRange(tu.id)}
                       style={{
-                        padding: '4px 10px',
-                        borderRadius: '6px',
-                        fontSize: '0.76rem',
+                        padding: '5px 12px',
+                        borderRadius: '8px',
+                        fontSize: '0.78rem',
                         fontWeight: selectedTuitionRange === tu.id ? '800' : '600',
                         background: selectedTuitionRange === tu.id ? '#D97706' : '#F8FAFC',
                         color: selectedTuitionRange === tu.id ? '#FFFFFF' : '#475569',
-                        border: selectedTuitionRange === tu.id ? '1px solid #D97706' : '1px solid #CBD5E1',
+                        border: selectedTuitionRange === tu.id ? '1.5px solid #D97706' : '1px solid #CBD5E1',
                         cursor: 'pointer'
                       }}
                     >
@@ -954,6 +990,20 @@ export default function SearchView({
           onSelectForRoadmap={handleSetRoadmap}
           onBookmarkMajor={(m) => handleBookmark(null, m)}
           savedMajorIds={savedMajorIds}
+          onNavigateTab={(tab, query) => {
+            if (tab === 'compare') {
+              if (onNavigate) onNavigate('compare');
+            } else {
+              setActiveTab(tab);
+              if (query) setSearchKeyword(query);
+              window.scrollTo({ top: 380, behavior: 'smooth' });
+            }
+          }}
+          onSearchQuery={(q) => {
+            setSearchKeyword(q);
+            setActiveTab('nganh');
+            window.scrollTo({ top: 380, behavior: 'smooth' });
+          }}
         />
       )}
 
