@@ -250,50 +250,94 @@ const MAJOR_ALIASES = {
   "thiet-ke-do-hoa-ux": "dohoa",
   "dohoa": "dohoa",
   "logistics": "logistics",
-  "tam-ly-hoc": "tamly",
-  "tamly": "tamly",
+  "tam-ly-hoc": "tam-ly-hoc",
+  "tamly": "tam-ly-hoc",
   "tudonghoa": "tudonghoa",
   "kdqt": "kdqt",
-  "an-ninh-mang": "cntt",
-  "ky-thuat-phan-mem": "cntt",
-  "robot-ai": "tudonghoa",
-  "oto": "tudonghoa",
-  "oto-dien": "tudonghoa",
-  "codientu": "tudonghoa",
-  "y-sinh": "vi-mach",
-  "rang-ham-mat": "ykhoa",
-  "duoc": "ykhoa",
-  "duoc-hoc": "ykhoa",
-  "dieuduong": "ykhoa",
-  "taichinh": "khdl",
-  "fintech": "khdl",
-  "ketoan": "kdqt",
-  "thuong-mai-dien-tu": "marketing",
-  "truyenthong": "marketing",
-  "pr": "marketing",
-  "kientruc": "dohoa",
-  "luatkt": "kdqt",
-  "luat-kinh-te": "kdqt",
-  "ngoaigiao": "kdqt",
-  "supham-toan": "cntt",
-  "supham-anh": "kdqt",
-  "hangkhong": "tudonghoa"
+  "an-ninh-mang": "an-ninh-mang",
+  "ky-thuat-phan-mem": "ky-thuat-phan-mem",
+  "robot-ai": "robot-ai",
+  "oto": "oto-dien",
+  "oto-dien": "oto-dien",
+  "codientu": "co-dien-tu",
+  "duoc": "duoc-hoc",
+  "duoc-hoc": "duoc-hoc",
+  "dieuduong": "dieu-duong",
+  "dieu-duong": "dieu-duong",
+  "kientruc": "kien-truc",
+  "kien-truc": "kien-truc",
+  "luat-kinh-te": "luat-kinh-te",
+  "supham-toan": "supham-toan",
+  "su-pham-toan": "supham-toan",
+  "supham-anh": "supham-anh",
+  "su-pham-anh": "supham-anh",
+  "hangkhong": "hang-khong",
+  "hang-khong": "hang-khong"
 };
 
 export function getVideosForMajor(majorId) {
+  if (!majorId) return [];
+
+  // 1. Direct match in MAJORS_DATA (100% authentic video assigned per major)
+  const majorObj = (MAJORS_DATA || []).find(m => m.id === majorId);
+  const majorOwnVideos = [];
+  if (majorObj && majorObj.videoTitle) {
+    majorOwnVideos.push({
+      id: `vid-${majorObj.id}-primary`,
+      majorId: majorObj.id,
+      majorName: majorObj.ten_nganh,
+      title: majorObj.videoTitle,
+      type: majorObj.videoCategory || '1 Ngày Làm Nghề',
+      duration: majorObj.videoDuration || '09:15',
+      channel: majorObj.videoChannel || 'VTV7 Hướng Nghiệp',
+      youtubeId: majorObj.videoYoutubeId || 'xi-TdUo8e60',
+      youtubeUrl: `https://www.youtube.com/watch?v=${majorObj.videoYoutubeId || 'xi-TdUo8e60'}`,
+      keyTakeaways: majorObj.videoKeyTakeaways || [
+        "Trải nghiệm môi trường làm việc thực chiến và quy trình tác nghiệp chuẩn mực trong ngành.",
+        "Rèn luyện tư duy chuyên môn, cập nhật xu hướng công nghệ mới và nâng cao năng lực cạnh tranh.",
+        "Lộ trình thăng tiến rõ ràng, mở rộng cơ hội việc làm tại các tập đoàn và doanh nghiệp hàng đầu."
+      ],
+      realityCheck: majorObj.videoRealityCheck || (majorObj.realityCheck ? {
+        myth: majorObj.realityCheck.myth,
+        truth: majorObj.realityCheck.truth
+      } : null),
+      salaryRoadmap: majorObj.salaryRoadmap || null,
+      demandLevel: majorObj.demandLevel || 'Rất cao',
+      aiRiskLevel: majorObj.aiRiskLevel || 'Thấp'
+    });
+  }
+
+  // 2. Look for secondary/series videos in CAREER_VIDEOS_DATA
   const normalizedId = MAJOR_ALIASES[majorId] || majorId;
-  const fromVideosData = (CAREER_VIDEOS_DATA || []).filter(v => v.majorId === majorId || v.majorId === normalizedId);
-  if (fromVideosData.length > 0) {
-    return fromVideosData.map(v => ({
+  const fromVideosData = (CAREER_VIDEOS_DATA || [])
+    .filter(v => v.majorId === majorId || (v.majorId === normalizedId && majorId === normalizedId))
+    .map(v => ({
+      ...v,
+      youtubeUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`
+    }));
+
+  const allVideos = [...majorOwnVideos];
+  for (const v of fromVideosData) {
+    if (!allVideos.some(item => item.title === v.title)) {
+      allVideos.push(v);
+    }
+  }
+
+  if (allVideos.length > 0) {
+    return allVideos;
+  }
+
+  // 3. Fallback to CAREER_VIDEOS_BY_MAJOR ONLY if exact key matches (NEVER fallback to "cntt")
+  const directLegacy = CAREER_VIDEOS_BY_MAJOR[majorId];
+  if (directLegacy && directLegacy.length > 0) {
+    return directLegacy.map(v => ({
       ...v,
       youtubeUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`
     }));
   }
-  const list = CAREER_VIDEOS_BY_MAJOR[normalizedId] || CAREER_VIDEOS_BY_MAJOR["cntt"] || [];
-  return list.map(v => ({
-    ...v,
-    youtubeUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`
-  }));
+
+  // ABSOLUTELY NO FALLBACK TO ANOTHER MAJOR'S VIDEO
+  return [];
 }
 
 const TIMELINES = {

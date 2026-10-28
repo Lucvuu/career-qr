@@ -144,6 +144,46 @@ export default function SearchView({
     { id: 'international', label: 'Chương trình Quốc tế / Học bổng' }
   ];
 
+  const activeProvinceObj = PROVINCE_GROUPS.find(p => p.id === selectedProvinceGroup) || PROVINCE_GROUPS[0];
+
+  // Majors offered in the currently selected region
+  const regionalMajorIds = useMemo(() => {
+    if (selectedProvinceGroup === 'all') return null;
+    const unisInRegion = (UNIVERSITIES_DATA || []).filter(u => u.provinceGroup === selectedProvinceGroup);
+    const set = new Set();
+    unisInRegion.forEach(u => {
+      if (Array.isArray(u.majors)) {
+        u.majors.forEach(mId => set.add(mId));
+      }
+    });
+    return set;
+  }, [selectedProvinceGroup]);
+
+  const regionalUnisCount = useMemo(() => {
+    if (selectedProvinceGroup === 'all') return (UNIVERSITIES_DATA || []).length;
+    return (UNIVERSITIES_DATA || []).filter(u => u.provinceGroup === selectedProvinceGroup).length;
+  }, [selectedProvinceGroup]);
+
+  const regionalMajorsCount = useMemo(() => {
+    if (selectedProvinceGroup === 'all') return (MAJORS_DATA || []).length;
+    return regionalMajorIds ? regionalMajorIds.size : (MAJORS_DATA || []).length;
+  }, [selectedProvinceGroup, regionalMajorIds]);
+
+  // Helper to get colleges offering a major, prioritizing the selected provinceGroup
+  const getCollegesForMajor = (majorId) => {
+    const offeringUnis = (UNIVERSITIES_DATA || []).filter(u => u.majors && u.majors.includes(majorId));
+    if (selectedProvinceGroup !== 'all') {
+      const regional = offeringUnis.filter(u => u.provinceGroup === selectedProvinceGroup);
+      const others = offeringUnis.filter(u => u.provinceGroup !== selectedProvinceGroup);
+      const list = [
+        ...regional.map(u => ({ ...u, isRegional: true })),
+        ...others.map(u => ({ ...u, isRegional: false }))
+      ];
+      return list.slice(0, 4);
+    }
+    return offeringUnis.slice(0, 4).map(u => ({ ...u, isRegional: false }));
+  };
+
   // Filter logic for Majors
   const filteredMajors = MAJORS_DATA.filter(m => {
     if (selectedGroup && m.nhom_nganh !== selectedGroup) return false;
@@ -166,6 +206,14 @@ export default function SearchView({
       if (!match) return false;
     }
     return true;
+  }).sort((a, b) => {
+    if (regionalMajorIds) {
+      const aInRegion = regionalMajorIds.has(a.id);
+      const bInRegion = regionalMajorIds.has(b.id);
+      if (aInRegion && !bInRegion) return -1;
+      if (!aInRegion && bInRegion) return 1;
+    }
+    return 0;
   });
 
   // Filter logic for Universities (Multi-dimensional)
@@ -224,12 +272,166 @@ export default function SearchView({
   return (
     <div className="tab-pane-animate">
       {/* Header Banner */}
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
         <div className="pill-badge" style={{ marginBottom: '10px' }}>🔍 BƯỚC 2 / 4 • TRA CỨU ĐA CHIỀU 2026</div>
         <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Cơ sở dữ liệu Tuyển sinh Toàn diện</h1>
         <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.98rem' }}>
-          Tra cứu hơn 50 ngành học đón đầu AI & Vi mạch, 70+ trường Đại học khắp 3 miền, cùng trải nghiệm video nghề nghiệp thực tế.
+          Tra cứu 52 ngành học đón đầu AI & Vi mạch, 110+ trường Đại học khắp 3 miền, cùng kho video rạp phim nghề nghiệp thực tế.
         </p>
+      </div>
+
+      {/* =========================================================================
+          GLOBAL REGIONAL BAR (THANH CHỌN KHU VỰC CỐ ĐỊNH XUYÊN SUỐT)
+          ========================================================================= */}
+      <div style={{ background: '#FFFFFF', borderRadius: '22px', border: '1.5px solid #E0E7FF', padding: '16px 20px', marginBottom: '24px', boxShadow: '0 4px 20px -4px rgba(79, 70, 229, 0.08)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#1E293B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              📍 Bộ Lọc Khu Vực Toàn Quốc:
+            </span>
+            <span style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: '600' }}>
+              (Đồng bộ tìm kiếm Trường Đại học & Ngành học theo địa bàn)
+            </span>
+          </div>
+
+          {selectedProvinceGroup !== 'all' && (
+            <button
+              type="button"
+              onClick={() => setSelectedProvinceGroup('all')}
+              style={{
+                fontSize: '0.78rem',
+                fontWeight: '700',
+                color: '#4F46E5',
+                background: '#EEF2FF',
+                border: '1px solid #C7D2FE',
+                borderRadius: '999px',
+                padding: '4px 12px',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+            >
+              <span>✕ Xem lại Toàn quốc (3 miền)</span>
+            </button>
+          )}
+        </div>
+
+        {/* 10 Region Pills */}
+        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px', scrollbarWidth: 'thin' }}>
+          {PROVINCE_GROUPS.map(prov => {
+            const isSelected = selectedProvinceGroup === prov.id;
+            const uniCount = prov.id === 'all'
+              ? (UNIVERSITIES_DATA || []).length
+              : (UNIVERSITIES_DATA || []).filter(u => u.provinceGroup === prov.id).length;
+
+            return (
+              <button
+                key={prov.id}
+                type="button"
+                onClick={() => setSelectedProvinceGroup(prov.id)}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '12px',
+                  fontSize: '0.82rem',
+                  fontWeight: isSelected ? '800' : '650',
+                  background: isSelected ? 'linear-gradient(135deg, #4F46E5 0%, #4338CA 100%)' : '#F8FAFC',
+                  color: isSelected ? '#FFFFFF' : '#334155',
+                  border: isSelected ? '1.5px solid #4338CA' : '1px solid #CBD5E1',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  boxShadow: isSelected ? '0 4px 14px rgba(79, 70, 229, 0.3)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <span>{prov.label}</span>
+                <span style={{
+                  fontSize: '0.7rem',
+                  fontWeight: '800',
+                  padding: '1px 6px',
+                  borderRadius: '999px',
+                  background: isSelected ? 'rgba(255, 255, 255, 0.25)' : '#E2E8F0',
+                  color: isSelected ? '#FFFFFF' : '#475569'
+                }}>
+                  {uniCount} trường
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Regional Hub Spotlight Banner (When a specific region is active) */}
+        {selectedProvinceGroup !== 'all' && (
+          <div style={{
+            marginTop: '14px',
+            padding: '14px 16px',
+            borderRadius: '16px',
+            background: 'linear-gradient(135deg, #EEF2FF 0%, #F5F3FF 100%)',
+            border: '1.5px solid #C7D2FE',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '12px'
+          }}>
+            <div>
+              <div style={{ fontSize: '0.96rem', fontWeight: '800', color: '#1E293B', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span>🎯</span>
+                <span>Bảng Tổng Quan Khu Vực: {activeProvinceObj?.label}</span>
+              </div>
+              <div style={{ fontSize: '0.82rem', color: '#475569', marginTop: '3px' }}>
+                Hệ sinh thái gồm <strong>{regionalUnisCount} trường Đại học/Học viện</strong> & <strong>{regionalMajorsCount} ngành đào tạo</strong> tuyển sinh trực tiếp tại địa bàn này.
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                type="button"
+                onClick={() => setActiveTab('truong')}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '10px',
+                  fontSize: '0.8rem',
+                  fontWeight: '800',
+                  background: activeTab === 'truong' ? '#4F46E5' : '#FFFFFF',
+                  color: activeTab === 'truong' ? '#FFFFFF' : '#4338CA',
+                  border: '1.5px solid #818CF8',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}
+              >
+                <Building2 size={14} />
+                <span>Xem {regionalUnisCount} Trường tại đây</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab('nganh')}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '10px',
+                  fontSize: '0.8rem',
+                  fontWeight: '800',
+                  background: activeTab === 'nganh' ? '#4F46E5' : '#FFFFFF',
+                  color: activeTab === 'nganh' ? '#FFFFFF' : '#4338CA',
+                  border: '1.5px solid #818CF8',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}
+              >
+                <BookOpen size={14} />
+                <span>Xem {regionalMajorsCount} Ngành tại đây</span>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Main Tab Navigation */}
@@ -399,6 +601,8 @@ export default function SearchView({
               const isSaved = savedMajorIds.includes(m.id);
               const majorVideos = getVideosForMajor(m.id);
               const featuredVideo = majorVideos[0];
+              const collegesForMajor = getCollegesForMajor(m.id);
+              const isOfferedInRegion = regionalMajorIds ? regionalMajorIds.has(m.id) : false;
 
               return (
                 <div
@@ -469,6 +673,55 @@ export default function SearchView({
                       <div style={{ textAlign: 'right' }}>
                         <div style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: '700' }}>HỌC PHÍ DỰ KIẾN</div>
                         <div style={{ fontSize: '0.88rem', fontWeight: '700', color: '#1E293B' }}>{m.hoc_phi}</div>
+                      </div>
+                    </div>
+
+                    {/* Colleges offering this major (Prioritized by Selected Region) */}
+                    <div style={{ marginBottom: '14px', background: '#F8FAFC', borderRadius: '12px', padding: '10px 12px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ fontSize: '0.74rem', fontWeight: '800', color: '#475569', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                          <Building2 size={13} color="#4F46E5" />
+                          <span>Trường tiêu biểu {selectedProvinceGroup !== 'all' ? `(ưu tiên ${activeProvinceObj?.label.replace(/^[^\s]+\s*/, '')}):` : ':'}</span>
+                        </span>
+                        {selectedProvinceGroup !== 'all' && isOfferedInRegion && (
+                          <span style={{ fontSize: '0.66rem', fontWeight: '800', color: '#047857', background: '#ECFDF5', border: '1px solid #A7F3D0', padding: '1px 6px', borderRadius: '4px' }}>
+                            ✓ Có tại vùng
+                          </span>
+                        )}
+                      </div>
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                        {collegesForMajor.map((uni) => (
+                          <button
+                            key={uni.id}
+                            type="button"
+                            title={`Bấm để xem thông tin chi tiết trường ${uni.name} (${uni.code})`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedUniModal(uni);
+                            }}
+                            style={{
+                              fontSize: '0.74rem',
+                              fontWeight: uni.isRegional ? '850' : '650',
+                              padding: '4px 9px',
+                              borderRadius: '8px',
+                              background: uni.isRegional ? '#EEF2FF' : '#FFFFFF',
+                              color: uni.isRegional ? '#4338CA' : '#334155',
+                              border: uni.isRegional ? '1.5px solid #818CF8' : '1px solid #CBD5E1',
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              transition: 'all 0.15s ease'
+                            }}
+                          >
+                            <span>{uni.isRegional ? '📍' : '🏛️'}</span>
+                            <span>{uni.shortName || uni.code}</span>
+                            <span style={{ fontSize: '0.68rem', opacity: 0.85, color: uni.isRegional ? '#4338CA' : '#64748B' }}>
+                              ({uni.benchmarks?.split('-')[0]?.trim() || m.diem_tb?.split('-')[0]?.trim() || '24.5'}đ)
+                            </span>
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -753,32 +1006,53 @@ export default function SearchView({
                           {u.highlight}
                         </p>
 
-                        {/* Top Majors Tags (Max 4 to guarantee equal height) */}
+                        {/* Top Majors Tags (Interactive: Click to open Major Details Modal) */}
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '14px' }}>
-                          {u.majors.slice(0, 4).map(mId => {
+                          {u.majors.slice(0, 5).map(mId => {
                             const majorObj = MAJORS_DATA.find(m => m.id === mId);
                             return (
-                              <span
+                              <button
                                 key={mId}
+                                type="button"
+                                title={`Bấm để xem thông tin chi tiết ngành ${majorObj?.ten_nganh || mId}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (majorObj) {
+                                    setSelectedMajorModal(majorObj);
+                                  } else {
+                                    setSearchKeyword(mId);
+                                    setActiveTab('nganh');
+                                  }
+                                }}
                                 style={{
                                   fontSize: '0.73rem',
-                                  fontWeight: '700',
-                                  padding: '4px 8px',
+                                  fontWeight: '750',
+                                  padding: '4px 9px',
                                   borderRadius: '8px',
-                                  background: '#F1F5F9',
-                                  color: '#475569',
+                                  background: '#FFFFFF',
+                                  color: '#1E293B',
+                                  border: '1px solid #CBD5E1',
                                   display: 'inline-flex',
                                   alignItems: 'center',
-                                  gap: '4px'
+                                  gap: '4px',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease'
                                 }}
                               >
                                 <span>{majorObj?.icon || '🎓'}</span>
                                 <span>{majorObj?.ten_nganh || mId}</span>
-                              </span>
+                                <span style={{ fontSize: '0.62rem', color: '#4F46E5', fontWeight: '900' }}>↗</span>
+                              </button>
                             );
                           })}
-                          {u.majors.length > 4 && (
-                            <span
+                          {u.majors.length > 5 && (
+                            <button
+                              type="button"
+                              title={`Xem toàn bộ ${u.majors.length} ngành đào tạo của trường`}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleFlipUni(u.id);
+                              }}
                               style={{
                                 fontSize: '0.73rem',
                                 fontWeight: '800',
@@ -786,11 +1060,12 @@ export default function SearchView({
                                 borderRadius: '8px',
                                 background: '#EEF2FF',
                                 color: '#4338CA',
-                                border: '1px solid #C7D2FE'
+                                border: '1px solid #C7D2FE',
+                                cursor: 'pointer'
                               }}
                             >
-                              +{u.majors.length - 4} ngành khác
-                            </span>
+                              +{u.majors.length - 5} ngành khác
+                            </button>
                           )}
                         </div>
                       </div>

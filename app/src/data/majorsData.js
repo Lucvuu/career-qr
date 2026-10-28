@@ -63,7 +63,21 @@ export const MAJORS_DATA = [
       "Ogilvy & Mather",
       "Vinamilk",
       "Dentsu Redder"
-    ]
+    ],
+    "videoTitle": "Một ngày chạy chiến dịch thực chiến của Chuyên viên Digital Marketing",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:10",
+    "videoChannel": "Brands Vietnam",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Theo dõi số liệu quảng cáo realtime, đo lường chi phí mỗi lượt chuyển đổi (CPA) và lợi nhuận ROAS.",
+      "Sáng tạo kịch bản video ngắn (TikTok/Reels) đánh trúng insight tâm lý người tiêu dùng Gen Z.",
+      "Cuộc chơi của số liệu (Data-driven), đòi hỏi liên tục thử nghiệm A/B Testing và chịu áp lực doanh số."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm marketing chỉ cần hoạt ngôn, vui vẻ và thích 'chém gió' sáng tạo là đủ thành công.",
+      "truth": "Marketing hiện đại là cuộc chơi của số liệu: Phải đọc chỉ số ROI, CPA và chịu áp lực chạy KPI doanh số gắt gao."
+    }
   },
   {
     "id": "ykhoa",
@@ -127,7 +141,21 @@ export const MAJORS_DATA = [
       "Hệ thống Bệnh viện Vinmec",
       "Bệnh viện Đại học Y Hà Nội",
       "Bệnh viện Trung ương Huế"
-    ]
+    ],
+    "videoTitle": "24 giờ trực viện và học lâm sàng của Bác sĩ Nội trú",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "11:15",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "h8z4eNXbtbE",
+    "videoKeyTakeaways": [
+      "Đòi hỏi 6 năm đại học + 18 tháng thực hành lâm sàng liên tục tại các khoa hồi sức, cấp cứu.",
+      "Áp lực trực đêm và ra quyết định chuẩn xác từng giây giữa ranh giới sinh tử của bệnh nhân.",
+      "Niềm hạnh phúc thiêng liêng khi cứu sống người bệnh và mang lại hy vọng cho gia đình."
+    ],
+    "videoRealityCheck": {
+      "myth": "Bác sĩ mới ra trường kiếm tiền rất dễ và có thu nhập khủng ngay lập tức.",
+      "truth": "Thu nhập ban đầu của bác sĩ trẻ khá khiêm tốn, quả ngọt chỉ đến sau 8-10 năm bền bỉ tích lũy y đức và tay nghề."
+    }
   },
   {
     "id": "cntt",
@@ -192,7 +220,21 @@ export const MAJORS_DATA = [
       "VNG Corporation",
       "Shopee Tech",
       "Samsung R&D Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày làm việc của Kỹ sư Trí tuệ Nhân tạo & Lập trình viên AI",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:15",
+    "videoChannel": "VTV24 Tiêu Điểm",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Huấn luyện các mô hình Machine Learning / Deep Learning và tối ưu thuật toán xử lý dữ liệu lớn.",
+      "Làm việc nhóm liên tục với Product Manager, Designer để giải quyết bài toán người dùng thực tế.",
+      "Khả năng tự học công nghệ mới mỗi ngày là yếu tố quyết định để không bị đào thải trong kỷ nguyên AI."
+    ],
+    "videoRealityCheck": {
+      "myth": "Ngành IT chỉ cần ngồi một mình gõ code, không cần giao tiếp hay làm việc nhóm.",
+      "truth": "Kỹ sư phần mềm dành phần lớn thời gian đọc tài liệu, tranh luận giải pháp kiến trúc và phối hợp đa phòng ban."
+    }
   },
   {
     "id": "truyenthong",
@@ -257,7 +299,21 @@ export const MAJORS_DATA = [
       "Dentsu Vietnam",
       "Ogilvy Vietnam",
       "Yeah1 Group"
-    ]
+    ],
+    "videoTitle": "Một ngày tác nghiệp hiện trường & sản xuất tin tức của Biên tập viên Truyền hình",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:20",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Lên kịch bản phóng sự, đi hiện trường thu thập tư liệu và dẫn hiện trường chuyên nghiệp.",
+      "Hậu kỳ video nhanh chóng, biên tập tin bài chuẩn xác dưới áp lực giờ lên sóng trực tiếp.",
+      "Đòi hỏi bản lĩnh chính trị vững vàng, phản ứng nhanh nhạy và tư duy hình ảnh sắc bén."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm truyền thông truyền hình luôn sang chảnh, lên sóng lộng lẫy và nhàn hạ.",
+      "truth": "Phía sau ống kính là những chuyến công tác bão lũ gian nan, thức trắng đêm dựng bài để kịp giờ phát sóng."
+    }
   },
   {
     "id": "logistics",
@@ -322,7 +378,21 @@ export const MAJORS_DATA = [
       "DHL Global Forwarding",
       "Tân Cảng Sài Gòn (SNP)",
       "Viettel Post"
-    ]
+    ],
+    "videoTitle": "Một ngày điều phối hàng hóa quốc tế tại Cảng biển & Kho vận",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:40",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "oBE4kHIvaps",
+    "videoKeyTakeaways": [
+      "Quản lý hành trình container từ kho ngoại quan đến cảng biển quốc tế và thủ tục thông quan hải quan.",
+      "Ứng dụng công nghệ GPS theo dõi hải trình, đàm phán cước tàu và xử lý rủi ro đứt gãy chuỗi cung ứng.",
+      "Môi trường quốc tế, đòi hỏi tiếng Anh lưu loát và kỹ năng đàm phán giải quyết sự cố linh hoạt."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học Logistics ra trường chỉ đi làm giao hàng hoặc bốc dỡ hàng tại kho bãi.",
+      "truth": "Logistics là nghệ thuật quản trị dòng chảy toàn cầu: Điều phối đội tàu biển, đàm phán hợp đồng triệu USD."
+    }
   },
   {
     "id": "supham-toan",
@@ -385,7 +455,21 @@ export const MAJORS_DATA = [
       "Trường Quốc tế BVIS / BIS",
       "Học viện Toán Sơ đồ",
       "Hệ thống FPT School"
-    ]
+    ],
+    "videoTitle": "Một ngày đứng lớp truyền cảm hứng của Giáo viên Toán & STEM GenZ",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:45",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Đổi mới phương pháp giảng dạy: Biến công thức khô khan thành các mô hình thực hành STEM sống động.",
+      "Thấu cảm tâm lý lứa tuổi học trò, khơi gợi niềm đam mê tư duy logic và giải quyết vấn đề thực tiễn.",
+      "Được nhà nước hỗ trợ 100% học phí và sinh hoạt phí (Nghị định 116), cơ hội việc làm rộng mở tại các trường quốc tế."
+    ],
+    "videoRealityCheck": {
+      "myth": "Giáo viên Toán chỉ dạy đi dạy lại vài bài toán mẫu trong sách giáo khoa, nhàn hạ.",
+      "truth": "Giáo viên hiện đại phải liên tục cập nhật công nghệ EdTech, soạn giáo án tương tác và đồng hành cùng áp lực thi cử của học sinh."
+    }
   },
   {
     "id": "vi-mach",
@@ -449,7 +533,21 @@ export const MAJORS_DATA = [
       "Marvell Technology",
       "Samsung R&D Semiconductor",
       "FPT Semiconductor"
-    ]
+    ],
+    "videoTitle": "Bên trong phòng Lab Thiết kế Vi mạch & Chip Bán dẫn",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "10:20",
+    "videoChannel": "VTV24 Khoa Giáo",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Việt Nam là trọng điểm đầu tư vi mạch của các tập đoàn thế giới (Nvidia, Synopsys, Marvell, Amkor).",
+      "Yêu cầu nền tảng cực chắc về Vật lý bán dẫn, Toán cao cấp và ngôn ngữ thiết kế phần cứng VHDL/Verilog.",
+      "Mức lương khởi điểm top đầu thị trường nhưng đòi hỏi tính chính xác tuyệt đối, sai số bằng 0."
+    ],
+    "videoRealityCheck": {
+      "myth": "Thiết kế chip là nghề việc nhẹ lương cao, ngồi phòng điều hòa bấm chuột là xong.",
+      "truth": "Áp lực sai số bằng 0. Một lỗi logic nhỏ trên tấm wafer silicon có thể thiêu rụi dự án hàng triệu USD."
+    }
   },
   {
     "id": "ngon-ngu-anh",
@@ -513,7 +611,21 @@ export const MAJORS_DATA = [
       "Tập đoàn dịch thuật đa quốc gia",
       "Hệ thống Anh ngữ VUS / ILA",
       "Các hãng thông tấn quốc tế (Reuters, BBC)"
-    ]
+    ],
+    "videoTitle": "Một ngày làm việc của Phiên dịch viên Cabin & Chuyên viên Đối ngoại",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:30",
+    "videoChannel": "Brands Vietnam",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Dịch song song (cabin) tại các hội nghị thượng đỉnh quốc tế, đòi hỏi phản xạ ngôn ngữ tính bằng mili-giây.",
+      "Soạn thảo hợp đồng ngoại giao và đàm phán thương mại giữa các tập đoàn đa quốc gia.",
+      "Thời đại AI dịch thuật cần chuyển dịch sang kỹ năng thấu hiểu văn hóa sâu sắc, đàm phán ngoại giao và kiểm chứng nội dung."
+    ],
+    "videoRealityCheck": {
+      "myth": "Thời đại AI dịch thuật như Google Translate/ChatGPT thì học Ngôn ngữ Anh sẽ thất nghiệp.",
+      "truth": "AI chỉ dịch máy bề mặt. Nhân sự giỏi ngôn ngữ kết hợp kỹ năng kinh doanh, pháp lý và ngoại giao vẫn được săn đón mức lương nghìn USD."
+    }
   },
   {
     "id": "luat-kinh-te",
@@ -578,7 +690,21 @@ export const MAJORS_DATA = [
       "YKVN",
       "Pháp chế Tập đoàn Vingroup / Masan",
       "Tập đoàn Viettel"
-    ]
+    ],
+    "videoTitle": "Một ngày tư vấn pháp lý doanh nghiệp và tranh tụng của Luật sư",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:05",
+    "videoChannel": "Luật Sư Việt",
+    "videoYoutubeId": "hbQDHin8s7g",
+    "videoKeyTakeaways": [
+      "Thẩm định rủi ro pháp lý hợp đồng thương mại, mua bán sáp nhập (M&A) và sở hữu trí tuệ doanh nghiệp.",
+      "Tranh tụng tại tòa án và trọng tài thương mại quốc tế (VIAC/ICC) để bảo vệ quyền lợi hợp pháp của thân chủ.",
+      "Đòi hỏi tư duy phản biện sắc bén, đạo đức nghề nghiệp liêm chính và khả năng chịu áp lực cao độ."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học luật chỉ cần thuộc lòng toàn bộ các điều luật trong bộ luật là hành nghề được.",
+      "truth": "Học luật là học tư duy logic pháp lý và giải quyết xung đột lợi ích. Luật sư giỏi là người tìm ra giải pháp pháp lý an toàn nhất cho kinh doanh."
+    }
   },
   {
     "id": "kdqt",
@@ -643,7 +769,21 @@ export const MAJORS_DATA = [
       "Unilever",
       "Shopee / Alibaba",
       "LG Electronics"
-    ]
+    ],
+    "videoTitle": "Một ngày đàm phán thương mại xuyên biên giới tại Tập đoàn Đa quốc gia",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:05",
+    "videoChannel": "Global Business VN",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Nắm vững điều kiện thương mại quốc tế (Incoterms 2020), phương thức thanh toán L/C và quản trị chuỗi cung ứng.",
+      "Đàm phán xuất nhập khẩu bằng tiếng Anh và ngoại ngữ thứ hai (Trung, Hàn, Nhật) với các đối tác 5 châu.",
+      "Cơ hội công tác quốc tế, mở rộng mạng lưới giao thương và thấu hiểu văn hóa kinh doanh toàn cầu."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học kinh doanh quốc tế chỉ toàn lý thuyết chung chung, không có nghiệp vụ chuyên môn rõ ràng.",
+      "truth": "Ngành đào tạo chuyên sâu về thủ tục ngoại thương, thanh toán quốc tế và mở rộng thị trường xuyên biên giới cực kỳ thực chiến."
+    }
   },
   {
     "id": "rang-ham-mat",
@@ -705,7 +845,21 @@ export const MAJORS_DATA = [
       "Bệnh viện Đại học Y Dược",
       "Bệnh viện Vinmec",
       "Hệ thống nha khoa tư nhân cao cấp"
-    ]
+    ],
+    "videoTitle": "Một ngày chỉnh nha thẩm mỹ & phẫu thuật hàm mặt của Bác sĩ Nha khoa",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:30",
+    "videoChannel": "Y Khoa Việt Nam",
+    "videoYoutubeId": "h8z4eNXbtbE",
+    "videoKeyTakeaways": [
+      "Khám, chẩn đoán hình ảnh CT ConeBeam 3D và lập phác đồ niềng răng, cấy ghép Implant chuyên sâu.",
+      "Đòi hỏi sự tỉ mỉ, đôi bàn tay khéo léo chuẩn xác đến từng milimet cùng gu thẩm mỹ nụ cười tinh tế.",
+      "Thời gian đào tạo 6 năm chính quy, tiềm năng thu nhập cao và cơ hội mở phòng khám nha khoa tư nhân độc lập."
+    ],
+    "videoRealityCheck": {
+      "myth": "Bác sĩ Răng Hàm Mặt chỉ nhổ răng và hàn răng đơn giản, không áp lực như Bác sĩ đa khoa.",
+      "truth": "Nha khoa hiện đại bao gồm phẫu thuật chỉnh hình hàm mặt phức tạp, chịu áp lực thẩm mỹ cao và nguy cơ tai biến y khoa lớn."
+    }
   },
   {
     "id": "dohoa",
@@ -770,7 +924,21 @@ export const MAJORS_DATA = [
       "VinFast Design Studio",
       "Shopee / Grab Design Team",
       "Các Creative Agency hàng đầu (Dentsu, Ogilvy)"
-    ]
+    ],
+    "videoTitle": "Một ngày sáng tạo từ phác thảo đến sản phẩm của Art Director / UI-UX Designer",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:35",
+    "videoChannel": "Arena Multimedia",
+    "videoYoutubeId": "CujT81z0vQU",
+    "videoKeyTakeaways": [
+      "Nghiên cứu tâm lý hành vi người dùng, vẽ wireframe và thiết kế prototype tương tác ứng dụng trên Figma.",
+      "Xây dựng bộ nhận diện thương hiệu và chỉ đạo mỹ thuật các chiến dịch truyền thông đa nền tảng.",
+      "Cơ hội làm việc từ xa (Remote/Freelance) linh hoạt cho các công ty công nghệ và agency toàn cầu."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm thiết kế đồ họa chỉ cần biết dùng phần mềm Photoshop / Illustrator là đủ kiếm tiền.",
+      "truth": "Phần mềm chỉ là công cụ. Giá trị tạo nên sự khác biệt nằm ở tư duy thẩm mỹ, thấu cảm thị trường và giải bài toán thương hiệu."
+    }
   },
   {
     "id": "oto-dien",
@@ -834,7 +1002,21 @@ export const MAJORS_DATA = [
       "Toyota Vietnam",
       "Hyundai Thành Công",
       "Thaco Trường Hải"
-    ]
+    ],
+    "videoTitle": "Một ngày thử nghiệm hệ thống truyền động & pin xe điện tại Nhà máy Ô tô thông minh",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:15",
+    "videoChannel": "VTV24 Tiêu Điểm",
+    "videoYoutubeId": "s8ktd86j1Ek",
+    "videoKeyTakeaways": [
+      "Nghiên cứu hệ thống quản lý pin BMS, động cơ điện hiệu suất cao và phần mềm lái xe tự hành ADAS.",
+      "Chẩn đoán lỗi ô tô trên hệ thống mô phỏng số Digital Twin và vận hành dây chuyền robot lắp ráp.",
+      "Đón đầu làn sóng chuyển đổi xanh của ngành công nghiệp ô tô toàn cầu với sự bùng nổ của VinFast, Tesla, BYD."
+    ],
+    "videoRealityCheck": {
+      "myth": "Ngành ô tô chỉ toàn tay chân lấm lem dầu mỡ trong xưởng sửa chữa gầm máy xe cũ.",
+      "truth": "Kỹ sư ô tô điện hiện đại làm việc với vi mạch, lập trình nhúng, thuật toán điều khiển và phần mềm phân tích dữ liệu sạch sẽ."
+    }
   },
   {
     "id": "duoc-hoc",
@@ -897,7 +1079,21 @@ export const MAJORS_DATA = [
       "AstraZeneca Vietnam",
       "Sanofi Aventis",
       "Hệ thống Nhà thuốc Long Châu / An Khang"
-    ]
+    ],
+    "videoTitle": "Một ngày nghiên cứu & kiểm nghiệm thuốc tại phòng Lab Dược phẩm",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "08:50",
+    "videoChannel": "Dược Liệu Việt",
+    "videoYoutubeId": "h8z4eNXbtbE",
+    "videoKeyTakeaways": [
+      "Chiết xuất hoạt chất sinh học, bào chế viên nén và kiểm định tiêu chuẩn chất lượng thuốc theo Dược điển.",
+      "Nghiên cứu lâm sàng và đăng ký lưu hành thuốc mới tại các viện nghiên cứu và tập đoàn dược phẩm đa quốc gia.",
+      "Đòi hỏi đức tính cẩn trọng, tỉ mỉ tuyệt đối vì mỗi sai số nhỏ đều ảnh hưởng trực tiếp đến tính mạng con người."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học Dược ra trường chỉ để mở quầy thuốc tây bán lẻ đầu ngõ kiếm lời.",
+      "truth": "Dược sĩ có phổ nghề nghiệp rộng: Nghiên cứu R&D thuốc mới, Dược lâm sàng bệnh viện, kiểm nghiệm chất lượng và quản lý thử nghiệm lâm sàng."
+    }
   },
   {
     "id": "khdl",
@@ -961,7 +1157,21 @@ export const MAJORS_DATA = [
       "Viettel AI",
       "FPT Smart Cloud",
       "Shopee AI Team"
-    ]
+    ],
+    "videoTitle": "Một ngày khai phá dữ liệu & xây dựng mô hình dự báo của Data Scientist",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:45",
+    "videoChannel": "Maz Học Data",
+    "videoYoutubeId": "wO2qaeE8FTA",
+    "videoKeyTakeaways": [
+      "Xử lý hàng triệu dòng dữ liệu lớn (Big Data) bằng Python, SQL và các thuật toán học máy phân tán.",
+      "Xây dựng hệ thống gợi ý sản phẩm cá nhân hóa, phát hiện gian lận tài chính và dự báo xu hướng thị trường.",
+      "Được mệnh danh là nghề hấp dẫn nhất thế kỷ 21 với mức lương cạnh tranh cao trong các lĩnh vực Fintech, E-commerce."
+    ],
+    "videoRealityCheck": {
+      "myth": "Data Scientist chỉ toàn ngồi vẽ biểu đồ màu sắc và ngắm các con số tự động tạo ra tiền.",
+      "truth": "70-80% thời gian thực tế là làm sạch dữ liệu (Data Cleaning) lặp đi lặp lại và kiểm chứng giả thuyết thống kê nghiêm ngặt."
+    }
   },
   {
     "id": "tai-chinh-ngan-hang",
@@ -1026,7 +1236,21 @@ export const MAJORS_DATA = [
       "MB Bank",
       "Công ty Chứng khoán SSI / VNDirect",
       "Quỹ đầu tư Dragon Capital / VinaCapital"
-    ]
+    ],
+    "videoTitle": "Một ngày phân tích đầu tư và quản trị dòng tiền tại Ngân hàng & Quỹ đầu tư",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:25",
+    "videoChannel": "VTV Khớp Lệnh",
+    "videoYoutubeId": "wO2qaeE8FTA",
+    "videoKeyTakeaways": [
+      "Định giá cổ phiếu, trái phiếu và phân tích báo cáo tài chính doanh nghiệp để ra quyết định giải ngân vốn.",
+      "Vận hành hệ thống ngân hàng số và ứng dụng công nghệ Fintech trong thanh toán và chấm điểm tín dụng.",
+      "Đòi hỏi độ nhạy bén với tin tức vĩ mô, khả năng chịu áp lực biến động thị trường và đạo đức quản trị rủi ro cao."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm ngân hàng là công việc nhàn hạ, ngồi đếm tiền máy lạnh từ 8h sáng đến 5h chiều.",
+      "truth": "Nhân viên tài chính ngân hàng chịu áp lực chỉ tiêu huy động vốn, kiểm soát nợ xấu và thường xuyên làm thêm giờ ngoài giờ giao dịch."
+    }
   },
   {
     "id": "kien-truc",
@@ -1090,7 +1314,21 @@ export const MAJORS_DATA = [
       "Archetype Group Vietnam",
       "Công ty Kiến trúc Võ Trọng Nghĩa (VTN Architects)",
       "HPA Design"
-    ]
+    ],
+    "videoTitle": "Một ngày từ bản vẽ 3D đến công trình thực tế của Kiến trúc sư Đô thị xanh",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:40",
+    "videoChannel": "Kiến Trúc Việt",
+    "videoYoutubeId": "CujT81z0vQU",
+    "videoKeyTakeaways": [
+      "Phác thảo ý tưởng công trình, dựng mô hình 3D BIM/Revit và tối ưu hóa thông gió, ánh sáng tự nhiên.",
+      "Khảo sát công trường, kiểm tra giám sát tác giả và làm việc cùng kỹ sư kết cấu để hiện thực hóa bản vẽ.",
+      "Sự kết hợp hoàn hảo giữa tâm hồn nghệ sĩ bay bổng và tư duy kỹ thuật kết cấu chuẩn mực."
+    ],
+    "videoRealityCheck": {
+      "myth": "Kiến trúc sư chỉ cần vẽ tranh đẹp là thiết kế được những tòa nhà chọc trời.",
+      "truth": "Kiến trúc đòi hỏi hiểu biết sâu về vật liệu xây dựng, quy chuẩn an toàn phòng cháy chữa cháy và bài toán ngân sách của chủ đầu tư."
+    }
   },
   {
     "id": "supham-van",
@@ -1154,7 +1392,21 @@ export const MAJORS_DATA = [
       "Trường Quốc tế Wellspring",
       "Nhà xuất bản Giáo dục Việt Nam",
       "Các trung tâm bồi dưỡng văn hóa uy tín"
-    ]
+    ],
+    "videoTitle": "Một ngày khơi nguồn cảm xúc văn chương & tư duy phản biện của Giáo viên Ngữ văn",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:55",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Truyền cảm hứng thẩm mỹ ngôn từ, rèn luyện kỹ năng viết luận logic và thuyết trình trước đám đông cho học sinh.",
+      "Đổi mới dạy học Văn theo hướng gắn kết đời sống thực tế, phân tích điện ảnh và truyền thông hiện đại.",
+      "Hưởng chế độ hỗ trợ học phí và sinh hoạt phí theo Nghị định 116 của Chính phủ."
+    ],
+    "videoRealityCheck": {
+      "myth": "Dạy Văn là nghề cũ kỹ, chỉ cần đọc chép theo văn mẫu là học sinh làm bài thi được điểm cao.",
+      "truth": "Chương trình mới GDPT 2018 đòi hỏi giáo viên dạy cách tư duy phản biện độc lập, đánh giá đa chiều không phụ thuộc văn mẫu."
+    }
   },
   {
     "id": "tudonghoa",
@@ -1218,7 +1470,21 @@ export const MAJORS_DATA = [
       "Foxconn Vietnam",
       "ABB Vietnam",
       "Siemens Industry"
-    ]
+    ],
+    "videoTitle": "Một ngày lập trình cánh tay Robot công nghiệp & hệ thống SCADA nhà máy thông minh",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:35",
+    "videoChannel": "VTV24 Tiêu Điểm",
+    "videoYoutubeId": "s8ktd86j1Ek",
+    "videoKeyTakeaways": [
+      "Lập trình PLC (Siemens, Mitsubishi), điều khiển biến tần và robot cánh tay tự động hóa trong các nhà máy sản xuất.",
+      "Tích hợp mạng truyền thông công nghiệp IoT và camera thị giác máy tính AI để kiểm tra lỗi sản phẩm tự động.",
+      "Cơ hội làm việc tại các tổ hợp sản xuất công nghệ cao hàng đầu (VinFast, Samsung, Foxconn, Lego)."
+    ],
+    "videoRealityCheck": {
+      "myth": "Ngành tự động hóa chỉ làm việc với ốc vít dầu mỡ trong môi trường bụi bặm vất vả.",
+      "truth": "Kỹ sư tự động hóa thời đại 4.0 chủ yếu ngồi phòng điều khiển trung tâm SCADA, lập trình mô phỏng số và tối ưu thuật toán dây chuyền."
+    }
   },
   {
     "id": "ke-toan",
@@ -1283,7 +1549,21 @@ export const MAJORS_DATA = [
       "BDO Vietnam",
       "Tập đoàn Viettel",
       "Tập đoàn Vingroup"
-    ]
+    ],
+    "videoTitle": "Một ngày mùa bận rộn (Busy Season) của Kiểm toán viên tại Big4",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:55",
+    "videoChannel": "ACCA Vietnam",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Kiểm tra chứng từ, đối chiếu số dư ngân hàng và chứng minh tính trung thực hợp lý của báo cáo tài chính doanh nghiệp.",
+      "Trải nghiệm môi trường làm việc chuyên nghiệp chuẩn quốc tế tại Big4 (PwC, Deloitte, EY, KPMG) với chứng chỉ ACCA/CPA.",
+      "Trang bị góc nhìn toàn cảnh về cách các doanh nghiệp triệu đô vận hành dòng tiền và tuân thủ thuế."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm kế toán chỉ là nhập số liệu thủ công vào máy tính, rất dễ bị AI thay thế hoàn toàn.",
+      "truth": "AI chỉ thay thế khâu nhập liệu cơ bản. Kiểm toán viên và Kế toán trưởng đóng vai trò phân tích gian lận, tư vấn thuế và chiến lược tài chính."
+    }
   },
   {
     "id": "an-ninh-mang",
@@ -1348,7 +1628,21 @@ export const MAJORS_DATA = [
       "VNPT IT Cyber",
       "FPT Cyber Security",
       "Cục An toàn thông tin - Bộ TT&TT"
-    ]
+    ],
+    "videoTitle": "Một ngày trực chiến trung tâm SOC săn lùng mã độc của Chuyên gia An toàn thông tin",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:50",
+    "videoChannel": "CyberSecurity VN",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Giám sát lưu lượng mạng, phát hiện và cô lập các cuộc tấn công DDoS, mã độc tống tiền (Ransomware).",
+      "Thực hiện kiểm thử xâm nhập (Penetration Testing) để vá các lỗ hổng bảo mật trong hệ thống máy chủ ngân hàng.",
+      "Ngành khát nhân lực trầm trọng toàn cầu với mức đãi ngộ đặc biệt cao cho chuyên gia an ninh mạng."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm an ninh mạng giống hệt như hacker ngầu trong phim ảnh, bấm bàn phím vài giây là xâm nhập được hệ thống.",
+      "truth": "Thực tế là hàng giờ cặm cụi đọc file log, phân tích gói tin mạng và thức trắng đêm ứng cứu sự cố bảo mật trong trạng thái căng thẳng cao độ."
+    }
   },
   {
     "id": "dieu-duong",
@@ -1413,7 +1707,21 @@ export const MAJORS_DATA = [
       "Hệ thống Bệnh viện Quốc tế Vinmec",
       "Tập đoàn y tế Asahi Nhật Bản",
       "Hệ thống Bệnh viện Hoàn Mỹ"
-    ]
+    ],
+    "videoTitle": "Một ngày chăm sóc hồi sức tích cực & đồng hành cùng bệnh nhân của Điều dưỡng viên",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:15",
+    "videoChannel": "Y Khoa Việt Nam",
+    "videoYoutubeId": "h8z4eNXbtbE",
+    "videoKeyTakeaways": [
+      "Theo dõi sát sao dấu hiệu sinh tồn, thực hiện y lệnh tiêm truyền và xử lý cấp cứu khẩn cấp cùng bác sĩ.",
+      "Là người cận kề nhất hỗ trợ phục hồi cả thể chất lẫn tinh thần cho người bệnh trong suốt quá trình nằm viện.",
+      "Cơ hội làm việc quốc tế và định cư tại Nhật Bản, CHLB Đức, Úc với mức thu nhập từ 50 - 80 triệu/tháng."
+    ],
+    "videoRealityCheck": {
+      "myth": "Điều dưỡng chỉ là người phụ việc vặt của bác sĩ, không cần chuyên môn sâu.",
+      "truth": "Điều dưỡng là mắt xích trực tiếp quyết định sự an toàn và phục hồi của người bệnh, đòi hỏi kiến thức y lý và kỹ năng hồi sức cực kỳ vững vàng."
+    }
   },
   {
     "id": "quan-he-quoc-te",
@@ -1477,7 +1785,21 @@ export const MAJORS_DATA = [
       "Phái đoàn Liên minh Châu Âu tại VN",
       "Các tổ chức phi chính phủ (Oxfam, WWF)",
       "Tập đoàn Vingroup / Viettel Global"
-    ]
+    ],
+    "videoTitle": "Một ngày điều phối lễ tân ngoại giao & tổ chức hội nghị thượng đỉnh của Chuyên viên Đối ngoại",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:25",
+    "videoChannel": "Học Viện Ngoại Giao",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Nghiên cứu tình hình chính trị quốc tế, soạn thảo thông cáo ngoại giao và chuẩn bị hồ sơ đàm phán hiệp định.",
+      "Tổ chức các sự kiện quốc tế quy mô lớn, đón tiếp các đoàn ngoại giao và đại sứ quán các nước.",
+      "Đòi hỏi khả năng ngoại ngữ xuất sắc, phong thái đĩnh đạc chuẩn mực và sự tinh tế trong giao tiếp đa văn hóa."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học quan hệ quốc tế ra trường chỉ để làm Đại sứ hoặc công tác trong Bộ Ngoại giao.",
+      "truth": "Cơ hội việc làm rất rộng mở: Phòng đối ngoại của tập đoàn đa quốc gia, tổ chức phi chính phủ (NGOs), cơ quan thông tấn và báo chí quốc tế."
+    }
   },
   {
     "id": "thuong-mai-dien-tu",
@@ -1542,7 +1864,21 @@ export const MAJORS_DATA = [
       "Lazada",
       "Tiki",
       "Tập đoàn bán lẻ Central Retail / Masan"
-    ]
+    ],
+    "videoTitle": "Một ngày tối ưu gian hàng toàn cầu & livestream triệu view của E-commerce Manager",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:40",
+    "videoChannel": "E-Commerce Hub",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Quản lý gian hàng trên Shopee, TikTok Shop, Amazon và tối ưu hóa tỷ lệ chuyển đổi khách hàng.",
+      "Phân tích dữ liệu hành vi mua sắm, thiết lập chiến dịch khuyến mãi Mega Sale và điều phối đơn hàng đa kênh.",
+      "Đón đầu xu hướng thương mại điện tử xuyên biên giới (Cross-border E-commerce) bùng nổ mạnh mẽ."
+    ],
+    "videoRealityCheck": {
+      "myth": "Thương mại điện tử chỉ đơn giản là lập nick bán hàng online trên Facebook/Shopee.",
+      "truth": "E-commerce chuyên nghiệp là sự kết hợp phức tạp của quản trị kho bãi fulfillment, thuật toán quảng cáo, tối ưu chi phí vận chuyển và trải nghiệm khách hàng."
+    }
   },
   {
     "id": "ky-thuat-phan-mem",
@@ -1606,7 +1942,21 @@ export const MAJORS_DATA = [
       "VNG Corporation",
       "KMS Technology",
       "Grab R&D Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày thiết kế kiến trúc hệ thống & tối ưu backend hàng triệu người dùng",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:30",
+    "videoChannel": "TechLead VN",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Phát triển ứng dụng web/mobile quy mô lớn với kiến trúc Microservices và điện toán đám mây AWS/GCP.",
+      "Tối ưu hiệu năng cơ sở dữ liệu để phục vụ hàng triệu giao dịch đồng thời mà không bị nghẽn hệ thống.",
+      "Cơ hội thăng tiến rõ ràng lên Senior Developer, Solution Architect hoặc Engineering Manager."
+    ],
+    "videoRealityCheck": {
+      "myth": "Lập trình viên chỉ cần biết gõ code là xong, không cần quan tâm đến mô hình kinh doanh của công ty.",
+      "truth": "Kỹ sư phần mềm giỏi phải hiểu bài toán kinh doanh để thiết kế phần mềm linh hoạt, dễ mở rộng và tiết kiệm chi phí vận hành máy chủ."
+    }
   },
   {
     "id": "robot-ai",
@@ -1670,7 +2020,21 @@ export const MAJORS_DATA = [
       "Makino Vietnam",
       "Bosch Engineering Vietnam",
       "Viettel High Technology (VHT)"
-    ]
+    ],
+    "videoTitle": "Một ngày chế tạo Robot di động tự hành AGV & thị giác máy tính AI",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "10:10",
+    "videoChannel": "VTV24 Tiêu Điểm",
+    "videoYoutubeId": "s8ktd86j1Ek",
+    "videoKeyTakeaways": [
+      "Thiết kế cơ cấu cơ khí, tích hợp cảm biến LiDAR và lập trình thuật toán điều hướng định vị SLAM cho robot tự hành.",
+      "Ứng dụng thị giác máy tính AI để robot nhận diện vật cản và phân loại kiện hàng trong kho thông minh.",
+      "Lĩnh vực mũi nhọn đón đầu cuộc cách mạng tự động hóa kho bãi và sản xuất thông minh toàn cầu."
+    ],
+    "videoRealityCheck": {
+      "myth": "Robot chỉ là món đồ chơi lắp ghép mô hình trong các cuộc thi trường học.",
+      "truth": "Robot công nghiệp hiện đại là hệ thống cơ khí chính xác tích hợp AI phức tạp, đòi hỏi độ tin cậy vận hành liên tục 24/7 trong môi trường công nghiệp khắc nghiệt."
+    }
   },
   {
     "id": "ngon-ngu-trung",
@@ -1735,7 +2099,21 @@ export const MAJORS_DATA = [
       "Luxshare - ICT",
       "Tập đoàn Goertek",
       "Hãng hàng không China Southern / Vietnam Airlines"
-    ]
+    ],
+    "videoTitle": "Một ngày thông dịch hội nghị kinh tế & đàm phán hợp đồng với đối tác Trung Quốc",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:15",
+    "videoChannel": "Hoa Ngữ Toàn Cầu",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Biên phiên dịch thương mại tại các nhà máy, tập đoàn công nghệ lớn của Đài Loan và Trung Quốc tại Việt Nam.",
+      "Đàm phán xuất nhập khẩu nông sản, linh kiện điện tử và xúc tiến đầu tư song phương.",
+      "Cơ hội việc làm dồi dào do dòng vốn đầu tư FDI từ khối Hoa ngữ vào Việt Nam liên tục đứng top đầu."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học tiếng Trung chỉ cần nghe nói giao tiếp bán hàng chợ đầu mối là đủ.",
+      "truth": "Doanh nghiệp FDI đòi hỏi nhân sự thành thạo thuật ngữ kỹ thuật, pháp lý thương mại và văn hóa kinh doanh bài bản để làm việc cấp quản lý."
+    }
   },
   {
     "id": "quan-tri-khach-san",
@@ -1800,7 +2178,21 @@ export const MAJORS_DATA = [
       "Vinpearl Resort & Spa",
       "Sun Hospitality Group",
       "Accor Hotels"
-    ]
+    ],
+    "videoTitle": "Một ngày kiểm soát tiêu chuẩn dịch vụ & vận hành khu nghỉ dưỡng 5 sao quốc tế",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:30",
+    "videoChannel": "Hospitality VN",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Điều phối hoạt động tiền sảnh (Front Office), buồng phòng (Housekeeping) và ẩm thực (F&B) chuẩn 5 sao.",
+      "Xử lý các yêu cầu đặc biệt của khách hàng VIP và kiểm soát chất lượng trải nghiệm du lịch cao cấp.",
+      "Cơ hội làm việc tại các tập đoàn quản lý khách sạn danh tiếng thế giới (Marriott, Accor, IHG)."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học quản trị khách sạn ra trường là được mặc vest làm sếp chỉ tay năm ngón ngay.",
+      "truth": "Tất cả các nhà quản lý khách sạn giỏi đều phải đi lên từ các vị trí thực tập bồi bàn, lễ tân để thấu hiểu tường tận quy trình phục vụ."
+    }
   },
   {
     "id": "tam-ly-hoc",
@@ -1865,7 +2257,21 @@ export const MAJORS_DATA = [
       "Bệnh viện Nhi Trung ương",
       "Trung tâm Tham vấn Tâm lý tư nhân uy tín",
       "Bộ phận Nhân sự các tập đoàn lớn"
-    ]
+    ],
+    "videoTitle": "Một ngày tham vấn trị liệu tâm lý cá nhân & giải tỏa trầm cảm học đường",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:40",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "hbQDHin8s7g",
+    "videoKeyTakeaways": [
+      "Lắng nghe không phán xét, sử dụng các bài test tâm lý tiêu chuẩn khoa học để đánh giá trạng thái tinh thần của thân chủ.",
+      "Ứng dụng liệu pháp nhận thức hành vi (CBT) để giúp học sinh và người đi làm vượt qua khủng hoảng tâm lý.",
+      "Nhu cầu xã hội tăng cao khi nhận thức về sức khỏe tinh thần và tâm lý học đường ngày càng được quan tâm đúng mực."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học tâm lý học xong là có thể đọc được suy nghĩ của người khác như thần giao cách cảm.",
+      "truth": "Nhà tâm lý học không đọc ý nghĩ, mà dùng phương pháp khoa học hành vi và sự thấu cảm để đồng hành giúp thân chủ tự tìm ra lối thoát cho vấn đề của chính họ."
+    }
   },
   {
     "id": "hang-khong",
@@ -1927,7 +2333,21 @@ export const MAJORS_DATA = [
       "Tổng công ty Quản lý bay Việt Nam (VATM)",
       "Bamboo Airways",
       "Boeing / Airbus Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày kiểm tra an toàn kỹ thuật máy bay trước giờ cất cánh của Kỹ sư Hàng không",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:25",
+    "videoChannel": "Aviation VN",
+    "videoYoutubeId": "s8ktd86j1Ek",
+    "videoKeyTakeaways": [
+      "Kiểm tra động cơ phản lực, hệ thống điện tử hàng không (Avionics) và thân vỏ máy bay theo tiêu chuẩn FAA/EASA.",
+      "Bảo dưỡng định kỳ và xử lý kỹ thuật khẩn cấp cho máy bay tại hangar trước mỗi chuyến bay thương mại.",
+      "Yêu cầu tính kỷ luật sắt đá và chứng chỉ hành nghề kỹ thuật hàng không quốc tế."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học kỹ thuật hàng không ra trường ai cũng làm phi công bay lượn trên bầu trời.",
+      "truth": "Phần lớn kỹ sư hàng không làm việc tại mặt đất: Chịu trách nhiệm bảo dưỡng, phân tích an toàn bay và vận hành kỹ thuật bay - những người hùng thầm lặng của mỗi chuyến bay an toàn."
+    }
   },
   {
     "id": "supham-anh",
@@ -1989,7 +2409,21 @@ export const MAJORS_DATA = [
       "Hội đồng Anh (British Council)",
       "Language Link / VUS",
       "Hệ thống trường Quốc tế UNIS / BIS"
-    ]
+    ],
+    "videoTitle": "Một ngày giảng dạy tiếng Anh tương tác cao & luyện thi IELTS của Giáo viên Anh ngữ",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:50",
+    "videoChannel": "IELTS Fighter",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Xây dựng bài giảng tương tác bằng các ứng dụng công nghệ (Quizizz, Kahoot) giúp học viên phản xạ tiếng Anh tự nhiên.",
+      "Rèn luyện 4 kỹ năng Nghe - Nói - Đọc - Viết và chấm bài viết luận chi tiết cho từng học sinh.",
+      "Cơ hội việc làm đa dạng tại các trường công lập, trường quốc tế song ngữ và trung tâm ngoại ngữ cao cấp."
+    ],
+    "videoRealityCheck": {
+      "myth": "Cứ giỏi tiếng Anh điểm IELTS cao là đi dạy học được ngay, không cần học sư phạm.",
+      "truth": "Giỏi tiếng Anh chỉ là điều kiện cần. Kỹ năng sư phạm, phương pháp truyền đạt và sự thấu cảm tâm lý người học mới là yếu tố quyết định sự tiến bộ của học viên."
+    }
   },
   {
     "id": "bao-chi",
@@ -2051,7 +2485,21 @@ export const MAJORS_DATA = [
       "Báo Thanh Niên",
       "Đài Truyền hình Việt Nam (VTV)",
       "Thông tấn xã Việt Nam (TTXVN)"
-    ]
+    ],
+    "videoTitle": "Một ngày điều tra báo chí số & sản xuất phóng sự đa phương tiện Megastory",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:15",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Thu thập chứng cứ hiện trường, phỏng vấn nhân chứng và kiểm chứng tính xác thực của thông tin trước khi xuất bản.",
+      "Sản xuất bài viết đa phương tiện kết hợp văn bản, infographic tương tác, podcast và video ngắn.",
+      "Đòi hỏi ngòi bút sắc bén, lòng dũng cảm bảo vệ công lý và khả năng ứng dụng công nghệ làm báo số hiện đại."
+    ],
+    "videoRealityCheck": {
+      "myth": "Nghề báo thời nay chỉ cần ngồi nhà lướt mạng xã hội xào xáo lại tin tức là có bài đăng.",
+      "truth": "Báo chí chân chính đòi hỏi sự dấn thân vào những điểm nóng xã hội, trực tiếp điều tra và chịu trách nhiệm pháp lý cao nhất về từng câu chữ được đăng tải."
+    }
   },
   {
     "id": "cong-nghe-sinh-hoc",
@@ -2115,7 +2563,21 @@ export const MAJORS_DATA = [
       "Hệ thống Xét nghiệm Di truyền Gentis",
       "Vinmec Vantiv Genomics",
       "Tập đoàn TH True Milk (R&D giống)"
-    ]
+    ],
+    "videoTitle": "Một ngày trong phòng Lab nuôi cấy mô & giải mã trình tự gen thế hệ mới",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "09:35",
+    "videoChannel": "Khoa Học Đời Sống",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Chiết tách ADN, chạy phản ứng PCR và nuôi cấy tế bào phục vụ sản xuất vắc-xin và giống cây trồng biến đổi gen.",
+      "Ứng dụng tin sinh học (Bioinformatics) để phân tích đột biến gen và phát triển các liệu pháp sinh học điều trị ung thư.",
+      "Lĩnh vực chiến lược quốc gia với tiềm năng ứng dụng to lớn trong y tế, nông nghiệp và bảo vệ môi trường."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học công nghệ sinh học ở Việt Nam không có đất dụng võ, ra trường chỉ làm giáo viên sinh học.",
+      "truth": "Các nhà máy dược sinh học, công ty giống cây trồng công nghệ cao và trung tâm xét nghiệm ADN hiện đại đang rất khát nhân sự công nghệ sinh học tay nghề cao."
+    }
   },
   {
     "id": "cong-nghe-thuc-pham",
@@ -2179,7 +2641,21 @@ export const MAJORS_DATA = [
       "Nestlé Vietnam",
       "PepsiCo Foods Vietnam",
       "Acecook Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày nghiên cứu hương vị & kiểm soát an toàn vệ sinh thực phẩm quốc tế",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "08:45",
+    "videoChannel": "FoodTech VN",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Nghiên cứu công thức thực phẩm mới (R&D), tối ưu hạn sử dụng và cảm quan hương vị của đồ ăn đồ uống.",
+      "Kiểm soát chất lượng (QA/QC) trên dây chuyền đóng gói tự động theo tiêu chuẩn quốc tế ISO 22000 và HACCP.",
+      "Cơ hội làm việc tại các tập đoàn thực phẩm hàng đầu (Nestlé, Vinamilk, CP, Masan, PepsiCo)."
+    ],
+    "videoRealityCheck": {
+      "myth": "Công nghệ thực phẩm là học nghề đầu bếp hoặc nấu ăn trong nhà hàng.",
+      "truth": "Đây là ngành khoa học kỹ thuật chuyên sâu về hóa sinh thực phẩm, vi sinh vật, bảo quản chế biến công nghiệp quy mô triệu sản phẩm mỗi ngày."
+    }
   },
   {
     "id": "quan-tri-nhan-luc",
@@ -2244,7 +2720,21 @@ export const MAJORS_DATA = [
       "Tập đoàn FPT",
       "Unilever Vietnam",
       "Shopee Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày săn đầu người (Headhunt) & xây dựng văn hóa doanh nghiệp hạnh phúc",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:50",
+    "videoChannel": "HR Insider",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Tìm kiếm nhân tài chiến lược (Talent Acquisition), phỏng vấn sàng lọc ứng viên và đàm phán chế độ đãi ngộ.",
+      "Thiết kế lộ trình đào tạo, đánh giá hiệu quả KPI/OKR và gắn kết văn hóa nội bộ doanh nghiệp.",
+      "Chuyển dịch sang mô hình People Operations hiện đại, ứng dụng phân tích dữ liệu HR Analytics."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm nhân sự chỉ đơn giản là chấm công, tính lương và làm bảo hiểm xã hội theo bảng mẫu Excel.",
+      "truth": "Nhân sự hiện đại là đối tác chiến lược của ban lãnh đạo (HR Business Partner), giữ vai trò then chốt trong việc giữ chân nhân tài và tối ưu hóa năng suất làm việc."
+    }
   },
   {
     "id": "xet-nghiem-y-hoc",
@@ -2307,7 +2797,21 @@ export const MAJORS_DATA = [
       "Hệ thống Y tế Medlatec",
       "Hệ thống Bệnh viện Vinmec",
       "Hãng thiết bị y tế Roche / Abbott Diagnostics"
-    ]
+    ],
+    "videoTitle": "Một ngày soi kính hiển vi & vận hành máy xét nghiệm huyết học tự động",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "08:30",
+    "videoChannel": "Y Khoa Việt Nam",
+    "videoYoutubeId": "h8z4eNXbtbE",
+    "videoKeyTakeaways": [
+      "Vận hành hệ thống máy xét nghiệm sinh hóa, miễn dịch tự động và đọc lam máu dưới kính hiển vi quang học.",
+      "Cung cấp số liệu chẩn đoán chính xác là căn cứ khoa học quyết định để bác sĩ đưa ra phác đồ điều trị đúng đắn.",
+      "Đòi hỏi sự cẩn thận tỉ mỉ tuyệt đối và tuân thủ nghiêm ngặt quy trình an toàn sinh học."
+    ],
+    "videoRealityCheck": {
+      "myth": "Kỹ thuật viên xét nghiệm chỉ ấn nút máy tự chạy là có kết quả, không cần động não nhiều.",
+      "truth": "Máy móc chỉ làm khâu phân tích thô. Kỹ thuật viên phải kiểm soát chất lượng mẫu, đối chiếu lâm sàng và phát hiện các bất thường vi thể mà máy móc bỏ sót."
+    }
   },
   {
     "id": "ngon-ngu-han",
@@ -2372,7 +2876,21 @@ export const MAJORS_DATA = [
       "Tập đoàn Hyundai Motor",
       "Lotte Group Vietnam",
       "CJ Group Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày biên dịch kịch bản truyền thông & giao thương tại Tập đoàn Hàn Quốc",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:10",
+    "videoChannel": "Hàn Ngữ Toàn Cầu",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Phiên dịch các cuộc họp chiến lược giữa ban lãnh đạo Hàn Quốc và nhân viên Việt Nam tại các tập đoàn lớn (Samsung, LG, Lotte, CJ).",
+      "Biên dịch nội dung văn hóa, kịch bản phim ảnh, gameshow và thương mại điện tử phục vụ làn sóng Hallyu.",
+      "Thu nhập hấp dẫn và chế độ phúc lợi cao từ các doanh nghiệp Hàn Quốc đầu tư tại Việt Nam."
+    ],
+    "videoRealityCheck": {
+      "myth": "Chỉ cần xem nhiều phim K-drama và thích K-pop là học giỏi tiếng Hàn và đi làm được ngay.",
+      "truth": "Tiếng Hàn thương mại đòi hỏi hệ thống kính ngữ phức tạp, vốn từ vựng kỹ thuật sâu và thấu hiểu phong cách làm việc tốc độ 'Ppalli-ppalli' nghiêm ngặt của người Hàn."
+    }
   },
   {
     "id": "ngon-ngu-nhat",
@@ -2437,7 +2955,21 @@ export const MAJORS_DATA = [
       "Toyota Vietnam",
       "Canon Vietnam",
       "Nidec Corporation"
-    ]
+    ],
+    "videoTitle": "Một ngày làm cầu nối công nghệ (IT Comtor) giữa kỹ sư Việt Nam và khách hàng Nhật Bản",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:25",
+    "videoChannel": "Nhật Ngữ Toàn Cầu",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Dịch tài liệu đặc tả kỹ thuật phần mềm (BRD) và trực tiếp điều phối cuộc họp dự án với đối tác Nhật Bản.",
+      "Nắm vững văn hóa kinh doanh truyền thống Omotenashi và tác phong làm việc chuẩn mực Hou-Ren-Sou.",
+      "Mức lương của vị trí IT Comtor tiếng Nhật (trình độ N2/N1) luôn thuộc hàng top cao nhất trong các ngành ngôn ngữ."
+    ],
+    "videoRealityCheck": {
+      "myth": "Tiếng Nhật quá khó nhớ chữ Hán Kanji nên học xong ra trường rất khó tìm được việc làm tốt.",
+      "truth": "Chính vì rào cản tiếng Nhật cao nên mức độ cạnh tranh thấp hơn các ngôn ngữ khác, các doanh nghiệp Nhật Bản luôn sẵn sàng trả lương cao để tuyển dụng nhân sự thạo tiếng Nhật."
+    }
   },
   {
     "id": "co-dien-tu",
@@ -2501,7 +3033,21 @@ export const MAJORS_DATA = [
       "Canon Vietnam",
       "Nidec Sankyo",
       "Schaeffler Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày tích hợp cảm biến vi điều khiển và cơ khí chính xác trong thiết bị y tế",
+    "videoCategory": "Thực Tế Phòng Lab",
+    "videoDuration": "09:55",
+    "videoChannel": "VTV24 Tiêu Điểm",
+    "videoYoutubeId": "s8ktd86j1Ek",
+    "videoKeyTakeaways": [
+      "Thiết kế kết cấu cơ khí chính xác bằng SolidWorks kết hợp lập trình vi điều khiển ARM và mạch điện tử điều khiển.",
+      "Phát triển các thiết bị thông minh: Thiết bị y tế chẩn đoán, máy in 3D công nghiệp và thiết bị gia dụng IoT.",
+      "Giao thoa giữa 3 lĩnh vực then chốt: Cơ khí chính xác + Điện tử viễn thông + Công nghệ thông tin."
+    ],
+    "videoRealityCheck": {
+      "myth": "Cơ điện tử cái gì cũng học một ít nhưng chẳng có nghề nào ra nghề cụ thể.",
+      "truth": "Kỹ sư cơ điện tử là mắt xích liên kết quan trọng nhất giúp biến các ý tưởng phần mềm số thành sản phẩm phần cứng hoạt động trơn tru ngoài đời thực."
+    }
   },
   {
     "id": "dien-dien-tu",
@@ -2565,7 +3111,21 @@ export const MAJORS_DATA = [
       "Tập đoàn Trung Nam (Năng lượng tái tạo)",
       "Schneider Electric",
       "ABB Vietnam"
-    ]
+    ],
+    "videoTitle": "Một ngày vận hành trạm biến áp số & trang trại điện gió ngoài khơi",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:15",
+    "videoChannel": "Năng Lượng Việt",
+    "videoYoutubeId": "s8ktd86j1Ek",
+    "videoKeyTakeaways": [
+      "Điều khiển hệ thống truyền tải điện lưới quốc gia và tích hợp nguồn năng lượng tái tạo (điện gió, điện mặt trời).",
+      "Thiết kế tủ bảng điện công nghiệp, hệ thống bảo vệ rơ-le số và quản lý năng lượng thông minh Smart Grid.",
+      "Nhu cầu nhân lực bền vững với tốc độ điện khí hóa và chuyển dịch năng lượng xanh của đất nước."
+    ],
+    "videoRealityCheck": {
+      "myth": "Kỹ sư điện chỉ đi leo cột điện hoặc kéo dây điện nguy hiểm.",
+      "truth": "Kỹ sư điện - điện tử ngày nay quản lý hệ thống điện tự động hóa SCADA, điều khiển hệ thống điện thông minh bằng phần mềm và phân tích dữ liệu điện năng cao cấp."
+    }
   },
   {
     "id": "xay-dung",
@@ -2629,7 +3189,21 @@ export const MAJORS_DATA = [
       "Tổng công ty Vinaconex",
       "Deo Ca Group (Tập đoàn Đèo Cả)",
       "Central Cons"
-    ]
+    ],
+    "videoTitle": "Một ngày chỉ huy công trường cầu vượt biển & nhà chọc trời của Kỹ sư Xây dựng",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:30",
+    "videoChannel": "Xây Dựng Việt",
+    "videoYoutubeId": "CujT81z0vQU",
+    "videoKeyTakeaways": [
+      "Mô hình hóa thông tin công trình (BIM 3D/4D), tính toán sức bền kết cấu bê tông cốt thép và móng sâu.",
+      "Chỉ đạo thi công tại hiện trường, quản lý an toàn lao động và nghiệm thu khối lượng xây lắp.",
+      "Niềm tự hào to lớn khi nhìn thấy các cây cầu, tuyến đường cao tốc và tòa nhà hiện đại do chính tay mình kiến tạo."
+    ],
+    "videoRealityCheck": {
+      "myth": "Ngành xây dựng quá vất vả, dãi nắng dầm mưa ngoài công trường cả ngày.",
+      "truth": "Ngành xây dựng hiện đại ứng dụng công nghệ BIM, drone trắc địa quét 3D và các giải pháp tiền chế trong nhà máy, giúp kỹ sư dành nhiều thời gian trong văn phòng phân tích kỹ thuật hơn."
+    }
   },
   {
     "id": "khoa-hoc-hang-hai",
@@ -2691,7 +3265,21 @@ export const MAJORS_DATA = [
       "Hãng tàu Maersk / CMA CGM",
       "Công ty Vận tải Dầu khí (PVTrans)",
       "Hoa tiêu Hàng hải khu vực I, II, III"
-    ]
+    ],
+    "videoTitle": "Một ngày hoa tiêu dẫn tàu container siêu trọng tải cập cảng nước sâu",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "11:00",
+    "videoChannel": "Hàng Hải Việt Nam",
+    "videoYoutubeId": "oBE4kHIvaps",
+    "videoKeyTakeaways": [
+      "Vận hành buồng lái mô phỏng buồng lái tàu biển hiện đại với hải đồ điện tử ECDIS và radar hàng hải ARPA.",
+      "Chỉ huy hải trình xuyên đại dương, cập các cảng biển lớn trên thế giới và xử lý sóng gió biển khơi.",
+      "Mức thu nhập tính bằng nghìn USD và cơ hội đi vòng quanh thế giới miễn phí cho thuyền viên viễn dương."
+    ],
+    "videoRealityCheck": {
+      "myth": "Đi biển quanh năm lênh đênh sóng gió cô đơn, không có cơ hội tiếp xúc với xã hội hiện đại.",
+      "truth": "Tàu viễn dương hiện đại có internet vệ tinh Starlink liên lạc 24/7, chế độ nghỉ phép dài ngày sau mỗi hải trình và cơ hội chuyển lên bờ làm quản lý cảng biển, đại lý tàu biển thu nhập khủng."
+    }
   },
   {
     "id": "giao-duc-tieu-hoc",
@@ -2755,7 +3343,21 @@ export const MAJORS_DATA = [
       "Trường Tiểu học Đoàn Thị Điểm",
       "Các trường Tiểu học công lập chuẩn quốc gia",
       "Trường Quốc tế BVIS"
-    ]
+    ],
+    "videoTitle": "Một ngày rèn nét chữ nết người & tổ chức học tập trải nghiệm cho học sinh tiểu học",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:35",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Rèn nề nếp kỷ luật, phát triển tư duy đọc viết tính toán ban đầu và nuôi dưỡng tâm hồn trong sáng cho trẻ thơ.",
+      "Ứng dụng phương pháp dạy học tích hợp liên môn, trò chơi hóa giáo dục (Gamification) để bài học luôn thú vị.",
+      "Được miễn 100% học phí đại học và nhận trợ cấp hàng tháng từ Nhà nước theo Nghị định 116."
+    ],
+    "videoRealityCheck": {
+      "myth": "Dạy tiểu học rất dễ, chỉ cần biết chữ và biết làm tính cộng trừ là dạy được.",
+      "truth": "Giáo dục tiểu học đòi hỏi sự kiên nhẫn vô bờ bến và nghiệp vụ sư phạm khéo léo để vừa dạy kiến thức nền tảng, vừa uốn nắn hành vi và bảo đảm an toàn tâm lý cho trẻ."
+    }
   },
   {
     "id": "giao-duc-mam-non",
@@ -2819,7 +3421,21 @@ export const MAJORS_DATA = [
       "Hệ thống Mầm non Song ngữ Maple Bear",
       "Các trường mầm non công lập",
       "Hệ thống Mầm non Tân Thời Đại"
-    ]
+    ],
+    "videoTitle": "Một ngày dạy trẻ khám phá thế giới bằng phương pháp Montessori & Reggio Emilia",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:20",
+    "videoChannel": "VTV7 Hướng Nghiệp",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Chăm sóc dinh dưỡng, bảo đảm an toàn và tổ chức các hoạt động ca múa, kể chuyện, tạo hình sáng tạo cho trẻ mầm non.",
+      "Ứng dụng các phương pháp giáo dục sớm tiên tiến của thế giới (Montessori, STEAM, Reggio Emilia).",
+      "Được Nhà nước đài thọ học phí và sinh hoạt phí, nhu cầu tuyển dụng giáo viên mầm non chất lượng cao luôn ở mức báo động đỏ."
+    ],
+    "videoRealityCheck": {
+      "myth": "Giáo viên mầm non chỉ đơn thuần là người trông trẻ và dọn dẹp vệ sinh cho các bé.",
+      "truth": "Giai đoạn 0-6 tuổi là thời kỳ vàng hình thành nhân cách và trí não. Giáo viên mầm non là nhà sư phạm đặt viên gạch đầu tiên cho sự phát triển trí tuệ và cảm xúc của một con người."
+    }
   },
   {
     "id": "y-hoc-co-truyen",
@@ -2882,7 +3498,21 @@ export const MAJORS_DATA = [
       "Bệnh viện Đại học Y Hà Nội",
       "Hệ thống Bệnh viện Phục hồi chức năng",
       "Phòng khám Đông y uy tín toàn quốc"
-    ]
+    ],
+    "videoTitle": "Một ngày châm cứu, bắt mạch và bốc thuốc đông y kết hợp chẩn đoán hiện đại",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:05",
+    "videoChannel": "Y Khoa Cổ Truyền",
+    "videoYoutubeId": "h8z4eNXbtbE",
+    "videoKeyTakeaways": [
+      "Khám bệnh bằng phương pháp Vọng - Văn - Vấn - Thiết kết hợp hình ảnh chụp X-quang, MRI của y học hiện đại.",
+      "Ứng dụng châm cứu, xoa bóp bấm huyệt và các bài thuốc thảo dược y học cổ truyền để điều trị các bệnh mạn tính.",
+      "Tiềm năng phát triển to lớn của ngành dưỡng sinh trị liệu tự nhiên và phục hồi chức năng sau tai biến."
+    ],
+    "videoRealityCheck": {
+      "myth": "Đông y là chữa mẹo dân gian, không có cơ sở khoa học chính xác.",
+      "truth": "Y học cổ truyền là hệ thống tri thức y lý hàn lâm hàng ngàn năm, ngày nay được kết hợp chặt chẽ với y học chứng cứ hiện đại mang lại hiệu quả điều trị vượt trội."
+    }
   },
   {
     "id": "luat-quoc-te",
@@ -2946,7 +3576,21 @@ export const MAJORS_DATA = [
       "Hãng luật Baker McKenzie",
       "Hãng luật Rajah & Tann LCT",
       "Pháp chế Tập đoàn Dầu khí VN (PVN)"
-    ]
+    ],
+    "videoTitle": "Một ngày soạn thảo điều ước thương mại và tham gia trọng tài quốc tế ICC",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:45",
+    "videoChannel": "Luật Quốc Tế VN",
+    "videoYoutubeId": "hbQDHin8s7g",
+    "videoKeyTakeaways": [
+      "Soạn thảo và đàm phán các hợp đồng thương mại xuyên biên giới, giải quyết tranh chấp đầu tư quốc tế (ISDS).",
+      "Tham gia tranh tụng tại Trung tâm Trọng tài Quốc tế Việt Nam (VIAC) hoặc Tòa án Trọng tài Quốc tế (ICC).",
+      "Đòi hỏi vốn tiếng Anh pháp lý chuyên sâu và tư duy chiến lược thương mại mang tầm khu vực."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học luật quốc tế ở Việt Nam không có đất hành nghề vì pháp luật mỗi nước khác nhau.",
+      "truth": "Với hàng ngàn doanh nghiệp FDI và các hiệp định thương mại tự do thế hệ mới (CPTPP, EVFTA), nhu cầu luật sư thông thạo luật quốc tế tại Việt Nam đang cực kỳ khan hiếm."
+    }
   },
   {
     "id": "quan-ly-nha-nuoc",
@@ -3010,7 +3654,21 @@ export const MAJORS_DATA = [
       "Sở Nội vụ, Sở Kế hoạch & Đầu tư",
       "Hệ thống các Trung tâm Hành chính công",
       "Các Viện Nghiên cứu Quản lý Kinh tế Trung ương"
-    ]
+    ],
+    "videoTitle": "Một ngày thẩm định chính sách công & chuyển đổi số dịch vụ hành chính công",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "08:40",
+    "videoChannel": "Hành Chính Công VN",
+    "videoYoutubeId": "ne1QCmBw-MI",
+    "videoKeyTakeaways": [
+      "Nghiên cứu, soạn thảo và đánh giá tác động của các văn bản quy phạm pháp luật và đề án phát triển kinh tế xã hội.",
+      "Vận hành cổng dịch vụ công trực tuyến quốc gia và thúc đẩy chính phủ số phục vụ người dân, doanh nghiệp.",
+      "Rèn luyện kỹ năng lãnh đạo công, quản trị ngân sách nhà nước và phục vụ lợi ích cộng đồng."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm hành chính nhà nước chỉ là công việc bàn giấy quan liêu, giấy tờ cồng kềnh chậm chạp.",
+      "truth": "Hành chính công hiện đại đang đẩy mạnh chính quyền điện tử, ứng dụng dữ liệu dân cư VNeID và tối ưu hóa thủ tục giải quyết hồ sơ cho người dân theo thời gian thực."
+    }
   },
   {
     "id": "he-thong-thong-tin",
@@ -3075,7 +3733,21 @@ export const MAJORS_DATA = [
       "MoMo",
       "Tập đoàn Vingroup (VinFast IT)",
       "Các tập đoàn tư vấn công nghệ (PwC, EY, Deloitte Tech)"
-    ]
+    ],
+    "videoTitle": "Một ngày triển khai hệ thống ERP và kiến trúc cơ sở dữ liệu doanh nghiệp",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:15",
+    "videoChannel": "MIS Leader",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Thiết kế kiến trúc dữ liệu và triển khai các hệ thống phần mềm quản trị doanh nghiệp tổng thể (SAP, Oracle ERP).",
+      "Làm cầu nối kết nối giữa bộ phận kinh doanh nghiệp vụ và đội ngũ kỹ thuật công nghệ thông tin.",
+      "Tối ưu hóa quy trình vận hành và xây dựng các báo cáo thông minh kinh doanh (Business Intelligence - PowerBI)."
+    ],
+    "videoRealityCheck": {
+      "myth": "Ngành này chỉ là nhập dữ liệu số liệu vào phần mềm quản lý kho.",
+      "truth": "Chuyên viên Hệ thống thông tin quản lý (MIS) là kiến trúc sư số của doanh nghiệp, giúp toàn bộ chuỗi cung ứng, tài chính, nhân sự vận hành nhịp nhàng trên một nền tảng số duy nhất."
+    }
   },
   {
     "id": "thiet-ke-noi-that",
@@ -3139,7 +3811,21 @@ export const MAJORS_DATA = [
       "Tập đoàn Vingroup (Vinhomes Decor)",
       "Gỗ An Cường",
       "Các công ty thiết kế thi công nội thất cao cấp"
-    ]
+    ],
+    "videoTitle": "Một ngày phối cảnh ánh sáng vật liệu và giám sát thi công căn hộ Penthouse",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:40",
+    "videoChannel": "Interior Hub",
+    "videoYoutubeId": "CujT81z0vQU",
+    "videoKeyTakeaways": [
+      "Dựng phối cảnh 3D không gian sống bằng 3ds Max / Corona Render, lựa chọn vật liệu gỗ, đá và đồ nội thất tinh tế.",
+      "Khảo sát hiện trạng, bóc tách bản vẽ kỹ thuật thi công và giám sát thợ thi công hoàn thiện căn hộ.",
+      "Cân bằng giữa công năng sử dụng tiện nghi và gu thẩm mỹ phong cách sống mang dấu ấn cá nhân của gia chủ."
+    ],
+    "videoRealityCheck": {
+      "myth": "Thiết kế nội thất chỉ là đi mua đồ bàn ghế đẹp về xếp vào phòng là xong.",
+      "truth": "Thiết kế nội thất đòi hỏi hiểu biết sâu về kỹ thuật điện nước, công thái học con người (Ergonomics), vật liệu hoàn thiện và bài toán kiểm soát chi phí thi công thực tế."
+    }
   },
   {
     "id": "thiet-ke-thoi-trang",
@@ -3203,7 +3889,21 @@ export const MAJORS_DATA = [
       "Các thương hiệu thời trang Elise / Ivy Moda / Canifa",
       "Các Local Brand thời trang giới trẻ (DirtyCoins, Hades)",
       "Tập đoàn may mặc quốc tế Uniqlo / H&M"
-    ]
+    ],
+    "videoTitle": "Một ngày từ bản vẽ phác thảo đến sàn diễn tuần lễ thời trang của Fashion Designer",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:50",
+    "videoChannel": "Fashion VN",
+    "videoYoutubeId": "CujT81z0vQU",
+    "videoKeyTakeaways": [
+      "Tìm kiếm cảm hứng sáng tạo trên bảng Moodboard, vẽ phác thảo mẫu trang phục và chọn lựa chất liệu vải vóc.",
+      "Cắt rập 2D/3D (Draping), may mẫu thử nghiệm (Toile) và chỉnh sửa phom dáng chuẩn xác trên người mẫu.",
+      "Xây dựng thương hiệu thời trang cá nhân hoặc làm việc tại các nhãn hàng thời trang thiết kế cao cấp."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm thời trang là nghề chỉ cần diện đồ đẹp đi tiệc và dự fashion show sang chảnh.",
+      "truth": "Phía sau ánh đèn sàn diễn rực rỡ là hàng trăm giờ thức trắng đêm cặm cụi bên bàn cắt rập, tay bị kim đâm liên tục để hoàn thiện từng đường kim mũi chỉ cho bộ sưu tập."
+    }
   },
   {
     "id": "dien-anh-truyen-hinh",
@@ -3266,7 +3966,21 @@ export const MAJORS_DATA = [
       "Kenh14 / VCCorp Media",
       "SpaceSpeakers Group",
       "Đài Truyền hình Việt Nam (VFC)"
-    ]
+    ],
+    "videoTitle": "Một ngày bấm máy tại phim trường điện ảnh & chỉ đạo diễn xuất của Đạo diễn",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "10:45",
+    "videoChannel": "Cinema VN",
+    "videoYoutubeId": "CujT81z0vQU",
+    "videoKeyTakeaways": [
+      "Phân tích kịch bản, vẽ phân cảnh Storyboard và chỉ đạo ánh sáng, góc máy quay phim trên phim trường.",
+      "Làm việc cùng diễn viên để khai thác chiều sâu cảm xúc nhân vật và phối hợp cùng ekip quay, âm thanh, bối cảnh.",
+      "Chỉ đạo dựng phim hậu kỳ, chỉnh màu (Color Grading) và thiết kế âm thanh điện ảnh sống động."
+    ],
+    "videoRealityCheck": {
+      "myth": "Làm đạo diễn phim là công việc bay bổng, chỉ cần ngồi ghế chỉ đạo là có phim hay.",
+      "truth": "Đạo diễn là người chịu trách nhiệm cao nhất về cả mặt nghệ thuật lẫn ngân sách dự án, phải làm việc liên tục 16-18 tiếng mỗi ngày tại hiện trường trong điều kiện thời tiết khắc nghiệt."
+    }
   },
   {
     "id": "nong-nghiep-cong-nghe-cao",
@@ -3330,6 +4044,20 @@ export const MAJORS_DATA = [
       "Tập đoàn VinEco (Masan WinEco)",
       "Công ty CP Chăn nuôi C.P. Vietnam",
       "Tập đoàn Lộc Trời"
-    ]
+    ],
+    "videoTitle": "Một ngày điều hành nông trại thủy canh tự động & chẩn đoán sức khỏe thú y",
+    "videoCategory": "1 Ngày Làm Nghề",
+    "videoDuration": "09:15",
+    "videoChannel": "AgriTech VN",
+    "videoYoutubeId": "xi-TdUo8e60",
+    "videoKeyTakeaways": [
+      "Vận hành hệ thống nhà kính thông minh Smart Greenhouse điều khiển nhiệt độ, độ ẩm và dinh dưỡng tự động bằng IoT.",
+      "Ứng dụng máy bay không người lái (Drone) phun thuốc sinh học và giám sát sức khỏe cây trồng trên diện tích hàng trăm hecta.",
+      "Đón đầu làn sóng đầu tư nông nghiệp sạch hữu cơ và chế biến nông sản xuất khẩu sang thị trường Mỹ, châu Âu."
+    ],
+    "videoRealityCheck": {
+      "myth": "Học nông nghiệp là làm nông dân 'chân lấm tay bùn', bán lưng cho trời bán mặt cho đất.",
+      "truth": "Nông nghiệp công nghệ cao là điều hành trang trại bằng máy tính bảng, dữ liệu cảm biến IoT và tự động hóa trong các khu nông nghiệp sinh thái hiện đại."
+    }
   }
 ];
