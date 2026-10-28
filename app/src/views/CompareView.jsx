@@ -506,7 +506,11 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               <td><strong>⚠️ Góc khuất & Áp lực nghề</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id} style={{ fontSize: '0.82rem', color: '#64748B', lineHeight: '1.45' }}>
-                  {m.realityCheck ? m.realityCheck.slice(0, 110) + '...' : 'Đòi hỏi sự kiên trì và cập nhật kiến thức liên tục.'}
+                  {m.realityCheck ? (
+                    typeof m.realityCheck === 'object' 
+                      ? (m.realityCheck.truth || m.realityCheck.pressureNote || m.realityCheck.myth)
+                      : String(m.realityCheck).slice(0, 110) + '...'
+                  ) : 'Đòi hỏi sự kiên trì và cập nhật kiến thức liên tục.'}
                 </td>
               ))}
             </tr>

@@ -1186,15 +1186,15 @@ export default function SearchView({
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px' }}>
                   <div style={{ background: '#FFFFFF', padding: '10px 12px', borderRadius: '12px', border: '1px solid #DCFCE7' }}>
                     <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: '800' }}>🌱 FRESHER (0-1 NĂM)</div>
-                    <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#15803D' }}>{selectedMajorModal.salaryRoadmap.fresher}</div>
+                    <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#15803D' }}>{selectedMajorModal.salaryRoadmap.fresher || '8 – 14 tr/tháng'}</div>
                   </div>
                   <div style={{ background: '#FFFFFF', padding: '10px 12px', borderRadius: '12px', border: '1px solid #DCFCE7' }}>
                     <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: '800' }}>⚡ JUNIOR / MID (2-4 NĂM)</div>
-                    <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#15803D' }}>{selectedMajorModal.salaryRoadmap.junior}</div>
+                    <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#15803D' }}>{selectedMajorModal.salaryRoadmap.mid || selectedMajorModal.salaryRoadmap.junior || '16 – 28 tr/tháng'}</div>
                   </div>
                   <div style={{ background: '#FFFFFF', padding: '10px 12px', borderRadius: '12px', border: '1px solid #DCFCE7' }}>
                     <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: '800' }}>👑 SENIOR / LEAD (5+ NĂM)</div>
-                    <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#15803D' }}>{selectedMajorModal.salaryRoadmap.senior}</div>
+                    <div style={{ fontSize: '0.96rem', fontWeight: '900', color: '#15803D' }}>{selectedMajorModal.salaryRoadmap.senior || '35 – 70+ tr/tháng'}</div>
                   </div>
                 </div>
               </div>
@@ -1203,13 +1203,29 @@ export default function SearchView({
             {/* Pain Point 1: Góc khuất & Sự thật nghề nghiệp (Reality Check) */}
             {selectedMajorModal.realityCheck && (
               <div style={{ background: '#FFF1F2', borderRadius: '18px', padding: '18px', border: '1px solid #FECDD3', marginBottom: '18px' }}>
-                <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#BE123C', textTransform: 'uppercase', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#BE123C', textTransform: 'uppercase', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <AlertCircle size={16} />
                   <span>Góc khuất & Áp lực thực tế của ngành</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '0.88rem', color: '#881337', lineHeight: '1.55' }}>
-                  {selectedMajorModal.realityCheck}
-                </p>
+                {typeof selectedMajorModal.realityCheck === 'object' ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.88rem', color: '#881337', lineHeight: '1.55' }}>
+                    {selectedMajorModal.realityCheck.myth && (
+                      <div><strong style={{ color: '#9F1239' }}>❌ Lầm tưởng:</strong> {selectedMajorModal.realityCheck.myth}</div>
+                    )}
+                    {selectedMajorModal.realityCheck.truth && (
+                      <div><strong style={{ color: '#9F1239' }}>✅ Sự thật:</strong> {selectedMajorModal.realityCheck.truth}</div>
+                    )}
+                    {selectedMajorModal.realityCheck.pressureNote && (
+                      <div style={{ fontStyle: 'italic', color: '#BE123C', fontSize: '0.84rem', marginTop: '2px' }}>
+                        ⚡ <strong>Lưu ý áp lực:</strong> {selectedMajorModal.realityCheck.pressureNote}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: '#881337', lineHeight: '1.55' }}>
+                    {String(selectedMajorModal.realityCheck)}
+                  </p>
+                )}
               </div>
             )}
 
@@ -1221,7 +1237,7 @@ export default function SearchView({
                   <span>Ai KHÔNG nên chọn ngành này? (Sàng lọc tránh hối hận)</span>
                 </div>
                 <p style={{ margin: 0, fontSize: '0.88rem', color: '#78350F', lineHeight: '1.55' }}>
-                  {selectedMajorModal.whoShouldAvoid}
+                  {typeof selectedMajorModal.whoShouldAvoid === 'string' ? selectedMajorModal.whoShouldAvoid : JSON.stringify(selectedMajorModal.whoShouldAvoid)}
                 </p>
               </div>
             )}
@@ -1229,50 +1245,85 @@ export default function SearchView({
             {/* Pain Point 3: Mức độ ảnh hưởng của AI 2026-2030 */}
             {selectedMajorModal.aiImpact && (
               <div style={{ background: '#EFF6FF', borderRadius: '18px', padding: '18px', border: '1px solid #BFDBFE', marginBottom: '18px' }}>
-                <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#1D4ED8', textTransform: 'uppercase', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#1D4ED8', textTransform: 'uppercase', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <Sparkles size={16} />
                   <span>Ảnh hưởng của Trí tuệ Nhân tạo (AI) 2026 – 2030</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '0.88rem', color: '#1E40AF', lineHeight: '1.55' }}>
-                  {selectedMajorModal.aiImpact}
-                </p>
+                {typeof selectedMajorModal.aiImpact === 'object' ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.88rem', color: '#1E40AF', lineHeight: '1.55' }}>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+                      <span style={{ background: '#DBEAFE', color: '#1E40AF', padding: '2px 8px', borderRadius: '6px', fontWeight: '800', fontSize: '0.78rem' }}>
+                        Tỷ lệ rủi ro AI: {selectedMajorModal.aiImpact.riskPercentage || 35}% ({selectedMajorModal.aiImpact.riskLevel || 'Trung bình'})
+                      </span>
+                    </div>
+                    {selectedMajorModal.aiImpact.aiRole && (
+                      <div><strong>🤖 Tác động của AI:</strong> {selectedMajorModal.aiImpact.aiRole}</div>
+                    )}
+                    {selectedMajorModal.aiImpact.coreSkillsToMasterAI && (
+                      <div><strong>💡 Kỹ năng để làm chủ AI:</strong> {selectedMajorModal.aiImpact.coreSkillsToMasterAI}</div>
+                    )}
+                  </div>
+                ) : (
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: '#1E40AF', lineHeight: '1.55' }}>
+                    {String(selectedMajorModal.aiImpact)}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Core University Subjects & Top Employers */}
+            {selectedMajorModal.coreSubjects && selectedMajorModal.coreSubjects.length > 0 && (
+              <div style={{ background: '#F8FAFC', borderRadius: '16px', padding: '16px', border: '1px solid #E2E8F0', marginBottom: '18px' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#334155', textTransform: 'uppercase', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <BookOpen size={16} color="#4F46E5" />
+                  <span>Môn học Cốt lõi ở Bậc Đại học</span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {selectedMajorModal.coreSubjects.map((sub, i) => (
+                    <span key={i} style={{ fontSize: '0.78rem', background: '#FFFFFF', border: '1px solid #CBD5E1', padding: '4px 10px', borderRadius: '8px', color: '#1E293B', fontWeight: '600' }}>
+                      • {sub}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
 
             {/* Training Universities with Official Logos */}
-            <div style={{ marginBottom: '24px' }}>
-              <h4 style={{ fontSize: '1rem', marginBottom: '10px', color: '#1E293B', fontWeight: '800' }}>Các trường Đại học đào tạo tiêu biểu:</h4>
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                {selectedMajorModal.truong_tieu_bieu.map((trName, i) => {
-                  const uniObj = (UNIVERSITIES_DATA || []).find(u => 
-                    u.name.toLowerCase().includes(trName.toLowerCase()) || 
-                    trName.toLowerCase().includes(u.shortName?.toLowerCase() || 'xyz')
-                  );
-                  return (
-                    <div 
-                      key={i} 
-                      style={{ 
-                        display: 'inline-flex', 
-                        alignItems: 'center', 
-                        gap: '8px', 
-                        padding: '6px 14px', 
-                        borderRadius: '12px', 
-                        background: '#F8FAFC', 
-                        border: '1px solid #CBD5E1', 
-                        fontSize: '0.84rem', 
-                        fontWeight: '700',
-                        color: '#1E293B' 
-                      }}
-                    >
-                      {uniObj && (
-                        <UniversityLogo code={uniObj.code} name={uniObj.name} shortName={uniObj.shortName} website={uniObj.website} size={24} />
-                      )}
-                      <span>{trName}</span>
-                    </div>
-                  );
-                })}
+            {selectedMajorModal.truong_tieu_bieu && Array.isArray(selectedMajorModal.truong_tieu_bieu) && selectedMajorModal.truong_tieu_bieu.length > 0 && (
+              <div style={{ marginBottom: '24px' }}>
+                <h4 style={{ fontSize: '1rem', marginBottom: '10px', color: '#1E293B', fontWeight: '800' }}>Các trường Đại học đào tạo tiêu biểu:</h4>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  {selectedMajorModal.truong_tieu_bieu.map((trName, i) => {
+                    const uniObj = (UNIVERSITIES_DATA || []).find(u => 
+                      u.name.toLowerCase().includes(trName.toLowerCase()) || 
+                      trName.toLowerCase().includes(u.shortName?.toLowerCase() || 'xyz')
+                    );
+                    return (
+                      <div 
+                        key={i} 
+                        style={{ 
+                          display: 'inline-flex', 
+                          alignItems: 'center', 
+                          gap: '8px', 
+                          padding: '6px 14px', 
+                          borderRadius: '12px', 
+                          background: '#F8FAFC', 
+                          border: '1px solid #CBD5E1', 
+                          fontSize: '0.84rem', 
+                          fontWeight: '700',
+                          color: '#1E293B' 
+                        }}
+                      >
+                        {uniObj && (
+                          <UniversityLogo code={uniObj.code} name={uniObj.name} shortName={uniObj.shortName} website={uniObj.website} size={24} />
+                        )}
+                        <span>{trName}</span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Modal Actions */}
             <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', borderTop: '1px solid #E2E8F0', paddingTop: '18px', flexWrap: 'wrap' }}>
