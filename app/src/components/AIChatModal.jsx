@@ -102,7 +102,7 @@ export default function AIChatModal({
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      text: 'Chào bạn! 👋 Mình là **Cố vấn AI Tuyển sinh & Hướng nghiệp 2026** của CAREER QR.\n\n🎯 Để tư vấn chính xác và cá nhân hóa nhất cho bạn, bạn hãy chia sẻ với mình 3 thông tin quan trọng này nhé:\n• **1. Khu vực bạn muốn học đại học:** (Hà Nội & miền Bắc, TP.HCM & miền Nam, hay Đà Nẵng & miền Trung?)\n• **2. Mức điểm bạn tự tin hoặc dự kiến đạt được:** (ví dụ: 22–24, 25–27, hay 28+ điểm THPT / ĐGNL?)\n• **3. Ngành hoặc trường mục tiêu bạn đang quan tâm:** (Bách Khoa, Ngoại thương, Kinh tế Quốc dân, Y Dược, FPT...?)\n\nHoặc bạn có thể bấm trực tiếp các gợi ý bên dưới để nhận ngay phương án chuẩn xác!',
+      text: 'Chào bạn! 👋 Mình là trợ lý tra cứu tuyển sinh & chọn ngành của **CAREER QR**.\n\nNếu bạn đang phân vân chưa biết chọn ngành hay trường nào vừa sức, bạn cứ nhắn cho mình vài thông tin cơ bản nhé:\n• **1. Khu vực muốn theo học:** Hà Nội, TP.HCM, Đà Nẵng hay các tỉnh lân cận?\n• **2. Khoảng điểm dự kiến đạt được:** Ví dụ 21–23 điểm, 24–26 điểm, hay điểm thi ĐGNL?\n• **3. Ngành học hoặc mức học phí gia đình mong muốn:** Ví dụ CNTT, Vi mạch, Kinh tế, Y Dược, Sư phạm...\n\nHoặc bạn bấm vào một câu hỏi gợi ý bên dưới để xem ngay nhé!',
       actions: [
         {
           id: 'prompt-1',
@@ -310,13 +310,13 @@ export default function AIChatModal({
             }}
           >
             <Sparkles size={15} color="#F59E0B" />
-            <span>Hỏi Cố vấn AI 2026</span>
+            <span>Hỏi đáp chọn ngành, chọn trường</span>
           </div>
         )}
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Trợ lý AI"
+          aria-label="Hỏi đáp chọn ngành và trường"
           style={{
             width: '56px',
             height: '56px',
@@ -385,11 +385,11 @@ export default function AIChatModal({
               </div>
               <div>
                 <div className="chat-header-title-refined" style={{ fontWeight: '800', fontSize: '0.94rem' }}>
-                  Cố vấn AI Hướng nghiệp
+                  Hỏi đáp chọn ngành &amp; trường
                 </div>
                 <div className="chat-header-status-refined" style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.74rem', opacity: 0.9 }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#34D399', display: 'inline-block' }} />
-                  Trực tuyến • Dữ liệu chuẩn tuyển sinh 2026
+                  Sẵn sàng hỗ trợ • Dữ liệu tuyển sinh 2026
                 </div>
               </div>
             </div>
@@ -509,7 +509,7 @@ export default function AIChatModal({
                             >
                               {act.label.includes('🎥') && <Video size={13} color="#E11D48" />}
                               {act.label.includes('📘') && <BookOpen size={13} color="#0284C7" />}
-                              {act.label.includes('⚔️') && <Layers size={13} color="#D97706" />}
+                              {(act.label.includes('⚔️') || act.label.includes('⚖️')) && <Layers size={13} color="#D97706" />}
                               {act.label.includes('🎫') && <Award size={13} color="#059669" />}
                               {act.label.includes('🔍') && <Search size={13} color="#4F46E5" />}
                               <span>{act.label.replace(/^[^\p{L}\p{N}]+/u, '')}</span>
@@ -546,7 +546,7 @@ export default function AIChatModal({
             {isLoading && (
               <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: '#64748B', fontSize: '12px', paddingLeft: '38px' }}>
                 <Bot size={15} color="#4F46E5" />
-                <span>Cố vấn AI đang trích xuất dữ liệu tuyển sinh 2026...</span>
+                <span>Đang tìm thông tin phù hợp cho bạn...</span>
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -669,7 +669,7 @@ export default function AIChatModal({
                 }}
               >
                 <Play size={13} fill="#FFFFFF" />
-                <span>🔴 Mở Xem Trên YouTube (Không Bị Chặn) ↗</span>
+                <span>Mở xem trên YouTube ↗</span>
               </a>
             </div>
 
@@ -717,7 +717,7 @@ export default function AIChatModal({
                     {activeVideoModal.video.title}
                   </div>
                   <div style={{ color: '#94A3B8', fontSize: '0.82rem', marginTop: '6px' }}>
-                    Bấm để phát hoặc chọn nút đỏ phía trên để xem trực tiếp
+                    Bấm để phát ngay tại đây hoặc mở xem trên YouTube
                   </div>
                 </div>
               )}
@@ -748,10 +748,10 @@ export default function AIChatModal({
 
               <div style={{ marginBottom: '14px', background: '#EFF6FF', border: '1px solid #BFDBFE', padding: '12px 16px', borderRadius: '14px' }}>
                 <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#1D4ED8', textTransform: 'uppercase', marginBottom: '4px' }}>
-                  🎯 GÓC NHÌN THỰC TẾ (REALITY CHECK)
+                  🎯 THỰC TẾ NGHỀ NGHIỆP
                 </div>
                 <div style={{ fontSize: '0.88rem', color: '#1E293B', lineHeight: '1.5' }}>
-                  <strong>Sự thật:</strong> {activeVideoModal.video.realityCheck.truth}
+                  <strong>Thực tế:</strong> {activeVideoModal.video.realityCheck.truth}
                 </div>
               </div>
 
@@ -767,7 +767,7 @@ export default function AIChatModal({
                   style={{ fontSize: '0.84rem', padding: '8px 16px' }}
                 >
                   <ExternalLink size={14} />
-                  <span>Mở đầy đủ trong mục Tra cứu</span>
+                  <span>Xem thông tin chi tiết ngành</span>
                 </button>
 
                 <button
@@ -781,7 +781,7 @@ export default function AIChatModal({
                   style={{ fontSize: '0.84rem', padding: '8px 18px' }}
                 >
                   <Award size={14} />
-                  <span>Chọn làm Mục tiêu Passport 2026</span>
+                  <span>Đưa vào kế hoạch ôn thi</span>
                 </button>
               </div>
             </div>

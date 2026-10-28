@@ -1,19 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import { 
-  Scale, 
   Trash2, 
-  Plus, 
-  Sparkles, 
   Trophy, 
   ArrowRight, 
-  TrendingUp, 
-  DollarSign, 
-  ShieldCheck, 
-  Zap, 
-  CheckCircle2, 
-  AlertCircle,
-  Award
+  Zap
 } from 'lucide-react';
 import { MAJORS_DATA } from '../data/careerData';
 
@@ -99,7 +90,7 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
 
   const handleAddMajor = (id) => {
     if (selectedMajorIds.length >= 3) {
-      alert("Đấu trường so sánh tối ưu nhất cho 2 - 3 ngành để có góc nhìn đối đầu trực diện rõ ràng nhất bạn nhé!");
+      alert("Bạn nên so sánh tối đa 3 ngành cùng lúc để bảng thông tin dễ đọc và dễ cân nhắc nhất nhé!");
       return;
     }
     if (!selectedMajorIds.includes(id)) {
@@ -109,7 +100,7 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
 
   const handleRemoveMajor = (id) => {
     if (selectedMajorIds.length <= 2) {
-      alert("Cần giữ ít nhất 2 ngành để duy trì bàn cân so sánh!");
+      alert("Cần giữ lại ít nhất 2 ngành trên bảng để đối chiếu bạn nhé!");
       return;
     }
     setSelectedMajorIds(selectedMajorIds.filter(mId => mId !== id));
@@ -189,18 +180,18 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
     <div className="tab-pane-animate">
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <div className="pill-badge" style={{ marginBottom: '10px' }}>⚖️ ĐẤU TRƯỜNG SO SÁNH TRỰC DIỆN 2026</div>
-        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Bảng Đối Đầu Trực Diện Có Trọng Số</h1>
+        <div className="pill-badge" style={{ marginBottom: '10px' }}>⚖️ BƯỚC 3 / 4 • SO SÁNH CÁC LỰA CHỌN</div>
+        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Đặt các ngành đang phân vân cạnh nhau</h1>
         <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.98rem' }}>
-          Không cần trả lời 20 câu hỏi rườm rà. Đặt 2 - 3 ngành lên bàn cân, điều chỉnh 5 thanh trượt ưu tiên cá nhân để thuật toán công bố ngành chiến thắng theo thời gian thực!
+          Chọn 2 – 3 ngành bạn đang lưỡng lự, sau đó kéo 5 thanh ưu tiên bên dưới theo điều kiện của bản thân và gia đình để xem ngành nào phù hợp hơn.
         </p>
       </div>
 
-      {/* SECTION 1: 1-CLICK PRESET BATTLES (CẶP ĐẤU KINH ĐIỂN) */}
+      {/* SECTION 1: 1-CLICK PRESET BATTLES */}
       <div style={{ background: '#FFFFFF', borderRadius: '24px', padding: '22px 24px', border: '1px solid #E2E8F0', boxShadow: 'var(--shadow-card)', marginBottom: '28px' }}>
         <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Zap size={16} color="#F59E0B" />
-          <span>Cặp đấu Kinh điển (1 Chạm nạp ngay 2 ngành phân vân):</span>
+          <span>Các cặp ngành học sinh hay phân vân (bấm để xem nhanh):</span>
         </div>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           {PRESET_BATTLES.map((preset, idx) => (
@@ -282,14 +273,14 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '18px' }}>
           <div>
             <div style={{ fontSize: '0.78rem', color: '#A5B4FC', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              CÁ NHÂN HÓA BẰNG THUẬT TOÁN
+              TÙY CHỈNH THEO MONG MUỐN CỦA BẠN
             </div>
             <h2 style={{ fontSize: '1.35rem', margin: '2px 0 0', fontWeight: '900', color: '#FFFFFF' }}>
-              5 Thanh Trượt Trọng Số Ưu Tiên Cá Nhân
+              Điều gì quan trọng nhất với bạn và gia đình?
             </h2>
           </div>
           <span style={{ fontSize: '0.78rem', background: 'rgba(255, 255, 255, 0.15)', padding: '5px 12px', borderRadius: '999px', color: '#FDE047', fontWeight: '800' }}>
-            ⚡ Kéo trượt để xem điểm thay đổi Real-time
+            Kéo thanh trượt từ 1 (ít quan tâm) đến 5 (rất quan tâm)
           </span>
         </div>
 
@@ -297,7 +288,7 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
           {/* Slider 1: Lương */}
           <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
-              <span>💰 Ưu tiên Lương cao</span>
+              <span>💰 Thu nhập tốt</span>
               <span style={{ color: '#FDE047' }}>{weights.salary} / 5</span>
             </div>
             <input 
@@ -308,13 +299,13 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               onChange={(e) => setWeights({ ...weights, salary: parseInt(e.target.value) })}
               className="battle-slider-track"
             />
-            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Mức thu nhập sau 3 - 5 năm</div>
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Kỳ vọng thu nhập sau 3 – 5 năm</div>
           </div>
 
           {/* Slider 2: Điểm vừa sức */}
           <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
-              <span>🎯 Ưu tiên Điểm vừa sức</span>
+              <span>🎯 Điểm chuẩn vừa sức</span>
               <span style={{ color: '#FDE047' }}>{weights.easyScore} / 5</span>
             </div>
             <input 
@@ -325,13 +316,13 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               onChange={(e) => setWeights({ ...weights, easyScore: parseInt(e.target.value) })}
               className="battle-slider-track"
             />
-            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Tránh rủi ro trượt nguyện vọng</div>
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Giảm bớt áp lực điểm đầu vào</div>
           </div>
 
           {/* Slider 3: Học phí thấp */}
           <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
-              <span>💳 Ưu tiên Học phí thấp</span>
+              <span>💳 Học phí nhẹ gánh</span>
               <span style={{ color: '#FDE047' }}>{weights.lowTuition} / 5</span>
             </div>
             <input 
@@ -342,13 +333,13 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               onChange={(e) => setWeights({ ...weights, lowTuition: parseInt(e.target.value) })}
               className="battle-slider-track"
             />
-            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Tiết kiệm tài chính gia đình</div>
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Phù hợp ngân sách gia đình</div>
           </div>
 
           {/* Slider 4: Ít áp lực */}
           <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
-              <span>🌿 Ưu tiên Ít áp lực</span>
+              <span>🌿 Học &amp; làm đỡ căng thẳng</span>
               <span style={{ color: '#FDE047' }}>{weights.lowPressure} / 5</span>
             </div>
             <input 
@@ -359,13 +350,13 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               onChange={(e) => setWeights({ ...weights, lowPressure: parseInt(e.target.value) })}
               className="battle-slider-track"
             />
-            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Cân bằng cuộc sống & học tập</div>
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Giữ nhịp sống cân bằng</div>
           </div>
 
           {/* Slider 5: An toàn AI */}
           <div style={{ background: 'rgba(255, 255, 255, 0.08)', padding: '14px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: '800', marginBottom: '6px' }}>
-              <span>🛡️ An toàn trước AI</span>
+              <span>🛡️ Khó bị AI làm thay</span>
               <span style={{ color: '#FDE047' }}>{weights.aiSafety} / 5</span>
             </div>
             <input 
@@ -376,7 +367,7 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               onChange={(e) => setWeights({ ...weights, aiSafety: parseInt(e.target.value) })}
               className="battle-slider-track"
             />
-            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Bền vững trong 10 năm tới</div>
+            <div style={{ fontSize: '0.7rem', color: '#C7D2FE', marginTop: '4px' }}>Nghề vẫn cần người thật lâu dài</div>
           </div>
         </div>
       </div>
@@ -390,13 +381,13 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
             </div>
             <div>
               <div style={{ fontSize: '0.78rem', fontWeight: '900', color: '#B45309', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                🏆 NGÀNH CHIẾN THẮNG PHÙ HỢP NHẤT VỚI BẠN
+                NGHIÊNG VỀ LỰA CHỌN PHÙ HỢP HƠN VỚI BẠN
               </div>
               <div style={{ fontSize: '1.45rem', fontWeight: '900', color: '#78350F' }}>
-                {winner.major.ten_nganh} ({winner.compositeScore} / 100 Điểm)
+                {winner.major.ten_nganh} ({winner.compositeScore} / 100 điểm phù hợp)
               </div>
               <div style={{ fontSize: '0.84rem', color: '#92400E', marginTop: '2px' }}>
-                Dựa trên cấu hình trọng số ưu tiên hiện tại của bạn, ngành này tối ưu hóa tốt nhất giữa cơ hội thu nhập và sự an toàn!
+                Tính theo 5 mức ưu tiên bạn vừa đặt, ngành này hài hòa hơn giữa điểm đầu vào, học phí và công việc sau khi ra trường.
               </div>
             </div>
           </div>
@@ -410,7 +401,7 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               onNavigate('roadmap');
             }}
           >
-            <span>Đưa vào Lộ trình Đại học 2026</span>
+            <span>Chọn làm nguyện vọng ôn thi</span>
             <ArrowRight size={16} />
           </button>
         </div>
@@ -457,9 +448,9 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               ))}
             </tr>
 
-            {/* Row 3: Lương khởi điểm (Fresher) */}
+            {/* Row 3: Lương khởi điểm */}
             <tr>
-              <td><strong>🌱 Lương khởi điểm (0-1 năm)</strong></td>
+              <td><strong>🌱 Mới ra trường (0 – 1 năm)</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id} style={{ color: '#059669', fontWeight: '800' }}>
                   {m.salaryRoadmap?.fresher || '10 – 15 triệu/tháng'}
@@ -467,9 +458,9 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               ))}
             </tr>
 
-            {/* Row 4: Thu nhập sau 5 năm (Senior) */}
+            {/* Row 4: Thu nhập sau 5 năm */}
             <tr>
-              <td><strong>👑 Thu nhập sau 5 năm (Senior)</strong></td>
+              <td><strong>📈 Khi đã vững nghề (5 năm+)</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id} style={{ color: '#15803D', fontWeight: '900', fontSize: '0.96rem' }}>
                   {m.salaryRoadmap?.senior || '25 – 45 triệu/tháng'}
@@ -477,9 +468,9 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               ))}
             </tr>
 
-            {/* Row 5: Khát nhân lực */}
+            {/* Row 5: Nhu cầu tuyển dụng */}
             <tr>
-              <td><strong>🔥 Nhu cầu thị trường</strong></td>
+              <td><strong>🔥 Cơ hội việc làm</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id}>
                   <span style={{ background: '#FEF2F2', color: '#DC2626', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '800' }}>
@@ -489,9 +480,9 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               ))}
             </tr>
 
-            {/* Row 6: Rủi ro AI thay thế */}
+            {/* Row 6: Mức độ ảnh hưởng từ AI */}
             <tr>
-              <td><strong>🤖 Rủi ro bị AI thay thế</strong></td>
+              <td><strong>🤖 Khả năng bị AI làm thay</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id}>
                   <span style={{ background: '#F0FDF4', color: '#16A34A', padding: '3px 8px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '800' }}>
@@ -501,9 +492,9 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               ))}
             </tr>
 
-            {/* Row 7: Góc khuất & Áp lực thực tế */}
+            {/* Row 7: Thực tế cần lưu ý */}
             <tr>
-              <td><strong>⚠️ Góc khuất & Áp lực nghề</strong></td>
+              <td><strong>⚠️ Vất vả &amp; áp lực thực tế</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id} style={{ fontSize: '0.82rem', color: '#64748B', lineHeight: '1.45' }}>
                   {m.realityCheck ? (
@@ -515,9 +506,9 @@ export default function CompareView({ onNavigate, bookmarkedMajors = [], onSelec
               ))}
             </tr>
 
-            {/* Row 8: Top trường đào tạo tiêu biểu */}
+            {/* Row 8: Trường đào tạo tiêu biểu */}
             <tr>
-              <td><strong>🏛️ Top trường đào tạo</strong></td>
+              <td><strong>🏛️ Trường đào tạo tiêu biểu</strong></td>
               {selectedMajors.map(m => (
                 <td key={m.id}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem', color: '#334155' }}>

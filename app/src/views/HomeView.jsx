@@ -14,8 +14,7 @@ import {
   AlertTriangle,
   Building2,
   MapPin,
-  TrendingUp,
-  CheckCircle2
+  TrendingUp
 } from 'lucide-react';
 import { UNIVERSITIES_DATA } from '../data/careerData';
 
@@ -26,7 +25,7 @@ const PERSONAS_DATA = [
     tabLabel: '🎨 Linh (24.5đ D01)',
     fullName: 'Nguyễn Thùy Linh',
     scoreCombo: '24.5đ • Khối D01 (Toán, Văn, Anh)',
-    archetype: 'Mê Sáng tạo, Thiết kế & Truyền thông',
+    archetype: 'Yêu thích sáng tạo nội dung & truyền thông',
     avatar: '🎨',
     radarValues: {
       R: 25, // Kỹ thuật: thấp
@@ -36,15 +35,15 @@ const PERSONAS_DATA = [
       E: 78, // Quản lý: cao
       C: 40  // Nghiệp vụ: trung bình
     },
-    suggestedMajor: 'Truyền thông số & Marketing thực chiến',
-    matchPercentage: '94% Độ khớp',
+    suggestedMajor: 'Marketing & Truyền thông đa phương tiện',
+    matchPercentage: 'Khá hợp (94%)',
     schools: [
       { name: 'ĐH Thương mại (TMU)', score: '25.2đ', location: 'Hà Nội' },
       { name: 'HV Báo chí & Tuyên truyền (AJC)', score: '24.8đ', location: 'Hà Nội' },
       { name: 'ĐH Kinh tế - ĐH Thái Nguyên (TUEBA)', score: '21.5đ', location: 'Thái Nguyên' },
       { name: 'ĐH Hàng hải Việt Nam (VMU)', score: '23.5đ', location: 'Hải Phòng' }
     ],
-    realityCheck: 'Lưu ý: Ngành Marketing cần tư duy số liệu & chạy KPI thực chiến, không chỉ có viết lách bay bổng. Rủi ro AI thay thế việc viết cơ bản: Cao — cần học AI Marketing & Data Analytics.',
+    realityCheck: 'Làm Marketing không chỉ có viết lách hay lên ý tưởng mà phải theo sát số liệu doanh thu, chi phí quảng cáo. Các việc viết bài cơ bản hiện dễ bị AI làm thay, nên cần học thêm kỹ năng đọc dữ liệu khách hàng.',
     startSalary: '9 – 14 triệu/tháng',
     expSalary: '18 – 30 triệu/tháng'
   },
@@ -53,7 +52,7 @@ const PERSONAS_DATA = [
     tabLabel: '📊 Minh (26.0đ A01)',
     fullName: 'Trần Quang Minh',
     scoreCombo: '26.0đ • Khối A01 (Toán, Lý, Anh)',
-    archetype: 'Thích Kinh doanh, Chiến lược & Phân tích',
+    archetype: 'Mạnh về tư duy tính toán, thích kinh doanh',
     avatar: '📊',
     radarValues: {
       R: 30, // Kỹ thuật
@@ -63,15 +62,15 @@ const PERSONAS_DATA = [
       E: 90, // Quản lý: cực cao
       C: 82  // Nghiệp vụ: rất cao
     },
-    suggestedMajor: 'Kinh tế Quốc tế / Phân tích Tài chính',
-    matchPercentage: '96% Độ khớp',
+    suggestedMajor: 'Kinh tế quốc tế / Tài chính - Ngân hàng',
+    matchPercentage: 'Rất hợp (96%)',
     schools: [
       { name: 'ĐH Kinh tế Quốc dân (NEU)', score: '26.8đ', location: 'Hà Nội' },
       { name: 'ĐH Kinh tế - ĐHQGHN (UEB)', score: '26.2đ', location: 'Hà Nội' },
       { name: 'ĐH Kinh tế - ĐH Đà Nẵng (DUE)', score: '24.5đ', location: 'Đà Nẵng' },
       { name: 'ĐH Ngoại thương (FTU)', score: '27.2đ', location: 'Hà Nội' }
     ],
-    realityCheck: 'Lưu ý: Tài chính đòi hỏi chịu áp lực biến động thị trường & chứng chỉ quốc tế (CFA). Rủi ro AI phân tích số liệu: Trung bình — AI hỗ trợ mô hình hóa nhưng không thay thế được khả năng đàm phán chiến lược.',
+    realityCheck: 'Ngành Tài chính áp lực cao, thường xuyên làm việc với bảng biểu số liệu và cần học thêm chứng chỉ chuyên môn (như CFA) nếu muốn tiến xa. AI hỗ trợ tổng hợp nhanh nhưng khâu thẩm định và làm việc với đối tác vẫn cần con người.',
     startSalary: '11 – 16 triệu/tháng',
     expSalary: '22 – 40 triệu/tháng'
   },
@@ -80,7 +79,7 @@ const PERSONAS_DATA = [
     tabLabel: '🩺 Hà (25.0đ B00)',
     fullName: 'Vũ Thu Hà',
     scoreCombo: '25.0đ • Khối B00 (Toán, Hóa, Sinh)',
-    archetype: 'Hướng Y Dược, Nghiên cứu Sức khỏe',
+    archetype: 'Kiên trì, học tốt Sinh - Hóa, muốn theo Y Dược',
     avatar: '🩺',
     radarValues: {
       R: 70, // Kỹ thuật/Thao tác
@@ -90,15 +89,15 @@ const PERSONAS_DATA = [
       E: 35, // Quản lý
       C: 60  // Nghiệp vụ
     },
-    suggestedMajor: 'Y đa khoa / Dược học Lâm sàng',
-    matchPercentage: '95% Độ khớp',
+    suggestedMajor: 'Y khoa / Dược học',
+    matchPercentage: 'Rất hợp (95%)',
     schools: [
       { name: 'ĐH Y Dược Thái Bình (TBUMP)', score: '25.0đ', location: 'Thái Bình' },
       { name: 'ĐH Y Dược Hải Phòng (HPMU)', score: '25.3đ', location: 'Hải Phòng' },
       { name: 'ĐH Y Dược - ĐH Thái Nguyên (TUMP)', score: '24.6đ', location: 'Thái Nguyên' },
       { name: 'Khoa Y Dược - ĐH Đà Nẵng (SMP)', score: '24.2đ', location: 'Đà Nẵng' }
     ],
-    realityCheck: 'Lưu ý: Học Y mất 6 năm khổ luyện cộng 18 tháng thực hành chứng chỉ hành nghề, học phí cao. Rủi ro AI: Cực thấp — AI chỉ hỗ trợ chẩn đoán hình ảnh, không thay thế được sự thấu cảm và bàn tay phẫu thuật.',
+    realityCheck: 'Theo ngành Y cần xác định thời gian học dài (6 năm đại học cộng thời gian thực hành cấp chứng chỉ hành nghề), lịch trực đêm vất vả và học phí khá cao. Đổi lại, nghề bền vững và rất khó bị máy móc thay thế.',
     startSalary: '8 – 13 triệu/tháng',
     expSalary: '20 – 45 triệu/tháng'
   },
@@ -107,7 +106,7 @@ const PERSONAS_DATA = [
     tabLabel: '⚙️ Nam (22.0đ A00)',
     fullName: 'Lê Hoàng Nam',
     scoreCombo: '22.0đ • Khối A00 (Toán, Lý, Hóa)',
-    archetype: 'Kỹ thuật Cơ điện tử / CNTT & Vi mạch',
+    archetype: 'Thích mày mò máy móc, phần cứng và kỹ thuật',
     avatar: '⚙️',
     radarValues: {
       R: 90, // Kỹ thuật: cực cao
@@ -117,15 +116,15 @@ const PERSONAS_DATA = [
       E: 45, // Quản lý
       C: 72  // Nghiệp vụ: cao
     },
-    suggestedMajor: 'Kỹ thuật Ô tô / CNTT Phần cứng & Mạng',
-    matchPercentage: '93% Độ khớp',
+    suggestedMajor: 'Kỹ thuật Ô tô / Cơ điện tử & Mạng máy tính',
+    matchPercentage: 'Khá hợp (93%)',
     schools: [
       { name: 'ĐH CNTT & TT Thái Nguyên (ICTU)', score: '20.5đ', location: 'Thái Nguyên' },
       { name: 'ĐH Kỹ thuật Công nghiệp (TNUT)', score: '19.5đ', location: 'Thái Nguyên' },
       { name: 'ĐH Giao thông Vận tải (UTC)', score: '22.8đ', location: 'Hà Nội' },
       { name: 'ĐH Sư phạm Kỹ thuật Hưng Yên (UTEHY)', score: '21.2đ', location: 'Hưng Yên' }
     ],
-    realityCheck: 'Lưu ý: Kỹ thuật đòi hỏi thực hành xưởng và kỷ luật đồ án liên tục. Rủi ro AI lập trình cơ bản: Trung bình — AI viết mã nhanh nhưng phần cứng ô tô, mạch nhúng và cơ điện tử bắt buộc phải có kỹ sư thao tác vật lý.',
+    realityCheck: 'Khối kỹ thuật học khá nặng các môn Toán, Lý, vẽ kỹ thuật và làm đồ án xưởng liên tục. Nếu chịu khó rèn tay nghề thực tế và đọc được tài liệu tiếng Anh thì cơ hội việc làm tại các nhà máy, khu công nghiệp rất rộng.',
     startSalary: '10 – 15 triệu/tháng',
     expSalary: '20 – 38 triệu/tháng'
   }
@@ -275,16 +274,16 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                 <span className="live-pulse" />
                 <span className="live-dot" />
               </span>
-              <span>Dữ liệu tuyển sinh thực tế từ 60+ Đại học &amp; 50+ Ngành nghề Việt Nam</span>
+              <span>Điểm chuẩn, học phí 111 trường Đại học &amp; góc nhìn thực tế 52 ngành học</span>
             </div>
 
             {/* Main Headline (H1 - 3 Lines) */}
             <h1 className="hero-h1-editorial">
-              <span className="hero-headline-line">Giữa ngành bố mẹ muốn,</span>
-              <span className="hero-headline-line">ngành đang "hot" trên mạng</span>
+              <span className="hero-headline-line">Giữa ngành bố mẹ khuyên học,</span>
+              <span className="hero-headline-line">ngành bạn bè rủ thi cùng</span>
               <span className="hero-headline-line">
                 <span className="hero-headline-emphasis">
-                  đâu mới là nơi bạn thuộc về?
+                  đâu mới là ngành hợp với bạn?
                   <svg className="curved-underline-indigo" viewBox="0 0 170 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 9C48 2.5 122 2 167 8" stroke="#4F46E5" strokeWidth="3.2" strokeLinecap="round" />
                   </svg>
@@ -294,14 +293,14 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
 
             {/* Sub-headline */}
             <p className="hero-subheadline-editorial">
-              Đừng để 4 năm thanh xuân và hàng trăm triệu học phí trôi qua trong sự chán nản vì chọn đại. Hãy nhìn thẳng vào năng lực thật của bạn, mức thu nhập thực tế và điểm chuẩn vừa sức tại các trường Đại học từ Hà Nội, Thái Nguyên, Hải Phòng đến Đà Nẵng, TP.HCM.
+              Chọn ngành đại học không cần những lời quảng cáo màu hồng. Tại đây, bạn và gia đình có thể xem thẳng điểm chuẩn vài năm gần đây, học phí dự kiến, thu nhập khi mới ra trường và cả những vất vả ít ai nói trước tại các trường từ Hà Nội, Thái Nguyên, Hải Phòng tới Đà Nẵng, TP.HCM.
             </p>
 
             {/* 3 Interactive Pain-Point Cards */}
             <div className="pain-points-block">
               <div className="pain-points-header">
                 <Sparkles size={14} color="#4F46E5" />
-                <span>BẠN ĐANG Ở TRẠNG THÁI NÀO? CHỌN ĐỂ BẮT ĐẦU NGAY:</span>
+                <span>BẠN ĐANG BĂN KHOĂN ĐIỀU GÌ? CHỌN MỘT MỤC ĐỂ BẮT ĐẦU:</span>
               </div>
 
               <div className="pain-points-list">
@@ -315,9 +314,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     <Compass size={20} strokeWidth={2.4} />
                   </div>
                   <div className="pain-point-content">
-                    <div className="pain-point-title">"Mình còn mông lung, chưa biết bản thân thực sự hợp ngành gì"</div>
+                    <div className="pain-point-title">&ldquo;Mình vẫn chưa rõ bản thân hợp với ngành nào&rdquo;</div>
                     <div className="pain-point-subtitle">
-                      <span>Làm bài giải mã năng lực 6 chiều &amp; nhận gợi ý trường vừa điểm →</span>
+                      <span>Trả lời 5 câu hỏi ngắn về môn học &amp; tính cách để xem nhóm ngành gợi ý →</span>
                     </div>
                   </div>
                   <ArrowRight size={18} className="pain-point-arrow" />
@@ -333,9 +332,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     <Scale size={20} strokeWidth={2.4} />
                   </div>
                   <div className="pain-point-content">
-                    <div className="pain-point-title">"Mình đang phân vân giữa 2 - 3 ngành, chưa biết bỏ ngành nào"</div>
+                    <div className="pain-point-title">&ldquo;Mình đang phân vân giữa 2 – 3 ngành, chưa chốt được&rdquo;</div>
                     <div className="pain-point-subtitle">
-                      <span>Đặt lên bàn cân đối chiếu lương, áp lực học tập &amp; nguy cơ AI thay thế →</span>
+                      <span>Đặt các ngành cạnh nhau để so điểm chuẩn, học phí, lương khởi điểm &amp; áp lực nghề →</span>
                     </div>
                   </div>
                   <ArrowRight size={18} className="pain-point-arrow" />
@@ -351,9 +350,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     <Search size={20} strokeWidth={2.4} />
                   </div>
                   <div className="pain-point-content">
-                    <div className="pain-point-title">"Mình đã nhắm được mức điểm (18 - 28đ), cần tìm trường chắc chắn đỗ"</div>
+                    <div className="pain-point-title">&ldquo;Mình đã nhắm khoảng điểm thi, muốn tìm trường vừa sức&rdquo;</div>
                     <div className="pain-point-subtitle">
-                      <span>Tra cứu điểm chuẩn, học phí các trường tại Hà Nội, Thái Nguyên, Hải Phòng, TP.HCM... →</span>
+                      <span>Lọc nhanh trường phù hợp theo mức điểm (16 – 29đ) tại Hà Nội, Thái Nguyên, Hải Phòng, TP.HCM... →</span>
                     </div>
                   </div>
                   <ArrowRight size={18} className="pain-point-arrow" />
@@ -369,18 +368,18 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Tìm ngành học, mã trường hoặc tổ hợp (VD: Marketing, TMU, BKA, A00)..."
+                  placeholder="Gõ tên ngành, mã trường hoặc khối thi (VD: Marketing, TMU, BKA, A00)..."
                   className="hero-search-human-input"
                   id="hero-search-input"
                 />
                 <button type="submit" className="hero-search-human-badge" title="Nhấn để tra cứu">
-                  <span>Enter ↵</span>
+                  <span>Tìm ↵</span>
                 </button>
               </form>
 
               {/* Quick Tags */}
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.78rem', fontWeight: '750', color: '#64748B' }}>Xu hướng 2026:</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: '750', color: '#64748B' }}>Tìm nhiều:</span>
                 {[
                   { label: 'Marketing & Truyền thông', query: 'Marketing' },
                   { label: 'Kinh doanh & QTKD', query: 'Kinh doanh' },
@@ -524,7 +523,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                 <div className="persona-major-suggested">
                   <div>
                     <div style={{ fontSize: '0.72rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      Ngành đề xuất tối ưu:
+                      Ví dụ hồ sơ học sinh — Ngành gợi ý:
                     </div>
                     <div className="persona-major-name">
                       {activePersona.suggestedMajor}
@@ -554,7 +553,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
               <div className="persona-reality-check">
                 <AlertTriangle size={17} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
-                  <strong>Sự thật ngành &amp; AI: </strong>
+                  <strong>Thực tế cần biết: </strong>
                   <span>{activePersona.realityCheck}</span>
                 </div>
               </div>
@@ -562,14 +561,14 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
               {/* Bottom Metrics Strip */}
               <div className="persona-metrics-strip">
                 <div>
-                  <div className="persona-metric-label">Lương khởi điểm</div>
+                  <div className="persona-metric-label">Mới ra trường</div>
                   <div className="persona-metric-value" style={{ color: '#059669' }}>
                     {activePersona.startSalary}
                   </div>
                 </div>
 
                 <div>
-                  <div className="persona-metric-label">Sau 3 năm kinh nghiệm</div>
+                  <div className="persona-metric-label">Sau khoảng 3 năm</div>
                   <div className="persona-metric-value" style={{ color: '#0284C7' }}>
                     {activePersona.expSalary}
                   </div>
@@ -581,7 +580,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     className="persona-cta-self"
                     onClick={() => onNavigate('self')}
                   >
-                    <span>Tạo bản đồ của bạn</span>
+                    <span>Làm thử cho bạn</span>
                     <ArrowRight size={14} />
                   </button>
                 </div>
@@ -602,17 +601,17 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             </div>
             <div>
               <div className="matcher-title-main">
-                Ước tính Cơ hội Đỗ Nhanh theo Điểm &amp; Khu vực
+                Ước tính nhanh trường phù hợp theo điểm &amp; khu vực
               </div>
               <div className="matcher-title-sub">
-                Hệ thống tự động đối chiếu điểm chuẩn thực tế 2024 – 2026 của 60+ trường Đại học khắp 3 miền
+                Đối chiếu mặt bằng điểm chuẩn 2024 – 2025 và mức dự kiến 2026 của 111 trường Đại học, Học viện
               </div>
             </div>
           </div>
 
           <div className="matcher-live-count-badge">
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
-            <span>Tìm thấy {matchedUniversities.length} trường phù hợp</span>
+            <span>Có {matchedUniversities.length} trường trong tầm điểm</span>
           </div>
         </div>
 
@@ -622,7 +621,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           <div className="matcher-field-col">
             <label className="matcher-field-label">
               <MapPin size={13} />
-              <span>1. Khu vực mong muốn</span>
+              <span>1. Nơi muốn theo học</span>
             </label>
             <select
               value={matcherProvince}
@@ -641,7 +640,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           <div className="matcher-field-col">
             <label className="matcher-field-label">
               <Building2 size={13} />
-              <span>2. Tổ hợp môn</span>
+              <span>2. Khối / Tổ hợp xét tuyển</span>
             </label>
             <select
               value={matcherCombo}
@@ -660,7 +659,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           <div className="matcher-field-col">
             <label className="matcher-field-label">
               <TrendingUp size={13} />
-              <span>3. Mức điểm dự kiến của bạn</span>
+              <span>3. Điểm thi dự kiến</span>
             </label>
             <div className="matcher-slider-container">
               <input
@@ -685,7 +684,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
               className="matcher-submit-btn"
               onClick={handleViewMatchedSchools}
             >
-              <span>Xem ngay {matchedUniversities.length} trường vừa sức</span>
+              <span>Xem {matchedUniversities.length} trường phù hợp</span>
               <ArrowRight size={16} />
             </button>
           </div>
@@ -695,37 +694,37 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
       {/* 3. STATS TRUST GRID (SUNLIGHT PASTEL BENTO) */}
       <div className="stats-grid-container">
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 100%)', borderColor: '#C7D2FE' }}>
-          <div className="stat-metric-number" style={{ color: '#4338CA' }}>500+</div>
-          <div className="stat-metric-title">Bản đồ Ngành &amp; Nghề 2026</div>
-          <div className="stat-metric-desc">Cập nhật xu hướng việc làm thời đại AI &amp; Công nghệ số</div>
+          <div className="stat-metric-number" style={{ color: '#4338CA' }}>52 ngành</div>
+          <div className="stat-metric-title">Hồ sơ ngành học sát thực tế</div>
+          <div className="stat-metric-desc">Có sẵn mức lương mới ra trường, môn học năm đầu và những áp lực hay gặp</div>
         </div>
 
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%)', borderColor: '#BAE6FD' }}>
-          <div className="stat-metric-number" style={{ color: '#0284C7' }}>120+</div>
-          <div className="stat-metric-title">Dữ liệu Điểm chuẩn Đại học</div>
-          <div className="stat-metric-desc">Tra cứu và dự báo sát thực tế theo từng tổ hợp môn</div>
+          <div className="stat-metric-number" style={{ color: '#0284C7' }}>111 trường</div>
+          <div className="stat-metric-title">Đại học &amp; Học viện 3 miền</div>
+          <div className="stat-metric-desc">Kèm mã trường, điểm chuẩn vài năm gần đây, học phí và ký túc xá</div>
         </div>
 
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%)', borderColor: '#A7F3D0' }}>
-          <div className="stat-metric-number" style={{ color: '#059669' }}>6 Chiều</div>
-          <div className="stat-metric-title">Phân tích Đa tầng Chuyên sâu</div>
-          <div className="stat-metric-desc">Kết hợp Tính cách Holland RIASEC &amp; Thị trường lao động</div>
+          <div className="stat-metric-number" style={{ color: '#059669' }}>68 video</div>
+          <div className="stat-metric-title">Chuyện người thật, việc thật</div>
+          <div className="stat-metric-desc">Nghe anh chị đi trước kể về một ngày đi làm và những góc khuất trong nghề</div>
         </div>
 
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #FEF3C7 100%)', borderColor: '#FDE68A' }}>
-          <div className="stat-metric-number" style={{ color: '#D97706' }}>100%</div>
-          <div className="stat-metric-title">Riêng tư trên máy của bạn</div>
-          <div className="stat-metric-desc">Không cần đăng nhập, dữ liệu lưu an toàn trong trình duyệt</div>
+          <div className="stat-metric-number" style={{ color: '#D97706' }}>Riêng tư</div>
+          <div className="stat-metric-title">Không cần tạo tài khoản</div>
+          <div className="stat-metric-desc">Không thu số điện thoại tư vấn; mọi ghi chú chỉ lưu ngay trên trình duyệt</div>
         </div>
       </div>
 
       {/* 4. 4-STEP ROUTE JOURNEY WITH PASTEL ACCENT COLORS */}
       <div className="steps-section-wrapper">
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-          <div className="pill-badge" style={{ marginBottom: '10px' }}>HÀNH TRÌNH 4 BƯỚC</div>
-          <h2 style={{ fontSize: '2.1rem' }}>Xây dựng tương lai vững chắc</h2>
+          <div className="pill-badge" style={{ marginBottom: '10px' }}>GỢI Ý CÁCH XEM</div>
+          <h2 style={{ fontSize: '2.1rem' }}>4 bước để chọn nguyện vọng chắc tay hơn</h2>
           <p style={{ color: '#64748B', maxWidth: '60ch', margin: '0 auto', fontSize: '0.96rem' }}>
-            CAREER QR không quyết định thay bạn — chúng tôi cung cấp la bàn dữ liệu để bạn tự tin làm chủ lựa chọn nghề nghiệp của mình.
+            Thay vì chọn theo cảm tính hay chạy theo ngành đang được nhắc nhiều trên mạng, bạn có thể đi lần lượt từng bước dưới đây cùng gia đình.
           </p>
         </div>
 
@@ -733,8 +732,8 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           {[
             { 
               step: '01', 
-              title: 'Khám phá bản thân', 
-              desc: '5 câu hỏi trắc nghiệm tương tác & Biểu đồ mạng nhện Holland 6 chiều', 
+              title: 'Trắc nghiệm chọn ngành', 
+              desc: '5 câu hỏi ngắn về môn học bạn khá nhất và kiểu công việc bạn muốn gắn bó lâu dài', 
               tab: 'self', 
               icon: Compass, 
               color: '#4F46E5', 
@@ -743,8 +742,8 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             },
             { 
               step: '02', 
-              title: 'Tra cứu dữ liệu', 
-              desc: 'Bộ lọc ngành, trường, điểm chuẩn & tổ hợp môn xét tuyển chuẩn 2026', 
+              title: 'Tra cứu ngành & trường', 
+              desc: 'Xem điểm chuẩn, học phí, tổ hợp môn xét tuyển và đời sống sinh viên từng trường', 
               tab: 'search', 
               icon: Search, 
               color: '#0EA5E9', 
@@ -753,8 +752,8 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             },
             { 
               step: '03', 
-              title: 'Đấu trường so sánh', 
-              desc: 'Thanh cân bằng tương tác & chấm điểm 20 tiêu chí giữa các ngành bạn phân vân', 
+              title: 'So sánh các lựa chọn', 
+              desc: 'Đặt 2 – 3 ngành đang phân vân cạnh nhau và chỉnh mức ưu tiên theo điều kiện gia đình', 
               tab: 'compare', 
               icon: Layers, 
               color: '#D97706', 
@@ -763,8 +762,8 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             },
             { 
               step: '04', 
-              title: 'Career Roadmap & Thẻ QR', 
-              desc: 'Lập kế hoạch hành động lớp 10, 11, 12 và xuất tấm vé đại học 2026', 
+              title: 'Lên kế hoạch ôn thi', 
+              desc: 'Ghi lại nguyện vọng chính, phương án dự phòng và các mốc cần chuẩn bị cho kỳ thi 2026', 
               tab: 'roadmap', 
               icon: Award, 
               color: '#059669', 
@@ -788,7 +787,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
               <h3 style={{ fontSize: '1.15rem', marginBottom: '8px', color: '#1E293B' }}>{item.title}</h3>
               <p style={{ fontSize: '0.88rem', color: '#64748B', marginBottom: '16px', lineHeight: '1.5', flex: 1 }}>{item.desc}</p>
               <span style={{ fontSize: '0.86rem', fontWeight: '700', color: item.color, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                Bắt đầu ngay <ArrowRight size={14} />
+                Xem mục này <ArrowRight size={14} />
               </span>
             </div>
           ))}
@@ -801,9 +800,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#D1FAE5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
             <ShieldCheck size={24} strokeWidth={2.2} />
           </div>
-          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Riêng tư tuyệt đối 100%</h3>
+          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Không làm phiền, không thu dữ liệu</h3>
           <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.6' }}>
-            Không yêu cầu đăng nhập tài khoản, không thu thập số điện thoại. Toàn bộ trắc nghiệm và kế hoạch chỉ lưu trực tiếp trên thiết bị của bạn.
+            Bạn không cần đăng ký tài khoản hay để lại số điện thoại. Kết quả trắc nghiệm và danh sách ngành đang cân nhắc chỉ lưu ngay trên thiết bị của bạn.
           </p>
         </div>
 
@@ -811,9 +810,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#FDE68A', color: '#D97706', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
             <QrCode size={24} strokeWidth={2.2} />
           </div>
-          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Chia sẻ tức thì qua mã QR</h3>
+          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Dễ gửi cho bố mẹ cùng xem</h3>
           <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.6' }}>
-            Chỉ với 1 chạm tạo mã QR để chia sẻ kết quả khám phá bản thân hoặc tấm vé Career Roadmap với cha mẹ và thầy cô để cùng thảo luận.
+            Sau khi chọn được nguyện vọng dự kiến, bạn có thể lưu lại phiếu mục tiêu kèm mã QR hoặc in ra giấy để trao đổi rõ ràng hơn với bố mẹ, thầy cô.
           </p>
         </div>
 
@@ -821,9 +820,9 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
           <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#E0E7FF', color: '#4F46E5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
             <Cpu size={24} strokeWidth={2.2} />
           </div>
-          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>AI Cố vấn Hướng nghiệp 24/7</h3>
+          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Hỏi đáp nhanh khi cần gỡ rối</h3>
           <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.6' }}>
-            Tích hợp mô hình AI thông minh để phân tích mối tương quan giữa sở thích và năng lực, giải đáp mọi thắc mắc chọn ngành, chọn trường.
+            Khung hỏi đáp ở góc màn hình giúp bạn tra nhanh học phí, điểm chuẩn theo tỉnh thành hoặc so sánh hai ngành đang lưỡng lự bất cứ lúc nào.
           </p>
         </div>
       </div>

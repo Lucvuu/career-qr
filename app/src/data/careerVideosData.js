@@ -2,11 +2,11 @@
 // Categorized by 4 Series and 8 Industry Sectors with Practical Takeaways, Timelines & Reality Checks
 
 export const CAREER_SERIES_TABS = [
-  { id: "all", label: "Tất cả Series (60+)" },
-  { id: "a-day-in-life", label: "🎬 1 Ngày Làm Nghề", icon: "Clock" },
-  { id: "campus-tour", label: "🏫 Đột Nhập Lab & Giảng Đường", icon: "Building2" },
-  { id: "reality-check", label: "⚠️ Góc Khuất & Sự Thật", icon: "AlertTriangle" },
-  { id: "ai-era-careers", label: "🚀 Nghề Mới Thời Đại AI", icon: "Sparkles" }
+  { id: "all", label: "Tất cả video (68)" },
+  { id: "a-day-in-life", label: "🎬 Một ngày đi làm", icon: "Clock" },
+  { id: "campus-tour", label: "🏫 Phòng lab & giảng đường", icon: "Building2" },
+  { id: "reality-check", label: "⚠️ Chuyện thật trong nghề", icon: "AlertTriangle" },
+  { id: "ai-era-careers", label: "🤖 Nghề nghiệp thời có AI", icon: "Sparkles" }
 ];
 
 export const CAREER_CATEGORIES = [

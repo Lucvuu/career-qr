@@ -146,11 +146,11 @@ const UNI_MAJOR_SLUG_MAP = {
 
 const UNIVERSITY_TYPES = [
   { id: 'all', label: 'Tất cả loại hình' },
-  { id: 'cong-lap-trong-diem', label: '🏛️ Công lập Trọng điểm' },
-  { id: 'cong-lap-dia-phuong', label: '🎯 Công lập Địa phương (Vừa sức)' },
-  { id: 'quoc-te', label: '🌐 Quốc tế & Liên kết' },
-  { id: 'tu-thuc', label: '⚡ Tư thục Năng động' },
-  { id: 'su-pham', label: '🎓 Sư phạm & LLVT' }
+  { id: 'cong-lap-trong-diem', label: '🏛️ Công lập trọng điểm' },
+  { id: 'cong-lap-dia-phuong', label: '🎯 Công lập địa phương (Vừa sức)' },
+  { id: 'quoc-te', label: '🌐 Quốc tế & liên kết' },
+  { id: 'tu-thuc', label: '⚡ Tư thục & doanh nghiệp' },
+  { id: 'su-pham', label: '🎓 Sư phạm & khối công an, quân đội' }
 ];
 
 const PROVINCE_GROUPS = [
@@ -653,9 +653,9 @@ export default function SearchView({
     );
 
     if (alreadySaved && onToggleBookmarkMajor) {
-      showToast(`Đã bỏ "${m.ten_nganh}" khỏi bàn cân so sánh`);
+      showToast(`Đã bỏ "${m.ten_nganh}" khỏi danh sách so sánh`);
     } else {
-      showToast(`✓ Đã lưu "${m.ten_nganh}" vào Đấu trường so sánh!`);
+      showToast(`✓ Đã lưu "${m.ten_nganh}" vào danh sách so sánh`);
     }
   };
 
@@ -708,13 +708,13 @@ export default function SearchView({
       {/* Header Banner */}
       <div style={{ textAlign: 'center', marginBottom: '24px' }}>
         <div className="pill-badge" style={{ marginBottom: '10px' }}>
-          🔍 BƯỚC 2 / 4 • TRA CỨU ĐA CHIỀU 2026
+          🔍 BƯỚC 2 / 4 • TRA CỨU NGÀNH &amp; TRƯỜNG
         </div>
         <h1 style={{ fontSize: 'clamp(1.75rem, 3.6vw, 2.35rem)', marginBottom: '8px' }}>
-          Cơ sở dữ liệu Tuyển sinh Toàn diện
+          Tra cứu ngành học, trường Đại học &amp; khối thi
         </h1>
         <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.96rem' }}>
-          Tra cứu {MAJORS_DATA.length} ngành học đón đầu AI &amp; Vi mạch, {UNIVERSITIES_DATA.length} trường Đại học khắp 3 miền (hỗ trợ gõ có dấu hoặc không dấu), cùng kho video nghề nghiệp thực tế.
+          Tìm nhanh {MAJORS_DATA.length} ngành đào tạo, {UNIVERSITIES_DATA.length} trường Đại học và Học viện ở cả 3 miền (gõ có dấu hay không dấu đều được), kèm video chia sẻ thực tế từ người trong nghề.
         </p>
       </div>
 
@@ -751,10 +751,10 @@ export default function SearchView({
                 letterSpacing: '0.04em'
               }}
             >
-              📍 Bộ Lọc Khu Vực Toàn Quốc:
+              📍 Chọn khu vực muốn theo học:
             </span>
             <span style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: '600' }}>
-              (Đồng bộ tìm kiếm Trường Đại học &amp; ưu tiên Ngành học theo địa bàn)
+              (Lọc danh sách trường và ưu tiên các ngành có đào tạo tại khu vực đó)
             </span>
           </div>
 
@@ -776,7 +776,7 @@ export default function SearchView({
                 gap: '4px'
               }}
             >
-              <span>✕ Xem lại Toàn quốc (3 miền)</span>
+              <span>✕ Xem lại tất cả khu vực</span>
             </button>
           )}
         </div>
@@ -868,11 +868,11 @@ export default function SearchView({
                 }}
               >
                 <span>🎯</span>
-                <span>Bảng Tổng Quan Khu Vực: {activeProvinceObj?.label}</span>
+                <span>Khu vực đang chọn: {activeProvinceObj?.label}</span>
               </div>
               <div style={{ fontSize: '0.82rem', color: '#475569', marginTop: '3px' }}>
-                Hệ sinh thái gồm <strong>{regionalUnisCount} trường Đại học/Học viện</strong> &amp;{' '}
-                <strong>{regionalMajorsCount} ngành đào tạo tiêu biểu</strong> tuyển sinh trực tiếp tại địa bàn này.
+                Có <strong>{regionalUnisCount} trường Đại học / Học viện</strong> và{' '}
+                <strong>{regionalMajorsCount} ngành học tiêu biểu</strong> đang tuyển sinh tại khu vực này.
               </div>
             </div>
 
@@ -895,7 +895,7 @@ export default function SearchView({
                 }}
               >
                 <Building2 size={14} />
-                <span>Xem {regionalUnisCount} Trường tại đây</span>
+                <span>Xem {regionalUnisCount} trường tại đây</span>
               </button>
 
               <button
@@ -916,7 +916,7 @@ export default function SearchView({
                 }}
               >
                 <BookOpen size={14} />
-                <span>Ưu tiên {regionalMajorsCount} Ngành tại đây</span>
+                <span>Xem {regionalMajorsCount} ngành tại đây</span>
               </button>
             </div>
           </div>
@@ -1017,7 +1017,7 @@ export default function SearchView({
           }}
         >
           <Video size={18} />
-          <span>Video Trải Nghiệm Nghề</span>
+          <span>Video nghề thực tế</span>
         </button>
 
         <button
@@ -1046,7 +1046,7 @@ export default function SearchView({
           }}
         >
           <Layers size={18} />
-          <span>Tổ hợp &amp; Kỳ thi 2026 ({COMBINATIONS_DATA.length})</span>
+          <span>Khối thi &amp; kỳ thi riêng ({COMBINATIONS_DATA.length})</span>
         </button>
       </div>
 
@@ -1245,10 +1245,10 @@ export default function SearchView({
                     cursor: 'pointer'
                   }}
                 >
-                  <option value="default">Mặc định (Ưu tiên khu vực chọn)</option>
+                  <option value="default">Mặc định (Ưu tiên khu vực đang chọn)</option>
                   <option value="score-asc">Điểm chuẩn: Thấp → Cao (Vừa sức trước)</option>
-                  <option value="score-desc">Điểm chuẩn: Cao → Thấp (Top đầu)</option>
-                  <option value="ai-safe">An toàn trước AI nhất (Rủi ro thấp)</option>
+                  <option value="score-desc">Điểm chuẩn: Cao → Thấp</option>
+                  <option value="ai-safe">Ít chịu ảnh hưởng bởi AI nhất</option>
                   <option value="salary-desc">Lương khởi điểm: Cao → Thấp</option>
                 </select>
               </div>
@@ -1516,7 +1516,7 @@ export default function SearchView({
                             border: '1px solid #FECACA'
                           }}
                         >
-                          🔥 Khát nhân lực: {m.demandLevel || 'Rất cao'}
+                          🔥 Nhu cầu tuyển dụng: {m.demandLevel || 'Cao'}
                         </span>
                         <span
                           style={{
@@ -1529,7 +1529,7 @@ export default function SearchView({
                             border: '1px solid #BBF7D0'
                           }}
                         >
-                          🤖 Rủi ro AI:{' '}
+                          🤖 Ảnh hưởng từ AI:{' '}
                           {m.aiImpact && typeof m.aiImpact === 'object' && m.aiImpact.riskPercentage
                             ? `${m.aiRiskLevel || m.aiImpact.riskLevel} (${m.aiImpact.riskPercentage}%)`
                             : m.aiRiskLevel || 'Thấp'}
@@ -1680,7 +1680,7 @@ export default function SearchView({
                                   borderRadius: '4px'
                                 }}
                               >
-                                ✓ Có tại vùng
+                                ✓ Có đào tạo
                               </span>
                             )}
                           </div>
@@ -1759,7 +1759,7 @@ export default function SearchView({
                         <button
                           type="button"
                           onClick={(e) => handleBookmark(e, m)}
-                          title={isSaved ? 'Bấm để bỏ lưu so sánh' : 'Lưu vào Đấu trường so sánh'}
+                          title={isSaved ? 'Bấm để bỏ lưu so sánh' : 'Lưu vào danh sách so sánh'}
                           style={{
                             padding: '7px 12px',
                             fontSize: '0.8rem',
@@ -1831,7 +1831,7 @@ export default function SearchView({
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 <span style={{ fontSize: '1.05rem', fontWeight: '800', color: '#1E293B' }}>
-                  🏛️ Hệ Sinh Thái {UNIVERSITIES_DATA.length} Đại Học &amp; Học Viện Toàn Quốc
+                  🏛️ Danh sách {UNIVERSITIES_DATA.length} trường Đại học &amp; Học viện
                 </span>
                 <span
                   style={{
@@ -2014,7 +2014,7 @@ export default function SearchView({
                   letterSpacing: '0.04em'
                 }}
               >
-                🏫 Phân loại theo Loại hình trường:
+                🏫 Loại hình trường:
               </div>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 {UNIVERSITY_TYPES.map((tp) => (
@@ -2063,7 +2063,7 @@ export default function SearchView({
                     marginBottom: '6px'
                   }}
                 >
-                  🎯 Phân khúc Điểm chuẩn xét tuyển:
+                  🎯 Khoảng điểm chuẩn tham khảo:
                 </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   {SCORE_RANGES.map((sc) => (
@@ -2101,7 +2101,7 @@ export default function SearchView({
                     marginBottom: '6px'
                   }}
                 >
-                  💳 Khả năng Tài chính / Học phí gia đình:
+                  💳 Mức học phí dự kiến:
                 </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   {TUITION_RANGES.map((tu) => (
@@ -2461,10 +2461,10 @@ export default function SearchView({
                             type="button"
                             className="uni-flip-trigger-btn"
                             onClick={() => toggleFlipUni(u.id)}
-                            title="Bấm để lật thẻ xem chi tiết tuyển sinh, học bổng & việc làm"
+                            title="Bấm để lật thẻ xem điểm chuẩn 3 năm, phương thức xét tuyển và ký túc xá"
                           >
                             <RotateCw size={15} className="spin-flip-icon" />
-                            <span>Lật thẻ xem điểm chuẩn 3 năm &amp; KTX ↻</span>
+                            <span>Lật xem điểm chuẩn 3 năm &amp; ký túc xá ↻</span>
                           </button>
 
                           <div
@@ -2552,8 +2552,8 @@ export default function SearchView({
                                     gap: '4px'
                                   }}
                                 >
-                                  <Sparkles size={11} />
-                                  <span>HỒ SƠ TUYỂN SINH &amp; ĐIỂM CHUẨN 2026</span>
+                                    <Sparkles size={11} />
+                                    <span>THÔNG TIN TUYỂN SINH &amp; SINH HOẠT</span>
                                 </div>
                               </div>
                             </div>
@@ -2578,7 +2578,7 @@ export default function SearchView({
                             >
                               <div className="uni-detail-section-title" style={{ color: '#7C3AED' }}>
                                 <TrendingUp size={14} />
-                                <span>Lịch sử Điểm chuẩn 3 năm &amp; Dự báo 2026</span>
+                                <span>Điểm chuẩn 3 năm gần đây &amp; dự kiến 2026</span>
                               </div>
                               <div
                                 style={{
@@ -2831,10 +2831,10 @@ export default function SearchView({
               }}
             >
               <Layers size={22} color="#4F46E5" />
-              <span>Tổ hợp môn xét tuyển chuẩn THPT 2026</span>
+              <span>Các tổ hợp môn xét tuyển phổ biến</span>
             </h2>
             <p style={{ color: '#64748B', fontSize: '0.9rem', marginBottom: '20px' }}>
-              Phân tích phổ điểm, chiến lược ôn thi phân bổ thời gian và các nhóm ngành hot tương ứng.
+              Khoảng điểm thường gặp, kinh nghiệm ôn tập từng khối và các ngành tiêu biểu xét tuyển khối đó.
             </p>
 
             <div
@@ -2938,7 +2938,7 @@ export default function SearchView({
                           marginBottom: '12px'
                         }}
                       >
-                        💡 <strong>Mẹo bứt phá điểm số:</strong> {cb.meoOnThi}
+                        💡 <strong>Kinh nghiệm ôn tập:</strong> {cb.meoOnThi}
                       </div>
 
                       {Array.isArray(cb.nganhTieuBieu) && cb.nganhTieuBieu.length > 0 && (
@@ -3015,10 +3015,10 @@ export default function SearchView({
               }}
             >
               <Sparkles size={22} color="#D97706" />
-              <span>Cẩm nang Kỳ thi Độc lập 2026 (HSA, TSA, APT &amp; Quy đổi IELTS)</span>
+              <span>Các kỳ thi riêng &amp; quy đổi chứng chỉ ngoại ngữ (HSA, TSA, APT, IELTS)</span>
             </h2>
             <p style={{ color: '#64748B', fontSize: '0.9rem', marginBottom: '22px' }}>
-              Các phương thức xét tuyển sớm chiếm tới 50% - 60% chỉ tiêu của các trường đại học top đầu.
+              Nhiều trường đại học dành tỷ lệ chỉ tiêu đáng kể cho các kỳ thi đánh giá năng lực, đánh giá tư duy và xét kết hợp chứng chỉ ngoại ngữ.
             </p>
 
             <div
@@ -3073,7 +3073,7 @@ export default function SearchView({
                     color: '#0369A1'
                   }}
                 >
-                  🎯 <strong>Mức điểm vàng:</strong> {EXAM_METHODS_2026.hsa.benchmarkGuide}
+                  🎯 <strong>Mức điểm tham khảo:</strong> {EXAM_METHODS_2026.hsa.benchmarkGuide}
                 </div>
               </div>
 
@@ -3124,7 +3124,7 @@ export default function SearchView({
                     color: '#991B1B'
                   }}
                 >
-                  🎯 <strong>Mức điểm vàng:</strong> {EXAM_METHODS_2026.tsa.benchmarkGuide}
+                  🎯 <strong>Mức điểm tham khảo:</strong> {EXAM_METHODS_2026.tsa.benchmarkGuide}
                 </div>
               </div>
 
@@ -3175,7 +3175,7 @@ export default function SearchView({
                     color: '#047857'
                   }}
                 >
-                  🎯 <strong>Mức điểm vàng:</strong> {EXAM_METHODS_2026.apt.benchmarkGuide}
+                  🎯 <strong>Mức điểm tham khảo:</strong> {EXAM_METHODS_2026.apt.benchmarkGuide}
                 </div>
               </div>
 
@@ -3258,7 +3258,7 @@ export default function SearchView({
               }}
             >
               <Scale size={16} />
-              <span>Bàn cân so sánh ({savedMajorsList.length}):</span>
+              <span>Đã lưu so sánh ({savedMajorsList.length}):</span>
             </span>
 
             {savedMajorsList.slice(0, 3).map((bm) => (
@@ -3323,7 +3323,7 @@ export default function SearchView({
               boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)'
             }}
           >
-            <span>Mở Đấu trường So sánh</span>
+            <span>Mở bảng so sánh</span>
             <ArrowRight size={15} />
           </button>
         </div>
@@ -3541,7 +3541,7 @@ export default function SearchView({
                     }}
                   >
                     <GraduationCap size={16} />
-                    <span>Phân tầng Điểm chuẩn theo Nhóm trường (Giúp chọn trường vừa sức)</span>
+                    <span>Mức điểm chuẩn theo nhóm trường (để chọn trường vừa sức)</span>
                   </div>
                   <div
                     style={{
@@ -3594,7 +3594,7 @@ export default function SearchView({
                         }}
                       >
                         <div style={{ fontSize: '0.7rem', fontWeight: '800', color: '#059669' }}>
-                          🎯 TRƯỜNG VÙNG (VỪA SỨC)
+                          🎯 TRƯỜNG ĐỊA PHƯƠNG / VỪA SỨC
                         </div>
                         <div style={{ fontSize: '0.84rem', fontWeight: '750', color: '#1E293B', marginTop: '2px' }}>
                           {selectedMajorModal.benchmarkTiers.regionalTier}
@@ -3629,7 +3629,7 @@ export default function SearchView({
                     }}
                   >
                     <TrendingUp size={16} />
-                    <span>Lộ trình Thu nhập Thực tế tại Việt Nam</span>
+                    <span>Mức thu nhập tham khảo tại Việt Nam</span>
                   </div>
                   <div
                     style={{
@@ -3647,7 +3647,7 @@ export default function SearchView({
                       }}
                     >
                       <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: '800' }}>
-                        🌱 FRESHER (0-1 NĂM)
+                        🌱 MỚI RA TRƯỜNG (0 – 1 NĂM)
                       </div>
                       <div style={{ fontSize: '0.94rem', fontWeight: '900', color: '#15803D' }}>
                         {selectedMajorModal.salaryRoadmap.fresher || '8 – 14 tr/tháng'}
@@ -3662,7 +3662,7 @@ export default function SearchView({
                       }}
                     >
                       <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: '800' }}>
-                        ⚡ JUNIOR / MID (2-4 NĂM)
+                        ⚡ ĐÃ CÓ KINH NGHIỆM (2 – 4 NĂM)
                       </div>
                       <div style={{ fontSize: '0.94rem', fontWeight: '900', color: '#15803D' }}>
                         {selectedMajorModal.salaryRoadmap.mid ||
@@ -3679,7 +3679,7 @@ export default function SearchView({
                       }}
                     >
                       <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: '800' }}>
-                        👑 SENIOR / LEAD (5+ NĂM)
+                        📈 VỮNG CHUYÊN MÔN (5 NĂM+)
                       </div>
                       <div style={{ fontSize: '0.94rem', fontWeight: '900', color: '#15803D' }}>
                         {selectedMajorModal.salaryRoadmap.senior || '35 – 70+ tr/tháng'}
@@ -3714,11 +3714,11 @@ export default function SearchView({
                     }}
                   >
                     <Briefcase size={15} color="#4F46E5" />
-                    <span>Vị trí Việc làm &amp; Nhà tuyển dụng Hàng đầu</span>
+                    <span>Vị trí công việc &amp; nơi tuyển dụng phổ biến</span>
                   </div>
                   {selectedMajorModal.vi_tri_viec_lam && (
                     <div style={{ fontSize: '0.86rem', color: '#1E293B', marginBottom: '8px' }}>
-                      <strong>Chức danh phổ biến:</strong> {selectedMajorModal.vi_tri_viec_lam}
+                      <strong>Công việc thường làm:</strong> {selectedMajorModal.vi_tri_viec_lam}
                     </div>
                   )}
                   {selectedMajorModal.topEmployers?.length > 0 && (
@@ -3768,7 +3768,7 @@ export default function SearchView({
                     }}
                   >
                     <AlertCircle size={16} />
-                    <span>Góc khuất &amp; Áp lực thực tế của ngành</span>
+                    <span>Những vất vả &amp; áp lực thực tế cần biết</span>
                   </div>
                   {typeof selectedMajorModal.realityCheck === 'object' ? (
                     <div
@@ -3783,13 +3783,13 @@ export default function SearchView({
                     >
                       {selectedMajorModal.realityCheck.myth && (
                         <div>
-                          <strong style={{ color: '#9F1239' }}>❌ Lầm tưởng:</strong>{' '}
+                          <strong style={{ color: '#9F1239' }}>❌ Nhiều người hay nghĩ:</strong>{' '}
                           {selectedMajorModal.realityCheck.myth}
                         </div>
                       )}
                       {selectedMajorModal.realityCheck.truth && (
                         <div>
-                          <strong style={{ color: '#9F1239' }}>✅ Sự thật:</strong>{' '}
+                          <strong style={{ color: '#9F1239' }}>✅ Thực tế khi đi làm:</strong>{' '}
                           {selectedMajorModal.realityCheck.truth}
                         </div>
                       )}
@@ -3802,7 +3802,7 @@ export default function SearchView({
                             marginTop: '2px'
                           }}
                         >
-                          ⚡ <strong>Lưu ý áp lực:</strong>{' '}
+                          ⚡ <strong>Áp lực thường gặp:</strong>{' '}
                           {selectedMajorModal.realityCheck.pressureNote}
                         </div>
                       )}
@@ -3846,7 +3846,7 @@ export default function SearchView({
                     }}
                   >
                     <ShieldAlert size={16} />
-                    <span>Ai KHÔNG nên chọn ngành này? (Sàng lọc tránh hối hận)</span>
+                    <span>Ai nên cân nhắc kỹ trước khi chọn ngành này?</span>
                   </div>
                   <p
                     style={{
@@ -3887,7 +3887,7 @@ export default function SearchView({
                     }}
                   >
                     <Sparkles size={16} />
-                    <span>Ảnh hưởng của Trí tuệ Nhân tạo (AI) 2026 – 2030</span>
+                    <span>Tác động của AI tới công việc trong vài năm tới</span>
                   </div>
                   {typeof selectedMajorModal.aiImpact === 'object' ? (
                     <div
@@ -3911,18 +3911,18 @@ export default function SearchView({
                             fontSize: '0.78rem'
                           }}
                         >
-                          Tỷ lệ rủi ro AI: {selectedMajorModal.aiImpact.riskPercentage || 35}% (
-                          {selectedMajorModal.aiImpact.riskLevel || 'Trung bình'})
+                          Mức độ ảnh hưởng từ AI: {selectedMajorModal.aiImpact.riskLevel || 'Trung bình'} (
+                          {selectedMajorModal.aiImpact.riskPercentage || 35}%)
                         </span>
                       </div>
                       {selectedMajorModal.aiImpact.aiRole && (
                         <div>
-                          <strong>🤖 Tác động của AI:</strong> {selectedMajorModal.aiImpact.aiRole}
+                          <strong>🤖 AI đang thay đổi việc gì:</strong> {selectedMajorModal.aiImpact.aiRole}
                         </div>
                       )}
                       {selectedMajorModal.aiImpact.coreSkillsToMasterAI && (
                         <div>
-                          <strong>💡 Kỹ năng để làm chủ AI:</strong>{' '}
+                          <strong>💡 Kỹ năng cần rèn thêm:</strong>{' '}
                           {selectedMajorModal.aiImpact.coreSkillsToMasterAI}
                         </div>
                       )}
@@ -3966,7 +3966,7 @@ export default function SearchView({
                     }}
                   >
                     <BookOpen size={16} color="#4F46E5" />
-                    <span>Môn học Cốt lõi ở Bậc Đại học</span>
+                    <span>Một số môn chuyên ngành sẽ học ở đại học</span>
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {selectedMajorModal.coreSubjects.map((sub, i) => (
@@ -4125,7 +4125,7 @@ export default function SearchView({
                     }}
                   >
                     <Compass size={16} />
-                    <span>Lập lộ trình ngành này →</span>
+                    <span>Đưa vào kế hoạch ôn thi →</span>
                   </button>
                 </div>
               </div>
@@ -4396,7 +4396,7 @@ export default function SearchView({
                   }}
                 >
                   <TrendingUp size={18} color="#4F46E5" />
-                  <span>Bảng Điểm chuẩn Chi tiết các ngành tiêu biểu (2024 – Dự báo 2026)</span>
+                  <span>Điểm chuẩn một số ngành tiêu biểu (2024 – dự kiến 2026)</span>
                 </h3>
 
                 {selectedUniModal.detailedBenchmarks &&
@@ -4605,7 +4605,7 @@ export default function SearchView({
                     }}
                   >
                     <Globe size={15} />
-                    <span>Website Trường</span>
+                    <span>Website trường</span>
                   </a>
 
                   <a
@@ -4619,7 +4619,7 @@ export default function SearchView({
                       fontSize: '0.84rem'
                     }}
                   >
-                    <span>Cổng Tuyển Sinh Chính Thức</span>
+                    <span>Trang tuyển sinh chính thức</span>
                     <ExternalLink size={15} />
                   </a>
                 </div>
@@ -4817,7 +4817,7 @@ export default function SearchView({
                     }}
                   >
                     <Play size={14} fill="#FFFFFF" />
-                    <span>Xem Trên YouTube ↗</span>
+                    <span>Mở trên YouTube ↗</span>
                   </a>
                 </div>
 

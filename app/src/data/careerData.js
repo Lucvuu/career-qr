@@ -4,7 +4,7 @@
 import { MAJORS_DATA } from './majorsData.js';
 import { UNIVERSITIES_DATA } from './universitiesData.js';
 import { COMBINATIONS_DATA, EXAM_METHODS_2026 } from './combinationsData.js';
-import { CAREER_VIDEOS_DATA, CAREER_SERIES_TABS, CAREER_CATEGORIES, getVideosByFilter } from './careerVideosData.js';
+import { CAREER_VIDEOS_DATA } from './careerVideosData.js';
 
 export { MAJORS_DATA } from './majorsData.js';
 export { UNIVERSITIES_DATA } from './universitiesData.js';

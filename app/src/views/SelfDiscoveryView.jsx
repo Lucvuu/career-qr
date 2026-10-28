@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { ArrowLeft, ArrowRight, Sparkles, Check, RotateCcw, Heart, BookmarkCheck, AlertCircle, TrendingUp, DollarSign, Award, School } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, Check, RotateCcw, Heart, BookmarkCheck, AlertCircle, Award, School } from 'lucide-react';
 import RadarChart from '../components/RadarChart';
 import { MAJORS_DATA } from '../data/careerData';
 
@@ -32,119 +32,119 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
 
   const HOBBIES = [
     {
-      text: "Tìm hiểu, lắp ráp, sửa chữa thiết bị công nghệ & lập trình máy tính",
+      text: "Mày mò máy tính, thiết bị điện tử, thích tìm hiểu phần mềm hoặc cách máy móc vận hành",
       icon: "💻",
-      archetype: "Nhà Đổi Mới Công Nghệ & Kỹ Thuật (Tech Innovator)",
+      archetype: "Thiên hướng Kỹ thuật & Công nghệ",
       traits: { R: 40, I: 35, A: 10, S: 5, E: 15, C: 20 },
       suggestedMajors: ["cntt", "ai", "vimach", "khdl", "tudonghoa"]
     },
     {
-      text: "Vẽ, thiết kế, chụp ảnh, sáng tạo nội dung truyền thông & nghệ thuật số",
+      text: "Vẽ, thiết kế hình ảnh, chụp ảnh, quay dựng video hoặc viết nội dung mạng xã hội",
       icon: "🎨",
-      archetype: "Người Sáng Tạo & Khai Phóng Nghệ Thuật (Creative Maker)",
+      archetype: "Thiên hướng Thiết kế, Sáng tạo & Truyền thông",
       traits: { R: 10, I: 15, A: 45, S: 15, E: 25, C: 10 },
       suggestedMajors: ["dohoa", "truyenthong", "marketing", "kientruc", "pr"]
     },
     {
-      text: "Đọc sách, viết lách, tranh luận, tìm hiểu khoa học xã hội & tâm lý người",
+      text: "Đọc sách, viết lách, trao đổi quan điểm, tìm hiểu tâm lý con người và các vấn đề xã hội",
       icon: "📚",
-      archetype: "Nhà Nghiên Cứu & Khai Phóng Xã Hội (Analytical Thinker)",
+      archetype: "Thiên hướng Khoa học Xã hội & Ngôn ngữ",
       traits: { R: 5, I: 35, A: 25, S: 35, E: 10, C: 10 },
       suggestedMajors: ["tamly", "luatkt", "kdqt", "ngoaigiao", "supham-toan"]
     },
     {
-      text: "Lắng nghe, chăm sóc, giúp đỡ người khác & tham gia hoạt động tình nguyện",
+      text: "Lắng nghe, hướng dẫn học tập, chăm sóc sức khỏe hoặc tham gia hoạt động cộng đồng",
       icon: "🤝",
-      archetype: "Đại Sứ Cộng Đồng & Y Tế - Giáo Dục (Caregiver & Mentor)",
+      archetype: "Thiên hướng Y tế, Giáo dục & Hỗ trợ cộng đồng",
       traits: { R: 10, I: 20, A: 10, S: 45, E: 15, C: 10 },
       suggestedMajors: ["ykhoa", "duoc", "dieuduong", "supham-anh", "tamly"]
     },
     {
-      text: "Tính toán số liệu, kinh doanh, quản lý dự án & điều phối công việc nhóm",
+      text: "Tính toán chi phí, buôn bán nhỏ, tổ chức sự kiện lớp/CLB và sắp xếp công việc cho nhóm",
       icon: "📈",
-      archetype: "Nhà Chiến Lược & Quản Trị Kinh Doanh (Strategic Leader)",
+      archetype: "Thiên hướng Kinh doanh, Tài chính & Tổ chức",
       traits: { R: 10, I: 15, A: 10, S: 25, E: 45, C: 30 },
       suggestedMajors: ["marketing", "kdqt", "logistics", "taichinh", "ketoan"]
     },
     {
-      text: "Chơi thể thao, vận động, dã ngoại và khám phá môi trường thực tế",
+      text: "Vận động ngoài trời, thích thực hành tay nghề trực tiếp tại xưởng, công trường hoặc hiện trường",
       icon: "🏞️",
-      archetype: "Nhà Khám Phá & Hành Động Thực Tế (Action Adventurer)",
+      archetype: "Thiên hướng Kỹ thuật Thực hành & Vận hành thực tế",
       traits: { R: 45, I: 15, A: 10, S: 20, E: 20, C: 10 },
       suggestedMajors: ["tudonghoa", "oto", "codientu", "hangkhong", "cntt"]
     }
   ];
 
   const ENVIRONMENTS = [
-    { text: "Làm việc độc lập, tập trung cao độ vào chuyên môn sâu", icon: "🎯", desc: "Không gian yên tĩnh, tự do phân bổ thời gian nghiên cứu" },
-    { text: "Làm việc nhóm năng động, trao đổi và tương tác nhiều người", icon: "👥", desc: "Không khí sôi nổi, nhiều buổi họp não bộ và kết nối" },
-    { text: "Môi trường ổn định, tính quy trình rõ ràng và bảo đảm", icon: "🏛️", desc: "Lộ trình rõ ràng, công việc chuẩn mực và ít rủi ro" },
-    { text: "Môi trường linh hoạt, sáng tạo, nhiều thử thách và biến đổi", icon: "🚀", desc: "Luôn có điều mới mẻ, thử thách không giới hạn" }
+    { text: "Ngồi làm độc lập, tập trung sâu vào chuyên môn", icon: "🎯", desc: "Không gian yên tĩnh, ít phải xã giao nhiều, chủ động giờ giấc nghiên cứu" },
+    { text: "Làm việc cùng tập thể, giao tiếp và phối hợp mỗi ngày", icon: "👥", desc: "Không khí cởi mở, thường xuyên trao đổi ý tưởng và gặp gỡ nhiều người" },
+    { text: "Công việc có quy trình rõ ràng, nhịp độ ổn định", icon: "🏛️", desc: "Lộ trình từng bước cụ thể, chuẩn mực và ít biến động bất ngờ" },
+    { text: "Công việc linh hoạt, hay đổi mới, ít lặp lại một kiểu", icon: "🚀", desc: "Thường xuyên tiếp xúc dự án mới, chấp nhận nhịp làm việc nhanh" }
   ];
 
   const VALUES = [
-    { text: "Thu nhập cao, cơ hội thăng tiến và khẳng định bản thân", icon: "💎", tag: "Tài chính & Vị thế" },
-    { text: "Được tự do sáng tạo, biến ý tưởng riêng thành hiện thực", icon: "✨", tag: "Tự chủ & Sáng tạo" },
-    { text: "Tạo giá trị nhân văn, đóng góp tích cực cho xã hội", icon: "❤️", tag: "Cống hiến & Ý nghĩa" },
-    { text: "Cân bằng lành mạnh giữa công việc và cuộc sống cá nhân", icon: "🌿", tag: "An vui & Bền vững" }
+    { text: "Thu nhập tốt, có cơ hội thăng tiến rõ ràng theo năng lực", icon: "💎", tag: "Thu nhập & Thăng tiến" },
+    { text: "Được làm ra sản phẩm mang dấu ấn và ý tưởng của riêng mình", icon: "✨", tag: "Sáng tạo & Chủ động" },
+    { text: "Công việc có ích trực tiếp cho sức khỏe, tri thức hoặc cộng đồng", icon: "❤️", tag: "Đóng góp xã hội" },
+    { text: "Thời gian làm việc hợp lý, giữ được sự cân bằng cho bản thân và gia đình", icon: "🌿", tag: "Ổn định & Cân bằng" }
   ];
 
-  // Instant Psychological Insight
+  // Subject combination commentary
   const getSubjectInsight = () => {
     if (selectedSubjects.length === 0) return null;
     const has = (name) => selectedSubjects.includes(name);
 
     if (has("Toán học") && (has("Tin học & Lập trình") || has("Vật lý") || has("Công nghệ"))) {
       return {
-        badge: "TƯ DUY LOGIC & KỸ THUẬT HỆ THỐNG",
+        badge: "Nền tảng Tự nhiên & Kỹ thuật",
         color: "#4338CA",
         bg: "#EEF2FF",
         border: "#C7D2FE",
-        text: "Bạn sở hữu nền tảng tư duy toán học và công nghệ rất vững chắc. Bạn có tiềm năng vượt trội trong các ngành Công nghệ thông tin, Trí tuệ Nhân tạo (AI), Thiết kế Vi mạch & Bán dẫn hoặc Kỹ thuật Điều khiển & Tự động hóa!"
+        text: "Bạn có lợi thế lớn khi xét các khối A00, A01. Nhóm môn này rất hợp để theo Công nghệ thông tin, Trí tuệ nhân tạo, Kỹ thuật Vi mạch - Bán dẫn hoặc Điều khiển & Tự động hóa."
       };
     }
     if (has("Ngữ văn") && (has("Ngoại ngữ") || has("GDKT & Pháp luật") || has("Lịch sử"))) {
       return {
-        badge: "NGÔN NGỮ, THẤU CẢM XÃ HỘI & TRUYỀN THÔNG",
+        badge: "Lợi thế Ngôn ngữ & Xã hội",
         color: "#BE123C",
         bg: "#FFF1F2",
         border: "#FECDD3",
-        text: "Khả năng diễn đạt ngôn ngữ và sự nhạy bén xã hội của bạn rất nổi bật! Các ngành như Truyền thông đa phương tiện, Quan hệ công chúng (PR), Luật Kinh tế, Quan hệ Quốc tế hoặc Marketing số là mảnh đất màu mỡ cho bạn tỏa sáng."
+        text: "Khả năng diễn đạt và nắm bắt vấn đề xã hội giúp bạn thuận lợi ở các khối D01, D14, D15, C00 — phù hợp với Truyền thông đa phương tiện, Quan hệ công chúng, Luật kinh tế, Quan hệ quốc tế hoặc Sư phạm."
       };
     }
     if (has("Hóa học") || has("Sinh học")) {
       return {
-        badge: "KHOA HỌC TỰ NHIÊN & Y DƯỢC Y SINH",
+        badge: "Nền tảng Hóa - Sinh & Khoa học Sự sống",
         color: "#047857",
         bg: "#ECFDF5",
         border: "#A7F3D0",
-        text: "Bạn có xu hướng quan tâm sâu sắc đến thế giới tự nhiên và sức khỏe con người. Rất phù hợp để theo đuổi Y khoa (Bác sĩ đa khoa), Dược học, Kỹ thuật Xét nghiệm Y học, Công nghệ Sinh học hoặc Tâm lý học lâm sàng."
+        text: "Đây là nhóm môn cốt lõi của khối B00, D07 — mở ra hướng đi vững chắc vào Y khoa, Dược học, Kỹ thuật xét nghiệm y học, Điều dưỡng hoặc Công nghệ sinh học - thực phẩm."
       };
     }
     if (has("Mỹ thuật & Âm nhạc")) {
       return {
-        badge: "BẢN NĂNG SÁNG TẠO & THẨM MỸ ĐỘC BẢN",
+        badge: "Cảm quan Thẩm mỹ & Sáng tạo Hình ảnh",
         color: "#7E22CE",
         bg: "#FAF5FF",
         border: "#E9D5FF",
-        text: "Trực giác nghệ thuật và óc thẩm mỹ của bạn rất cao! Hãy tham khảo các ngành Thiết kế Đồ họa & Mỹ thuật số (UI/UX), Kiến trúc, Thiết kế Nội thất/Thời trang hoặc Sản xuất nội dung số."
+        text: "Bạn có thể tìm hiểu các khối thi năng khiếu (H00, V00) cho ngành Thiết kế đồ họa, Mỹ thuật số (UI/UX), Kiến trúc, Thiết kế nội thất hoặc Sản xuất nội dung truyền thông."
       };
     }
     if (has("Toán học") && (has("Ngữ văn") || has("Ngoại ngữ") || has("Địa lý"))) {
       return {
-        badge: "CÂN BẰNG PHÂN TÍCH & KẾT NỐI (NÃO TRÁI & PHẢI)",
+        badge: "Kết hợp tốt giữa Tính toán & Ngoại ngữ",
         color: "#0369A1",
         bg: "#F0F9FF",
         border: "#BAE6FD",
-        text: "Sự kết hợp giữa tư duy tính toán và kỹ năng giao tiếp ngoại ngữ là chìa khóa vàng cho các ngành Kinh doanh quốc tế, Logistics & Quản lý chuỗi cung ứng, Tài chính Fintech hoặc Thương mại điện tử!"
+        text: "Vừa học được Toán vừa có vốn Văn/Anh là lợi thế rất thực tế cho khối D01 — dễ xét tuyển vào Kinh doanh quốc tế, Logistics & Chuỗi cung ứng, Tài chính - Ngân hàng hoặc Thương mại điện tử."
       };
     }
     return {
-      badge: "TỔ HỢP THẾ MẠNH ĐA NĂNG",
+      badge: "Tổ hợp môn linh hoạt",
       color: "#4F46E5",
       bg: "#F5F3FF",
       border: "#DDD6FE",
-      text: `Sự kết hợp các môn [${selectedSubjects.join(' + ')}] mở ra nhiều cánh cửa ngành nghề linh hoạt. Tiếp tục chọn sở thích để AI phân tích chính xác hình mẫu nghề nghiệp của bạn!`
+      text: `Nhóm môn (${selectedSubjects.join(', ')}) có thể ghép được nhiều tổ hợp xét tuyển khác nhau. Bạn chọn tiếp các câu sau để thu hẹp dần nhóm ngành hợp nhất nhé.`
     };
   };
 
@@ -154,40 +154,40 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
 
     const MAP = {
       R: {
-        traitName: "Thực Tế & Hành Động (Realistic)",
-        strength: "Thực tế, khéo léo, hành động quyết đoán, xử lý vấn đề kỹ thuật và thực tiễn máy móc/công trình rất nhanh nhạy.",
-        blindspot: "Dễ chán nản với các công việc thuần giấy tờ lý thuyết, ngại đàm phán xã giao hoặc thuyết trình trước đám đông.",
-        advice: "Hãy chú trọng rèn luyện kỹ năng mềm, thuyết trình và ngoại ngữ để không bị giới hạn ở cấp kỹ thuật viên thuần túy mà có thể vươn lên cấp Quản lý dự án / Giám đốc kỹ thuật."
+        traitName: "Nhóm Kỹ thuật & Thực hành (Realistic)",
+        strength: "Thích bắt tay làm việc cụ thể, tháo vát với máy móc, thiết bị, phần cứng hoặc công việc ngoài hiện trường hơn là ngồi đọc lý thuyết suông.",
+        blindspot: "Dễ thấy ngán các công việc nhiều giấy tờ hành chính, hoặc còn ngại khi phải thuyết trình, đàm phán trước đông người.",
+        advice: "Bên cạnh tay nghề chuyên môn, bạn nên chịu khó rèn thêm tiếng Anh đọc tài liệu kỹ thuật và cách trình bày ý tưởng để sau này dễ lên vị trí trưởng nhóm, quản lý kỹ thuật."
       },
       I: {
-        traitName: "Nghiên Cứu & Khám Phá (Investigative)",
-        strength: "Tư duy phân tích sâu sắc, óc tò mò khoa học, kiên trì giải quyết các bài toán khó và khả năng tự học độc lập xuất sắc.",
-        blindspot: "Dễ rơi vào 'bẫy phân tích quá mức' (Analysis Paralysis), đôi khi xa rời tính ứng dụng thương mại thực tế.",
-        advice: "Nên kết nối nghiên cứu với thị trường, học cách biến giải pháp công nghệ hay mã nguồn thành sản phẩm thực tế có giá trị kinh doanh cho doanh nghiệp."
+        traitName: "Nhóm Nghiên cứu & Phân tích (Investigative)",
+        strength: "Chịu khó đào sâu tìm hiểu bản chất vấn đề, có tư duy logic, tự học tốt và kiên nhẫn trước những bài toán phức tạp.",
+        blindspot: "Đôi khi suy nghĩ và cân nhắc quá kỹ trước khi bắt tay làm, hoặc quá mê phần học thuật mà ít để ý chuyện ứng dụng thực tế.",
+        advice: "Trong lúc học đại học, bạn nên sớm tham gia các dự án thực tế hoặc đi thực tập để thấy kiến thức mình nghiên cứu giải quyết được việc gì cho doanh nghiệp, bệnh viện."
       },
       A: {
-        traitName: "Nghệ Thuật & Sáng Tạo (Artistic)",
-        strength: "Trí tưởng tượng phong phú, phong cách độc bản, nhạy bén với cái đẹp, xu hướng thị giác và cảm xúc con người.",
-        blindspot: "Dễ bị cảm xúc chi phối tiến độ làm việc, ngại tuân thủ các quy trình kỷ luật cứng nhắc hoặc số liệu khô khan.",
-        advice: "Học cách làm quen với deadline gắt gao và số liệu (data-driven design) để tác phẩm sáng tạo đạt hiệu quả thương mại và truyền thông cao nhất."
+        traitName: "Nhóm Sáng tạo & Nghệ thuật (Artistic)",
+        strength: "Giàu ý tưởng, có gu thẩm mỹ riêng, nhạy cảm với hình ảnh, ngôn từ và cảm xúc của người xem.",
+        blindspot: "Cảm hứng làm việc dễ lên xuống theo tâm trạng; đôi khi ngại các quy trình gò bó hoặc bảng biểu số liệu khô khan.",
+        advice: "Làm nghề sáng tạo chuyên nghiệp vẫn cần giữ đúng hạn giao bài (deadline) và biết xem số liệu phản hồi của khách hàng để ý tưởng vừa đẹp vừa hiệu quả."
       },
       S: {
-        traitName: "Xã Hội & Thấu Cảm (Social)",
-        strength: "Đồng cảm sâu sắc, kỹ năng lắng nghe và kết nối tuyệt vời, luôn tạo năng lượng tích cực cho tập thể và cộng đồng.",
-        blindspot: "Khó nói lời từ chối, dễ bị áp lực và kiệt sức cảm xúc khi đối diện với môi trường cạnh tranh khốc liệt.",
-        advice: "Học cách thiết lập ranh giới cảm xúc và rèn luyện tư duy lý trí để bảo vệ năng lượng bản thân khi làm việc trong ngành Y tế, Giáo dục hay Tư vấn."
+        traitName: "Nhóm Xã hội & Hỗ trợ con người (Social)",
+        strength: "Biết lắng nghe, dễ tạo thiện cảm, kiên nhẫn khi hướng dẫn, chăm sóc hoặc làm việc trực tiếp với con người.",
+        blindspot: "Hay cả nể, khó từ chối nhờ vả và dễ bị mệt mỏi tinh thần nếu làm trong môi trường cạnh tranh gay gắt.",
+        advice: "Nếu theo Y tế, Sư phạm, Tâm lý hay Nhân sự, bạn nên tập giữ ranh giới hợp lý giữa công việc và đời sống riêng để không bị quá tải cảm xúc."
       },
       E: {
-        traitName: "Quản Lý & Dẫn Dắt (Enterprising)",
-        strength: "Năng động, có tài dẫn dắt, giàu tham vọng, nhạy bén với cơ hội kinh doanh và khả năng thuyết phục ấn tượng.",
-        blindspot: "Có xu hướng nóng vội, thiếu kiên nhẫn với các chi tiết tỉ mỉ hoặc dễ chủ quan trước các rủi ro pháp lý/tài chính.",
-        advice: "Nên trang bị thêm kiến thức tài chính, quản trị rủi ro và biết lắng nghe góc nhìn phản biện từ các thành viên tỉ mỉ trong đội ngũ."
+        traitName: "Nhóm Kinh doanh & Tổ chức (Enterprising)",
+        strength: "Chủ động, dạn dĩ trong giao tiếp, thích đứng ra tổ chức công việc, thuyết phục người khác và nhạy với cơ hội kinh doanh.",
+        blindspot: "Đôi lúc hơi sốt ruột muốn thấy kết quả nhanh, dễ bỏ qua các chi tiết nhỏ về số liệu hoặc giấy tờ pháp lý.",
+        advice: "Bạn sẽ đi xa hơn nhiều nếu bổ sung nền tảng vững về tài chính, kế toán cơ bản và biết lắng nghe góp ý từ những đồng nghiệp cẩn thận quanh mình."
       },
       C: {
-        traitName: "Nghiệp Vụ & Quy Trình (Conventional)",
-        strength: "Cẩn thận, chỉn chu, tôn trọng quy tắc, quản lý số liệu chuẩn xác và kiểm soát chất lượng tuyệt đối.",
-        blindspot: "Ngại rủi ro và thay đổi, đôi khi cứng nhắc khi đối diện với các tình huống cần sự linh hoạt phá cách.",
-        advice: "Chủ động đón nhận công nghệ mới (đặc biệt là AI tự động hóa) để tối ưu công việc thay vì lo sợ bị thay thế trong ngành Kế toán hay Ngân hàng."
+        traitName: "Nhóm Nghiệp vụ & Quy trình (Conventional)",
+        strength: "Cẩn thận, làm việc có trật tự, đáng tin cậy khi xử lý số liệu, hồ sơ, sổ sách và kiểm tra sai sót.",
+        blindspot: "Thường ngại thay đổi đột ngột hoặc lúng túng khi gặp những việc chưa có hướng dẫn, quy trình sẵn.",
+        advice: "Các khâu nhập liệu lặp lại đang dần được phần mềm và AI làm thay; bạn nên chủ động học thêm công cụ phân tích dữ liệu để nâng giá trị chuyên môn trong ngành Kế toán, Kiểm toán, Ngân hàng."
       }
     };
 
@@ -208,7 +208,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
 
   const handleFinish = () => {
     if (selectedSubjects.length === 0 || !selectedHobby) {
-      alert("Vui lòng chọn ít nhất 1 môn học và 1 sở thích để AI phân tích chính xác.");
+      alert("Bạn chọn giúp ít nhất 1 môn học và 1 hoạt động yêu thích để tổng hợp kết quả nhé.");
       return;
     }
 
@@ -296,10 +296,10 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
     <div className="tab-pane-animate">
       <div style={{ maxWidth: '860px', margin: '0 auto' }}>
         <div style={{ marginBottom: '28px', textAlign: 'center' }}>
-          <div className="pill-badge" style={{ marginBottom: '10px' }}>🌱 BƯỚC 1 / 4 • TRẮC NGHIỆM ĐỊNH HƯỚNG</div>
-          <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Khám phá bản thân & Hình mẫu nghề nghiệp</h1>
+          <div className="pill-badge" style={{ marginBottom: '10px' }}>🌱 BƯỚC 1 / 4 • TRẮC NGHIỆM CHỌN NGÀNH</div>
+          <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Tìm nhóm ngành hợp với môn học &amp; tính cách</h1>
           <p style={{ color: '#64748B', maxWidth: '60ch', margin: '0 auto', fontSize: '0.98rem' }}>
-            5 câu hỏi ngắn thân thiện giúp bạn nhận diện thiên hướng, nhóm tính cách Holland và nhận danh sách gợi ý ngành học phù hợp.
+            5 câu hỏi ngắn giúp bạn nhìn rõ thiên hướng học tập theo mô hình Holland (RIASEC) và chọn ra vài ngành đáng tìm hiểu kỹ hơn.
           </p>
         </div>
 
@@ -382,7 +382,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                 <Sparkles size={22} color={subjectInsight.color} style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
                   <div style={{ fontSize: '0.78rem', fontWeight: '900', color: subjectInsight.color, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '4px' }}>
-                    ⚡ INSIGHT TÂM LÝ TỨC THÌ: {subjectInsight.badge}
+                    Gợi ý từ các môn bạn chọn: {subjectInsight.badge}
                   </div>
                   <p style={{ margin: 0, fontSize: '0.88rem', color: '#1E293B', lineHeight: '1.5' }}>
                     {subjectInsight.text}
@@ -464,7 +464,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
               >
                 <Award size={20} color="#4F46E5" />
                 <span style={{ fontSize: '0.88rem', color: '#4338CA', fontWeight: '700' }}>
-                  Hình mẫu hướng nghiệp tương ứng: <strong>{selectedHobby.archetype}</strong>
+                  Nhóm thiên hướng gần với bạn: <strong>{selectedHobby.archetype}</strong>
                 </span>
               </div>
             )}
@@ -656,7 +656,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                 style={{ padding: '14px 32px' }}
               >
                 <Sparkles size={18} />
-                <span>{isSubmitting ? 'Đang phân tích dữ liệu...' : 'Xem kết quả & Hồ sơ Holland'}</span>
+                <span>{isSubmitting ? 'Đang tổng hợp kết quả...' : 'Xem nhóm ngành phù hợp'}</span>
               </button>
             </div>
           </div>
@@ -679,22 +679,22 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
               }}
             >
               <div style={{ fontSize: '0.8rem', fontWeight: '800', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.9, marginBottom: '8px' }}>
-                ✨ HÌNH MẪU ĐỊNH HƯỚNG NGHỀ NGHIỆP CỦA BẠN
+                KẾT QUẢ ĐỊNH HƯỚNG CỦA BẠN
               </div>
               <h2 style={{ fontSize: '2.1rem', fontWeight: '900', color: '#FFFFFF', marginBottom: '12px' }}>
                 {result.archetype}
               </h2>
               <p style={{ color: '#FFFFFF', opacity: 0.95, fontSize: '1rem', lineHeight: '1.6', margin: 0, maxWidth: '64ch' }}>
-                Dựa trên tổ hợp môn thế mạnh ({result.selectedSubjects.join(', ')}), sở thích cá nhân và môi trường làm việc lý tưởng, bạn có tiềm năng bứt phá rất cao trong các nhóm ngành dưới đây.
+                Từ các môn bạn học khá ({result.selectedSubjects.join(', ')}) và kiểu công việc bạn yêu thích, dưới đây là những nhóm ngành sát với điểm mạnh của bạn để bắt đầu tìm hiểu.
               </p>
             </div>
 
             {/* Radar Chart Card */}
             <div className="card-box" style={{ marginBottom: '28px', textAlign: 'center' }}>
-              <div className="pill-badge" style={{ marginBottom: '8px' }}>HỒ SƠ NĂNG LỰC 6 CHIỀU</div>
-              <h3 style={{ fontSize: '1.4rem', marginBottom: '6px' }}>Biểu đồ Mạng nhện Holland (RIASEC)</h3>
+              <div className="pill-badge" style={{ marginBottom: '8px' }}>6 NHÓM TÍNH CÁCH NGHỀ NGHIỆP</div>
+              <h3 style={{ fontSize: '1.4rem', marginBottom: '6px' }}>Biểu đồ xu hướng nghề nghiệp Holland (RIASEC)</h3>
               <p style={{ fontSize: '0.9rem', color: '#64748B', maxWidth: '60ch', margin: '0 auto 20px' }}>
-                Biểu đồ thể hiện mức độ tương thích của bạn với các nhóm nghề nghiệp trong xã hội hiện đại.
+                Đỉnh nào vươn xa hơn cho thấy bạn có nhiều điểm chung với nhóm công việc đó hơn.
               </p>
               <RadarChart scores={result.scores} />
             </div>
@@ -702,16 +702,16 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
             {/* Strengths & Blindspots Analysis Card */}
             {result.personality && (
               <div className="card-box" style={{ marginBottom: '28px', borderLeft: '5px solid #4F46E5' }}>
-                <div className="pill-badge" style={{ marginBottom: '8px' }}>CHIÊU SÂU TÂM LÝ & ĐỊNH HƯỚNG NGHỀ</div>
+                <div className="pill-badge" style={{ marginBottom: '8px' }}>ĐIỂM MẠNH &amp; ĐIỀU CẦN LƯU Ý</div>
                 <h3 style={{ fontSize: '1.35rem', marginBottom: '16px', color: '#1E293B' }}>
-                  Phân tích Điểm mạnh & Điểm mù khi chọn ngành: <span style={{ color: '#4F46E5' }}>{result.personality.traitName}</span>
+                  Nhóm nổi bật của bạn: <span style={{ color: '#4F46E5' }}>{result.personality.traitName}</span>
                 </h3>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '16px' }}>
                   <div style={{ background: '#ECFDF5', border: '1.5px solid #A7F3D0', borderRadius: '16px', padding: '16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#047857', fontWeight: '800', fontSize: '0.92rem', marginBottom: '8px' }}>
                       <Check size={18} strokeWidth={2.5} />
-                      <span>ĐIỂM MẠNH BỨT PHÁ</span>
+                      <span>ĐIỂM THUẬN LỢI KHI HỌC &amp; LÀM NGHỀ</span>
                     </div>
                     <p style={{ margin: 0, fontSize: '0.88rem', color: '#065F46', lineHeight: '1.5' }}>
                       {result.personality.strength}
@@ -721,7 +721,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                   <div style={{ background: '#FFF1F2', border: '1.5px solid #FECDD3', borderRadius: '16px', padding: '16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#BE123C', fontWeight: '800', fontSize: '0.92rem', marginBottom: '8px' }}>
                       <AlertCircle size={18} strokeWidth={2.5} />
-                      <span>ĐIỂM MÙ CẦN TRÁNH</span>
+                      <span>ĐIỀU DỄ GẶP KHÓ KHĂN</span>
                     </div>
                     <p style={{ margin: 0, fontSize: '0.88rem', color: '#9F1239', lineHeight: '1.5' }}>
                       {result.personality.blindspot}
@@ -730,7 +730,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                 </div>
 
                 <div style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '14px', padding: '14px 18px', fontSize: '0.88rem', color: '#334155', lineHeight: '1.5' }}>
-                  💡 <strong>Lời khuyên vàng từ Cố vấn:</strong> {result.personality.advice}
+                  💡 <strong>Gợi ý chuẩn bị thêm:</strong> {result.personality.advice}
                 </div>
               </div>
             )}
@@ -739,11 +739,11 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
             <div style={{ marginBottom: '32px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
                 <div>
-                  <h3 style={{ fontSize: '1.4rem', marginBottom: '2px' }}>Top 5 ngành học đề xuất cho bạn</h3>
-                  <span style={{ fontSize: '0.85rem', color: '#64748B' }}>Được cá nhân hóa theo trắc nghiệm & dữ liệu tuyển sinh 2026</span>
+                  <h3 style={{ fontSize: '1.4rem', marginBottom: '2px' }}>5 ngành học gợi ý để bạn tìm hiểu trước</h3>
+                  <span style={{ fontSize: '0.85rem', color: '#64748B' }}>Tổng hợp theo kết quả trắc nghiệm &amp; thông tin tuyển sinh các trường</span>
                 </div>
                 <span className="pill-badge" style={{ background: '#ECFDF5', color: '#059669', borderColor: '#A7F3D0' }}>
-                  ĐỘ KHỚP CAO NHẤT
+                  GỢI Ý THAM KHẢO
                 </span>
               </div>
 
@@ -762,22 +762,22 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                         <h4 style={{ fontSize: '1.25rem', marginBottom: '8px', color: '#1E293B' }}>{m.ten_nganh}</h4>
                         <p style={{ fontSize: '0.88rem', color: '#64748B', lineHeight: '1.5', marginBottom: '16px' }}>{m.mo_ta}</p>
                         
-                        {/* Quick Stats: Điểm TB, Lương Fresher, Rủi ro AI */}
+                        {/* Quick Stats: Điểm TB, Lương mới ra trường, Ảnh hưởng từ AI */}
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '14px', background: '#F8FAFC', padding: '10px 12px', borderRadius: '12px', fontSize: '0.78rem' }}>
                           <div>
-                            <span style={{ color: '#64748B', display: 'block' }}>Điểm chuẩn TB:</span>
+                            <span style={{ color: '#64748B', display: 'block' }}>Điểm chuẩn tham khảo:</span>
                             <strong style={{ color: '#4F46E5' }}>{m.diem_tb}</strong>
                           </div>
                           <div>
-                            <span style={{ color: '#64748B', display: 'block' }}>Lương Fresher:</span>
+                            <span style={{ color: '#64748B', display: 'block' }}>Mới ra trường:</span>
                             <strong style={{ color: '#059669' }}>{m.salaryRoadmap?.fresher || '8 - 14 tr'}</strong>
                           </div>
                           <div>
-                            <span style={{ color: '#64748B', display: 'block' }}>Độ khát nhân lực:</span>
+                            <span style={{ color: '#64748B', display: 'block' }}>Nhu cầu tuyển dụng:</span>
                             <strong style={{ color: '#EA580C' }}>{m.demandLevel || 'Cao'}</strong>
                           </div>
                           <div>
-                            <span style={{ color: '#64748B', display: 'block' }}>Rủi ro AI:</span>
+                            <span style={{ color: '#64748B', display: 'block' }}>Ảnh hưởng từ AI:</span>
                             <strong style={{ color: m.aiRiskLevel === 'Thấp' ? '#059669' : m.aiRiskLevel === 'Cao' ? '#DC2626' : '#D97706' }}>
                               {m.aiRiskLevel || 'Trung bình'}
                             </strong>
@@ -844,12 +844,12 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
             {/* Bottom Actions Bar */}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '24px' }}>
               <button className="btn-edtech-primary" onClick={() => onNavigate('compare')}>
-                <span>So sánh các phương án này trên Đấu trường</span>
+                <span>So sánh các ngành đã lưu</span>
                 <ArrowRight size={18} />
               </button>
               <button className="btn-edtech-secondary" onClick={handleRedo}>
                 <RotateCcw size={18} />
-                <span>Làm lại trắc nghiệm</span>
+                <span>Làm lại từ đầu</span>
               </button>
             </div>
           </div>

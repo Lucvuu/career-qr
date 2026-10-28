@@ -7,14 +7,9 @@ import {
   Save, 
   Sparkles, 
   CheckCircle2, 
-  Compass, 
   Edit3, 
   Check, 
-  X, 
   QrCode, 
-  Plane,
-  Award,
-  Calendar,
   Target
 } from 'lucide-react';
 
@@ -24,43 +19,43 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
   const [targetScore, setTargetScore] = useState('27.5');
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [studentName, setStudentName] = useState('Thí sinh THPT 2026');
+  const [studentName, setStudentName] = useState('Học sinh lớp 12');
   const [editingMilestoneId, setEditingMilestoneId] = useState(null);
 
   const [milestones, setMilestones] = useState([
     {
       id: 1,
       time: 'Học kỳ 1 • Lớp 11',
-      goal: 'Củng cố nền tảng Toán, Tin học & Ngoại ngữ',
-      action: 'Luyện giải bài tập chuyên sâu 3 buổi/tuần, tham gia CLB trường để mở rộng tư duy học thuật và thực chiến.',
+      goal: 'Nắm chắc kiến thức gốc 3 môn trong tổ hợp xét tuyển',
+      action: 'Ôn kỹ từng chuyên đề trên lớp, dành 3 buổi/tuần tự làm bài tập vận dụng và ghi lại các dạng câu dễ mất điểm.',
       completed: true
     },
     {
       id: 2,
       time: 'Học kỳ 2 • Lớp 11',
-      goal: 'Chinh phục chứng chỉ ngoại ngữ (IELTS 6.5+ / VSTEP B2)',
-      action: 'Tập trung ôn luyện đạt mục tiêu IELTS 6.5+ để hưởng quy chế miễn thi và quy đổi điểm 10 tiếng Anh trong xét tuyển kết hợp sớm.',
+      goal: 'Thi lấy chứng chỉ ngoại ngữ nếu trường có cộng điểm / quy đổi',
+      action: 'Ôn thi IELTS 6.0 – 6.5+ hoặc VSTEP B2 để tận dụng phương thức xét tuyển kết hợp, giảm tải áp lực cho kỳ thi cuối cấp.',
       completed: true
     },
     {
       id: 3,
       time: 'Hè lên Lớp 12',
-      goal: 'Làm quen kỳ thi Đánh giá năng lực (HSA / TSA / APT)',
-      action: 'Đăng ký thi thử, làm quen cấu trúc đề thi tư duy ĐHQGHN, ĐHQG TP.HCM và Bách Khoa; lập kế hoạch phân bổ thời gian giải đề.',
+      goal: 'Tìm hiểu đề thi riêng (HSA, TSA, APT) của các trường dự định nộp',
+      action: 'Làm thử 1 – 2 đề mẫu của ĐHQGHN, ĐHQG TP.HCM hoặc ĐH Bách Khoa để xem mình có hợp lối ra đề đó không trước khi đăng ký ôn sâu.',
       completed: true
     },
     {
       id: 4,
       time: 'Học kỳ 1 • Lớp 12',
-      goal: 'Tối ưu điểm học bạ & Sàng lọc đề án tuyển sinh sớm',
-      action: 'Duy trì điểm trung bình các môn tổ hợp trên 8.5, rà soát chỉ tiêu tuyển sinh sớm và hoàn thiện hồ sơ xét tuyển kết hợp.',
+      goal: 'Giữ điểm học bạ ổn định & đọc kỹ đề án tuyển sinh mới',
+      action: 'Giữ điểm trung bình các môn tổ hợp từ 8.5 trở lên, theo dõi lịch mở cổng xét tuyển sớm và chuẩn bị sẵn giấy tờ cần thiết.',
       completed: false
     },
     {
       id: 5,
-      time: 'Tháng 4 - 6 • Lớp 12 (Nước rút)',
-      goal: 'Bứt phá kỳ thi Tốt nghiệp THPT & Chạm đích Đại học Mơ ước',
-      action: 'Luyện đề thực chiến bấm giờ, củng cố tâm lý phòng thi vững vàng và xác nhận nguyện vọng 1 trên cổng thông tin Bộ GD&ĐT.',
+      time: 'Tháng 4 – 6 • Lớp 12',
+      goal: 'Luyện đề bấm giờ & chốt thứ tự nguyện vọng',
+      action: 'Luyện đề sát giờ thi thật, giữ sức khỏe ổn định và sắp xếp nguyện vọng từ trường mơ ước đến trường vừa sức, an toàn trên cổng Bộ GD&ĐT.',
       completed: false
     }
   ]);
@@ -92,9 +87,9 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
       ...milestones,
       { 
         id: newId, 
-        time: 'Mốc thời gian mới', 
-        goal: 'Mục tiêu trọng tâm giai đoạn này', 
-        action: 'Hành động cụ thể hàng ngày để hiện thực hóa mục tiêu...', 
+        time: 'Giai đoạn mới', 
+        goal: 'Việc cần hoàn thành trong giai đoạn này', 
+        action: 'Ghi rõ lịch học hoặc đầu việc cụ thể bạn định làm mỗi tuần...', 
         completed: false 
       }
     ]);
@@ -122,23 +117,23 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
       setMilestones([
         {
           id: Date.now() + 1,
-          time: 'Giai đoạn 1 (Ngay hôm nay)',
-          goal: `Tập trung nâng cao tổ hợp môn xét tuyển ngành ${primaryChoice}`,
-          action: 'Giải tối thiểu 2 đề thi chuẩn/tuần, ghi chép sổ tay công thức và nhờ thầy cô giải đáp các câu hỏi phân loại 9+.',
+          time: 'Từ bây giờ',
+          goal: `Rà lại kiến thức 3 môn xét tuyển ngành ${primaryChoice}`,
+          action: 'Mỗi tuần tự giải ít nhất 2 đề chuẩn, ghi riêng sổ tay các lỗi sai hay gặp và hỏi thầy cô ngay những phần còn hổng.',
           completed: true
         },
         {
           id: Date.now() + 2,
-          time: 'Giai đoạn 2 (3 - 6 Tháng tới)',
-          goal: 'Chinh phục kỳ thi ĐGNL / ĐGTD & Bổ sung chứng chỉ ngoại ngữ',
-          action: 'Tham gia thi thử HSA/TSA/APT, cọ xát kỹ năng làm bài trên máy tính và nâng band IELTS để sẵn sàng nộp hồ sơ xét tuyển sớm.',
+          time: '3 – 6 tháng tới',
+          goal: 'Chuẩn bị thêm phương thức xét tuyển sớm (ĐGNL / chứng chỉ ngoại ngữ)',
+          action: 'Đăng ký ít nhất 1 đợt thi thử HSA, TSA hoặc APT để quen áp lực phòng thi và hoàn thiện chứng chỉ ngoại ngữ nếu trường có cộng điểm.',
           completed: false
         },
         {
           id: Date.now() + 3,
-          time: 'Giai đoạn 3 (Nước rút thi THPT 2026)',
-          goal: `Bảo đảm chắc chắn trúng tuyển: ${primaryChoice}`,
-          action: 'Rà soát chỉ tiêu tuyển sinh, học phí các trường, đặt nguyện vọng 1 thông minh và chuẩn bị phương án dự phòng an toàn.',
+          time: 'Giai đoạn nước rút trước kỳ thi 2026',
+          goal: `Chốt hồ sơ xét tuyển cho mục tiêu: ${primaryChoice}`,
+          action: 'Kiểm tra lại chỉ tiêu, học phí chính thức của trường, đặt nguyện vọng chính cùng phương án dự phòng thấp hơn 1 – 1.5 điểm để yên tâm đỗ.',
           completed: false
         }
       ]);
@@ -187,26 +182,26 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
     <div className="tab-pane-animate">
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-        <div className="pill-badge" style={{ marginBottom: '10px' }}>🧭 BƯỚC 4 / 4 • KẾ HOẠCH HÀNH ĐỘNG 2026</div>
-        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Lộ trình Chinh phục Đại học Mơ ước</h1>
+        <div className="pill-badge" style={{ marginBottom: '10px' }}>🧭 BƯỚC 4 / 4 • KẾ HOẠCH ÔN THI &amp; HỒ SƠ</div>
+        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Lên kế hoạch ôn thi &amp; chuẩn bị nguyện vọng</h1>
         <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.98rem' }}>
-          Biến ước mơ thành kế hoạch hành động theo từng học kỳ. Tạo Thẻ Lên Tàu Tương Lai (University Boarding Pass) có mã QR cá nhân hóa.
+          Ghi rõ ngành ưu tiên, phương án dự phòng và chia nhỏ những việc cần làm theo từng học kỳ. Bạn có thể lưu lại phiếu mục tiêu kèm mã QR để trao đổi cùng gia đình.
         </p>
       </div>
 
-      {/* LIVE UNIVERSITY PROGRESS BAR (PHASE 6.1) */}
+      {/* LIVE UNIVERSITY PROGRESS BAR */}
       <div style={{ background: '#FFFFFF', borderRadius: '22px', padding: '20px 26px', border: '1.5px solid #E2E8F0', boxShadow: 'var(--shadow-sm)', marginBottom: '32px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '38px', height: '38px', borderRadius: '12px', background: progressPercent === 100 ? '#ECFDF5' : '#EEF2FF', display: 'flex', alignItems: 'center', justifyContent: 'center', color: progressPercent === 100 ? '#059669' : '#4F46E5', fontWeight: '900' }}>
-              {progressPercent === 100 ? '🎉' : '🚀'}
+              {progressPercent === 100 ? '🎉' : '📘'}
             </div>
             <div>
               <div style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: '800', textTransform: 'uppercase' }}>
-                TIẾN ĐỘ CHINH PHỤC ĐẠI HỌC 2026
+                TIẾN ĐỘ CHUẨN BỊ CỦA BẠN
               </div>
               <div style={{ fontSize: '1.15rem', fontWeight: '900', color: '#1E293B' }}>
-                Đã hoàn thành {completedCount} / {milestones.length} chặng hành động
+                Đã làm xong {completedCount} / {milestones.length} đầu việc
               </div>
             </div>
           </div>
@@ -231,7 +226,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
         </div>
       </div>
 
-      {/* UNIVERSITY FUTURE BOARDING PASS 2026 */}
+      {/* PHIẾU MỤC TIÊU XÉT TUYỂN ĐẠI HỌC 2026 */}
       <div style={{ marginBottom: '36px' }}>
         <div className="card-box" style={{ background: '#FFFFFF', padding: '28px 32px', border: '2px solid #E2E8F0', position: 'relative', overflow: 'hidden' }}>
           
@@ -239,20 +234,20 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px dashed #E2E8F0', paddingBottom: '18px', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'linear-gradient(135deg, #4F46E5 0%, #0EA5E9 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', boxShadow: '0 4px 12px rgba(79, 70, 229, 0.3)' }}>
-                <Plane size={24} />
+                <Target size={24} />
               </div>
               <div>
-                <div style={{ fontSize: '1.18rem', fontWeight: '900', color: '#1E293B', letterSpacing: '0.04em' }}>
-                  CAREER QR 2026 • FUTURE BOARDING PASS
+                <div style={{ fontSize: '1.18rem', fontWeight: '900', color: '#1E293B', letterSpacing: '0.02em' }}>
+                  PHIẾU MỤC TIÊU XÉT TUYỂN ĐẠI HỌC 2026
                 </div>
-                <div style={{ fontSize: '0.74rem', color: '#64748B' }}>
-                  Chuyến bay: <strong style={{ color: '#4F46E5' }}>VN-EDU-2026</strong> • Hạng vé: Cử nhân tương lai
+                <div style={{ fontSize: '0.76rem', color: '#64748B' }}>
+                  Ghi lại nguyện vọng dự kiến để theo dõi trong suốt năm học
                 </div>
               </div>
             </div>
 
             <span style={{ fontSize: '0.8rem', fontWeight: '800', padding: '5px 14px', borderRadius: '999px', background: '#FEF3C7', color: '#B45309', border: '1px solid #FDE68A' }}>
-              VÉ LÊN TÀU ĐẠI HỌC
+              KỲ TUYỂN SINH 2026
             </span>
           </div>
 
@@ -260,7 +255,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '18px', marginBottom: '22px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '4px' }}>
-                HỌ TÊN THÍ SINH
+                HỌ VÀ TÊN HỌC SINH
               </label>
               <input
                 type="text"
@@ -283,7 +278,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
 
             <div>
               <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: '800', color: '#4F46E5', textTransform: 'uppercase', marginBottom: '4px' }}>
-                🎯 ĐÍCH ĐẾN MỤC TIÊU (PLAN A)
+                🎯 NGUYỆN VỌNG ƯU TIÊN
               </label>
               <input
                 type="text"
@@ -306,13 +301,13 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
 
             <div>
               <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: '800', color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-                🛡️ PHƯƠNG ÁN DỰ PHÒNG (PLAN B)
+                🛡️ PHƯƠNG ÁN DỰ PHÒNG AN TOÀN
               </label>
               <input
                 type="text"
                 value={backupChoice}
                 onChange={(e) => setBackupChoice(e.target.value)}
-                placeholder="Ví dụ: Kinh doanh quốc tế (ĐH Ngoại thương)"
+                placeholder="Ví dụ: Kinh doanh quốc tế (ĐH Thương mại)"
                 style={{
                   fontSize: '0.94rem',
                   fontWeight: '700',
@@ -329,7 +324,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
 
             <div>
               <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: '800', color: '#059669', textTransform: 'uppercase', marginBottom: '4px' }}>
-                ⭐ ĐIỂM MỤC TIÊU
+                ⭐ ĐIỂM THI PHẤN ĐẤU
               </label>
               <input
                 type="text"
@@ -351,13 +346,13 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
             </div>
           </div>
 
-          {/* Ticket Footer: Scannable QR Code & Barcode */}
+          {/* Ticket Footer: Scannable QR Code */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '2px dashed #E2E8F0', paddingTop: '18px', background: '#FAFAFA', margin: '0 -32px -28px', padding: '18px 32px', flexWrap: 'wrap', gap: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ width: '64px', height: '64px', background: '#FFFFFF', borderRadius: '12px', border: '1.5px solid #CBD5E1', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px', overflow: 'hidden', flexShrink: 0 }}>
                 <img 
                   src={qrImageUrl} 
-                  alt="Career QR 2026 Passport" 
+                  alt="Mã QR phiếu mục tiêu xét tuyển" 
                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   onError={(e) => {
                     // Fallback to SVG if offline
@@ -368,10 +363,10 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
               <div>
                 <div style={{ fontSize: '0.84rem', fontWeight: '800', color: '#1E293B', display: 'flex', alignItems: 'center', gap: '5px' }}>
                   <QrCode size={15} color="#4F46E5" />
-                  <span>CAREER QR PASSPORT 2026</span>
+                  <span>Mã QR lưu thông tin mục tiêu</span>
                 </div>
                 <div style={{ fontSize: '0.74rem', color: '#64748B' }}>
-                  Quét mã QR để mở lại lộ trình hành động & chia sẻ với phụ huynh
+                  Quét mã để xem nhanh mục tiêu đã đặt hoặc gửi cho bố mẹ, thầy cô cùng xem
                 </div>
               </div>
             </div>
@@ -384,7 +379,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
                 style={{ padding: '8px 14px', fontSize: '0.82rem' }}
               >
                 <Printer size={15} />
-                <span>In tấm vé</span>
+                <span>In phiếu</span>
               </button>
               <button
                 type="button"
@@ -393,14 +388,14 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
                 style={{ padding: '8px 16px', fontSize: '0.82rem' }}
               >
                 <Save size={15} />
-                <span>{isSaved ? 'Đã lưu!' : 'Lưu thẻ'}</span>
+                <span>{isSaved ? 'Đã lưu!' : 'Lưu trên máy'}</span>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* AI Helper Banner */}
+      {/* Helper Banner */}
       <div
         style={{
           background: 'linear-gradient(135deg, #EEF2FF 0%, #F0F9FF 100%)',
@@ -421,8 +416,8 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
             <Sparkles size={22} />
           </div>
           <div>
-            <strong style={{ color: '#3730A3', fontSize: '0.98rem' }}>Bạn chưa biết bắt đầu từ đâu?</strong>
-            <div style={{ color: '#4338CA', fontSize: '0.86rem' }}>Để trợ lý AI tự động gợi ý các mốc hành động chi tiết theo từng học kỳ.</div>
+            <strong style={{ color: '#3730A3', fontSize: '0.98rem' }}>Muốn tạo nhanh lịch ôn tập cho ngành vừa nhập?</strong>
+            <div style={{ color: '#4338CA', fontSize: '0.86rem' }}>Hệ thống sẽ gợi ý sẵn 3 chặng chuẩn bị chính dựa trên nguyện vọng ưu tiên ở trên, bạn có thể sửa lại tùy ý.</div>
           </div>
         </div>
 
@@ -433,19 +428,19 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
           disabled={isGeneratingAI}
           style={{ padding: '10px 20px', fontSize: '0.88rem' }}
         >
-          {isGeneratingAI ? 'Đang soạn kế hoạch...' : '✨ Tự động tạo lộ trình AI'}
+          {isGeneratingAI ? 'Đang tạo gợi ý...' : 'Gợi ý các mốc ôn tập'}
         </button>
       </div>
 
-      {/* TIMELINE MILESTONES (MULTI-LINE CARDS & EMERALD SUCCESS) */}
+      {/* TIMELINE MILESTONES */}
       <div style={{ marginBottom: '36px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
             <h3 style={{ fontSize: '1.4rem', color: '#1E293B', margin: 0, fontWeight: '900' }}>
-              Các Mốc Hành Động Cụ Thể
+              Các mốc chuẩn bị từng giai đoạn
             </h3>
             <div style={{ fontSize: '0.84rem', color: '#64748B', marginTop: '2px' }}>
-              Hiển thị văn bản đầy đủ nhiều dòng • Bấm vào thẻ để đánh dấu hoàn thành
+              Bấm vào ô vuông bên trái để đánh dấu việc đã làm xong, hoặc bấm &ldquo;Sửa&rdquo; để viết theo lịch riêng của bạn
             </div>
           </div>
 
@@ -456,7 +451,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
             style={{ padding: '8px 14px', fontSize: '0.82rem' }}
           >
             <Plus size={15} />
-            <span>Thêm mốc mới</span>
+            <span>Thêm đầu việc</span>
           </button>
         </div>
 

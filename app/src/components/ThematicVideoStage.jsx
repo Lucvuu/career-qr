@@ -6,27 +6,11 @@ import {
   AlertTriangle, 
   Sparkles, 
   Search, 
-  ArrowRight, 
   ExternalLink, 
-  ShieldCheck, 
   Heart, 
   BookmarkCheck, 
-  Check, 
-  DollarSign, 
-  Award, 
   Film, 
-  Tv, 
-  Flame, 
-  Star, 
-  Compass, 
-  Layers,
-  ChevronRight,
-  TrendingUp,
-  Cpu,
-  Activity,
-  Database,
-  Palette,
-  BookOpen
+  Flame
 } from 'lucide-react';
 import { 
   CAREER_VIDEOS_DATA, 
@@ -44,7 +28,6 @@ export default function ThematicVideoStage({
   duration,
   youtubeId,
   directYoutubeUrl,
-  onSelectForRoadmap,
   onBookmarkMajor,
   savedMajorIds = [],
   onNavigateTab,
@@ -187,7 +170,7 @@ export default function ThematicVideoStage({
               boxShadow: '0 4px 12px rgba(225, 29, 72, 0.4)'
             }}>
               <Flame size={14} fill="#FFFFFF" />
-              <span>RẠP PHIM NGHỀ NGHIỆP • MASTERCLASS 2026</span>
+              <span>CHUYỆN NGHỀ THỰC TẾ • NGƯỜI TRONG NGHỀ KỂ</span>
             </span>
 
             <span style={{
@@ -211,7 +194,7 @@ export default function ThematicVideoStage({
               fontWeight: '800',
               color: '#6EE7B7'
             }}>
-              {activeVideo.salaryInsight?.fresher ? `Khởi điểm: ${activeVideo.salaryInsight.fresher}` : 'Lương top đầu'}
+              {activeVideo.salaryInsight?.fresher ? `Mới ra trường: ${activeVideo.salaryInsight.fresher}` : 'Thu nhập khá'}
             </span>
           </div>
 
@@ -230,7 +213,7 @@ export default function ThematicVideoStage({
 
           {/* Subtitle / Key Hook */}
           <p style={{ fontSize: '0.96rem', color: '#CBD5E1', lineHeight: '1.65', marginBottom: '22px' }}>
-            {activeVideo.keyTakeaways?.[0] || 'Khám phá bức tranh chân thực nhất về môi trường làm việc, áp lực nghề nghiệp và thu nhập thực tế do chính những người trong nghề chia sẻ.'}
+            {activeVideo.keyTakeaways?.[0] || 'Nghe anh chị đi trước kể lại một ngày làm việc thực tế, những vất vả ít người biết và mức thu nhập khi mới vào nghề.'}
           </p>
 
           {/* Action Row */}
@@ -259,7 +242,7 @@ export default function ThematicVideoStage({
               }}
             >
               <Play size={18} fill="#FFFFFF" />
-              <span>Phát tập này ngay</span>
+              <span>Xem video bên dưới</span>
             </button>
 
             <a
@@ -366,7 +349,7 @@ export default function ThematicVideoStage({
                   }}
                 >
                   {isSaved ? <BookmarkCheck size={14} /> : <Heart size={14} />}
-                  <span>{isSaved ? 'Đã lưu so sánh' : 'Đưa vào So sánh ⚖️'}</span>
+                  <span>{isSaved ? 'Đã lưu so sánh' : 'Lưu vào so sánh'}</span>
                 </button>
 
                 <button
@@ -399,7 +382,7 @@ export default function ThematicVideoStage({
             <div style={{ marginBottom: '18px' }}>
               <div style={{ fontSize: '0.76rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Clock size={13} color="#E11D48" />
-                <span>Lịch trình &amp; Các chương phát sóng:</span>
+                <span>Các mốc thời gian trong ngày làm việc:</span>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', background: '#1E293B', padding: '4px', borderRadius: '12px' }}>
@@ -444,7 +427,7 @@ export default function ThematicVideoStage({
             <div style={{ marginBottom: '16px' }}>
               <div style={{ fontSize: '0.76rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Sparkles size={13} color="#F59E0B" />
-                <span>3 Đúc kết thực chiến đắt giá:</span>
+                <span>Điều đáng chú ý từ video này:</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -460,11 +443,11 @@ export default function ThematicVideoStage({
             {/* 💰 Salary Roadmap Strip */}
             <div style={{ background: 'rgba(16, 185, 129, 0.12)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '12px', padding: '10px 12px', marginBottom: '14px' }}>
               <div style={{ fontSize: '0.72rem', color: '#6EE7B7', fontWeight: '800', textTransform: 'uppercase', marginBottom: '4px' }}>
-                💰 Dải thu nhập thực tế trong ngành:
+                💰 Mức thu nhập tham khảo:
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', textAlign: 'center', fontSize: '0.74rem' }}>
                 <div>
-                  <div style={{ color: '#94A3B8', fontSize: '0.66rem' }}>Fresher mới ra trường</div>
+                  <div style={{ color: '#94A3B8', fontSize: '0.66rem' }}>Mới ra trường</div>
                   <div style={{ fontWeight: '800', color: '#FFFFFF' }}>{activeVideo.salaryInsight?.fresher || '10 - 15 tr/tháng'}</div>
                 </div>
                 <div>
@@ -472,7 +455,7 @@ export default function ThematicVideoStage({
                   <div style={{ fontWeight: '800', color: '#6EE7B7' }}>{activeVideo.salaryInsight?.mid || '20 - 35 tr/tháng'}</div>
                 </div>
                 <div>
-                  <div style={{ color: '#94A3B8', fontSize: '0.66rem' }}>5 năm+ / Quản lý</div>
+                  <div style={{ color: '#94A3B8', fontSize: '0.66rem' }}>5 năm+ / Trưởng nhóm</div>
                   <div style={{ fontWeight: '800', color: '#FDE047' }}>{activeVideo.salaryInsight?.senior || '45 - 80+ tr/tháng'}</div>
                 </div>
               </div>
@@ -483,7 +466,7 @@ export default function ThematicVideoStage({
               <div style={{ background: '#451A03', border: '1px solid #78350F', borderRadius: '10px', padding: '8px 10px', fontSize: '0.76rem', color: '#FDE68A', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
                 <AlertTriangle size={15} color="#F59E0B" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
-                  <strong>Điểm khó nhất cần chuẩn bị tâm lý: </strong>
+                  <strong>Vất vả lớn nhất của nghề: </strong>
                   <span>{activeVideo.hardestChallenge}</span>
                 </div>
               </div>
@@ -498,7 +481,7 @@ export default function ThematicVideoStage({
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Film size={20} color="#4F46E5" />
             <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#1E293B', margin: 0 }}>
-              Kho Video Hướng Nghiệp Thực Tế (68 Tập)
+              Thư viện 68 video chia sẻ nghề nghiệp thực tế
             </h2>
           </div>
 
@@ -548,7 +531,7 @@ export default function ThematicVideoStage({
           {/* Sector Pills (8 categories) */}
           <div>
             <div style={{ fontSize: '0.74rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '8px' }}>
-              Chọn Khối Lĩnh Vực:
+              Lọc theo nhóm ngành:
             </div>
             <div style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '4px' }}>
               {CAREER_CATEGORIES.map((cat) => {
@@ -581,7 +564,7 @@ export default function ThematicVideoStage({
           {/* Keyword Search Input */}
           <div>
             <div style={{ fontSize: '0.74rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', marginBottom: '8px' }}>
-              Tìm Kiếm Theo Nghề:
+              Tìm theo tên nghề:
             </div>
             <div style={{ display: 'flex', alignItems: 'center', background: '#F8FAFC', border: '1px solid #CBD5E1', borderRadius: '10px', padding: '6px 12px' }}>
               <Search size={16} color="#64748B" style={{ marginRight: '8px', flexShrink: 0 }} />

@@ -46,7 +46,7 @@ class ViewErrorBoundary extends React.Component {
         >
           <div style={{ fontSize: '2.4rem', marginBottom: '10px' }}>⚠️</div>
           <h2 style={{ fontSize: '1.25rem', color: '#1E293B', marginBottom: '8px' }}>
-            Không thể tải mục này do dữ liệu trình duyệt cũ
+            Chưa tải được mục này do trình duyệt còn lưu bản cũ
           </h2>
           <p style={{ color: '#64748B', fontSize: '0.9rem', marginBottom: '18px' }}>
             {this.state.errorMessage}
@@ -60,7 +60,7 @@ class ViewErrorBoundary extends React.Component {
             }}
           >
             <RotateCcw size={16} />
-            <span>Tải lại giao diện ngay</span>
+            <span>Tải lại trang</span>
           </button>
         </div>
       );
@@ -113,10 +113,10 @@ export default function App() {
 
   const navItems = [
     { id: 'home', label: 'Trang chủ', shortLabel: 'Trang chủ', icon: Home },
-    { id: 'self', label: 'Khám phá bản thân', shortLabel: 'Khám phá', icon: Compass },
-    { id: 'search', label: 'Tra cứu ngành/trường', shortLabel: 'Tra cứu', icon: Search },
-    { id: 'compare', label: 'Đấu trường so sánh', shortLabel: 'So sánh', icon: Layers },
-    { id: 'roadmap', label: 'Career Roadmap', shortLabel: 'Lộ trình', icon: Award }
+    { id: 'self', label: 'Trắc nghiệm chọn ngành', shortLabel: 'Trắc nghiệm', icon: Compass },
+    { id: 'search', label: 'Tra cứu ngành & trường', shortLabel: 'Tra cứu', icon: Search },
+    { id: 'compare', label: 'So sánh ngành', shortLabel: 'So sánh', icon: Layers },
+    { id: 'roadmap', label: 'Kế hoạch ôn thi', shortLabel: 'Kế hoạch', icon: Award }
   ];
 
   return (
@@ -136,7 +136,7 @@ export default function App() {
                 <span>CAREER QR</span>
                 <span className="brand-badge-year">2026</span>
               </div>
-              <span className="brand-subtitle">La bàn Chọn Ngành THPT</span>
+              <span className="brand-subtitle">Chọn ngành &amp; trường ĐH</span>
             </div>
           </div>
 
@@ -283,10 +283,10 @@ export default function App() {
       <footer className="app-footer">
         <div className="footer-inner">
           <div>
-            <strong>CAREER QR 2026</strong> — Nền tảng định hướng nghề nghiệp &amp; chọn trường đại học cho học sinh THPT Việt Nam.
+            <strong>CAREER QR 2026</strong> — Góc tham khảo chọn ngành, chọn trường dành cho học sinh THPT và phụ huynh.
           </div>
           <div>
-            Đồng hành cùng học sinh &amp; phụ huynh chọn đúng ngành, vững tương lai • 100% Bảo mật dữ liệu trên máy bạn.
+            Thông tin tổng hợp từ đề án tuyển sinh các trường đại học • Kết quả của bạn chỉ lưu ngay trên trình duyệt này.
           </div>
         </div>
       </footer>

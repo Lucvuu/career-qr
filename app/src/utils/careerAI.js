@@ -759,27 +759,32 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
   // INTENT SPECIAL: Gender / Reality Check inquiry (e.g. "con gai hoc logistics", "ap luc nganh y")
   if (normQuery.includes('con gai') || normQuery.includes('nu') || normQuery.includes('vat va') || normQuery.includes('ap luc')) {
     const targetMajor = matchedMajors[0] || MAJORS_DATA.find(m => m.id === 'logistics') || MAJORS_DATA[0];
-    let reply = `Chào bạn! Giải đáp thực tế về băn khoăn nghề nghiệp ngành **${targetMajor.ten_nganh}**:\n\n`;
-    reply += `⚡ **Sự thật & Áp lực thực tế**: ${targetMajor.realityCheck || 'Đòi hỏi sự kiên trì và tư duy logic vững vàng.'}\n\n`;
+    const realityText =
+      targetMajor.realityCheck && typeof targetMajor.realityCheck === 'object'
+        ? targetMajor.realityCheck.truth || targetMajor.realityCheck.pressureNote
+        : targetMajor.realityCheck;
+
+    let reply = `Chào bạn! Mình chia sẻ thẳng thắn về công việc thực tế của ngành **${targetMajor.ten_nganh}** để bạn dễ hình dung nhé:\n\n`;
+    reply += `⚡ **Thực tế công việc & áp lực**: ${realityText || 'Đòi hỏi sự kiên trì và tư duy logic vững vàng.'}\n\n`;
     
     if (targetMajor.id === 'logistics' || normQuery.includes('logistics')) {
       reply += `👩 **Con gái học Logistics có vất vả không?**\n`;
-      reply += `• **Thực tế**: Hoàn toàn phù hợp và rất nhiều bạn nữ thành công rực rỡ!\n`;
-      reply += `• **Vị trí văn phòng lý tưởng (máy lạnh, không dầm mưa dãi nắng)**: Procurement (Thu mua nguyên liệu), Forwarder (Giao nhận vận tải quốc tế), Documentation (Chuyên viên chứng từ hải quan/C/O), Customer Service hãng tàu quốc tế, Order Management với mức lương 14 – 35 triệu/tháng.\n`;
-      reply += `• **Vị trí chỉ nên tránh nếu ngại di chuyển**: Giám sát kho bãi (Warehouse Supervisor) hoặc điều độ hiện trường cầu cảng.\n\n`;
+      reply += `• **Thực tế**: Ngành này rất nhiều bạn nữ theo học và làm tốt, không phải lúc nào cũng ra cảng hay kho bãi như nhiều người nghĩ.\n`;
+      reply += `• **Các vị trí làm văn phòng phù hợp**: Mua hàng quốc tế (Procurement), chứng từ xuất nhập khẩu & hải quan, chăm sóc khách hàng hãng tàu, điều phối đơn hàng — thu nhập phổ biến từ 12 – 30 triệu/tháng khi đã quen việc.\n`;
+      reply += `• **Vị trí vất vả hơn cần lưu ý**: Giám sát kho vận hoặc điều độ trực tiếp ngoài hiện trường cảng.\n\n`;
     } else if (targetMajor.id === 'vi-mach' || normQuery.includes('vi mach')) {
-      reply += `👩 **Nữ giới làm Vi mạch & Bán dẫn có lợi thế gì?**\n`;
-      reply += `• Kỹ sư IC Layout và Verification rất ưu tiên sự tỉ mỉ, kiên nhẫn và cẩn trọng của các kỹ sư nữ. Môi trường làm việc phòng Lab và máy tính hiện đại chuẩn quốc tế, chế độ đãi ngộ hàng đầu thị trường (18 – 45 triệu/tháng).\n\n`;
+      reply += `👩 **Con gái học Vi mạch & Bán dẫn có hợp không?**\n`;
+      reply += `• Các mảng thiết kế layout và kiểm thử chip (Verification) rất cần sự tỉ mỉ, cẩn thận — đây lại là điểm mạnh của nhiều bạn nữ. Công việc chủ yếu làm trên máy tính và phòng lab, thu nhập khởi điểm khá tốt (khoảng 15 – 35 triệu/tháng tùy năng lực).\n\n`;
     } else {
-      reply += `💡 **Ai nên cân nhắc kỹ**: ${targetMajor.whoShouldAvoid || 'Cần xem xét kỹ khả năng chịu áp lực và tính chất công việc.'}\n\n`;
+      reply += `💡 **Ai nên cân nhắc kỹ**: ${targetMajor.whoShouldAvoid || 'Bạn nên xem kỹ tính chất công việc và mức độ chịu áp lực của bản thân trước khi chọn.'}\n\n`;
     }
 
-    reply += `🎯 **Mức điểm chuẩn tham khảo 2026**: **${targetMajor.diem_tb}** • Học phí: **${targetMajor.hoc_phi}**\n`;
-    reply += `🏛️ **Top trường đào tạo**: ${targetMajor.truong_tieu_bieu.join(', ')}`;
+    reply += `🎯 **Điểm chuẩn tham khảo**: **${targetMajor.diem_tb}** • Học phí: **${targetMajor.hoc_phi}**\n`;
+    reply += `🏛️ **Một số trường đào tạo**: ${targetMajor.truong_tieu_bieu.join(', ')}`;
     
     const actions = [
-      { id: 'roadmap', label: `📘 Lập lộ trình cho ngành ${targetMajor.ten_nganh}`, majorName: targetMajor.ten_nganh },
-      { id: 'search', label: `🔍 Xem chi tiết ngành ${targetMajor.ten_nganh}` }
+      { id: 'roadmap', label: `📘 Đưa ${targetMajor.ten_nganh} vào kế hoạch ôn thi`, majorName: targetMajor.ten_nganh },
+      { id: 'search', label: `🔍 Xem chi tiết ngành ${targetMajor.ten_nganh}`, majorId: targetMajor.id }
     ];
     return { text: reply, actions };
   }
@@ -795,21 +800,21 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
     );
 
     if (provinceUnis.length > 0) {
-      let reply = `Tổng hợp thông tin tuyển sinh & điểm chuẩn Đại học 2026 tại **khu vực em quan tâm**:\n\n`;
+      let reply = `Dưới đây là một số trường Đại học tại **khu vực bạn đang tìm hiểu**:\n\n`;
       provinceUnis.forEach((u, idx) => {
         reply += `${idx + 1}. **${u.name} (Mã: ${u.code})**\n`;
         reply += `   • Điểm chuẩn tham khảo: **${u.benchmarks}**\n`;
         reply += `   • Học phí dự kiến: **${u.tuition}**\n`;
         if (u.campusVibe) {
-          reply += `   • Sinh hoạt phí: ${u.campusVibe.livingCostNote} • KTX: ${u.campusVibe.dorms}\n`;
+          reply += `   • Sinh hoạt phí: ${u.campusVibe.livingCostNote} • Ký túc xá: ${u.campusVibe.dorms}\n`;
         }
-        reply += `   • Thế mạnh đào tạo: ${u.highlight}\n\n`;
+        reply += `   • Điểm nổi bật: ${u.highlight}\n\n`;
       });
 
-      reply += `💡 **Lời khuyên từ Cố vấn**: Học đại học tại các tỉnh/thành phố trung tâm vùng giúp em tiết kiệm từ 40% – 60% chi phí ăn ở so với Hà Nội hoặc TP.HCM, trong khi chất lượng bằng cấp hệ chính quy là hoàn toàn tương đương!`;
+      reply += `💡 **Gợi ý nhỏ**: Học đại học tại các thành phố trung tâm vùng thường giúp gia đình đỡ được khoảng 40% – 50% tiền thuê trọ và ăn ở so với Hà Nội hay TP.HCM, mà bằng cấp vẫn là đại học công lập chính quy.`;
 
       const actions = [
-        { id: 'search', label: `🔍 Xem trường tại khu vực này trong Tra cứu` }
+        { id: 'search', label: `🔍 Xem các trường khu vực này trong mục Tra cứu` }
       ];
       return { text: reply, actions };
     }
@@ -823,73 +828,73 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       return score >= lower - 1.5 && score <= upper + 1.5;
     }).slice(0, 5);
 
-    let reply = `Với mức điểm dự kiến khoảng **${score} điểm**, đây là phương án chiến lược phân tầng nguyện vọng 2026 dành cho em:\n\n`;
+    let reply = `Với mức điểm dự kiến khoảng **${score} điểm**, bạn có thể chia nguyện vọng thành 2 nhóm để vừa có cơ hội vào trường thích, vừa yên tâm có chỗ đỗ an toàn:\n\n`;
     
-    reply += `🎯 **Tầng 1 — Nguyện vọng Mục tiêu & Bứt phá (Thử sức NV1)**:\n`;
+    reply += `🎯 **Nhóm 1 — Nguyện vọng ưu tiên (Thử sức ở NV1, NV2)**:\n`;
     matchingUnis.slice(0, 2).forEach(u => {
       reply += `• **${u.name} (Mã: ${u.code})**: Điểm chuẩn tham khảo **${u.benchmarks}** • Học phí: ${u.tuition}. ${u.highlight}\n`;
     });
     reply += `\n`;
 
-    reply += `🛡️ **Tầng 2 — Nguyện vọng An toàn & Đỗ chắc chắn 100% (NV2, NV3)**:\n`;
+    reply += `🛡️ **Nhóm 2 — Nguyện vọng vừa sức & an toàn (Đặt ở NV3, NV4)**:\n`;
     matchingUnis.slice(2, 5).forEach(u => {
       reply += `• **${u.name} (Mã: ${u.code})**: Điểm chuẩn tham khảo **${u.benchmarks}** • ${u.city}\n`;
     });
     reply += `\n`;
 
-    reply += `💡 **Chiến lược tối ưu hóa điểm số 2026**:\n`;
-    reply += `1. Nếu có chứng chỉ IELTS 6.0+, em nên nộp xét tuyển kết hợp sớm để hưởng quy đổi điểm 10 tiếng Anh.\n`;
-    reply += `2. Đăng ký thêm kỳ thi ĐGNL (HSA/APT) hoặc ĐGTD (TSA) để nhân đôi cơ hội đỗ đại học trước khi thi tốt nghiệp THPT!`;
+    reply += `💡 **Lưu ý thêm khi chuẩn bị hồ sơ**:\n`;
+    reply += `1. Nếu bạn có IELTS từ 6.0 trở lên, nhớ kiểm tra quy chế cộng điểm hoặc quy đổi điểm tiếng Anh của từng trường.\n`;
+    reply += `2. Có thể thi thêm Đánh giá năng lực (HSA, APT) hoặc Đánh giá tư duy (TSA) để có thêm một kênh xét tuyển nữa bên cạnh điểm thi tốt nghiệp.`;
 
     const actions = [
-      { id: 'roadmap', label: '📘 Tạo Lộ trình hành động với mức điểm này' },
-      { id: 'compare', label: '⚖️ So sánh các ngành ở phân khúc điểm này' }
+      { id: 'roadmap', label: '📘 Lên kế hoạch ôn tập cho mức điểm này' },
+      { id: 'compare', label: '⚖️ So sánh các ngành phù hợp tầm điểm' }
     ];
     return { text: reply, actions };
   }
 
 
-  // Reusable prompt footer that asks the student in-depth diagnostic questions
-  const inDepthPromptFooter = `\n\n💬 **Cố vấn muốn hỏi kỹ hơn để tư vấn chuẩn xác 100% cho em**:\n1. 📍 **Em ở khu vực nào** (Hà Nội/Miền Bắc, TP.HCM/Miền Nam, hay Đà Nẵng/Miền Trung)?\n2. 🎯 **Mức điểm THPT em tự tin đạt được** là khoảng bao nhiêu (VD: 24, 26.5 điểm)?\n3. 🏫 **Em có đang nhắm ngôi trường đại học cụ thể nào** hay ngân sách học phí mong muốn không?`;
+  // Reusable prompt footer that asks the student natural follow-up questions
+  const inDepthPromptFooter = `\n\n💬 **Nếu muốn mình gợi ý sát hơn với hoàn cảnh của bạn, bạn nhắn thêm giúp mình nhé**:\n1. 📍 Bạn muốn học ở khu vực nào (Hà Nội, TP.HCM, Đà Nẵng hay gần nhà)?\n2. 🎯 Khoảng điểm hiện tại bạn nhắm đạt được là bao nhiêu?\n3. 🏫 Gia đình dự kiến mức học phí khoảng bao nhiêu một năm?`;
 
   switch (intent) {
     case 'DIAGNOSTIC_SURVEY': {
-      let reply = `Chào em! Để giúp em chọn đúng ngành, đỗ đúng trường và không bị lãng phí điểm số, Cố vấn sẽ giúp em **chẩn đoán 3 yếu tố then chốt**:\n\n`;
-      reply += `1️⃣ **Khu vực sinh sống & Nơi em muốn học đại học**:\n`;
-      reply += `• Miền Bắc (Hà Nội, Hải Phòng): Trung tâm các trường kỹ thuật, ngoại thương, kinh tế truyền thống.\n`;
-      reply += `• Miền Nam (TP.HCM, Cần Thơ): Năng động, nhiều cơ hội thực tập sớm tại các tập đoàn đa quốc gia.\n`;
-      reply += `• Miền Trung (Đà Nẵng, Huế): Chi phí sinh hoạt hợp lý, môi trường sống đáng mơ ước.\n\n`;
+      let reply = `Chào bạn! Để chọn được ngành hợp sức học và vừa túi tiền gia đình, mình cùng xem qua **3 điều thực tế nhất** trước nhé:\n\n`;
+      reply += `1️⃣ **Nơi bạn muốn theo học 4 năm tới**:\n`;
+      reply += `• Miền Bắc (Hà Nội, Hải Phòng, Thái Nguyên...): Nhiều trường công lập lâu đời về kỹ thuật, kinh tế, y dược, sư phạm.\n`;
+      reply += `• Miền Nam (TP.HCM, Cần Thơ...): Môi trường năng động, dễ kiếm việc làm thêm và thực tập sớm ở doanh nghiệp.\n`;
+      reply += `• Miền Trung (Đà Nẵng, Huế...): Chi phí ăn ở dễ chịu, điểm chuẩn nhiều ngành mềm hơn hai đầu Hà Nội và TP.HCM.\n\n`;
 
-      reply += `2️⃣ **Năng lực học tập & Dải điểm thi THPT dự kiến**:\n`;
-      reply += `• Dưới 23 điểm • Từ 23 – 25.5 điểm • Từ 25.5 – 27.5 điểm • Trên 27.5 điểm.\n\n`;
+      reply += `2️⃣ **Khoảng điểm thi dự kiến của bạn**:\n`;
+      reply += `• Dưới 22 điểm • Từ 22 – 25 điểm • Từ 25 – 27 điểm • Trên 27 điểm.\n\n`;
 
-      reply += `3️⃣ **Ngân sách học phí & Định hướng trường**:\n`;
-      reply += `• Trường công lập tự chủ (30 – 55 triệu/năm) hay trường học phí thấp / Sư phạm (15 – 25 triệu/năm)?\n\n`;
+      reply += `3️⃣ **Mức học phí gia đình có thể lo được**:\n`;
+      reply += `• Trường công lập tự chủ (28 – 50 triệu/năm), công lập học phí vừa phải (15 – 25 triệu/năm), hay khối Sư phạm được miễn học phí?\n\n`;
 
-      reply += `👉 **Em hãy bấm chọn nhanh tình huống của mình bên dưới để Cố vấn AI phân tích danh sách trường trúng tuyển nhé!**`;
+      reply += `👉 **Bạn bấm chọn thử trường hợp gần giống với mình nhất ở bên dưới nhé:**`;
 
       const actions = [
         {
           id: 'prompt',
-          label: '📍 Em ở Hà Nội / Miền Bắc (25 – 27 điểm)',
+          label: '📍 Học ở Hà Nội / Miền Bắc (25 – 27 điểm)',
           type: 'prompt',
           query: 'Em dự kiến 25 – 27 điểm ở Hà Nội, nên chọn ngành và trường nào?'
         },
         {
           id: 'prompt',
-          label: '📍 Em ở TP.HCM / Miền Nam (Học phí 30-45tr)',
+          label: '📍 Học ở TP.HCM / Miền Nam (Học phí 30-45tr)',
           type: 'prompt',
           query: 'Em ở TP.HCM muốn học CNTT hoặc Vi mạch, tài chính 30-45tr/năm'
         },
         {
           id: 'prompt',
-          label: '🩺 Em thi khối B00 (24 – 26 điểm) chọn Y Dược',
+          label: '🩺 Thi khối B00 (24 – 26 điểm) chọn Y Dược',
           type: 'prompt',
           query: 'Học lực 24 – 26 điểm khối B00 ở miền Nam có vào được Y Dược không?'
         },
         {
           id: 'prompt',
-          label: '🏫 Em muốn thi ĐH Bách Khoa Hà Nội',
+          label: '🏫 Muốn thi ĐH Bách Khoa Hà Nội',
           type: 'prompt',
           query: 'Em muốn thi ĐH Bách Khoa Hà Nội cần chuẩn bị gì?'
         }
@@ -915,20 +920,20 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
         schoolInfo = REGIONAL_UNIVERSITIES_DATA.bac.schools[0]; // Default HUST
       }
 
-      let reply = `Phân tích chuyên sâu về mục tiêu tuyển sinh 2026 tại **${schoolInfo.name} (${schoolInfo.code})**:\n\n`;
-      reply += `🏛️ **Vị thế & Điểm mạnh**: ${schoolInfo.highlight}\n`;
-      reply += `🎯 **Khung điểm chuẩn THPT dự kiến**: **${schoolInfo.benchmarks}**\n`;
-      reply += `💵 **Học phí năm học 2026**: **${schoolInfo.tuition}**\n\n`;
+      let reply = `Thông tin tuyển sinh cần lưu ý nếu bạn đang nhắm tới **${schoolInfo.name} (${schoolInfo.code})**:\n\n`;
+      reply += `🏛️ **Thế mạnh của trường**: ${schoolInfo.highlight}\n`;
+      reply += `🎯 **Điểm chuẩn tham khảo**: **${schoolInfo.benchmarks}**\n`;
+      reply += `💵 **Học phí dự kiến**: **${schoolInfo.tuition}**\n\n`;
 
-      reply += `📊 **Chiến lược xét tuyển cho từng mức điểm**:\n`;
-      reply += `• **Từ ${schoolInfo.targetScore}+ điểm**: Rất tự tin đặt Nguyện vọng 1 (Plan A) vào các ngành mũi nhọn (CNTT, Bán dẫn, Kinh doanh quốc tế).\n`;
-      reply += `• **Từ ${schoolInfo.safeScore} – ${schoolInfo.targetScore} điểm**: Nên cân nhắc các ngành chương trình chuẩn hoặc liên kết tiên tiến, đồng thời kết hợp phương thức ĐGNL/ĐGTD hoặc chứng chỉ IELTS 6.5+.\n`;
-      reply += `• **Dưới ${schoolInfo.safeScore} điểm**: Hãy chọn 1 ngành bứt phá tại đây, nhưng **bắt buộc phải có phương án dự phòng an toàn** ở trường cùng khu vực!\n`;
+      reply += `📊 **Cách sắp xếp nguyện vọng theo sức học**:\n`;
+      reply += `• **Từ ${schoolInfo.targetScore}+ điểm**: Bạn khá yên tâm khi đặt Nguyện vọng 1 vào các ngành cạnh tranh cao của trường.\n`;
+      reply += `• **Từ ${schoolInfo.safeScore} – ${schoolInfo.targetScore} điểm**: Nên xem thêm các ngành có điểm chuẩn mềm hơn trong trường, đồng thời tận dụng kỳ thi riêng (ĐGNL/ĐGTD) hoặc chứng chỉ IELTS nếu có.\n`;
+      reply += `• **Dưới ${schoolInfo.safeScore} điểm**: Bạn vẫn có thể để Nguyện vọng 1 để thử sức, nhưng **nhất định phải lót thêm nguyện vọng an toàn** ở các trường vừa sức hơn bên dưới.\n`;
 
       if (schoolRegion === 'bac') {
-        reply += `\n🛡️ **Trường dự phòng tương đương tại Hà Nội**: PTIT (Học viện Bưu chính Viễn thông) hoặc UET (ĐH Công nghệ).`;
+        reply += `\n🛡️ **Gợi ý trường dự phòng cùng khu vực Hà Nội**: Học viện Công nghệ Bưu chính Viễn thông (PTIT), ĐH Công nghiệp Hà Nội hoặc ĐH Thủy lợi.`;
       } else if (schoolRegion === 'nam') {
-        reply += `\n🛡️ **Trường dự phòng tương đương tại TP.HCM**: HCMUTE (Sư phạm Kỹ thuật TP.HCM) hoặc UIT (ĐH Công nghệ Thông tin).`;
+        reply += `\n🛡️ **Gợi ý trường dự phòng cùng khu vực TP.HCM**: ĐH Sư phạm Kỹ thuật TP.HCM (HCMUTE), ĐH Công nghiệp TP.HCM hoặc ĐH Sài Gòn.`;
       }
 
       reply += inDepthPromptFooter;
@@ -936,17 +941,17 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const actions = [
         {
           id: 'roadmap',
-          label: `📘 Lập lộ trình thi vào ${schoolInfo.code}`,
-          majorName: `${schoolInfo.name}`
+          label: `📘 Xem trường ${schoolInfo.code} trong mục Tra cứu`,
+          majorName: `${schoolInfo.code}`
         },
         {
           id: 'passport',
-          label: `🎫 Đặt ${schoolInfo.code} làm Nguyện vọng 1 Passport`,
+          label: `🎫 Chọn ${schoolInfo.code} làm mục tiêu ôn thi`,
           majorName: `${schoolInfo.name}`
         },
         {
           id: 'prompt',
-          label: '🎯 Em dự kiến 25 – 27 điểm',
+          label: '🎯 Nếu được 26 điểm thì sao?',
           type: 'prompt',
           query: `Em được 26 điểm thì cơ hội vào ${schoolInfo.name} ra sao?`
         }
@@ -960,24 +965,24 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const regData = REGIONAL_UNIVERSITIES_DATA[regKey] || REGIONAL_UNIVERSITIES_DATA.bac;
       const targetScore = score || 26.0;
 
-      let reply = `Tư vấn định hướng tuyển sinh 2026 tại **${regData.regionName}** với mức điểm dự kiến khoảng **${targetScore} điểm**:\n\n`;
+      let reply = `Gợi ý chọn trường tại **${regData.regionName}** với mức điểm khoảng **${targetScore} điểm**:\n\n`;
 
       const safeSchools = regData.schools.filter(s => s.safeScore <= targetScore + 0.5);
       const reachSchools = regData.schools.filter(s => s.targetScore > targetScore);
 
-      reply += `🎯 **Tầng 1 — Trường Mục tiêu & Bứt phá (Nguyện vọng 1)**:\n`;
+      reply += `🎯 **Nhóm 1 — Trường cần phấn đấu thêm (Đặt ở NV1)**:\n`;
       (reachSchools.length > 0 ? reachSchools.slice(0, 2) : regData.schools.slice(0, 2)).forEach(s => {
-        reply += `• **${s.name}**: Điểm chuẩn dự báo **${s.benchmarks}** • Học phí **${s.tuition}**.\n`;
+        reply += `• **${s.name}**: Điểm chuẩn tham khảo **${s.benchmarks}** • Học phí **${s.tuition}**.\n`;
       });
       reply += `\n`;
 
-      reply += `🛡️ **Tầng 2 — Trường Vừa sức & Tỷ lệ trúng tuyển trên 90% (NV2, NV3)**:\n`;
+      reply += `🛡️ **Nhóm 2 — Trường vừa sức, khả năng đỗ cao (Đặt ở NV2, NV3)**:\n`;
       (safeSchools.length > 0 ? safeSchools.slice(0, 3) : regData.schools.slice(1, 3)).forEach(s => {
         reply += `• **${s.name}**: Điểm chuẩn tham khảo **${s.benchmarks}** • ${s.highlight}\n`;
       });
       reply += `\n`;
 
-      reply += `💡 **Chiến lược tài chính & sinh hoạt**: Tại ${regData.regionName}, mức học phí phổ biến từ 25 – 45 triệu/năm. Để tiết kiệm chi phí, em nên nộp hồ sơ xin xét ký túc xá sớm ngay khi có giấy báo trúng tuyển!`;
+      reply += `💡 **Chuyện chi phí đi học**: Ở ${regData.regionName}, học phí các trường công lập tự chủ phổ biến khoảng 25 – 45 triệu/năm. Nếu ở xa, bạn nên tìm hiểu đăng ký ký túc xá ngay lúc nhập học để đỡ chi phí thuê trọ ban đầu.`;
 
       reply += inDepthPromptFooter;
 
@@ -985,17 +990,17 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const actions = [
         {
           id: 'search',
-          label: `🔍 Tra cứu toàn bộ ngành tại ${regData.regionName}`,
+          label: `🔍 Tra cứu thêm ngành học tại khu vực này`,
           majorId: 'cntt'
         },
         {
           id: 'passport',
-          label: `🎫 Chọn ${topSchool.name} làm Nguyện vọng 1`,
+          label: `🎫 Lưu ${topSchool.name} vào kế hoạch ôn thi`,
           majorName: topSchool.name
         },
         {
           id: 'compare',
-          label: '⚔️ So sánh 2 trường hàng đầu khu vực',
+          label: '⚖️ Mở bảng so sánh ngành',
           majorIds: ['cntt', 'marketing']
         }
       ];
@@ -1008,44 +1013,44 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const targetMajor = matchedMajors[0] || MAJORS_DATA.find(m => m.id === 'vi-mach');
       const meta = MAJOR_KNOWLEDGE_BASE[targetMajor.id] || MAJOR_KNOWLEDGE_BASE['vi-mach'];
 
-      let reply = `Chào bạn! Về ngành **${targetMajor.ten_nganh}**, đây là bức tranh nghề nghiệp thực tế và lộ trình chuẩn tuyển sinh 2026:\n\n`;
-      reply += `📌 **Mô tả cốt lõi**: ${targetMajor.mo_ta}\n\n`;
-      reply += `🚀 **Lộ trình công việc 5 năm thực tế**:\n`;
+      let reply = `Chào bạn! Nếu bạn đang tìm hiểu ngành **${targetMajor.ten_nganh}**, dưới đây là những thông tin thực tế nhất khi học và đi làm:\n\n`;
+      reply += `📌 **Ngành này học và làm gì**: ${targetMajor.mo_ta}\n\n`;
+      reply += `🚀 **Công việc thường phát triển thế nào trong 5 năm đầu**:\n`;
       meta.roadmap5Year.forEach(step => {
         reply += `• ${step}\n`;
       });
       reply += `\n`;
-      reply += `💰 **Mức thu nhập thị trường**: **${meta.salaryRange}**\n`;
-      reply += `📊 **Tỷ lệ có việc làm**: **${meta.employmentRate}** (Chỉ số AI-Resilience: **${meta.aiResilience}**)\n\n`;
-      reply += `⚠️ **Góc nhìn thực tế (Myth vs Truth)**:\n`;
-      reply += `• **Lầm tưởng phổ biến**: "${meta.realityCheck.myth}"\n`;
-      reply += `• **Sự thật thực tế**: "${meta.realityCheck.truth}"\n\n`;
-      reply += `🏫 **Trường đại học đào tạo tiêu biểu**: ${targetMajor.truong_tieu_bieu.join(', ')} (Điểm chuẩn dự báo 2026: **${targetMajor.diem_tb}**, học phí **${targetMajor.hoc_phi}**).`;
+      reply += `💰 **Thu nhập tham khảo**: **${meta.salaryRange}**\n`;
+      reply += `📊 **Cơ hội việc làm**: **${meta.employmentRate}** (Mức độ vững vàng trước AI: **${meta.aiResilience}**)\n\n`;
+      reply += `⚠️ **Điều nhiều bạn hay hiểu nhầm trước khi vào học**:\n`;
+      reply += `• **Nhiều người nghĩ**: "${meta.realityCheck.myth}"\n`;
+      reply += `• **Thực tế khi học & đi làm**: "${meta.realityCheck.truth}"\n\n`;
+      reply += `🏫 **Một số trường đào tạo tiêu biểu**: ${targetMajor.truong_tieu_bieu.join(', ')} (Điểm chuẩn tham khảo: **${targetMajor.diem_tb}**, học phí **${targetMajor.hoc_phi}**).`;
 
       reply += inDepthPromptFooter;
 
       const actions = [
         {
           id: 'video',
-          label: '🎥 Xem Video 1 Ngày Làm Nghề',
+          label: '🎥 Xem video người thật kể chuyện nghề',
           majorId: targetMajor.id,
           majorName: targetMajor.ten_nganh
         },
         {
           id: 'prompt',
-          label: `📍 Em ở Hà Nội học ${targetMajor.ten_nganh} ở đâu?`,
+          label: `📍 Ở Hà Nội học ${targetMajor.ten_nganh} trường nào?`,
           type: 'prompt',
           query: `Em ở Hà Nội muốn học ${targetMajor.ten_nganh} thì trường nào tốt nhất?`
         },
         {
           id: 'prompt',
-          label: `📍 Em ở TP.HCM học ${targetMajor.ten_nganh} ở đâu?`,
+          label: `📍 Ở TP.HCM học ${targetMajor.ten_nganh} trường nào?`,
           type: 'prompt',
           query: `Em ở TP.HCM muốn học ${targetMajor.ten_nganh} thì trường nào tốt nhất?`
         },
         {
           id: 'passport',
-          label: '🎫 Chọn làm Mục tiêu Passport 2026',
+          label: '🎫 Đưa vào kế hoạch ôn thi',
           majorName: targetMajor.ten_nganh
         }
       ];
@@ -1057,36 +1062,35 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       if (matchedMajors.length > 0) {
         const major = matchedMajors[0];
         const meta = MAJOR_KNOWLEDGE_BASE[major.id] || MAJOR_KNOWLEDGE_BASE['cntt'];
-        let reply = `Thông tin học phí và bài toán hoàn vốn (ROI) ngành **${major.ten_nganh}** năm học 2026:\n\n`;
-        reply += `💵 **Mức học phí trung bình**: **${major.hoc_phi}**\n`;
-        reply += `🏫 **Học phí cụ thể tại các trường tiêu biểu**:\n`;
+        let reply = `Thông tin học phí và chi phí theo học ngành **${major.ten_nganh}**:\n\n`;
+        reply += `💵 **Mức học phí phổ biến**: **${major.hoc_phi}**\n`;
+        reply += `🏫 **Tham khảo tại một số trường đào tạo**:\n`;
         major.truong_tieu_bieu.forEach(uni => {
-          reply += `• **${uni}**: Chương trình chuẩn khoảng 25 – 42 triệu/năm; Chương trình tiên tiến / giảng dạy bằng tiếng Anh khoảng 55 – 80 triệu/năm.\n`;
+          reply += `• **${uni}**: Hệ chuẩn thường khoảng 25 – 42 triệu/năm; hệ chất lượng cao / dạy bằng tiếng Anh khoảng 55 – 80 triệu/năm.\n`;
         });
         reply += `\n`;
-        reply += `📈 **Bài toán đầu tư sinh lời (ROI)**:\n`;
-        reply += `• Mức lương khởi điểm ngành này đạt **${meta.salaryRange.split('•')[0].trim()}**.\n`;
-        reply += `• Với mức thu nhập trên, sinh viên thường chỉ mất từ **1.5 đến 2 năm đi làm** là có thể hoàn vốn toàn bộ học phí 4 năm đại học.\n`;
-        reply += `• Các trường công lập hiện đều có quỹ học bổng khuyến khích học tập (chi trả từ 50% đến 100% học phí) và chính sách vay vốn ưu đãi học tập.`;
+        reply += `📈 **Thu nhập khi ra trường & hỗ trợ tài chính**:\n`;
+        reply += `• Lương khởi điểm khi mới ra trường thường ở mức **${meta.salaryRange.split('•')[0].trim()}**.\n`;
+        reply += `• Nếu học ở trường công lập, bạn có thể săn học bổng khuyến khích học tập theo từng học kỳ (hỗ trợ 50% – 100% học phí) hoặc làm hồ sơ vay vốn sinh viên ưu đãi nếu gia đình cần chia nhỏ chi phí.`;
 
         reply += inDepthPromptFooter;
 
         const actions = [
           {
             id: 'prompt',
-            label: '📍 Khảo sát học phí trường tại Hà Nội',
+            label: '📍 Xem mặt bằng học phí ở Hà Nội',
             type: 'prompt',
             query: 'Học phí các trường ĐH công lập ở Hà Nội 2026'
           },
           {
             id: 'prompt',
-            label: '📍 Khảo sát học phí trường tại TP.HCM',
+            label: '📍 Xem mặt bằng học phí ở TP.HCM',
             type: 'prompt',
             query: 'Học phí các trường ĐH công lập ở TP.HCM 2026'
           },
           {
             id: 'passport',
-            label: '🎫 Đặt làm Mục tiêu Passport 2026',
+            label: '🎫 Đưa ngành này vào kế hoạch ôn thi',
             majorName: major.ten_nganh
           }
         ];
@@ -1095,37 +1099,37 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       }
 
       // General public university tuition 2026
-      let reply = `Dưới đây là bức tranh **Học phí các trường Đại học công lập Việt Nam chuẩn tuyển sinh 2026**, được chia theo 4 khối ngành trọng điểm:\n\n`;
-      reply += `1. **Khối Kỹ thuật & Công nghệ (HUST, UET, HCMUT, SPKT)**:\n`;
-      reply += `   • Chương trình chuẩn: **30 – 48 triệu/năm**.\n`;
-      reply += `   • Chương trình tiên tiến, chất lượng cao hoặc quốc tế: **60 – 90 triệu/năm**.\n\n`;
+      let reply = `Dưới đây là mặt bằng **học phí các trường Đại học công lập** để bạn và gia đình dễ ước tính chi phí:\n\n`;
+      reply += `1. **Nhóm Kỹ thuật & Công nghệ (Bách Khoa, ĐH Công nghệ, SPKT...)**:\n`;
+      reply += `   • Hệ chuẩn: **30 – 48 triệu/năm**.\n`;
+      reply += `   • Hệ tiên tiến / dạy bằng tiếng Anh / liên kết: **60 – 90 triệu/năm**.\n\n`;
 
-      reply += `2. **Khối Kinh tế & Quản trị (NEU, FTU, UEH, HVNH)**:\n`;
-      reply += `   • Chương trình chuẩn: **25 – 45 triệu/năm**.\n`;
-      reply += `   • Chương trình cử nhân định hướng tài năng / liên kết: **50 – 72 triệu/năm**.\n\n`;
+      reply += `2. **Nhóm Kinh tế & Quản trị (NEU, FTU, UEH, Học viện Ngân hàng...)**:\n`;
+      reply += `   • Hệ chuẩn: **25 – 45 triệu/năm**.\n`;
+      reply += `   • Hệ định hướng chất lượng cao / quốc tế: **50 – 72 triệu/năm**.\n\n`;
 
-      reply += `3. **Khối Y Dược (HMU, UMP TP.HCM, Y Khoa Phạm Ngọc Thạch)**:\n`;
-      reply += `   • Ngành Y đa khoa, Dược: **45 – 82 triệu/năm**.\n`;
-      reply += `   • Riêng ngành Răng – Hàm – Mặt có thể lên đến **85 – 110 triệu/năm** do chi phí vật tư và thực hành lâm sàng cao.\n\n`;
+      reply += `3. **Nhóm Y Dược (ĐH Y Hà Nội, Y Dược TP.HCM, Y Phạm Ngọc Thạch...)**:\n`;
+      reply += `   • Y khoa, Dược học: **45 – 82 triệu/năm**.\n`;
+      reply += `   • Răng – Hàm – Mặt thường cao hơn (**85 – 110 triệu/năm**) do chi phí vật tư thực hành lớn.\n\n`;
 
-      reply += `4. **Khối Khoa học Xã hội & Sư phạm (USSH, HNUE, ĐH Luật)**:\n`;
-      reply += `   • Khối Xã hội, Báo chí, Luật: **15 – 38 triệu/năm**.\n`;
-      reply += `   • **Đặc biệt sinh viên ngành Sư phạm**: Được **miễn 100% học phí** và hỗ trợ sinh hoạt phí **3.63 triệu đồng/tháng** theo Nghị định 116/2020/NĐ-CP.\n\n`;
+      reply += `4. **Nhóm Xã hội, Luật & Sư phạm**:\n`;
+      reply += `   • Xã hội nhân văn, Báo chí, Luật: **15 – 38 triệu/năm**.\n`;
+      reply += `   • **Riêng các ngành Sư phạm**: Sinh viên được **miễn 100% học phí** và hỗ trợ sinh hoạt phí **3,63 triệu đồng/tháng** theo Nghị định 116.\n\n`;
 
-      reply += `💡 **Lời khuyên từ Cố vấn**: Gia đình nên chuẩn bị thêm khoảng **3.5 – 6 triệu/tháng** cho chi phí sinh hoạt (ký túc xá, ăn ở).`;
+      reply += `💡 **Lưu ý cho gia đình**: Ngoài học phí, nếu đi học xa nhà ở Hà Nội hoặc TP.HCM, tiền ký túc xá / thuê trọ và ăn uống sẽ tốn thêm khoảng **3,5 – 6 triệu/tháng**.`;
 
       reply += inDepthPromptFooter;
 
       const actions = [
         {
           id: 'prompt',
-          label: '📍 Em ở Hà Nội, tài chính 30-40tr học trường nào?',
+          label: '📍 Ở Hà Nội, học phí 30-40tr chọn trường nào?',
           type: 'prompt',
           query: 'Em ở Hà Nội, tài chính 30-40 triệu/năm nên chọn trường nào?'
         },
         {
           id: 'prompt',
-          label: '📍 Em ở TP.HCM, tài chính 30-40tr học trường nào?',
+          label: '📍 Ở TP.HCM, học phí 30-40tr chọn trường nào?',
           type: 'prompt',
           query: 'Em ở TP.HCM, tài chính 30-40 triệu/năm nên chọn trường nào?'
         }
@@ -1138,23 +1142,23 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const targetMajor = matchedMajors[0] || MAJORS_DATA.find(m => m.id === 'ykhoa');
       const meta = MAJOR_KNOWLEDGE_BASE[targetMajor.id] || MAJOR_KNOWLEDGE_BASE['ykhoa'];
 
-      let reply = `Để theo học ngành **${targetMajor.ten_nganh}**, học sinh THPT cần chuẩn bị kỹ càng các yếu tố sau cho mùa tuyển sinh 2026:\n\n`;
-      reply += `📚 **Tổ hợp môn xét tuyển trọng tâm**: **${targetMajor.to_hop.join(', ')}**\n`;
-      reply += `🎯 **Dải điểm chuẩn dự báo 2026**: **${targetMajor.diem_tb} điểm** (an toàn nhất nên đạt từ **${parseFloat(targetMajor.diem_tb.split('-')[0]) + 0.5}+**).\n\n`;
+      let reply = `Nếu bạn định theo ngành **${targetMajor.ten_nganh}**, dưới đây là những thứ nên chuẩn bị sớm từ cấp 3:\n\n`;
+      reply += `📚 **Các khối xét tuyển chính**: **${targetMajor.to_hop.join(', ')}**\n`;
+      reply += `🎯 **Khoảng điểm chuẩn thường gặp**: **${targetMajor.diem_tb} điểm** (để yên tâm đỗ các trường khá trở lên, bạn nên đặt mục tiêu từ **${parseFloat(targetMajor.diem_tb.split('-')[0]) + 0.5}+**).\n\n`;
 
-      reply += `🧠 **4 Tố chất & Kỹ năng sống còn**:\n`;
-      meta.skills.forEach((sk, idx) => {
-        reply += `• **Kỹ năng ${idx + 1}**: ${sk}\n`;
+      reply += `🧠 **Những kỹ năng & thói quen rất cần cho ngành này**:\n`;
+      meta.skills.forEach((sk) => {
+        reply += `• ${sk}\n`;
       });
       reply += `\n`;
 
-      reply += `📖 **Kiến thức năm 1–2 cần làm quen trước**:\n`;
-      reply += `• Tập trung nền tảng: **${meta.foundationSubjects}**.\n`;
-      reply += `• Nên trau dồi chứng chỉ ngoại ngữ (IELTS 6.0+ hoặc TOEIC/VSTEP) để quy đổi điểm xét tuyển kết hợp sớm.\n\n`;
+      reply += `📖 **Môn nền tảng nên học chắc từ bây giờ**:\n`;
+      reply += `• Chú ý nền tảng: **${meta.foundationSubjects}**.\n`;
+      reply += `• Nếu có điều kiện thi lấy chứng chỉ ngoại ngữ (như IELTS 6.0+ hoặc VSTEP), bạn sẽ có lợi thế lớn khi xét tuyển kết hợp và đọc tài liệu đại học.\n\n`;
 
-      reply += `🏫 **Top trường đào tạo hàng đầu 2026**:\n`;
+      reply += `🏫 **Một số trường đào tạo uy tín**:\n`;
       targetMajor.truong_tieu_bieu.forEach(uni => {
-        reply += `• **${uni}**: Điểm chuẩn tham khảo 2025 dao động **${targetMajor.diem_tb}**.\n`;
+        reply += `• **${uni}** (điểm chuẩn tham khảo khoảng **${targetMajor.diem_tb}**).\n`;
       });
 
       reply += inDepthPromptFooter;
@@ -1162,19 +1166,19 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const actions = [
         {
           id: 'video',
-          label: `🎥 Xem Video 1 Ngày Làm ${targetMajor.ten_nganh}`,
+          label: `🎥 Xem video thực tế ngành ${targetMajor.ten_nganh}`,
           majorId: targetMajor.id,
           majorName: targetMajor.ten_nganh
         },
         {
           id: 'prompt',
-          label: '🎯 24 – 26 điểm có vào được không?',
+          label: '🎯 24 – 26 điểm có đỗ được không?',
           type: 'prompt',
           query: `24 đến 26 điểm có đỗ được ngành ${targetMajor.ten_nganh} không?`
         },
         {
           id: 'passport',
-          label: '🎫 Đặt làm Nguyện vọng 1 (Plan A)',
+          label: '🎫 Đưa vào kế hoạch ôn thi',
           majorName: targetMajor.ten_nganh
         }
       ];
@@ -1188,46 +1192,46 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const metaA = MAJOR_KNOWLEDGE_BASE[majorA.id] || MAJOR_KNOWLEDGE_BASE['cntt'];
       const metaB = MAJOR_KNOWLEDGE_BASE[majorB.id] || MAJOR_KNOWLEDGE_BASE['marketing'];
 
-      let reply = `Bảng so sánh đa tầng giữa **${majorA.ten_nganh}** và **${majorB.ten_nganh}** cho kỳ tuyển sinh 2026:\n\n`;
-      reply += `1. **Thiên hướng tính cách & RIASEC Match**:\n`;
-      reply += `   • **${majorA.ten_nganh}**: Phù hợp nhóm **Realistic (Kỹ thuật)** & **Investigative (Nghiên cứu)** — thích giải quyết bài toán logic, làm việc với hệ thống.\n`;
-      reply += `   • **${majorB.ten_nganh}**: Phù hợp nhóm **Artistic (Sáng tạo)** & **Enterprising (Quản trị / Đàm phán)** — thích thấu hiểu con người, tạo nội dung thu hút.\n\n`;
+      let reply = `Nếu bạn đang phân vân giữa **${majorA.ten_nganh}** và **${majorB.ten_nganh}**, mình đặt hai ngành cạnh nhau theo các điểm thiết thực nhất để bạn dễ cân nhắc nhé:\n\n`;
+      reply += `1. **Tính chất công việc & kiểu người phù hợp**:\n`;
+      reply += `   • **${majorA.ten_nganh}**: Hợp với bạn thích mày mò hệ thống, làm việc với số liệu, máy móc và giải các bài toán logic rõ ràng.\n`;
+      reply += `   • **${majorB.ten_nganh}**: Hợp với bạn thích giao tiếp, quan sát tâm lý khách hàng, viết lách hoặc lên ý tưởng truyền thông, kinh doanh.\n\n`;
 
-      reply += `2. **Điểm chuẩn dự báo 2026**:\n`;
+      reply += `2. **Điểm chuẩn tham khảo**:\n`;
       reply += `   • **${majorA.ten_nganh}**: **${majorA.diem_tb} điểm** (${majorA.to_hop.join(', ')})\n`;
       reply += `   • **${majorB.ten_nganh}**: **${majorB.diem_tb} điểm** (${majorB.to_hop.join(', ')})\n\n`;
 
-      reply += `3. **Học phí trung bình**:\n`;
+      reply += `3. **Học phí dự kiến**:\n`;
       reply += `   • **${majorA.ten_nganh}**: **${majorA.hoc_phi}**\n`;
       reply += `   • **${majorB.ten_nganh}**: **${majorB.hoc_phi}**\n\n`;
 
-      reply += `4. **Thu nhập khởi điểm & Sau 3–5 năm**:\n`;
+      reply += `4. **Thu nhập khi đi làm**:\n`;
       reply += `   • **${majorA.ten_nganh}**: ${metaA.salaryRange}\n`;
       reply += `   • **${majorB.ten_nganh}**: ${metaB.salaryRange}\n\n`;
 
-      reply += `5. **Khả năng chống chọi AI (AI-Resilience)**:\n`;
-      reply += `   • **${majorA.ten_nganh}**: **${metaA.aiResilience}** (chuyển dịch sang Cloud & AI Architect)\n`;
-      reply += `   • **${majorB.ten_nganh}**: **${metaB.aiResilience}** (AI tạo content nhanh, con người nắm chiến lược & cảm xúc)\n\n`;
+      reply += `5. **Tác động của AI trong vài năm tới**:\n`;
+      reply += `   • **${majorA.ten_nganh}**: Mức độ vững vàng **${metaA.aiResilience}** (cần học sâu về hệ thống, dữ liệu thay vì chỉ viết code đơn giản).\n`;
+      reply += `   • **${majorB.ten_nganh}**: Mức độ vững vàng **${metaB.aiResilience}** (AI hỗ trợ viết nháp nhanh, nhưng người làm nghề giỏi vẫn quyết định ở sự thấu hiểu khách hàng).\n\n`;
 
-      reply += `💡 **Gợi ý lựa chọn tổ hợp (A01 vs D01)**: Nếu bạn có thế mạnh môn **Vật lý & Tư duy cấu trúc**, hãy chọn **${majorA.ten_nganh}** (khối A01). Nếu bạn có lợi thế **Ngữ văn & Ngoại ngữ**, **${majorB.ten_nganh}** (khối D01) sẽ giúp bạn tỏa sáng mạnh nhất!`;
+      reply += `💡 **Gợi ý ngắn gọn**: Nếu bạn học chắc Toán, Lý, thích làm việc có quy trình rõ ràng thì nghiêng về **${majorA.ten_nganh}**. Nếu bạn mạnh Ngoại ngữ, Ngữ văn và thích môi trường linh hoạt, nhiều tương tác thì **${majorB.ten_nganh}** sẽ hợp hơn.`;
 
       reply += inDepthPromptFooter;
 
       const actions = [
         {
           id: 'compare',
-          label: '⚔️ Mở Đấu trường So sánh 20 tiêu chí',
+          label: '⚖️ Mở bảng so sánh chi tiết hai ngành này',
           majorIds: [majorA.id, majorB.id]
         },
         {
           id: 'prompt',
-          label: '📍 Em ở Hà Nội nên học trường nào?',
+          label: '📍 Học ở Hà Nội thì chọn trường nào?',
           type: 'prompt',
           query: `Em ở Hà Nội nên học ${majorA.ten_nganh} hay ${majorB.ten_nganh}?`
         },
         {
           id: 'passport',
-          label: `🎫 Đặt ${majorA.ten_nganh} Plan A, ${majorB.ten_nganh} Plan B`,
+          label: `🎫 Chọn ${majorA.ten_nganh} làm ưu tiên, ${majorB.ten_nganh} dự phòng`,
           majorName: majorA.ten_nganh,
           backupName: majorB.ten_nganh
         }
@@ -1255,23 +1259,23 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
         return userScore < minScore + 0.3;
       });
 
-      let reply = `Với mức điểm **${userScore} điểm**, bạn có cơ hội rất rộng mở trong kỳ tuyển sinh 2026. Đây là chiến lược xếp nguyện vọng thông minh theo 3 tầng an toàn:\n\n`;
+      let reply = `Với mức điểm khoảng **${userScore} điểm**, bạn có khá nhiều lựa chọn tốt. Bạn có thể tham khảo cách chia nguyện vọng theo 2 nhóm dưới đây:\n\n`;
 
       if (reachMajors.length > 0) {
-        reply += `🎯 **Tầng 1 — Nguyện vọng Bứt phá (NV1)**:\n`;
+        reply += `🎯 **Nhóm 1 — Nguyện vọng phấn đấu (Đặt ở NV1)**:\n`;
         reachMajors.slice(0, 2).forEach(m => {
-          reply += `• **${m.ten_nganh}** (Điểm chuẩn dự kiến: **${m.diem_tb}**, tổ hợp **${m.to_hop.join(', ')}**) tại ${m.truong_tieu_bieu.slice(0, 2).join(', ')}.\n`;
+          reply += `• **${m.ten_nganh}** (Điểm chuẩn tham khảo: **${m.diem_tb}**, khối **${m.to_hop.join(', ')}**) tại ${m.truong_tieu_bieu.slice(0, 2).join(', ')}.\n`;
         });
         reply += `\n`;
       }
 
-      reply += `🛡️ **Tầng 2 — Nguyện vọng Vừa sức & An toàn cao (NV2, NV3)**:\n`;
+      reply += `🛡️ **Nhóm 2 — Nguyện vọng vừa sức & an toàn (Đặt ở NV2, NV3)**:\n`;
       (safeMajors.length > 0 ? safeMajors : fittingMajors).slice(0, 3).forEach(m => {
-        reply += `• **${m.ten_nganh}** (Điểm chuẩn dự kiến: **${m.diem_tb}**, cơ hội việc làm 96%+) tại ${m.truong_tieu_bieu.slice(0, 2).join(', ')}.\n`;
+        reply += `• **${m.ten_nganh}** (Điểm chuẩn tham khảo: **${m.diem_tb}**) tại ${m.truong_tieu_bieu.slice(0, 2).join(', ')}.\n`;
       });
       reply += `\n`;
 
-      reply += `💡 **Chiến lược đặt vé đại học**: Nên chọn 1 ngành bứt phá (+0.5 điểm so với điểm thi), 2 ngành vừa sức ngang bằng điểm, và 1 ngành dự phòng thấp hơn 1.0 – 1.5 điểm để bảo đảm 100% trúng tuyển đại học công lập chất lượng!`;
+      reply += `💡 **Kinh nghiệm xếp nguyện vọng**: Bạn cứ mạnh dạn đặt ngành mình thích nhất lên NV1 (dù điểm chuẩn năm ngoái có nhỉnh hơn khoảng 0.5 điểm), sau đó đặt 2 ngành ngang tầm điểm ở NV2–NV3, và chốt thêm 1–2 nguyện vọng thấp hơn điểm của bạn khoảng 1 – 1.5 điểm để chắc chắn không bị trượt oan.`;
 
       reply += inDepthPromptFooter;
 
@@ -1280,19 +1284,19 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const actions = [
         {
           id: 'prompt',
-          label: '📍 Em muốn học tại Hà Nội',
+          label: '📍 Mình muốn học tại Hà Nội',
           type: 'prompt',
           query: `Với ${userScore} điểm em ở Hà Nội nên chọn trường nào?`
         },
         {
           id: 'prompt',
-          label: '📍 Em muốn học tại TP.HCM',
+          label: '📍 Mình muốn học tại TP.HCM',
           type: 'prompt',
           query: `Với ${userScore} điểm em ở TP.HCM nên chọn trường nào?`
         },
         {
           id: 'passport',
-          label: `🎫 Đặt ${topChoice.ten_nganh} làm Mục tiêu Passport`,
+          label: `🎫 Đưa ${topChoice.ten_nganh} vào kế hoạch ôn thi`,
           majorName: topChoice.ten_nganh
         }
       ];
@@ -1302,7 +1306,7 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
 
     case 'PERSONAL_CONSULT':
     default: {
-      let archetype = 'Nhà Đổi Mới Công Nghệ & Kỹ Thuật (Tech Innovator)';
+      let archetype = 'Thiên hướng Kỹ thuật & Công nghệ';
       let topMajors = [MAJORS_DATA[0], MAJORS_DATA[4]]; // CNTT & Marketing
       let matchPercentages = ['94%', '89%'];
       let strongSubjects = ['Toán', 'Tiếng Anh', 'Tin học'];
@@ -1323,18 +1327,18 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
         console.warn('Profile parse error in AI engine:', e);
       }
 
-      let reply = `Chào bạn! Phân tích nhanh từ hồ sơ định hướng năng lực 2026 của bạn:\n\n`;
-      reply += `👤 **Hình mẫu nghề nghiệp**: **${archetype}**\n`;
-      reply += `🌟 **Môn học thế mạnh ghi nhận**: ${strongSubjects.join(', ')}\n\n`;
-      reply += `🎯 **Top 2 ngành có chỉ số tương thích cao nhất**:\n`;
-      reply += `1. **${topMajors[0].ten_nganh}** — Độ khớp năng lực: **${matchPercentages[0]}**\n`;
-      reply += `   • Điểm chuẩn 2026: **${topMajors[0].diem_tb}** • Học phí: **${topMajors[0].hoc_phi}**\n`;
-      reply += `   • Khối xét tuyển tối ưu: **${topMajors[0].to_hop.join(', ')}**\n\n`;
+      let reply = `Chào bạn! Dựa trên thông tin môn học và sở thích bạn đã chọn trên trang, mình tóm tắt nhanh hướng đi phù hợp cho bạn nhé:\n\n`;
+      reply += `👤 **Nhóm ngành gần gũi với bạn**: **${archetype}**\n`;
+      reply += `🌟 **Các môn học bạn có lợi thế**: ${strongSubjects.join(', ')}\n\n`;
+      reply += `🎯 **2 ngành đáng để bạn tìm hiểu kỹ trước**:\n`;
+      reply += `1. **${topMajors[0].ten_nganh}** (Mức độ phù hợp: **${matchPercentages[0]}**)\n`;
+      reply += `   • Điểm chuẩn tham khảo: **${topMajors[0].diem_tb}** • Học phí: **${topMajors[0].hoc_phi}**\n`;
+      reply += `   • Khối xét tuyển: **${topMajors[0].to_hop.join(', ')}**\n\n`;
 
       if (topMajors[1]) {
-        reply += `2. **${topMajors[1].ten_nganh}** — Độ khớp năng lực: **${matchPercentages[1]}**\n`;
-        reply += `   • Điểm chuẩn 2026: **${topMajors[1].diem_tb}** • Học phí: **${topMajors[1].hoc_phi}**\n`;
-        reply += `   • Khối xét tuyển tối ưu: **${topMajors[1].to_hop.join(', ')}**\n\n`;
+        reply += `2. **${topMajors[1].ten_nganh}** (Mức độ phù hợp: **${matchPercentages[1]}**)\n`;
+        reply += `   • Điểm chuẩn tham khảo: **${topMajors[1].diem_tb}** • Học phí: **${topMajors[1].hoc_phi}**\n`;
+        reply += `   • Khối xét tuyển: **${topMajors[1].to_hop.join(', ')}**\n\n`;
       }
 
       reply += inDepthPromptFooter;
@@ -1342,19 +1346,19 @@ export function generateSmartAIResponse({ query, profile = null, _context = '' }
       const actions = [
         {
           id: 'prompt',
-          label: '🧭 Bắt đầu khảo sát 3 câu chọn trường',
+          label: '🧭 Trả lời nhanh 3 câu để lọc trường phù hợp',
           type: 'prompt',
           query: 'Khảo sát 3 câu: Giúp em chọn trường & ngành chuẩn 2026'
         },
         {
           id: 'prompt',
-          label: '📍 Em ở Hà Nội (Dự kiến 25 – 27 điểm)',
+          label: '📍 Học ở Hà Nội (Dự kiến 25 – 27 điểm)',
           type: 'prompt',
           query: 'Em dự kiến 25 – 27 điểm ở Hà Nội, nên chọn ngành và trường nào?'
         },
         {
           id: 'prompt',
-          label: '📍 Em ở TP.HCM (Học phí 30-45tr/năm)',
+          label: '📍 Học ở TP.HCM (Học phí 30-45tr/năm)',
           type: 'prompt',
           query: 'Em ở TP.HCM muốn học CNTT hoặc Vi mạch, tài chính 30-45tr/năm'
         }
