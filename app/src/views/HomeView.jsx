@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Compass, 
   Search, 
@@ -9,11 +9,225 @@ import {
   Cpu, 
   Layers, 
   Award,
-  Sparkles
+  Sparkles,
+  Sliders,
+  AlertTriangle,
+  Building2,
+  MapPin,
+  TrendingUp,
+  CheckCircle2
 } from 'lucide-react';
+import { UNIVERSITIES_DATA } from '../data/careerData';
+
+// 4 Realistic Real-World Student Personas
+const PERSONAS_DATA = [
+  {
+    id: 'linh',
+    tabLabel: '🎨 Linh (24.5đ D01)',
+    fullName: 'Nguyễn Thùy Linh',
+    scoreCombo: '24.5đ • Khối D01 (Toán, Văn, Anh)',
+    archetype: 'Mê Sáng tạo, Thiết kế & Truyền thông',
+    avatar: '🎨',
+    radarValues: {
+      R: 25, // Kỹ thuật: thấp
+      I: 45, // Nghiên cứu: vừa
+      A: 92, // Nghệ thuật: cực cao
+      S: 85, // Xã hội: rất cao
+      E: 78, // Quản lý: cao
+      C: 40  // Nghiệp vụ: trung bình
+    },
+    suggestedMajor: 'Truyền thông số & Marketing thực chiến',
+    matchPercentage: '94% Độ khớp',
+    schools: [
+      { name: 'ĐH Thương mại (TMU)', score: '25.2đ', location: 'Hà Nội' },
+      { name: 'HV Báo chí & Tuyên truyền (AJC)', score: '24.8đ', location: 'Hà Nội' },
+      { name: 'ĐH Kinh tế - ĐH Thái Nguyên (TUEBA)', score: '21.5đ', location: 'Thái Nguyên' },
+      { name: 'ĐH Hàng hải Việt Nam (VMU)', score: '23.5đ', location: 'Hải Phòng' }
+    ],
+    realityCheck: 'Lưu ý: Ngành Marketing cần tư duy số liệu & chạy KPI thực chiến, không chỉ có viết lách bay bổng. Rủi ro AI thay thế việc viết cơ bản: Cao — cần học AI Marketing & Data Analytics.',
+    startSalary: '9 – 14 triệu/tháng',
+    expSalary: '18 – 30 triệu/tháng'
+  },
+  {
+    id: 'minh',
+    tabLabel: '📊 Minh (26.0đ A01)',
+    fullName: 'Trần Quang Minh',
+    scoreCombo: '26.0đ • Khối A01 (Toán, Lý, Anh)',
+    archetype: 'Thích Kinh doanh, Chiến lược & Phân tích',
+    avatar: '📊',
+    radarValues: {
+      R: 30, // Kỹ thuật
+      I: 65, // Nghiên cứu
+      A: 35, // Nghệ thuật
+      S: 75, // Xã hội
+      E: 90, // Quản lý: cực cao
+      C: 82  // Nghiệp vụ: rất cao
+    },
+    suggestedMajor: 'Kinh tế Quốc tế / Phân tích Tài chính',
+    matchPercentage: '96% Độ khớp',
+    schools: [
+      { name: 'ĐH Kinh tế Quốc dân (NEU)', score: '26.8đ', location: 'Hà Nội' },
+      { name: 'ĐH Kinh tế - ĐHQGHN (UEB)', score: '26.2đ', location: 'Hà Nội' },
+      { name: 'ĐH Kinh tế - ĐH Đà Nẵng (DUE)', score: '24.5đ', location: 'Đà Nẵng' },
+      { name: 'ĐH Ngoại thương (FTU)', score: '27.2đ', location: 'Hà Nội' }
+    ],
+    realityCheck: 'Lưu ý: Tài chính đòi hỏi chịu áp lực biến động thị trường & chứng chỉ quốc tế (CFA). Rủi ro AI phân tích số liệu: Trung bình — AI hỗ trợ mô hình hóa nhưng không thay thế được khả năng đàm phán chiến lược.',
+    startSalary: '11 – 16 triệu/tháng',
+    expSalary: '22 – 40 triệu/tháng'
+  },
+  {
+    id: 'ha',
+    tabLabel: '🩺 Hà (25.0đ B00)',
+    fullName: 'Vũ Thu Hà',
+    scoreCombo: '25.0đ • Khối B00 (Toán, Hóa, Sinh)',
+    archetype: 'Hướng Y Dược, Nghiên cứu Sức khỏe',
+    avatar: '🩺',
+    radarValues: {
+      R: 70, // Kỹ thuật/Thao tác
+      I: 94, // Nghiên cứu: cực cao
+      A: 25, // Nghệ thuật
+      S: 88, // Xã hội: rất cao
+      E: 35, // Quản lý
+      C: 60  // Nghiệp vụ
+    },
+    suggestedMajor: 'Y đa khoa / Dược học Lâm sàng',
+    matchPercentage: '95% Độ khớp',
+    schools: [
+      { name: 'ĐH Y Dược Thái Bình (TBUMP)', score: '25.0đ', location: 'Thái Bình' },
+      { name: 'ĐH Y Dược Hải Phòng (HPMU)', score: '25.3đ', location: 'Hải Phòng' },
+      { name: 'ĐH Y Dược - ĐH Thái Nguyên (TUMP)', score: '24.6đ', location: 'Thái Nguyên' },
+      { name: 'Khoa Y Dược - ĐH Đà Nẵng (SMP)', score: '24.2đ', location: 'Đà Nẵng' }
+    ],
+    realityCheck: 'Lưu ý: Học Y mất 6 năm khổ luyện cộng 18 tháng thực hành chứng chỉ hành nghề, học phí cao. Rủi ro AI: Cực thấp — AI chỉ hỗ trợ chẩn đoán hình ảnh, không thay thế được sự thấu cảm và bàn tay phẫu thuật.',
+    startSalary: '8 – 13 triệu/tháng',
+    expSalary: '20 – 45 triệu/tháng'
+  },
+  {
+    id: 'nam',
+    tabLabel: '⚙️ Nam (22.0đ A00)',
+    fullName: 'Lê Hoàng Nam',
+    scoreCombo: '22.0đ • Khối A00 (Toán, Lý, Hóa)',
+    archetype: 'Kỹ thuật Cơ điện tử / CNTT & Vi mạch',
+    avatar: '⚙️',
+    radarValues: {
+      R: 90, // Kỹ thuật: cực cao
+      I: 85, // Nghiên cứu: rất cao
+      A: 20, // Nghệ thuật
+      S: 30, // Xã hội
+      E: 45, // Quản lý
+      C: 72  // Nghiệp vụ: cao
+    },
+    suggestedMajor: 'Kỹ thuật Ô tô / CNTT Phần cứng & Mạng',
+    matchPercentage: '93% Độ khớp',
+    schools: [
+      { name: 'ĐH CNTT & TT Thái Nguyên (ICTU)', score: '20.5đ', location: 'Thái Nguyên' },
+      { name: 'ĐH Kỹ thuật Công nghiệp (TNUT)', score: '19.5đ', location: 'Thái Nguyên' },
+      { name: 'ĐH Giao thông Vận tải (UTC)', score: '22.8đ', location: 'Hà Nội' },
+      { name: 'ĐH Sư phạm Kỹ thuật Hưng Yên (UTEHY)', score: '21.2đ', location: 'Hưng Yên' }
+    ],
+    realityCheck: 'Lưu ý: Kỹ thuật đòi hỏi thực hành xưởng và kỷ luật đồ án liên tục. Rủi ro AI lập trình cơ bản: Trung bình — AI viết mã nhanh nhưng phần cứng ô tô, mạch nhúng và cơ điện tử bắt buộc phải có kỹ sư thao tác vật lý.',
+    startSalary: '10 – 15 triệu/tháng',
+    expSalary: '20 – 38 triệu/tháng'
+  }
+];
+
+// Holland Radar Geometry Setup
+const RADAR_CENTER = { x: 180, y: 116 };
+const RADAR_MAX_R = 64;
+const RADAR_AXES = [
+  { key: 'R', label: 'R - Kỹ thuật', angle: -Math.PI / 2, labelX: 180, labelY: 34, anchor: 'middle' },
+  { key: 'I', label: 'I - Nghiên cứu', angle: -Math.PI / 6, labelX: 258, labelY: 82, anchor: 'start' },
+  { key: 'A', label: 'A - Nghệ thuật', angle: Math.PI / 6, labelX: 258, labelY: 154, anchor: 'start' },
+  { key: 'S', label: 'S - Xã hội', angle: Math.PI / 2, labelX: 180, labelY: 204, anchor: 'middle' },
+  { key: 'E', label: 'E - Quản lý', angle: (5 * Math.PI) / 6, labelX: 102, labelY: 154, anchor: 'end' },
+  { key: 'C', label: 'C - Nghiệp vụ', angle: (-5 * Math.PI) / 6, labelX: 102, labelY: 82, anchor: 'end' }
+];
+
+// Concentric polygon grids
+const RADAR_GRID_LEVELS = [0.25, 0.5, 0.75, 1.0];
+const RADAR_GRID_POLYGONS = RADAR_GRID_LEVELS.map((lvl) =>
+  RADAR_AXES.map((axis) => {
+    const x = RADAR_CENTER.x + RADAR_MAX_R * lvl * Math.cos(axis.angle);
+    const y = RADAR_CENTER.y + RADAR_MAX_R * lvl * Math.sin(axis.angle);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ')
+);
+
+// Quick Matcher Filter Options
+const MATCHER_PROVINCES = [
+  { id: 'all', label: 'Tất cả khu vực', queryTag: '' },
+  { id: 'hanoi', label: '🏛️ Hà Nội', queryTag: 'Hà Nội' },
+  { id: 'thainguyen', label: '⛰️ Thái Nguyên', queryTag: 'Thái Nguyên' },
+  { id: 'haiphong', label: '⚓ Hải Phòng', queryTag: 'Hải Phòng' },
+  { id: 'quangninh', label: '💎 Quảng Ninh', queryTag: 'Quảng Ninh' },
+  { id: 'thaibinh', label: '🌾 Thái Bình & Nam Định', queryTag: 'Thái Bình' },
+  { id: 'danang', label: '🌊 Đà Nẵng & Huế', queryTag: 'Đà Nẵng' },
+  { id: 'tphcm', label: '🏙️ TP.HCM', queryTag: 'TP.HCM' }
+];
+
+const MATCHER_COMBOS = [
+  { id: 'all', label: 'Tất cả khối thi' },
+  { id: 'A00', label: 'A00 (Toán, Lý, Hóa)' },
+  { id: 'A01', label: 'A01 (Toán, Lý, Anh)' },
+  { id: 'B00', label: 'B00 (Toán, Hóa, Sinh)' },
+  { id: 'C00', label: 'C00 (Văn, Sử, Địa)' },
+  { id: 'D01', label: 'D01 (Toán, Văn, Anh)' },
+  { id: 'D07', label: 'D07 (Toán, Hóa, Anh)' }
+];
 
 export default function HomeView({ onNavigate, onSearchQuery }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [activePersonaId, setActivePersonaId] = useState('linh');
+
+  // Quick Score Matcher States
+  const [matcherProvince, setMatcherProvince] = useState('all');
+  const [matcherCombo, setMatcherCombo] = useState('all');
+  const [matcherScore, setMatcherScore] = useState(24.5);
+
+  const activePersona = PERSONAS_DATA.find(p => p.id === activePersonaId) || PERSONAS_DATA[0];
+
+  // Dynamic Asymmetric Polygon Points for Active Persona
+  const activeDataPoints = useMemo(() => {
+    return RADAR_AXES.map((axis) => {
+      const score = activePersona.radarValues[axis.key] || 50;
+      const r = (score / 100) * RADAR_MAX_R;
+      const x = RADAR_CENTER.x + r * Math.cos(axis.angle);
+      const y = RADAR_CENTER.y + r * Math.sin(axis.angle);
+      return { ...axis, score, x, y };
+    });
+  }, [activePersona]);
+
+  const activePolygonString = activeDataPoints.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+  // Real-time Matching calculation for Quick Matcher Bar
+  const matchedUniversities = useMemo(() => {
+    return (UNIVERSITIES_DATA || []).filter((u) => {
+      // Province match
+      if (matcherProvince !== 'all') {
+        if (matcherProvince === 'thaibinh') {
+          if (u.provinceCode !== 'thaibinh' && u.provinceCode !== 'thaibinh-namdinh') return false;
+        } else if (u.provinceCode !== matcherProvince) {
+          return false;
+        }
+      }
+
+      // Benchmark range matching
+      const str = u.benchmarkHistory?.forecast2026 || u.benchmarks || '';
+      const nums = str.match(/\d+(\.\d+)?/g);
+      let minScore = 18;
+      let maxScore = 26;
+      if (nums && nums.length >= 2) {
+        minScore = parseFloat(nums[0]);
+        maxScore = parseFloat(nums[1]);
+      } else if (nums && nums.length === 1) {
+        minScore = parseFloat(nums[0]) - 1.2;
+        maxScore = parseFloat(nums[0]) + 1.2;
+      }
+
+      // Check whether score is reachable and competitive
+      return minScore <= matcherScore + 0.8 && maxScore >= matcherScore - 4.0;
+    });
+  }, [matcherProvince, matcherScore]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -28,108 +242,134 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
     onNavigate('search');
   };
 
-  // Human-crafted geometry for Holland RIASEC Radar
-  const radarCenter = { x: 180, y: 115 };
-  const maxRadius = 58;
-  const hollandDimensions = [
-    { key: 'R', label: 'R - Kỹ thuật (75%)', score: 75, angle: -Math.PI / 2, labelX: 180, labelY: 42, anchor: 'middle' },
-    { key: 'I', label: 'I - Nghiên cứu (90%)', score: 90, angle: -Math.PI / 6, labelX: 250, labelY: 84, anchor: 'start' },
-    { key: 'A', label: 'A - Nghệ thuật (88%)', score: 88, angle: Math.PI / 6, labelX: 250, labelY: 152, anchor: 'start' },
-    { key: 'S', label: 'S - Xã hội (78%)', score: 78, angle: Math.PI / 2, labelX: 180, labelY: 196, anchor: 'middle' },
-    { key: 'E', label: 'E - Quản lý (86%)', score: 86, angle: (5 * Math.PI) / 6, labelX: 110, labelY: 152, anchor: 'end' },
-    { key: 'C', label: 'C - Nghiệp vụ (80%)', score: 80, angle: (-5 * Math.PI) / 6, labelX: 110, labelY: 84, anchor: 'end' }
-  ];
+  const handleScrollToMatcher = () => {
+    const el = document.getElementById('quick-score-matcher-bar');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      onNavigate('search');
+    }
+  };
 
-  // Concentric polygon grids
-  const gridLevels = [0.25, 0.5, 0.75, 1.0];
-  const gridPolygons = gridLevels.map((lvl) =>
-    hollandDimensions
-      .map((d) => {
-        const x = radarCenter.x + maxRadius * lvl * Math.cos(d.angle);
-        const y = radarCenter.y + maxRadius * lvl * Math.sin(d.angle);
-        return `${x.toFixed(1)},${y.toFixed(1)}`;
-      })
-      .join(' ')
-  );
-
-  // Profile data polygon
-  const dataPoints = hollandDimensions.map((d) => {
-    const r = maxRadius * (d.score / 100);
-    const x = radarCenter.x + r * Math.cos(d.angle);
-    const y = radarCenter.y + r * Math.sin(d.angle);
-    return { x, y, ...d };
-  });
-  const dataPolygonString = dataPoints.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const handleViewMatchedSchools = () => {
+    const selectedProvObj = MATCHER_PROVINCES.find(p => p.id === matcherProvince);
+    const query = selectedProvObj && selectedProvObj.queryTag 
+      ? selectedProvObj.queryTag 
+      : (matcherCombo !== 'all' ? matcherCombo : `${matcherScore}đ`);
+    onSearchQuery(query);
+    onNavigate('search');
+  };
 
   return (
     <div className="tab-pane-animate">
-      {/* HERO SECTION: SUNLIGHT CAMPUS & PASTEL BENTO */}
-      <div className="hero-wrapper">
-        <div className="hero-dot-grid" />
+      {/* 1. OPEN EDITORIAL CANVAS HERO SECTION */}
+      <div className="hero-editorial-canvas">
+        <div className="ambient-hero-glow" />
 
-        <div className="hero-grid-2col">
-          {/* LEFT COLUMN: EDITORIAL TYPOGRAPHY & FRIENDLY CTA */}
+        <div className="hero-editorial-grid">
+          {/* LEFT COLUMN: TOUCHING THE DEEPEST PAIN POINTS OF HIGH SCHOOL SENIORS & PARENTS */}
           <div>
-            {/* 1. Top Eyebrow Badge */}
-            <div className="hero-eyebrow-badge">
-              <span className="eyebrow-ping-container">
-                <span className="eyebrow-ping-dot" />
-                <span className="eyebrow-ping-core" />
+            {/* Minimal Eyebrow Tagline */}
+            <div className="hero-eyebrow-minimal">
+              <span className="eyebrow-live-indicator">
+                <span className="live-pulse" />
+                <span className="live-dot" />
               </span>
-              <span>🌱 NỀN TẢNG DỮ LIỆU HƯỚNG NGHIỆP &amp; TUYỂN SINH 2026</span>
+              <span>Dữ liệu tuyển sinh thực tế từ 60+ Đại học &amp; 50+ Ngành nghề Việt Nam</span>
             </div>
 
-            {/* 2. Main Headline */}
-            <h1 className="hero-h1-friendly">
-              <span>Chọn ngành bằng dữ liệu.</span>
-              <span style={{ display: 'block' }}>
-                Đừng đánh cược{' '}
-                <span className="headline-emphasis-warm">
-                  bằng lời đồn.
-                  <svg className="curved-underline-warm" viewBox="0 0 170 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 9C48 2.5 122 2 167 8" stroke="#F59E0B" strokeWidth="3.2" strokeLinecap="round" />
+            {/* Main Headline (H1 - 3 Lines) */}
+            <h1 className="hero-h1-editorial">
+              <span className="hero-headline-line">Giữa ngành bố mẹ muốn,</span>
+              <span className="hero-headline-line">ngành đang "hot" trên mạng</span>
+              <span className="hero-headline-line">
+                <span className="hero-headline-emphasis">
+                  đâu mới là nơi bạn thuộc về?
+                  <svg className="curved-underline-indigo" viewBox="0 0 170 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9C48 2.5 122 2 167 8" stroke="#4F46E5" strokeWidth="3.2" strokeLinecap="round" />
                   </svg>
                 </span>
               </span>
             </h1>
 
-            {/* 3. Sub-headline */}
-            <p className="hero-subheadline-sharp">
-              Hơn 60% sinh viên ra trường làm trái ngành vì chọn nguyện vọng theo đám đông. Đo lường ngay độ khớp năng lực cá nhân, tỷ lệ việc làm và điểm chuẩn thực tế tại 120+ trường Đại học.
+            {/* Sub-headline */}
+            <p className="hero-subheadline-editorial">
+              Đừng để 4 năm thanh xuân và hàng trăm triệu học phí trôi qua trong sự chán nản vì chọn đại. Hãy nhìn thẳng vào năng lực thật của bạn, mức thu nhập thực tế và điểm chuẩn vừa sức tại các trường Đại học từ Hà Nội, Thái Nguyên, Hải Phòng đến Đà Nẵng, TP.HCM.
             </p>
 
-            {/* 4. CTA Group */}
-            <div className="hero-cta-horizontal" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-              <button 
-                className="btn-edtech-primary" 
-                onClick={() => onNavigate('self')}
-                id="btn-hero-primary-discovery"
-                style={{ whiteSpace: 'nowrap' }}
-              >
-                <span>Khám phá ngành hợp với bạn</span>
-                <ArrowRight size={18} />
-              </button>
+            {/* 3 Interactive Pain-Point Cards */}
+            <div className="pain-points-block">
+              <div className="pain-points-header">
+                <Sparkles size={14} color="#4F46E5" />
+                <span>BẠN ĐANG Ở TRẠNG THÁI NÀO? CHỌN ĐỂ BẮT ĐẦU NGAY:</span>
+              </div>
 
-              <button 
-                className="btn-edtech-secondary" 
-                onClick={() => onNavigate('compare')}
-                id="btn-hero-secondary-compare"
-                style={{ whiteSpace: 'nowrap' }}
-              >
-                <Scale size={17} color="#0284C7" strokeWidth={2} />
-                <span>So sánh 2 ngành đang phân vân</span>
-              </button>
+              <div className="pain-points-list">
+                {/* Card 1: Khám phá bản thân (Featured Indigo) */}
+                <div 
+                  className="pain-point-action-card featured"
+                  onClick={() => onNavigate('self')}
+                  id="card-painpoint-self"
+                >
+                  <div className="pain-point-icon-badge" style={{ background: '#EEF2FF', color: '#4F46E5', border: '1px solid #C7D2FE' }}>
+                    <Compass size={20} strokeWidth={2.4} />
+                  </div>
+                  <div className="pain-point-content">
+                    <div className="pain-point-title">"Mình còn mông lung, chưa biết bản thân thực sự hợp ngành gì"</div>
+                    <div className="pain-point-subtitle">
+                      <span>Làm bài giải mã năng lực 6 chiều &amp; nhận gợi ý trường vừa điểm →</span>
+                    </div>
+                  </div>
+                  <ArrowRight size={18} className="pain-point-arrow" />
+                </div>
+
+                {/* Card 2: Đấu trường so sánh */}
+                <div 
+                  className="pain-point-action-card"
+                  onClick={() => onNavigate('compare')}
+                  id="card-painpoint-compare"
+                >
+                  <div className="pain-point-icon-badge" style={{ background: '#FEF3C7', color: '#D97706', border: '1px solid #FDE68A' }}>
+                    <Scale size={20} strokeWidth={2.4} />
+                  </div>
+                  <div className="pain-point-content">
+                    <div className="pain-point-title">"Mình đang phân vân giữa 2 - 3 ngành, chưa biết bỏ ngành nào"</div>
+                    <div className="pain-point-subtitle">
+                      <span>Đặt lên bàn cân đối chiếu lương, áp lực học tập &amp; nguy cơ AI thay thế →</span>
+                    </div>
+                  </div>
+                  <ArrowRight size={18} className="pain-point-arrow" />
+                </div>
+
+                {/* Card 3: Tra cứu theo điểm & trường */}
+                <div 
+                  className="pain-point-action-card"
+                  onClick={handleScrollToMatcher}
+                  id="card-painpoint-matcher"
+                >
+                  <div className="pain-point-icon-badge" style={{ background: '#F0F9FF', color: '#0284C7', border: '1px solid #BAE6FD' }}>
+                    <Search size={20} strokeWidth={2.4} />
+                  </div>
+                  <div className="pain-point-content">
+                    <div className="pain-point-title">"Mình đã nhắm được mức điểm (18 - 28đ), cần tìm trường chắc chắn đỗ"</div>
+                    <div className="pain-point-subtitle">
+                      <span>Tra cứu điểm chuẩn, học phí các trường tại Hà Nội, Thái Nguyên, Hải Phòng, TP.HCM... →</span>
+                    </div>
+                  </div>
+                  <ArrowRight size={18} className="pain-point-arrow" />
+                </div>
+              </div>
             </div>
 
-            {/* 5. Streamlined Search Input */}
-            <div className="hero-search-human-wrapper">
+            {/* Streamlined Search Row */}
+            <div className="hero-bottom-search-row">
               <form onSubmit={handleSearchSubmit} className="hero-search-human-box">
                 <Search size={18} color="#64748B" strokeWidth={2} style={{ marginRight: '8px', flexShrink: 0 }} />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Tìm ngành học, mã trường hoặc tổ hợp (VD: CNTT, Y khoa, A00)..."
+                  placeholder="Tìm ngành học, mã trường hoặc tổ hợp (VD: Marketing, TMU, BKA, A00)..."
                   className="hero-search-human-input"
                   id="hero-search-input"
                 />
@@ -138,15 +378,15 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                 </button>
               </form>
 
-              {/* 6. Multi-disciplinary Quick Tags */}
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '12px', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#64748B' }}>Gợi ý:</span>
+              {/* Quick Tags */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.78rem', fontWeight: '750', color: '#64748B' }}>Xu hướng 2026:</span>
                 {[
                   { label: 'Marketing & Truyền thông', query: 'Marketing' },
-                  { label: 'Kinh doanh & Quản trị', query: 'Kinh doanh' },
+                  { label: 'Kinh doanh & QTKD', query: 'Kinh doanh' },
                   { label: 'Y Dược & Sức khỏe', query: 'Y đa khoa' },
-                  { label: 'Công nghệ thông tin', query: 'Công nghệ thông tin' },
-                  { label: 'Tâm lý học', query: 'Tâm lý học' }
+                  { label: 'Vi mạch & Bán dẫn', query: 'Vi mạch' },
+                  { label: 'CNTT & Trí tuệ nhân tạo', query: 'Công nghệ thông tin' }
                 ].map((tag, i) => (
                   <button
                     key={i}
@@ -154,7 +394,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     className="quick-tag-human"
                     onClick={() => handleQuickTagClick(tag.query)}
                   >
-                    <span style={{ color: '#F59E0B', fontWeight: '700' }}>#</span>
+                    <span style={{ color: '#4F46E5', fontWeight: '750' }}>#</span>
                     <span>{tag.label}</span>
                   </button>
                 ))}
@@ -162,43 +402,55 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: MULTI-DISCIPLINARY PERSONAL CAREER MAP CARD */}
-          <div>
-            <div className="bento-career-card">
-              {/* Header */}
-              <div className="bento-card-header">
-                <div className="bento-card-title-group">
-                  <div style={{ width: '38px', height: '38px', borderRadius: '12px', background: '#EEF2FF', border: '1px solid #C7D2FE', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4F46E5', flexShrink: 0 }}>
-                    <Compass size={20} strokeWidth={2.2} />
+          {/* RIGHT COLUMN: LIVE INTERACTIVE PERSONA SIMULATOR */}
+          <div className="live-persona-container">
+            <div className="live-persona-card">
+              {/* 4 Clickable Persona Tabs */}
+              <div className="persona-tabs-bar" role="tablist">
+                {PERSONAS_DATA.map((p) => {
+                  const isActive = p.id === activePersonaId;
+                  return (
+                    <button
+                      key={p.id}
+                      type="button"
+                      className={`persona-tab-btn ${isActive ? 'active' : ''}`}
+                      onClick={() => setActivePersonaId(p.id)}
+                      title={p.fullName}
+                    >
+                      {p.tabLabel}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Persona Metadata Header */}
+              <div className="persona-meta-header">
+                <div>
+                  <div className="persona-name-title">
+                    {activePersona.avatar} {activePersona.fullName}
                   </div>
-                  <div>
-                    <div className="bento-card-title">
-                      Bản đồ Định hướng Cá nhân
-                    </div>
-                    <div className="bento-card-subtitle">
-                      Học sinh lớp 12 • Đa dạng khối ngành (A, B, C, D)
-                    </div>
+                  <div style={{ fontSize: '0.78rem', color: '#64748B', marginTop: '2px' }}>
+                    {activePersona.archetype}
                   </div>
                 </div>
 
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', padding: '4px 10px', borderRadius: '9999px', background: '#F8FAFC', border: '1px solid #E2E8F0', fontSize: '0.74rem', color: '#475569', fontWeight: '700', whiteSpace: 'nowrap', flexShrink: 0 }}>
-                  <Sparkles size={13} color="#4F46E5" />
-                  <span style={{ whiteSpace: 'nowrap' }}>Mẫu phân tích</span>
+                <div className="persona-score-pill">
+                  <span>{activePersona.scoreCombo}</span>
                 </div>
               </div>
 
-              {/* Body: Clean Vector Holland RIASEC Radar */}
-              <div className="bento-radar-container">
-                <svg viewBox="0 0 360 230" className="bento-radar-svg">
+              {/* Live Vector Holland RIASEC Radar (Asymmetric Polygon & Dynamic Transition) */}
+              <div className="persona-radar-wrap">
+                <svg viewBox="0 0 360 232" className="persona-radar-svg">
                   <defs>
-                    <linearGradient id="friendlyRadarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.35" />
-                      <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.25" />
+                    <linearGradient id="liveRadarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.45" />
+                      <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.22" />
                     </linearGradient>
                   </defs>
 
                   {/* Concentric grid rings */}
-                  {gridPolygons.map((poly, idx) => (
+                  {RADAR_GRID_POLYGONS.map((poly, idx) => (
                     <polygon
                       key={idx}
                       points={poly}
@@ -210,14 +462,14 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                   ))}
 
                   {/* Axis lines */}
-                  {hollandDimensions.map((d, idx) => {
-                    const x2 = radarCenter.x + maxRadius * Math.cos(d.angle);
-                    const y2 = radarCenter.y + maxRadius * Math.sin(d.angle);
+                  {RADAR_AXES.map((axis, idx) => {
+                    const x2 = RADAR_CENTER.x + RADAR_MAX_R * Math.cos(axis.angle);
+                    const y2 = RADAR_CENTER.y + RADAR_MAX_R * Math.sin(axis.angle);
                     return (
                       <line
                         key={idx}
-                        x1={radarCenter.x}
-                        y1={radarCenter.y}
+                        x1={RADAR_CENTER.x}
+                        y1={RADAR_CENTER.y}
                         x2={x2}
                         y2={y2}
                         stroke="#CBD5E1"
@@ -226,102 +478,112 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     );
                   })}
 
-                  {/* Data Polygon */}
+                  {/* Asymmetric Dynamic Data Polygon with Smooth Morphing Transition */}
                   <polygon
-                    points={dataPolygonString}
-                    fill="url(#friendlyRadarGrad)"
+                    points={activePolygonString}
+                    fill="url(#liveRadarGrad)"
                     stroke="#4F46E5"
                     strokeWidth="2.4"
+                    className="radar-morph-polygon"
                   />
 
-                  {/* Vertex Points */}
-                  {dataPoints.map((p, idx) => (
+                  {/* Vertices with smooth animated positions */}
+                  {activeDataPoints.map((p, idx) => (
                     <circle
                       key={idx}
                       cx={p.x}
                       cy={p.y}
-                      r="3.8"
+                      r="4"
                       fill="#FFFFFF"
                       stroke="#4F46E5"
-                      strokeWidth="2"
+                      strokeWidth="2.2"
+                      className="radar-morph-circle"
                     />
                   ))}
 
-                  {/* Clear Outer Labels */}
-                  {hollandDimensions.map((d, idx) => (
+                  {/* Asymmetric Score Labels */}
+                  {activeDataPoints.map((d, idx) => (
                     <text
                       key={idx}
                       x={d.labelX}
                       y={d.labelY}
                       textAnchor={d.anchor}
                       fontSize="9.5"
-                      fontWeight="700"
-                      fill={d.score >= 85 ? '#4338CA' : '#64748B'}
+                      fontWeight="750"
+                      fill={d.score >= 80 ? '#4338CA' : '#64748B'}
                       fontFamily="var(--font-ui)"
                     >
-                      {d.label}
+                      {d.label} ({d.score}%)
                     </text>
                   ))}
                 </svg>
               </div>
 
-              {/* Top 3 Matched Majors */}
-              <div className="bento-top-majors-wrap">
-                <div style={{ fontSize: '0.74rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>
-                  Top ngành học đề xuất:
-                </div>
-
-                <div className="bento-major-item" style={{ background: '#ECFDF5', border: '1px solid #A7F3D0' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '0.95rem' }}>🥇</span>
-                    <span style={{ color: '#065F46', fontWeight: '700' }}>Truyền thông &amp; Marketing số</span>
+              {/* Analysis Panel: Suggested Major & Real Benchmarks */}
+              <div className="persona-analysis-card">
+                <div className="persona-major-suggested">
+                  <div>
+                    <div style={{ fontSize: '0.72rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Ngành đề xuất tối ưu:
+                    </div>
+                    <div className="persona-major-name">
+                      {activePersona.suggestedMajor}
+                    </div>
                   </div>
-                  <span className="bento-major-badge" style={{ background: '#D1FAE5', color: '#047857' }}>
-                    Độ khớp: 94%
+                  <span className="persona-match-badge">
+                    {activePersona.matchPercentage}
                   </span>
                 </div>
 
-                <div className="bento-major-item" style={{ background: '#F0F9FF', border: '1px solid #BAE6FD' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '0.95rem' }}>🥈</span>
-                    <span style={{ color: '#0369A1', fontWeight: '700' }}>Quản trị Kinh doanh Quốc tế</span>
-                  </div>
-                  <span className="bento-major-badge" style={{ background: '#E0F2FE', color: '#0284C7' }}>
-                    Độ khớp: 89%
-                  </span>
-                </div>
-
-                <div className="bento-major-item" style={{ background: '#EEF2FF', border: '1px solid #C7D2FE' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '0.95rem' }}>🥉</span>
-                    <span style={{ color: '#3730A3', fontWeight: '700' }}>Công nghệ thông tin / AI</span>
-                  </div>
-                  <span className="bento-major-badge" style={{ background: '#E0E7FF', color: '#4338CA' }}>
-                    Độ khớp: 85%
-                  </span>
+                {/* 4 Universities with Real Benchmarks */}
+                <div className="persona-schools-list">
+                  {activePersona.schools.map((sch, i) => (
+                    <div key={i} className="persona-school-item">
+                      <div className="persona-school-name" title={sch.name}>
+                        {sch.name}
+                      </div>
+                      <div className="persona-school-score">
+                        {sch.score}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Footer: 3 Clear Metric Columns */}
-              <div className="bento-card-footer">
+              {/* Reality Check Box (Amber Alert) */}
+              <div className="persona-reality-check">
+                <AlertTriangle size={17} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
-                  <div className="bento-footer-stat-label">Cơ hội việc làm</div>
-                  <div className="bento-footer-stat-value" style={{ color: '#059669' }}>96.4%</div>
+                  <strong>Sự thật ngành &amp; AI: </strong>
+                  <span>{activePersona.realityCheck}</span>
+                </div>
+              </div>
+
+              {/* Bottom Metrics Strip */}
+              <div className="persona-metrics-strip">
+                <div>
+                  <div className="persona-metric-label">Lương khởi điểm</div>
+                  <div className="persona-metric-value" style={{ color: '#059669' }}>
+                    {activePersona.startSalary}
+                  </div>
                 </div>
 
                 <div>
-                  <div className="bento-footer-stat-label">Điểm chuẩn dự báo</div>
-                  <div className="bento-footer-stat-value" style={{ color: '#0284C7' }}>24.5 - 27.5</div>
+                  <div className="persona-metric-label">Sau 3 năm kinh nghiệm</div>
+                  <div className="persona-metric-value" style={{ color: '#0284C7' }}>
+                    {activePersona.expSalary}
+                  </div>
                 </div>
 
                 <div style={{ textAlign: 'right' }}>
-                  <div 
-                    className="bento-footer-action-link"
-                    onClick={() => onNavigate('roadmap')}
+                  <button
+                    type="button"
+                    className="persona-cta-self"
+                    onClick={() => onNavigate('self')}
                   >
-                    <span>Lộ trình mẫu</span>
-                    <ArrowRight size={13} />
-                  </div>
+                    <span>Tạo bản đồ của bạn</span>
+                    <ArrowRight size={14} />
+                  </button>
                 </div>
               </div>
             </div>
@@ -329,7 +591,108 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
         </div>
       </div>
 
-      {/* STATS TRUST GRID (SUNLIGHT PASTEL BENTO) */}
+      {/* 2. QUICK SCORE MATCHER BAR (INTERACTIVE TOOL DIRECTLY BELOW HERO) */}
+      <div id="quick-score-matcher-bar" className="quick-score-matcher-card">
+        <div className="matcher-decor-glow" />
+
+        <div className="matcher-header-row">
+          <div className="matcher-title-group">
+            <div className="matcher-badge-icon">
+              <Sliders size={18} strokeWidth={2.4} />
+            </div>
+            <div>
+              <div className="matcher-title-main">
+                Ước tính Cơ hội Đỗ Nhanh theo Điểm &amp; Khu vực
+              </div>
+              <div className="matcher-title-sub">
+                Hệ thống tự động đối chiếu điểm chuẩn thực tế 2024 – 2026 của 60+ trường Đại học khắp 3 miền
+              </div>
+            </div>
+          </div>
+
+          <div className="matcher-live-count-badge">
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+            <span>Tìm thấy {matchedUniversities.length} trường phù hợp</span>
+          </div>
+        </div>
+
+        {/* Controls Grid */}
+        <div className="matcher-controls-grid">
+          {/* Province Selector */}
+          <div className="matcher-field-col">
+            <label className="matcher-field-label">
+              <MapPin size={13} />
+              <span>1. Khu vực mong muốn</span>
+            </label>
+            <select
+              value={matcherProvince}
+              onChange={(e) => setMatcherProvince(e.target.value)}
+              className="matcher-select-input"
+            >
+              {MATCHER_PROVINCES.map((prov) => (
+                <option key={prov.id} value={prov.id}>
+                  {prov.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Combination Selector */}
+          <div className="matcher-field-col">
+            <label className="matcher-field-label">
+              <Building2 size={13} />
+              <span>2. Tổ hợp môn</span>
+            </label>
+            <select
+              value={matcherCombo}
+              onChange={(e) => setMatcherCombo(e.target.value)}
+              className="matcher-select-input"
+            >
+              {MATCHER_COMBOS.map((combo) => (
+                <option key={combo.id} value={combo.id}>
+                  {combo.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Score Slider */}
+          <div className="matcher-field-col">
+            <label className="matcher-field-label">
+              <TrendingUp size={13} />
+              <span>3. Mức điểm dự kiến của bạn</span>
+            </label>
+            <div className="matcher-slider-container">
+              <input
+                type="range"
+                min="16.0"
+                max="29.5"
+                step="0.25"
+                value={matcherScore}
+                onChange={(e) => setMatcherScore(parseFloat(e.target.value))}
+                className="matcher-slider-input"
+              />
+              <span className="matcher-score-display">
+                {matcherScore.toFixed(2)}đ
+              </span>
+            </div>
+          </div>
+
+          {/* Action CTA Button */}
+          <div className="matcher-field-col">
+            <button
+              type="button"
+              className="matcher-submit-btn"
+              onClick={handleViewMatchedSchools}
+            >
+              <span>Xem ngay {matchedUniversities.length} trường vừa sức</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. STATS TRUST GRID (SUNLIGHT PASTEL BENTO) */}
       <div className="stats-grid-container">
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 100%)', borderColor: '#C7D2FE' }}>
           <div className="stat-metric-number" style={{ color: '#4338CA' }}>500+</div>
@@ -356,7 +719,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
         </div>
       </div>
 
-      {/* 4-STEP ROUTE JOURNEY WITH PASTEL ACCENT COLORS */}
+      {/* 4. 4-STEP ROUTE JOURNEY WITH PASTEL ACCENT COLORS */}
       <div className="steps-section-wrapper">
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
           <div className="pill-badge" style={{ marginBottom: '10px' }}>HÀNH TRÌNH 4 BƯỚC</div>
@@ -432,7 +795,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
         </div>
       </div>
 
-      {/* 3 FEATURE HIGHLIGHTS */}
+      {/* 5. 3 FEATURE HIGHLIGHTS */}
       <div className="features-grid-container">
         <div className="feature-card-pastel" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%)', borderColor: '#A7F3D0' }}>
           <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#D1FAE5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>

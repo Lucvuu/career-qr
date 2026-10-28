@@ -52,6 +52,16 @@ export default function SearchView({
   const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedCombo, setSelectedCombo] = useState('');
   
+  // Sync when initialQuery changes
+  useEffect(() => {
+    if (initialQuery !== undefined) {
+      setSearchKeyword(initialQuery);
+      if (initialQuery.trim()) {
+        setActiveTab('nganh');
+      }
+    }
+  }, [initialQuery]);
+
   // University Filter States
   const [selectedUniversityRegion, setSelectedUniversityRegion] = useState('all'); // 'all' | 'bac' | 'trung' | 'nam'
   const [selectedProvince, setSelectedProvince] = useState('all');
