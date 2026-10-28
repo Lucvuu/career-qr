@@ -3,7 +3,6 @@ import {
   MessageSquare, 
   X, 
   Send, 
-  Sparkles, 
   Bot, 
   User, 
   Maximize2, 
@@ -276,63 +275,36 @@ export default function AIChatModal({
 
   return (
     <>
-      {/* Floating launcher badge & button */}
-      <div 
-        style={{ 
-          position: 'fixed', 
-          right: '24px', 
-          bottom: '24px', 
-          zIndex: 9999, 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'flex-end', 
-          gap: '10px' 
+      {/* Clean floating chat button (sits cleanly in page margin without overlapping cards) */}
+      <div
+        style={{
+          position: 'fixed',
+          right: '20px',
+          bottom: '20px',
+          zIndex: 9999
         }}
       >
-        {!isOpen && (
-          <div
-            onClick={() => setIsOpen(true)}
-            style={{
-              background: '#FFFFFF',
-              color: '#4F46E5',
-              fontSize: '11.5px',
-              fontWeight: '800',
-              padding: '7px 16px',
-              borderRadius: '999px',
-              boxShadow: '0 8px 24px -4px rgba(79, 70, 229, 0.25)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              cursor: 'pointer',
-              border: '1.5px solid #C7D2FE',
-              transition: 'transform 0.2s ease',
-              letterSpacing: '0.01em'
-            }}
-          >
-            <Sparkles size={15} color="#F59E0B" />
-            <span>Hỏi đáp chọn ngành, chọn trường</span>
-          </div>
-        )}
-
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Hỏi đáp chọn ngành và trường"
+          title="Hỏi đáp chọn ngành, chọn trường"
           style={{
-            width: '56px',
-            height: '56px',
+            height: '50px',
+            width: '50px',
+            padding: 0,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #4F46E5 0%, #0EA5E9 100%)',
+            background: isOpen ? '#0F172A' : '#4F46E5',
             color: '#FFFFFF',
-            border: 'none',
+            border: '2px solid #FFFFFF',
             cursor: 'pointer',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 12px 28px -4px rgba(79, 70, 229, 0.45)',
-            transition: 'all 0.25s ease'
+            boxShadow: '0 10px 24px -6px rgba(15, 23, 42, 0.35)',
+            transition: 'all 0.2s ease'
           }}
         >
-          {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+          {isOpen ? <X size={21} /> : <MessageSquare size={21} />}
         </button>
       </div>
 
@@ -748,7 +720,7 @@ export default function AIChatModal({
 
               <div style={{ marginBottom: '14px', background: '#EFF6FF', border: '1px solid #BFDBFE', padding: '12px 16px', borderRadius: '14px' }}>
                 <div style={{ fontSize: '0.78rem', fontWeight: '800', color: '#1D4ED8', textTransform: 'uppercase', marginBottom: '4px' }}>
-                  🎯 THỰC TẾ NGHỀ NGHIỆP
+                  Thực tế nghề nghiệp
                 </div>
                 <div style={{ fontSize: '0.88rem', color: '#1E293B', lineHeight: '1.5' }}>
                   <strong>Thực tế:</strong> {activeVideoModal.video.realityCheck.truth}

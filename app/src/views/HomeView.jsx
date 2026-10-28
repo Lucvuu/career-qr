@@ -1,167 +1,237 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Compass, 
-  Search, 
-  ArrowRight, 
-  Scale, 
-  ShieldCheck, 
-  QrCode, 
-  Cpu, 
-  Layers, 
+import {
+  Compass,
+  Search,
+  ArrowRight,
+  Scale,
+  ShieldCheck,
+  QrCode,
+  MessageSquare,
+  Layers,
   Award,
-  Sparkles,
   Sliders,
-  AlertTriangle,
   Building2,
   MapPin,
   TrendingUp
 } from 'lucide-react';
 import { UNIVERSITIES_DATA } from '../data/careerData';
+import UniversityLogo from '../components/UniversityLogo';
 
-// 4 Realistic Real-World Student Personas
-const PERSONAS_DATA = [
+// 4 Visual Field Showcases with Official Vietnamese Universities & Real Data
+const FIELD_SHOWCASES = [
   {
-    id: 'linh',
-    tabLabel: '🎨 Linh (24.5đ D01)',
-    fullName: 'Nguyễn Thùy Linh',
-    scoreCombo: '24.5đ • Khối D01 (Toán, Văn, Anh)',
-    archetype: 'Yêu thích sáng tạo nội dung & truyền thông',
-    avatar: '🎨',
-    radarValues: {
-      R: 25, // Kỹ thuật: thấp
-      I: 45, // Nghiên cứu: vừa
-      A: 92, // Nghệ thuật: cực cao
-      S: 85, // Xã hội: rất cao
-      E: 78, // Quản lý: cao
-      C: 40  // Nghiệp vụ: trung bình
-    },
-    suggestedMajor: 'Marketing & Truyền thông đa phương tiện',
-    matchPercentage: 'Khá hợp (94%)',
-    schools: [
-      { name: 'ĐH Thương mại (TMU)', score: '25.2đ', location: 'Hà Nội' },
-      { name: 'HV Báo chí & Tuyên truyền (AJC)', score: '24.8đ', location: 'Hà Nội' },
-      { name: 'ĐH Kinh tế - ĐH Thái Nguyên (TUEBA)', score: '21.5đ', location: 'Thái Nguyên' },
-      { name: 'ĐH Hàng hải Việt Nam (VMU)', score: '23.5đ', location: 'Hải Phòng' }
+    id: 'kinhte',
+    tabLabel: 'Kinh tế',
+    combos: 'Tổ hợp phổ biến: A00 • A01 • D01',
+    title: 'Kinh tế, Marketing & Thương mại',
+    summary: 'Kinh doanh, truyền thông thương hiệu, tài chính – ngân hàng và xuất nhập khẩu.',
+    bannerBg: 'linear-gradient(135deg, #EEF2FF 0%, #E0F2FE 100%)',
+    bannerBorder: '#C7D2FE',
+    accentColor: '#4338CA',
+    pillBg: 'rgba(255, 255, 255, 0.85)',
+    metrics: [
+      { label: 'Điểm chuẩn phổ biến', value: '22.5 – 28.6đ', color: '#4338CA' },
+      { label: 'Học phí công lập', value: '22 – 45 tr/năm', color: '#0369A1' },
+      { label: 'Lương mới ra trường', value: '9 – 15 tr/tháng', color: '#047857' }
     ],
-    realityCheck: 'Làm Marketing không chỉ có viết lách hay lên ý tưởng mà phải theo sát số liệu doanh thu, chi phí quảng cáo. Các việc viết bài cơ bản hiện dễ bị AI làm thay, nên cần học thêm kỹ năng đọc dữ liệu khách hàng.',
-    startSalary: '9 – 14 triệu/tháng',
-    expSalary: '18 – 30 triệu/tháng'
+    schools: [
+      {
+        code: 'KHA',
+        name: 'Đại học Kinh tế Quốc dân',
+        city: 'Hà Nội',
+        tuition: '26 – 40 tr/năm',
+        score: '26.5 – 28.6đ'
+      },
+      {
+        code: 'TMA',
+        name: 'Đại học Thương mại',
+        city: 'Hà Nội',
+        tuition: '24 – 38 tr/năm',
+        score: '24.8 – 27.5đ'
+      },
+      {
+        code: 'KSA',
+        name: 'Đại học Kinh tế TP.HCM',
+        city: 'TP.HCM',
+        tuition: '30 – 48 tr/năm',
+        score: '25.0 – 28.2đ'
+      }
+    ],
+    note: 'Thực tế công việc cần ngoại ngữ tốt và làm việc nhiều với số liệu doanh thu, khách hàng.',
+    searchQuery: 'Marketing',
+    renderIllustration: () => (
+      <svg viewBox="0 0 88 88" width="76" height="76" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="10" width="76" height="68" rx="16" fill="#FFFFFF" stroke="#C7D2FE" strokeWidth="2" />
+        <rect x="18" y="46" width="11" height="20" rx="3.5" fill="#C7D2FE" />
+        <rect x="34" y="36" width="11" height="30" rx="3.5" fill="#818CF8" />
+        <rect x="50" y="24" width="11" height="42" rx="3.5" fill="#4F46E5" />
+        <path d="M19 36L37 26L55 18L69 22" stroke="#0EA5E9" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="55" cy="18" r="3.5" fill="#0EA5E9" />
+      </svg>
+    )
   },
   {
-    id: 'minh',
-    tabLabel: '📊 Minh (26.0đ A01)',
-    fullName: 'Trần Quang Minh',
-    scoreCombo: '26.0đ • Khối A01 (Toán, Lý, Anh)',
-    archetype: 'Mạnh về tư duy tính toán, thích kinh doanh',
-    avatar: '📊',
-    radarValues: {
-      R: 30, // Kỹ thuật
-      I: 65, // Nghiên cứu
-      A: 35, // Nghệ thuật
-      S: 75, // Xã hội
-      E: 90, // Quản lý: cực cao
-      C: 82  // Nghiệp vụ: rất cao
-    },
-    suggestedMajor: 'Kinh tế quốc tế / Tài chính - Ngân hàng',
-    matchPercentage: 'Rất hợp (96%)',
-    schools: [
-      { name: 'ĐH Kinh tế Quốc dân (NEU)', score: '26.8đ', location: 'Hà Nội' },
-      { name: 'ĐH Kinh tế - ĐHQGHN (UEB)', score: '26.2đ', location: 'Hà Nội' },
-      { name: 'ĐH Kinh tế - ĐH Đà Nẵng (DUE)', score: '24.5đ', location: 'Đà Nẵng' },
-      { name: 'ĐH Ngoại thương (FTU)', score: '27.2đ', location: 'Hà Nội' }
+    id: 'congnghe',
+    tabLabel: 'Công nghệ',
+    combos: 'Tổ hợp phổ biến: A00 • A01 • D07',
+    title: 'Công nghệ thông tin & Vi mạch',
+    summary: 'Lập trình phần mềm, dữ liệu, an toàn thông tin và thiết kế vi mạch bán dẫn.',
+    bannerBg: 'linear-gradient(135deg, #E0F2FE 0%, #CCFBF1 100%)',
+    bannerBorder: '#BAE6FD',
+    accentColor: '#0369A1',
+    pillBg: 'rgba(255, 255, 255, 0.85)',
+    metrics: [
+      { label: 'Điểm chuẩn phổ biến', value: '23.0 – 29.2đ', color: '#0369A1' },
+      { label: 'Học phí công lập', value: '28 – 45 tr/năm', color: '#0F766E' },
+      { label: 'Lương mới ra trường', value: '11 – 18 tr/tháng', color: '#047857' }
     ],
-    realityCheck: 'Ngành Tài chính áp lực cao, thường xuyên làm việc với bảng biểu số liệu và cần học thêm chứng chỉ chuyên môn (như CFA) nếu muốn tiến xa. AI hỗ trợ tổng hợp nhanh nhưng khâu thẩm định và làm việc với đối tác vẫn cần con người.',
-    startSalary: '11 – 16 triệu/tháng',
-    expSalary: '22 – 40 triệu/tháng'
+    schools: [
+      {
+        code: 'BKA',
+        name: 'Đại học Bách khoa Hà Nội',
+        city: 'Hà Nội',
+        tuition: '30 – 45 tr/năm',
+        score: '25.5 – 29.2đ'
+      },
+      {
+        code: 'QHI',
+        name: 'ĐH Công nghệ – ĐHQG Hà Nội',
+        city: 'Hà Nội',
+        tuition: '32 – 40 tr/năm',
+        score: '26.5 – 28.5đ'
+      },
+      {
+        code: 'QSC',
+        name: 'ĐH Công nghệ Thông tin – ĐHQG TP.HCM',
+        city: 'TP.HCM',
+        tuition: '32 – 45 tr/năm',
+        score: '25.5 – 28.2đ'
+      }
+    ],
+    note: 'Năm đầu học nặng Toán và tư duy thuật toán; cần tự thực hành dự án thực tế từ sớm.',
+    searchQuery: 'Công nghệ thông tin',
+    renderIllustration: () => (
+      <svg viewBox="0 0 88 88" width="76" height="76" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="8" y="14" width="72" height="60" rx="15" fill="#FFFFFF" stroke="#BAE6FD" strokeWidth="2" />
+        <circle cx="20" cy="24" r="2.5" fill="#38BDF8" />
+        <circle cx="28" cy="24" r="2.5" fill="#818CF8" />
+        <line x1="10" y1="32" x2="78" y2="32" stroke="#E0F2FE" strokeWidth="2" />
+        <path d="M31 45L23 52L31 59" stroke="#0284C7" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M57 45L65 52L57 59" stroke="#0284C7" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M48 42L40 62" stroke="#0D9488" strokeWidth="2.8" strokeLinecap="round" />
+      </svg>
+    )
   },
   {
-    id: 'ha',
-    tabLabel: '🩺 Hà (25.0đ B00)',
-    fullName: 'Vũ Thu Hà',
-    scoreCombo: '25.0đ • Khối B00 (Toán, Hóa, Sinh)',
-    archetype: 'Kiên trì, học tốt Sinh - Hóa, muốn theo Y Dược',
-    avatar: '🩺',
-    radarValues: {
-      R: 70, // Kỹ thuật/Thao tác
-      I: 94, // Nghiên cứu: cực cao
-      A: 25, // Nghệ thuật
-      S: 88, // Xã hội: rất cao
-      E: 35, // Quản lý
-      C: 60  // Nghiệp vụ
-    },
-    suggestedMajor: 'Y khoa / Dược học',
-    matchPercentage: 'Rất hợp (95%)',
-    schools: [
-      { name: 'ĐH Y Dược Thái Bình (TBUMP)', score: '25.0đ', location: 'Thái Bình' },
-      { name: 'ĐH Y Dược Hải Phòng (HPMU)', score: '25.3đ', location: 'Hải Phòng' },
-      { name: 'ĐH Y Dược - ĐH Thái Nguyên (TUMP)', score: '24.6đ', location: 'Thái Nguyên' },
-      { name: 'Khoa Y Dược - ĐH Đà Nẵng (SMP)', score: '24.2đ', location: 'Đà Nẵng' }
+    id: 'yduoc',
+    tabLabel: 'Y Dược',
+    combos: 'Tổ hợp phổ biến: B00 • A00 • D07',
+    title: 'Y khoa, Dược học & Điều dưỡng',
+    summary: 'Khám chữa bệnh, nghiên cứu bào chế thuốc, xét nghiệm và chăm sóc sức khỏe.',
+    bannerBg: 'linear-gradient(135deg, #ECFDF5 0%, #E0F2FE 100%)',
+    bannerBorder: '#A7F3D0',
+    accentColor: '#047857',
+    pillBg: 'rgba(255, 255, 255, 0.85)',
+    metrics: [
+      { label: 'Điểm chuẩn phổ biến', value: '22.5 – 29.5đ', color: '#047857' },
+      { label: 'Học phí công lập', value: '25 – 77 tr/năm', color: '#0369A1' },
+      { label: 'Thời gian đào tạo', value: '4 – 6 năm ĐH', color: '#4338CA' }
     ],
-    realityCheck: 'Theo ngành Y cần xác định thời gian học dài (6 năm đại học cộng thời gian thực hành cấp chứng chỉ hành nghề), lịch trực đêm vất vả và học phí khá cao. Đổi lại, nghề bền vững và rất khó bị máy móc thay thế.',
-    startSalary: '8 – 13 triệu/tháng',
-    expSalary: '20 – 45 triệu/tháng'
+    schools: [
+      {
+        code: 'YHB',
+        name: 'Đại học Y Hà Nội',
+        city: 'Hà Nội',
+        tuition: '45 – 55 tr/năm',
+        score: '25.0 – 29.5đ'
+      },
+      {
+        code: 'DKH',
+        name: 'Trường Đại học Dược Hà Nội',
+        city: 'Hà Nội',
+        tuition: '24 – 38 tr/năm',
+        score: '24.5 – 27.2đ'
+      },
+      {
+        code: 'YDS',
+        name: 'Đại học Y Dược TP.HCM',
+        city: 'TP.HCM',
+        tuition: '45 – 77 tr/năm',
+        score: '25.5 – 29.5đ'
+      }
+    ],
+    note: 'Thời gian học dài và lịch trực bệnh viện vất vả, đổi lại công việc ổn định và bền vững lâu dài.',
+    searchQuery: 'Y khoa',
+    renderIllustration: () => (
+      <svg viewBox="0 0 88 88" width="76" height="76" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="8" y="10" width="72" height="68" rx="16" fill="#FFFFFF" stroke="#A7F3D0" strokeWidth="2" />
+        <rect x="38" y="22" width="12" height="32" rx="4" fill="#10B981" />
+        <rect x="28" y="32" width="32" height="12" rx="4" fill="#10B981" />
+        <path d="M18 64H32L37 56L44 70L50 60L54 64H70" stroke="#0284C7" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
   },
   {
-    id: 'nam',
-    tabLabel: '⚙️ Nam (22.0đ A00)',
-    fullName: 'Lê Hoàng Nam',
-    scoreCombo: '22.0đ • Khối A00 (Toán, Lý, Hóa)',
-    archetype: 'Thích mày mò máy móc, phần cứng và kỹ thuật',
-    avatar: '⚙️',
-    radarValues: {
-      R: 90, // Kỹ thuật: cực cao
-      I: 85, // Nghiên cứu: rất cao
-      A: 20, // Nghệ thuật
-      S: 30, // Xã hội
-      E: 45, // Quản lý
-      C: 72  // Nghiệp vụ: cao
-    },
-    suggestedMajor: 'Kỹ thuật Ô tô / Cơ điện tử & Mạng máy tính',
-    matchPercentage: 'Khá hợp (93%)',
-    schools: [
-      { name: 'ĐH CNTT & TT Thái Nguyên (ICTU)', score: '20.5đ', location: 'Thái Nguyên' },
-      { name: 'ĐH Kỹ thuật Công nghiệp (TNUT)', score: '19.5đ', location: 'Thái Nguyên' },
-      { name: 'ĐH Giao thông Vận tải (UTC)', score: '22.8đ', location: 'Hà Nội' },
-      { name: 'ĐH Sư phạm Kỹ thuật Hưng Yên (UTEHY)', score: '21.2đ', location: 'Hưng Yên' }
+    id: 'kythuat',
+    tabLabel: 'Kỹ thuật',
+    combos: 'Tổ hợp phổ biến: A00 • A01 • C01',
+    title: 'Cơ điện tử, Ô tô & Logistics',
+    summary: 'Tự động hóa nhà máy, kỹ thuật ô tô điện, điện – điện tử và vận hành chuỗi cung ứng.',
+    bannerBg: 'linear-gradient(135deg, #FEF3C7 0%, #FFEDD5 100%)',
+    bannerBorder: '#FDE68A',
+    accentColor: '#B45309',
+    pillBg: 'rgba(255, 255, 255, 0.88)',
+    metrics: [
+      { label: 'Điểm chuẩn phổ biến', value: '20.5 – 28.0đ', color: '#B45309' },
+      { label: 'Học phí công lập', value: '22 – 45 tr/năm', color: '#0369A1' },
+      { label: 'Lương mới ra trường', value: '10 – 16 tr/tháng', color: '#047857' }
     ],
-    realityCheck: 'Khối kỹ thuật học khá nặng các môn Toán, Lý, vẽ kỹ thuật và làm đồ án xưởng liên tục. Nếu chịu khó rèn tay nghề thực tế và đọc được tài liệu tiếng Anh thì cơ hội việc làm tại các nhà máy, khu công nghiệp rất rộng.',
-    startSalary: '10 – 15 triệu/tháng',
-    expSalary: '20 – 38 triệu/tháng'
+    schools: [
+      {
+        code: 'QSB',
+        name: 'ĐH Bách khoa – ĐHQG TP.HCM',
+        city: 'TP.HCM',
+        tuition: '30 – 50 tr/năm',
+        score: '25.5 – 28.5đ'
+      },
+      {
+        code: 'SPK',
+        name: 'ĐH Sư phạm Kỹ thuật TP.HCM',
+        city: 'TP.HCM',
+        tuition: '28 – 38 tr/năm',
+        score: '24.0 – 27.2đ'
+      },
+      {
+        code: 'GHA',
+        name: 'Đại học Giao thông Vận tải',
+        city: 'Hà Nội',
+        tuition: '22 – 35 tr/năm',
+        score: '21.5 – 26.2đ'
+      }
+    ],
+    note: 'Thực hành xưởng và đồ án kỹ thuật khá nặng; nhu cầu tuyển kỹ sư tại các khu công nghiệp rất lớn.',
+    searchQuery: 'Cơ điện tử',
+    renderIllustration: () => (
+      <svg viewBox="0 0 88 88" width="76" height="76" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="8" y="10" width="72" height="68" rx="16" fill="#FFFFFF" stroke="#FDE68A" strokeWidth="2" />
+        <circle cx="44" cy="44" r="14" stroke="#D97706" strokeWidth="4" />
+        <circle cx="44" cy="44" r="5" fill="#F59E0B" />
+        <path d="M44 23V28M44 60V65M23 44H28M60 44H65M29 29L33 33M55 55L59 59M59 29L55 33M33 55L29 59" stroke="#D97706" strokeWidth="3.2" strokeLinecap="round" />
+      </svg>
+    )
   }
 ];
 
-// Holland Radar Geometry Setup
-const RADAR_CENTER = { x: 180, y: 116 };
-const RADAR_MAX_R = 64;
-const RADAR_AXES = [
-  { key: 'R', label: 'R - Kỹ thuật', angle: -Math.PI / 2, labelX: 180, labelY: 34, anchor: 'middle' },
-  { key: 'I', label: 'I - Nghiên cứu', angle: -Math.PI / 6, labelX: 258, labelY: 82, anchor: 'start' },
-  { key: 'A', label: 'A - Nghệ thuật', angle: Math.PI / 6, labelX: 258, labelY: 154, anchor: 'start' },
-  { key: 'S', label: 'S - Xã hội', angle: Math.PI / 2, labelX: 180, labelY: 204, anchor: 'middle' },
-  { key: 'E', label: 'E - Quản lý', angle: (5 * Math.PI) / 6, labelX: 102, labelY: 154, anchor: 'end' },
-  { key: 'C', label: 'C - Nghiệp vụ', angle: (-5 * Math.PI) / 6, labelX: 102, labelY: 82, anchor: 'end' }
-];
-
-// Concentric polygon grids
-const RADAR_GRID_LEVELS = [0.25, 0.5, 0.75, 1.0];
-const RADAR_GRID_POLYGONS = RADAR_GRID_LEVELS.map((lvl) =>
-  RADAR_AXES.map((axis) => {
-    const x = RADAR_CENTER.x + RADAR_MAX_R * lvl * Math.cos(axis.angle);
-    const y = RADAR_CENTER.y + RADAR_MAX_R * lvl * Math.sin(axis.angle);
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(' ')
-);
-
-// Quick Matcher Filter Options
+// Quick Matcher Filter Options (clean plain Vietnamese labels, no clutter emojis)
 const MATCHER_PROVINCES = [
-  { id: 'all', label: 'Tất cả khu vực', queryTag: '' },
-  { id: 'hanoi', label: '🏛️ Hà Nội', queryTag: 'Hà Nội' },
-  { id: 'thainguyen', label: '⛰️ Thái Nguyên', queryTag: 'Thái Nguyên' },
-  { id: 'haiphong', label: '⚓ Hải Phòng', queryTag: 'Hải Phòng' },
-  { id: 'quangninh', label: '💎 Quảng Ninh', queryTag: 'Quảng Ninh' },
-  { id: 'thaibinh', label: '🌾 Thái Bình & Nam Định', queryTag: 'Thái Bình' },
-  { id: 'danang', label: '🌊 Đà Nẵng & Huế', queryTag: 'Đà Nẵng' },
-  { id: 'tphcm', label: '🏙️ TP.HCM', queryTag: 'TP.HCM' }
+  { id: 'all', label: 'Tất cả tỉnh thành', queryTag: '' },
+  { id: 'hanoi', label: 'Hà Nội', queryTag: 'Hà Nội' },
+  { id: 'thainguyen', label: 'Thái Nguyên', queryTag: 'Thái Nguyên' },
+  { id: 'haiphong', label: 'Hải Phòng', queryTag: 'Hải Phòng' },
+  { id: 'quangninh', label: 'Quảng Ninh', queryTag: 'Quảng Ninh' },
+  { id: 'thaibinh', label: 'Thái Bình & Nam Định', queryTag: 'Thái Bình' },
+  { id: 'danang', label: 'Đà Nẵng & Huế', queryTag: 'Đà Nẵng' },
+  { id: 'tphcm', label: 'TP.HCM', queryTag: 'TP.HCM' }
 ];
 
 const MATCHER_COMBOS = [
@@ -176,32 +246,18 @@ const MATCHER_COMBOS = [
 
 export default function HomeView({ onNavigate, onSearchQuery }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activePersonaId, setActivePersonaId] = useState('linh');
+  const [activeFieldId, setActiveFieldId] = useState('kinhte');
 
   // Quick Score Matcher States
   const [matcherProvince, setMatcherProvince] = useState('all');
   const [matcherCombo, setMatcherCombo] = useState('all');
   const [matcherScore, setMatcherScore] = useState(24.5);
 
-  const activePersona = PERSONAS_DATA.find(p => p.id === activePersonaId) || PERSONAS_DATA[0];
-
-  // Dynamic Asymmetric Polygon Points for Active Persona
-  const activeDataPoints = useMemo(() => {
-    return RADAR_AXES.map((axis) => {
-      const score = activePersona.radarValues[axis.key] || 50;
-      const r = (score / 100) * RADAR_MAX_R;
-      const x = RADAR_CENTER.x + r * Math.cos(axis.angle);
-      const y = RADAR_CENTER.y + r * Math.sin(axis.angle);
-      return { ...axis, score, x, y };
-    });
-  }, [activePersona]);
-
-  const activePolygonString = activeDataPoints.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const activeField = FIELD_SHOWCASES.find((f) => f.id === activeFieldId) || FIELD_SHOWCASES[0];
 
   // Real-time Matching calculation for Quick Matcher Bar
   const matchedUniversities = useMemo(() => {
     return (UNIVERSITIES_DATA || []).filter((u) => {
-      // Province match
       if (matcherProvince !== 'all') {
         if (matcherProvince === 'thaibinh') {
           if (u.provinceCode !== 'thaibinh' && u.provinceCode !== 'thaibinh-namdinh') return false;
@@ -210,7 +266,6 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
         }
       }
 
-      // Benchmark range matching
       const str = u.benchmarkHistory?.forecast2026 || u.benchmarks || '';
       const nums = str.match(/\d+(\.\d+)?/g);
       let minScore = 18;
@@ -223,7 +278,6 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
         maxScore = parseFloat(nums[0]) + 1.2;
       }
 
-      // Check whether score is reachable and competitive
       return minScore <= matcherScore + 0.8 && maxScore >= matcherScore - 4.0;
     });
   }, [matcherProvince, matcherScore]);
@@ -232,6 +286,8 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
     e.preventDefault();
     if (searchTerm.trim()) {
       onSearchQuery(searchTerm.trim());
+      onNavigate('search');
+    } else {
       onNavigate('search');
     }
   };
@@ -251,141 +307,66 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
   };
 
   const handleViewMatchedSchools = () => {
-    const selectedProvObj = MATCHER_PROVINCES.find(p => p.id === matcherProvince);
-    const query = selectedProvObj && selectedProvObj.queryTag 
-      ? selectedProvObj.queryTag 
-      : (matcherCombo !== 'all' ? matcherCombo : `${matcherScore}đ`);
+    const selectedProvObj = MATCHER_PROVINCES.find((p) => p.id === matcherProvince);
+    const query =
+      selectedProvObj && selectedProvObj.queryTag
+        ? selectedProvObj.queryTag
+        : matcherCombo !== 'all'
+          ? matcherCombo
+          : `${matcherScore}đ`;
     onSearchQuery(query);
     onNavigate('search');
   };
 
   return (
     <div className="tab-pane-animate">
-      {/* 1. OPEN EDITORIAL CANVAS HERO SECTION */}
+      {/* 1. CLEAN DAYLIGHT HERO SECTION */}
       <div className="hero-editorial-canvas">
-        <div className="ambient-hero-glow" />
-
         <div className="hero-editorial-grid">
-          {/* LEFT COLUMN: TOUCHING THE DEEPEST PAIN POINTS OF HIGH SCHOOL SENIORS & PARENTS */}
-          <div>
-            {/* Minimal Eyebrow Tagline */}
+          {/* LEFT COLUMN: CLEAR HUMAN HOOK, DIRECT SEARCH & 3 SIMPLE TOOLS */}
+          <div className="hero-left-col">
             <div className="hero-eyebrow-minimal">
-              <span className="eyebrow-live-indicator">
-                <span className="live-pulse" />
-                <span className="live-dot" />
-              </span>
-              <span>Điểm chuẩn, học phí 111 trường Đại học &amp; góc nhìn thực tế 52 ngành học</span>
+              <span className="eyebrow-dot-calm" />
+              <span>Cẩm nang tuyển sinh Đại học 2026 • 52 ngành • 111 trường</span>
             </div>
 
-            {/* Main Headline (H1 - 3 Lines) */}
             <h1 className="hero-h1-editorial">
-              <span className="hero-headline-line">Giữa ngành bố mẹ khuyên học,</span>
-              <span className="hero-headline-line">ngành bạn bè rủ thi cùng</span>
-              <span className="hero-headline-line">
-                <span className="hero-headline-emphasis">
-                  đâu mới là ngành hợp với bạn?
-                  <svg className="curved-underline-indigo" viewBox="0 0 170 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 9C48 2.5 122 2 167 8" stroke="#4F46E5" strokeWidth="3.2" strokeLinecap="round" />
-                  </svg>
-                </span>
+              <span className="hero-headline-line">Tìm hiểu kỹ ngành định học</span>
+              <span className="hero-headline-line hero-headline-accent">
+                trước khi đăng ký nguyện vọng.
               </span>
             </h1>
 
-            {/* Sub-headline */}
             <p className="hero-subheadline-editorial">
-              Chọn ngành đại học không cần những lời quảng cáo màu hồng. Tại đây, bạn và gia đình có thể xem thẳng điểm chuẩn vài năm gần đây, học phí dự kiến, thu nhập khi mới ra trường và cả những vất vả ít ai nói trước tại các trường từ Hà Nội, Thái Nguyên, Hải Phòng tới Đà Nẵng, TP.HCM.
+              Tra nhanh điểm chuẩn, mức học phí của 111 trường Đại học cả nước và xem trước công việc, thu nhập thực tế sau khi ra trường.
             </p>
 
-            {/* 3 Interactive Pain-Point Cards */}
-            <div className="pain-points-block">
-              <div className="pain-points-header">
-                <Sparkles size={14} color="#4F46E5" />
-                <span>BẠN ĐANG BĂN KHOĂN ĐIỀU GÌ? CHỌN MỘT MỤC ĐỂ BẮT ĐẦU:</span>
-              </div>
-
-              <div className="pain-points-list">
-                {/* Card 1: Khám phá bản thân (Featured Indigo) */}
-                <div 
-                  className="pain-point-action-card featured"
-                  onClick={() => onNavigate('self')}
-                  id="card-painpoint-self"
-                >
-                  <div className="pain-point-icon-badge" style={{ background: '#EEF2FF', color: '#4F46E5', border: '1px solid #C7D2FE' }}>
-                    <Compass size={20} strokeWidth={2.4} />
-                  </div>
-                  <div className="pain-point-content">
-                    <div className="pain-point-title">&ldquo;Mình vẫn chưa rõ bản thân hợp với ngành nào&rdquo;</div>
-                    <div className="pain-point-subtitle">
-                      <span>Trả lời 5 câu hỏi ngắn về môn học &amp; tính cách để xem nhóm ngành gợi ý →</span>
-                    </div>
-                  </div>
-                  <ArrowRight size={18} className="pain-point-arrow" />
-                </div>
-
-                {/* Card 2: Đấu trường so sánh */}
-                <div 
-                  className="pain-point-action-card"
-                  onClick={() => onNavigate('compare')}
-                  id="card-painpoint-compare"
-                >
-                  <div className="pain-point-icon-badge" style={{ background: '#FEF3C7', color: '#D97706', border: '1px solid #FDE68A' }}>
-                    <Scale size={20} strokeWidth={2.4} />
-                  </div>
-                  <div className="pain-point-content">
-                    <div className="pain-point-title">&ldquo;Mình đang phân vân giữa 2 – 3 ngành, chưa chốt được&rdquo;</div>
-                    <div className="pain-point-subtitle">
-                      <span>Đặt các ngành cạnh nhau để so điểm chuẩn, học phí, lương khởi điểm &amp; áp lực nghề →</span>
-                    </div>
-                  </div>
-                  <ArrowRight size={18} className="pain-point-arrow" />
-                </div>
-
-                {/* Card 3: Tra cứu theo điểm & trường */}
-                <div 
-                  className="pain-point-action-card"
-                  onClick={handleScrollToMatcher}
-                  id="card-painpoint-matcher"
-                >
-                  <div className="pain-point-icon-badge" style={{ background: '#F0F9FF', color: '#0284C7', border: '1px solid #BAE6FD' }}>
-                    <Search size={20} strokeWidth={2.4} />
-                  </div>
-                  <div className="pain-point-content">
-                    <div className="pain-point-title">&ldquo;Mình đã nhắm khoảng điểm thi, muốn tìm trường vừa sức&rdquo;</div>
-                    <div className="pain-point-subtitle">
-                      <span>Lọc nhanh trường phù hợp theo mức điểm (16 – 29đ) tại Hà Nội, Thái Nguyên, Hải Phòng, TP.HCM... →</span>
-                    </div>
-                  </div>
-                  <ArrowRight size={18} className="pain-point-arrow" />
-                </div>
-              </div>
-            </div>
-
-            {/* Streamlined Search Row */}
-            <div className="hero-bottom-search-row">
+            {/* Primary Search Box */}
+            <div className="hero-primary-search-wrap">
               <form onSubmit={handleSearchSubmit} className="hero-search-human-box">
-                <Search size={18} color="#64748B" strokeWidth={2} style={{ marginRight: '8px', flexShrink: 0 }} />
+                <Search size={19} color="#64748B" strokeWidth={2.2} style={{ marginRight: '10px', flexShrink: 0 }} />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Gõ tên ngành, mã trường hoặc khối thi (VD: Marketing, TMU, BKA, A00)..."
+                  placeholder="Tìm ngành hoặc trường (VD: Marketing, Bách khoa, NEU)..."
                   className="hero-search-human-input"
                   id="hero-search-input"
                 />
-                <button type="submit" className="hero-search-human-badge" title="Nhấn để tra cứu">
-                  <span>Tìm ↵</span>
+                <button type="submit" className="hero-search-submit-btn">
+                  Tra cứu
                 </button>
               </form>
 
-              {/* Quick Tags */}
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.78rem', fontWeight: '750', color: '#64748B' }}>Tìm nhiều:</span>
+              <div className="hero-quick-topics">
+                <span className="hero-quick-topics-label">Xem nhanh:</span>
                 {[
-                  { label: 'Marketing & Truyền thông', query: 'Marketing' },
-                  { label: 'Kinh doanh & QTKD', query: 'Kinh doanh' },
-                  { label: 'Y Dược & Sức khỏe', query: 'Y đa khoa' },
-                  { label: 'Vi mạch & Bán dẫn', query: 'Vi mạch' },
-                  { label: 'CNTT & Trí tuệ nhân tạo', query: 'Công nghệ thông tin' }
+                  { label: 'CNTT', query: 'Công nghệ thông tin' },
+                  { label: 'Marketing', query: 'Marketing' },
+                  { label: 'Kinh tế', query: 'Kinh doanh' },
+                  { label: 'Y Dược', query: 'Y khoa' },
+                  { label: 'Vi mạch', query: 'Vi mạch' },
+                  { label: 'Logistics', query: 'Logistics' }
                 ].map((tag, i) => (
                   <button
                     key={i}
@@ -393,235 +374,209 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     className="quick-tag-human"
                     onClick={() => handleQuickTagClick(tag.query)}
                   >
-                    <span style={{ color: '#4F46E5', fontWeight: '750' }}>#</span>
-                    <span>{tag.label}</span>
+                    {tag.label}
                   </button>
                 ))}
               </div>
             </div>
+
+            {/* 3 Clean Tool Cards (No quotes, no sparkles, no ALL-CAPS) */}
+            <div className="hero-tools-list">
+              <button
+                type="button"
+                className="pain-point-action-card featured"
+                onClick={() => onNavigate('self')}
+                id="card-painpoint-self"
+              >
+                <div className="pain-point-icon-badge" style={{ background: '#EEF2FF', color: '#4F46E5' }}>
+                  <Compass size={20} strokeWidth={2.2} />
+                </div>
+                <div className="pain-point-content">
+                  <div className="pain-point-title">Trắc nghiệm chọn ngành</div>
+                  <div className="pain-point-subtitle">
+                    5 câu hỏi ngắn gợi ý nhóm ngành hợp môn học và sở thích
+                  </div>
+                </div>
+                <ArrowRight size={17} className="pain-point-arrow" />
+              </button>
+
+              <button
+                type="button"
+                className="pain-point-action-card"
+                onClick={() => onNavigate('compare')}
+                id="card-painpoint-compare"
+              >
+                <div className="pain-point-icon-badge" style={{ background: '#FEF3C7', color: '#D97706' }}>
+                  <Scale size={20} strokeWidth={2.2} />
+                </div>
+                <div className="pain-point-content">
+                  <div className="pain-point-title">So sánh 2 – 3 ngành</div>
+                  <div className="pain-point-subtitle">
+                    Đặt các ngành cạnh nhau để xem điểm chuẩn, học phí và mức lương
+                  </div>
+                </div>
+                <ArrowRight size={17} className="pain-point-arrow" />
+              </button>
+
+              <button
+                type="button"
+                className="pain-point-action-card"
+                onClick={handleScrollToMatcher}
+                id="card-painpoint-matcher"
+              >
+                <div className="pain-point-icon-badge" style={{ background: '#E0F2FE', color: '#0284C7' }}>
+                  <Sliders size={20} strokeWidth={2.2} />
+                </div>
+                <div className="pain-point-content">
+                  <div className="pain-point-title">Lọc trường vừa tầm điểm</div>
+                  <div className="pain-point-subtitle">
+                    Ước tính nhanh trường phù hợp từ 16 đến 29 điểm theo tỉnh thành
+                  </div>
+                </div>
+                <ArrowRight size={17} className="pain-point-arrow" />
+              </button>
+            </div>
           </div>
 
-          {/* RIGHT COLUMN: LIVE INTERACTIVE PERSONA SIMULATOR */}
-          <div className="live-persona-container">
-            <div className="live-persona-card">
-              {/* 4 Clickable Persona Tabs */}
-              <div className="persona-tabs-bar" role="tablist">
-                {PERSONAS_DATA.map((p) => {
-                  const isActive = p.id === activePersonaId;
+          {/* RIGHT COLUMN: VISUAL MAJOR & OFFICIAL UNIVERSITY SHOWCASE */}
+          <div className="showcase-card-wrap">
+            <div className="showcase-card">
+              {/* 4 Clean Tabs */}
+              <div className="showcase-tabs-bar" role="tablist" aria-label="Nhóm ngành phổ biến">
+                {FIELD_SHOWCASES.map((item) => {
+                  const isActive = item.id === activeFieldId;
                   return (
                     <button
-                      key={p.id}
+                      key={item.id}
                       type="button"
-                      className={`persona-tab-btn ${isActive ? 'active' : ''}`}
-                      onClick={() => setActivePersonaId(p.id)}
-                      title={p.fullName}
+                      role="tab"
+                      aria-selected={isActive}
+                      className={`showcase-tab-btn ${isActive ? 'active' : ''}`}
+                      onClick={() => setActiveFieldId(item.id)}
                     >
-                      {p.tabLabel}
+                      {item.tabLabel}
                     </button>
                   );
                 })}
               </div>
 
-              {/* Persona Metadata Header */}
-              <div className="persona-meta-header">
-                <div>
-                  <div className="persona-name-title">
-                    {activePersona.avatar} {activePersona.fullName}
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: '#64748B', marginTop: '2px' }}>
-                    {activePersona.archetype}
-                  </div>
-                </div>
-
-                <div className="persona-score-pill">
-                  <span>{activePersona.scoreCombo}</span>
-                </div>
-              </div>
-
-              {/* Live Vector Holland RIASEC Radar (Asymmetric Polygon & Dynamic Transition) */}
-              <div className="persona-radar-wrap">
-                <svg viewBox="0 0 360 232" className="persona-radar-svg">
-                  <defs>
-                    <linearGradient id="liveRadarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.45" />
-                      <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.22" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* Concentric grid rings */}
-                  {RADAR_GRID_POLYGONS.map((poly, idx) => (
-                    <polygon
-                      key={idx}
-                      points={poly}
-                      fill={idx % 2 === 0 ? 'rgba(248, 250, 252, 0.85)' : 'rgba(241, 245, 249, 0.45)'}
-                      stroke="#E2E8F0"
-                      strokeWidth="1"
-                      strokeDasharray={idx < 3 ? '2 2' : 'none'}
-                    />
-                  ))}
-
-                  {/* Axis lines */}
-                  {RADAR_AXES.map((axis, idx) => {
-                    const x2 = RADAR_CENTER.x + RADAR_MAX_R * Math.cos(axis.angle);
-                    const y2 = RADAR_CENTER.y + RADAR_MAX_R * Math.sin(axis.angle);
-                    return (
-                      <line
-                        key={idx}
-                        x1={RADAR_CENTER.x}
-                        y1={RADAR_CENTER.y}
-                        x2={x2}
-                        y2={y2}
-                        stroke="#CBD5E1"
-                        strokeWidth="1.1"
-                      />
-                    );
-                  })}
-
-                  {/* Asymmetric Dynamic Data Polygon with Smooth Morphing Transition */}
-                  <polygon
-                    points={activePolygonString}
-                    fill="url(#liveRadarGrad)"
-                    stroke="#4F46E5"
-                    strokeWidth="2.4"
-                    className="radar-morph-polygon"
-                  />
-
-                  {/* Vertices with smooth animated positions */}
-                  {activeDataPoints.map((p, idx) => (
-                    <circle
-                      key={idx}
-                      cx={p.x}
-                      cy={p.y}
-                      r="4"
-                      fill="#FFFFFF"
-                      stroke="#4F46E5"
-                      strokeWidth="2.2"
-                      className="radar-morph-circle"
-                    />
-                  ))}
-
-                  {/* Asymmetric Score Labels */}
-                  {activeDataPoints.map((d, idx) => (
-                    <text
-                      key={idx}
-                      x={d.labelX}
-                      y={d.labelY}
-                      textAnchor={d.anchor}
-                      fontSize="9.5"
-                      fontWeight="750"
-                      fill={d.score >= 80 ? '#4338CA' : '#64748B'}
-                      fontFamily="var(--font-ui)"
-                    >
-                      {d.label} ({d.score}%)
-                    </text>
-                  ))}
-                </svg>
-              </div>
-
-              {/* Analysis Panel: Suggested Major & Real Benchmarks */}
-              <div className="persona-analysis-card">
-                <div className="persona-major-suggested">
-                  <div>
-                    <div style={{ fontSize: '0.72rem', fontWeight: '800', color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      Ví dụ hồ sơ học sinh — Ngành gợi ý:
-                    </div>
-                    <div className="persona-major-name">
-                      {activePersona.suggestedMajor}
-                    </div>
-                  </div>
-                  <span className="persona-match-badge">
-                    {activePersona.matchPercentage}
-                  </span>
-                </div>
-
-                {/* 4 Universities with Real Benchmarks */}
-                <div className="persona-schools-list">
-                  {activePersona.schools.map((sch, i) => (
-                    <div key={i} className="persona-school-item">
-                      <div className="persona-school-name" title={sch.name}>
-                        {sch.name}
-                      </div>
-                      <div className="persona-school-score">
-                        {sch.score}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Reality Check Box (Amber Alert) */}
-              <div className="persona-reality-check">
-                <AlertTriangle size={17} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <div>
-                  <strong>Thực tế cần biết: </strong>
-                  <span>{activePersona.realityCheck}</span>
-                </div>
-              </div>
-
-              {/* Bottom Metrics Strip */}
-              <div className="persona-metrics-strip">
-                <div>
-                  <div className="persona-metric-label">Mới ra trường</div>
-                  <div className="persona-metric-value" style={{ color: '#059669' }}>
-                    {activePersona.startSalary}
-                  </div>
-                </div>
-
-                <div>
-                  <div className="persona-metric-label">Sau khoảng 3 năm</div>
-                  <div className="persona-metric-value" style={{ color: '#0284C7' }}>
-                    {activePersona.expSalary}
-                  </div>
-                </div>
-
-                <div style={{ textAlign: 'right' }}>
-                  <button
-                    type="button"
-                    className="persona-cta-self"
-                    onClick={() => onNavigate('self')}
+              {/* Soft Daylight Visual Banner */}
+              <div
+                className="showcase-visual-banner"
+                style={{
+                  background: activeField.bannerBg,
+                  borderColor: activeField.bannerBorder
+                }}
+              >
+                <div className="showcase-banner-text">
+                  <span
+                    className="showcase-combo-pill"
+                    style={{
+                      background: activeField.pillBg,
+                      color: activeField.accentColor
+                    }}
                   >
-                    <span>Làm thử cho bạn</span>
-                    <ArrowRight size={14} />
-                  </button>
+                    {activeField.combos}
+                  </span>
+                  <h2 className="showcase-banner-title">{activeField.title}</h2>
+                  <p className="showcase-banner-summary">{activeField.summary}</p>
                 </div>
+                <div className="showcase-banner-illustration">
+                  {activeField.renderIllustration()}
+                </div>
+              </div>
+
+              {/* 3 Crisp Stat Tiles */}
+              <div className="showcase-metrics-grid">
+                {activeField.metrics.map((m, idx) => (
+                  <div key={idx} className="showcase-metric-tile">
+                    <div className="showcase-metric-label">{m.label}</div>
+                    <div className="showcase-metric-value" style={{ color: m.color }}>
+                      {m.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 3 Official Universities with Real Crests/Logos */}
+              <div className="showcase-uni-section">
+                <div className="showcase-uni-heading">
+                  <span>Trường đào tạo tiêu biểu</span>
+                  <span className="showcase-uni-hint">Bấm vào trường để xem chi tiết</span>
+                </div>
+
+                <div className="showcase-uni-list">
+                  {activeField.schools.map((sch) => (
+                    <button
+                      key={sch.code}
+                      type="button"
+                      className="showcase-uni-row"
+                      onClick={() => {
+                        onSearchQuery(sch.code);
+                        onNavigate('search');
+                      }}
+                    >
+                      <UniversityLogo code={sch.code} name={sch.name} size={42} />
+                      <div className="showcase-uni-info">
+                        <div className="showcase-uni-name">{sch.name}</div>
+                        <div className="showcase-uni-meta">
+                          Mã {sch.code} • {sch.city} • Học phí {sch.tuition}
+                        </div>
+                      </div>
+                      <span className="showcase-uni-score">{sch.score}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Calm Note & Direct Link */}
+              <div className="showcase-footer">
+                <p className="showcase-note-text">{activeField.note}</p>
+                <button
+                  type="button"
+                  className="showcase-more-btn"
+                  onClick={() => {
+                    onSearchQuery(activeField.searchQuery);
+                    onNavigate('search');
+                  }}
+                >
+                  <span>Xem các ngành thuộc nhóm này</span>
+                  <ArrowRight size={15} />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 2. QUICK SCORE MATCHER BAR (INTERACTIVE TOOL DIRECTLY BELOW HERO) */}
+      {/* 2. QUICK SCORE MATCHER BAR (CLEAN DAYLIGHT CARD) */}
       <div id="quick-score-matcher-bar" className="quick-score-matcher-card">
-        <div className="matcher-decor-glow" />
-
         <div className="matcher-header-row">
           <div className="matcher-title-group">
             <div className="matcher-badge-icon">
-              <Sliders size={18} strokeWidth={2.4} />
+              <Sliders size={18} strokeWidth={2.2} />
             </div>
             <div>
               <div className="matcher-title-main">
-                Ước tính nhanh trường phù hợp theo điểm &amp; khu vực
+                Ước tính nhanh trường phù hợp theo điểm và khu vực
               </div>
               <div className="matcher-title-sub">
-                Đối chiếu mặt bằng điểm chuẩn 2024 – 2025 và mức dự kiến 2026 của 111 trường Đại học, Học viện
+                Đối chiếu mặt bằng điểm chuẩn 2024 – 2025 của 111 trường Đại học, Học viện trên cả nước
               </div>
             </div>
           </div>
 
           <div className="matcher-live-count-badge">
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+            <span className="matcher-live-dot" />
             <span>Có {matchedUniversities.length} trường trong tầm điểm</span>
           </div>
         </div>
 
-        {/* Controls Grid */}
         <div className="matcher-controls-grid">
-          {/* Province Selector */}
           <div className="matcher-field-col">
             <label className="matcher-field-label">
               <MapPin size={13} />
-              <span>1. Nơi muốn theo học</span>
+              <span>Khu vực muốn học</span>
             </label>
             <select
               value={matcherProvince}
@@ -636,11 +591,10 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             </select>
           </div>
 
-          {/* Combination Selector */}
           <div className="matcher-field-col">
             <label className="matcher-field-label">
               <Building2 size={13} />
-              <span>2. Khối / Tổ hợp xét tuyển</span>
+              <span>Tổ hợp xét tuyển</span>
             </label>
             <select
               value={matcherCombo}
@@ -655,11 +609,10 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
             </select>
           </div>
 
-          {/* Score Slider */}
           <div className="matcher-field-col">
             <label className="matcher-field-label">
               <TrendingUp size={13} />
-              <span>3. Điểm thi dự kiến</span>
+              <span>Mức điểm dự kiến</span>
             </label>
             <div className="matcher-slider-container">
               <input
@@ -671,13 +624,10 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                 onChange={(e) => setMatcherScore(parseFloat(e.target.value))}
                 className="matcher-slider-input"
               />
-              <span className="matcher-score-display">
-                {matcherScore.toFixed(2)}đ
-              </span>
+              <span className="matcher-score-display">{matcherScore.toFixed(2)}đ</span>
             </div>
           </div>
 
-          {/* Action CTA Button */}
           <div className="matcher-field-col">
             <button
               type="button"
@@ -691,84 +641,83 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
         </div>
       </div>
 
-      {/* 3. STATS TRUST GRID (SUNLIGHT PASTEL BENTO) */}
+      {/* 3. STATS OVERVIEW GRID */}
       <div className="stats-grid-container">
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 100%)', borderColor: '#C7D2FE' }}>
           <div className="stat-metric-number" style={{ color: '#4338CA' }}>52 ngành</div>
-          <div className="stat-metric-title">Hồ sơ ngành học sát thực tế</div>
-          <div className="stat-metric-desc">Có sẵn mức lương mới ra trường, môn học năm đầu và những áp lực hay gặp</div>
+          <div className="stat-metric-title">Thông tin ngành sát thực tế</div>
+          <div className="stat-metric-desc">Có sẵn mức lương mới ra trường, các môn học năm đầu và những vất vả hay gặp</div>
         </div>
 
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%)', borderColor: '#BAE6FD' }}>
           <div className="stat-metric-number" style={{ color: '#0284C7' }}>111 trường</div>
           <div className="stat-metric-title">Đại học &amp; Học viện 3 miền</div>
-          <div className="stat-metric-desc">Kèm mã trường, điểm chuẩn vài năm gần đây, học phí và ký túc xá</div>
+          <div className="stat-metric-desc">Kèm mã trường, điểm chuẩn vài năm gần đây, học phí dự kiến và ký túc xá</div>
         </div>
 
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%)', borderColor: '#A7F3D0' }}>
           <div className="stat-metric-number" style={{ color: '#059669' }}>68 video</div>
-          <div className="stat-metric-title">Chuyện người thật, việc thật</div>
-          <div className="stat-metric-desc">Nghe anh chị đi trước kể về một ngày đi làm và những góc khuất trong nghề</div>
+          <div className="stat-metric-title">Chia sẻ từ người trong nghề</div>
+          <div className="stat-metric-desc">Nghe anh chị đi trước kể về một ngày làm việc thực tế tại bệnh viện, công ty, nhà máy</div>
         </div>
 
         <div className="stat-item-box" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #FEF3C7 100%)', borderColor: '#FDE68A' }}>
-          <div className="stat-metric-number" style={{ color: '#D97706' }}>Riêng tư</div>
+          <div className="stat-metric-number" style={{ color: '#D97706' }}>Miễn phí</div>
           <div className="stat-metric-title">Không cần tạo tài khoản</div>
-          <div className="stat-metric-desc">Không thu số điện thoại tư vấn; mọi ghi chú chỉ lưu ngay trên trình duyệt</div>
+          <div className="stat-metric-desc">Không thu số điện thoại tư vấn; mọi ghi chú nguyện vọng chỉ lưu trên máy của bạn</div>
         </div>
       </div>
 
-      {/* 4. 4-STEP ROUTE JOURNEY WITH PASTEL ACCENT COLORS */}
+      {/* 4. 4-STEP GUIDE */}
       <div className="steps-section-wrapper">
-        <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-          <div className="pill-badge" style={{ marginBottom: '10px' }}>GỢI Ý CÁCH XEM</div>
-          <h2 style={{ fontSize: '2.1rem' }}>4 bước để chọn nguyện vọng chắc tay hơn</h2>
-          <p style={{ color: '#64748B', maxWidth: '60ch', margin: '0 auto', fontSize: '0.96rem' }}>
-            Thay vì chọn theo cảm tính hay chạy theo ngành đang được nhắc nhiều trên mạng, bạn có thể đi lần lượt từng bước dưới đây cùng gia đình.
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <h2 style={{ fontSize: '1.95rem', marginBottom: '8px' }}>4 bước chọn nguyện vọng cùng gia đình</h2>
+          <p style={{ color: '#64748B', maxWidth: '56ch', margin: '0 auto', fontSize: '0.95rem' }}>
+            Đi lần lượt từng bước giúp bạn thu hẹp dần lựa chọn thay vì đăng ký theo cảm tính.
           </p>
         </div>
 
         <div className="steps-grid-container">
           {[
-            { 
-              step: '01', 
-              title: 'Trắc nghiệm chọn ngành', 
-              desc: '5 câu hỏi ngắn về môn học bạn khá nhất và kiểu công việc bạn muốn gắn bó lâu dài', 
-              tab: 'self', 
-              icon: Compass, 
-              color: '#4F46E5', 
-              bg: '#EEF2FF', 
-              className: 'step-card-edtech step-card-blue' 
+            {
+              step: '01',
+              title: 'Trắc nghiệm chọn ngành',
+              desc: '5 câu hỏi ngắn về môn học bạn khá nhất và môi trường làm việc mong muốn',
+              tab: 'self',
+              icon: Compass,
+              color: '#4F46E5',
+              bg: '#EEF2FF',
+              className: 'step-card-edtech step-card-blue'
             },
-            { 
-              step: '02', 
-              title: 'Tra cứu ngành & trường', 
-              desc: 'Xem điểm chuẩn, học phí, tổ hợp môn xét tuyển và đời sống sinh viên từng trường', 
-              tab: 'search', 
-              icon: Search, 
-              color: '#0EA5E9', 
-              bg: '#F0F9FF', 
-              className: 'step-card-edtech step-card-violet' 
+            {
+              step: '02',
+              title: 'Tra cứu ngành & trường',
+              desc: 'Xem điểm chuẩn, học phí, tổ hợp môn xét tuyển và thông tin từng trường',
+              tab: 'search',
+              icon: Search,
+              color: '#0284C7',
+              bg: '#E0F2FE',
+              className: 'step-card-edtech step-card-violet'
             },
-            { 
-              step: '03', 
-              title: 'So sánh các lựa chọn', 
-              desc: 'Đặt 2 – 3 ngành đang phân vân cạnh nhau và chỉnh mức ưu tiên theo điều kiện gia đình', 
-              tab: 'compare', 
-              icon: Layers, 
-              color: '#D97706', 
-              bg: '#FEF3C7', 
-              className: 'step-card-edtech step-card-amber' 
+            {
+              step: '03',
+              title: 'So sánh các lựa chọn',
+              desc: 'Đặt 2 – 3 ngành đang phân vân cạnh nhau để cân đối với điều kiện gia đình',
+              tab: 'compare',
+              icon: Layers,
+              color: '#D97706',
+              bg: '#FEF3C7',
+              className: 'step-card-edtech step-card-amber'
             },
-            { 
-              step: '04', 
-              title: 'Lên kế hoạch ôn thi', 
-              desc: 'Ghi lại nguyện vọng chính, phương án dự phòng và các mốc cần chuẩn bị cho kỳ thi 2026', 
-              tab: 'roadmap', 
-              icon: Award, 
-              color: '#059669', 
-              bg: '#ECFDF5', 
-              className: 'step-card-edtech step-card-emerald' 
+            {
+              step: '04',
+              title: 'Lên kế hoạch ôn thi',
+              desc: 'Lưu lại nguyện vọng chính, phương án dự phòng và các mốc thi quan trọng năm 2026',
+              tab: 'roadmap',
+              icon: Award,
+              color: '#059669',
+              bg: '#ECFDF5',
+              className: 'step-card-edtech step-card-emerald'
             }
           ].map((item, i) => (
             <div
@@ -776,53 +725,53 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
               className={item.className}
               onClick={() => onNavigate(item.tab)}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <span style={{ fontSize: '1.3rem', fontWeight: '900', color: item.color, fontFamily: 'var(--font-display)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                <span style={{ fontSize: '1.2rem', fontWeight: '850', color: item.color, fontFamily: 'var(--font-display)' }}>
                   {item.step}
                 </span>
-                <div style={{ width: '42px', height: '42px', borderRadius: '14px', background: item.bg, color: item.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <item.icon size={22} strokeWidth={2.2} />
+                <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: item.bg, color: item.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <item.icon size={20} strokeWidth={2.2} />
                 </div>
               </div>
-              <h3 style={{ fontSize: '1.15rem', marginBottom: '8px', color: '#1E293B' }}>{item.title}</h3>
-              <p style={{ fontSize: '0.88rem', color: '#64748B', marginBottom: '16px', lineHeight: '1.5', flex: 1 }}>{item.desc}</p>
-              <span style={{ fontSize: '0.86rem', fontWeight: '700', color: item.color, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                Xem mục này <ArrowRight size={14} />
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '8px', color: '#1E293B' }}>{item.title}</h3>
+              <p style={{ fontSize: '0.88rem', color: '#64748B', marginBottom: '16px', lineHeight: '1.55', flex: 1 }}>{item.desc}</p>
+              <span style={{ fontSize: '0.85rem', fontWeight: '700', color: item.color, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                Mở xem <ArrowRight size={14} />
               </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* 5. 3 FEATURE HIGHLIGHTS */}
+      {/* 5. 3 PRACTICAL HIGHLIGHTS */}
       <div className="features-grid-container">
-        <div className="feature-card-pastel" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%)', borderColor: '#A7F3D0' }}>
-          <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#D1FAE5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-            <ShieldCheck size={24} strokeWidth={2.2} />
+        <div className="feature-card-pastel" style={{ background: '#FFFFFF', borderColor: '#E2E8F0' }}>
+          <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#ECFDF5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+            <ShieldCheck size={22} strokeWidth={2.2} />
           </div>
-          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Không làm phiền, không thu dữ liệu</h3>
-          <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.6' }}>
-            Bạn không cần đăng ký tài khoản hay để lại số điện thoại. Kết quả trắc nghiệm và danh sách ngành đang cân nhắc chỉ lưu ngay trên thiết bị của bạn.
+          <h3 style={{ fontSize: '1.12rem', marginBottom: '8px' }}>Không làm phiền, không thu dữ liệu</h3>
+          <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.6', margin: 0 }}>
+            Không cần đăng ký tài khoản hay để lại số điện thoại. Kết quả trắc nghiệm và danh sách ngành đang cân nhắc chỉ lưu ngay trên trình duyệt của bạn.
           </p>
         </div>
 
-        <div className="feature-card-pastel" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #FEF3C7 100%)', borderColor: '#FDE68A' }}>
-          <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#FDE68A', color: '#D97706', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-            <QrCode size={24} strokeWidth={2.2} />
+        <div className="feature-card-pastel" style={{ background: '#FFFFFF', borderColor: '#E2E8F0' }}>
+          <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#FEF3C7', color: '#D97706', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+            <QrCode size={22} strokeWidth={2.2} />
           </div>
-          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Dễ gửi cho bố mẹ cùng xem</h3>
-          <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.6' }}>
-            Sau khi chọn được nguyện vọng dự kiến, bạn có thể lưu lại phiếu mục tiêu kèm mã QR hoặc in ra giấy để trao đổi rõ ràng hơn với bố mẹ, thầy cô.
+          <h3 style={{ fontSize: '1.12rem', marginBottom: '8px' }}>Dễ gửi cho bố mẹ cùng xem</h3>
+          <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.6', margin: 0 }}>
+            Sau khi chọn được nguyện vọng dự kiến, bạn có thể lưu phiếu mục tiêu kèm mã QR hoặc in ra giấy để trao đổi rõ ràng hơn với gia đình, thầy cô.
           </p>
         </div>
 
-        <div className="feature-card-pastel" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 100%)', borderColor: '#C7D2FE' }}>
-          <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: '#E0E7FF', color: '#4F46E5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-            <Cpu size={24} strokeWidth={2.2} />
+        <div className="feature-card-pastel" style={{ background: '#FFFFFF', borderColor: '#E2E8F0' }}>
+          <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#EEF2FF', color: '#4F46E5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+            <MessageSquare size={22} strokeWidth={2.2} />
           </div>
-          <h3 style={{ fontSize: '1.18rem', marginBottom: '8px' }}>Hỏi đáp nhanh khi cần gỡ rối</h3>
-          <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.6' }}>
-            Khung hỏi đáp ở góc màn hình giúp bạn tra nhanh học phí, điểm chuẩn theo tỉnh thành hoặc so sánh hai ngành đang lưỡng lự bất cứ lúc nào.
+          <h3 style={{ fontSize: '1.12rem', marginBottom: '8px' }}>Hỏi nhanh khi đang phân vân</h3>
+          <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.6', margin: 0 }}>
+            Khung hỏi đáp ở góc phải dưới màn hình giúp bạn tra nhanh học phí, điểm chuẩn theo tỉnh thành hoặc đối chiếu hai ngành bất cứ lúc nào.
           </p>
         </div>
       </div>
