@@ -297,7 +297,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
       <div style={{ maxWidth: '860px', margin: '0 auto' }}>
         <div style={{ marginBottom: '28px', textAlign: 'center' }}>
           <div className="pill-badge" style={{ marginBottom: '10px' }}>🌱 BƯỚC 1 / 4 • TRẮC NGHIỆM CHỌN NGÀNH</div>
-          <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Tìm nhóm ngành hợp với môn học &amp; tính cách</h1>
+          <h1 className="view-hero-h1" style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Tìm nhóm ngành hợp với môn học &amp; tính cách</h1>
           <p style={{ color: '#64748B', maxWidth: '60ch', margin: '0 auto', fontSize: '0.98rem' }}>
             5 câu hỏi ngắn giúp bạn nhìn rõ thiên hướng học tập theo mô hình Holland (RIASEC) và chọn ra vài ngành đáng tìm hiểu kỹ hơn.
           </p>
@@ -332,13 +332,14 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
               Chọn tối đa <strong>3 môn</strong> mà bạn học có cảm hứng hoặc đạt kết quả tốt nhất:
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(185px, 1fr))', gap: '12px', marginBottom: '20px' }}>
+            <div className="self-subjects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(185px, 1fr))', gap: '12px', marginBottom: '20px' }}>
               {SUBJECTS.map((s, i) => {
                 const isSelected = selectedSubjects.includes(s.name);
                 return (
                   <button
                     key={i}
                     type="button"
+                    className="self-subject-btn"
                     onClick={() => handleToggleSubject(s.name)}
                     style={{
                       padding: '14px 16px',
@@ -644,7 +645,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
               }}
             />
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="self-step-actions">
               <button className="btn-edtech-secondary" onClick={() => setCurrentStep(4)}>
                 <ArrowLeft size={18} />
                 <span>Quay lại</span>
@@ -653,7 +654,6 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                 className="btn-edtech-primary"
                 onClick={handleFinish}
                 disabled={isSubmitting}
-                style={{ padding: '14px 32px' }}
               >
                 <Sparkles size={18} />
                 <span>{isSubmitting ? 'Đang tổng hợp kết quả...' : 'Xem nhóm ngành phù hợp'}</span>
@@ -747,7 +747,7 @@ export default function SelfDiscoveryView({ onNavigate, onBookmarkMajor }) {
                 </span>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '18px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '18px' }}>
                 {result.majors.map((m, idx) => {
                   const isSaved = savedMajorIds.includes(m.id);
                   return (

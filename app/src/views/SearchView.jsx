@@ -710,7 +710,7 @@ export default function SearchView({
         <div className="pill-badge" style={{ marginBottom: '10px' }}>
           🔍 BƯỚC 2 / 4 • TRA CỨU NGÀNH &amp; TRƯỜNG
         </div>
-        <h1 style={{ fontSize: 'clamp(1.75rem, 3.6vw, 2.35rem)', marginBottom: '8px' }}>
+        <h1 className="view-hero-h1" style={{ fontSize: 'clamp(1.75rem, 3.6vw, 2.35rem)', marginBottom: '8px' }}>
           Tra cứu ngành học, trường Đại học &amp; khối thi
         </h1>
         <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.96rem' }}>
@@ -722,6 +722,7 @@ export default function SearchView({
           GLOBAL REGIONAL BAR (THANH CHỌN KHU VỰC CỐ ĐỊNH XUYÊN SUỐT)
           ========================================================================= */}
       <div
+        className="search-region-card"
         style={{
           background: '#FFFFFF',
           borderRadius: '22px',
@@ -783,12 +784,12 @@ export default function SearchView({
 
         {/* 10 Region Pills */}
         <div
+          className="touch-chip-scroller"
           style={{
             display: 'flex',
             gap: '8px',
             overflowX: 'auto',
-            paddingBottom: '4px',
-            scrollbarWidth: 'thin'
+            paddingBottom: '4px'
           }}
         >
           {PROVINCE_GROUPS.map((prov) => {
@@ -925,6 +926,7 @@ export default function SearchView({
 
       {/* Main Tab Navigation */}
       <div
+        className="search-subtabs-grid"
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -935,6 +937,7 @@ export default function SearchView({
       >
         <button
           type="button"
+          className="search-subtab-btn"
           onClick={() => setActiveTab('nganh')}
           style={{
             padding: '10px 20px',
@@ -958,12 +961,13 @@ export default function SearchView({
             transition: 'all 0.2s ease'
           }}
         >
-          <BookOpen size={18} />
+          <BookOpen size={17} style={{ flexShrink: 0 }} />
           <span>Ngành đào tạo ({filteredMajors.length})</span>
         </button>
 
         <button
           type="button"
+          className="search-subtab-btn"
           onClick={() => setActiveTab('truong')}
           style={{
             padding: '10px 20px',
@@ -987,12 +991,13 @@ export default function SearchView({
             transition: 'all 0.2s ease'
           }}
         >
-          <Building2 size={18} />
+          <Building2 size={17} style={{ flexShrink: 0 }} />
           <span>Trường Đại học ({filteredUniversities.length})</span>
         </button>
 
         <button
           type="button"
+          className="search-subtab-btn"
           onClick={() => setActiveTab('video')}
           style={{
             padding: '10px 20px',
@@ -1016,12 +1021,13 @@ export default function SearchView({
             transition: 'all 0.2s ease'
           }}
         >
-          <Video size={18} />
+          <Video size={17} style={{ flexShrink: 0 }} />
           <span>Video nghề thực tế</span>
         </button>
 
         <button
           type="button"
+          className="search-subtab-btn"
           onClick={() => setActiveTab('tohop')}
           style={{
             padding: '10px 20px',
@@ -1045,8 +1051,8 @@ export default function SearchView({
             transition: 'all 0.2s ease'
           }}
         >
-          <Layers size={18} />
-          <span>Khối thi &amp; kỳ thi riêng ({COMBINATIONS_DATA.length})</span>
+          <Layers size={17} style={{ flexShrink: 0 }} />
+          <span>Khối &amp; thi riêng ({COMBINATIONS_DATA.length})</span>
         </button>
       </div>
 
@@ -1057,6 +1063,7 @@ export default function SearchView({
         <>
           {/* Smart Filter & Sort Bar */}
           <div
+            className="search-filter-card"
             style={{
               background: '#FFFFFF',
               border: '1px solid #E0E7FF',
@@ -1067,6 +1074,7 @@ export default function SearchView({
             }}
           >
             <div
+              className="search-filter-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
@@ -1807,6 +1815,7 @@ export default function SearchView({
         <div>
           {/* Smart Multi-Dimensional University Filters + Dedicated Search Bar */}
           <div
+            className="search-filter-card"
             style={{
               background: '#FFFFFF',
               borderRadius: '24px',
@@ -1895,6 +1904,7 @@ export default function SearchView({
 
             {/* Search Input + Sort Row inside Universities Tab */}
             <div
+              className="search-filter-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
@@ -3349,6 +3359,7 @@ export default function SearchView({
             onClick={() => setSelectedMajorModal(null)}
           >
             <div
+              className="major-detail-modal-card"
               style={{
                 background: '#FFFFFF',
                 borderRadius: '28px',

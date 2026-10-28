@@ -349,7 +349,7 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Tìm ngành hoặc trường (VD: Marketing, Bách khoa, NEU)..."
+                  placeholder="Tìm ngành, mã trường (VD: Marketing, NEU)..."
                   className="hero-search-human-input"
                   id="hero-search-input"
                 />
@@ -518,12 +518,14 @@ export default function HomeView({ onNavigate, onSearchQuery }) {
                     >
                       <UniversityLogo code={sch.code} name={sch.name} size={42} />
                       <div className="showcase-uni-info">
-                        <div className="showcase-uni-name">{sch.name}</div>
+                        <div className="showcase-uni-top-line">
+                          <div className="showcase-uni-name">{sch.name}</div>
+                          <span className="showcase-uni-score">{sch.score}</span>
+                        </div>
                         <div className="showcase-uni-meta">
                           Mã {sch.code} • {sch.city} • Học phí {sch.tuition}
                         </div>
                       </div>
-                      <span className="showcase-uni-score">{sch.score}</span>
                     </button>
                   ))}
                 </div>

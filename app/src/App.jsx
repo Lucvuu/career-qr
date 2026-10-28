@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, Search, Layers, Award, Home, RotateCcw } from 'lucide-react';
+import { Compass, Search, Layers, Award, Home, RotateCcw, MessageSquare } from 'lucide-react';
 import HomeView from './views/HomeView';
 import SelfDiscoveryView from './views/SelfDiscoveryView';
 import SearchView from './views/SearchView';
@@ -72,6 +72,12 @@ class ViewErrorBoundary extends React.Component {
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const navigateToTab = (tab) => {
+    setActiveTab(tab);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
   const [bookmarkedMajors, setBookmarkedMajors] = useState(() => {
     try {
       const saved = localStorage.getItem('careerqr_bookmarked_majors');
@@ -124,7 +130,7 @@ export default function App() {
       {/* Sticky Top Header (Desktop & Tablet) */}
       <header className="app-header">
         <div className="header-inner">
-          <div className="brand-wrap" onClick={() => setActiveTab('home')}>
+          <div className="brand-wrap" onClick={() => navigateToTab('home')}>
             <svg className="brand-logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2" y="2" width="12" height="12" rx="3.5" fill="#4F46E5" />
               <rect x="18" y="2" width="12" height="12" rx="3.5" fill="#0EA5E9" />
@@ -140,6 +146,17 @@ export default function App() {
             </div>
           </div>
 
+          {/* Mobile & Tablet Header Quick Chat Button (replaces overlapping bottom-right circle on phones) */}
+          <button
+            type="button"
+            className={`mobile-header-chat-btn ${isChatOpen ? 'active' : ''}`}
+            onClick={() => setIsChatOpen((prev) => !prev)}
+            aria-label="Hỏi đáp chọn ngành và trường"
+          >
+            <MessageSquare size={16} />
+            <span>{isChatOpen ? 'Đóng hỏi đáp' : 'Hỏi đáp'}</span>
+          </button>
+
           {/* Desktop Navigation Pill Bar */}
           <nav className="nav-tabs" aria-label="Điều hướng chính">
             {navItems.map((item) => {
@@ -149,10 +166,7 @@ export default function App() {
                 <button
                   key={item.id}
                   className={`nav-tab-btn ${isActive ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={() => navigateToTab(item.id)}
                 >
                   <Icon size={16} />
                   <span>{item.label}</span>
@@ -182,25 +196,19 @@ export default function App() {
           resetKey={activeTab}
           onRecover={() => {
             setSearchQuery('');
-            setActiveTab('search');
+            navigateToTab('search');
           }}
         >
         {activeTab === 'home' && (
           <HomeView
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onNavigate={navigateToTab}
             onSearchQuery={(q) => setSearchQuery(q)}
           />
         )}
 
         {activeTab === 'self' && (
           <SelfDiscoveryView
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onNavigate={navigateToTab}
             onBookmarkMajor={handleBookmarkMajor}
           />
         )}
@@ -212,20 +220,14 @@ export default function App() {
             bookmarkedMajors={bookmarkedMajors}
             onBookmarkMajor={handleBookmarkMajor}
             onToggleBookmarkMajor={handleToggleBookmarkMajor}
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onNavigate={navigateToTab}
             onSelectForRoadmap={handleSelectForRoadmap}
           />
         )}
 
         {activeTab === 'compare' && (
           <CompareView
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onNavigate={navigateToTab}
             bookmarkedMajors={bookmarkedMajors}
             onSelectForRoadmap={handleSelectForRoadmap}
           />
@@ -242,18 +244,17 @@ export default function App() {
 
       {/* Floating AI Assistant */}
       <AIChatModal 
+        isOpen={isChatOpen}
+        onOpenChange={setIsChatOpen}
         currentContext={`Đang xem mục: ${navItems.find(n => n.id === activeTab)?.label}`}
-        onNavigate={(tab) => {
-          setActiveTab(tab);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onNavigate={navigateToTab}
         onSearchQuery={(q) => setSearchQuery(q)}
         onSelectForRoadmap={handleSelectForRoadmap}
         onBookmarkMajor={handleBookmarkMajor}
         bookmarkedMajors={bookmarkedMajors}
       />
 
-      {/* Mobile Bottom Navigation Dock (Visible on Mobile Screens) */}
+      {/* Mobile Bottom Navigation Dock (Visible on Mobile & Tablet Screens) */}
       <nav className="mobile-bottom-dock" aria-label="Điều hướng di động">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -261,10 +262,11 @@ export default function App() {
           return (
             <button
               key={item.id}
+              type="button"
               className={`mobile-dock-btn ${isActive ? 'active' : ''}`}
               onClick={() => {
-                setActiveTab(item.id);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setIsChatOpen(false);
+                navigateToTab(item.id);
               }}
             >
               <div className="mobile-dock-icon-wrap">

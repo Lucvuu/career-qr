@@ -183,7 +183,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '28px' }}>
         <div className="pill-badge" style={{ marginBottom: '10px' }}>🧭 BƯỚC 4 / 4 • KẾ HOẠCH ÔN THI &amp; HỒ SƠ</div>
-        <h1 style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Lên kế hoạch ôn thi &amp; chuẩn bị nguyện vọng</h1>
+        <h1 className="view-hero-h1" style={{ fontSize: '2.35rem', marginBottom: '8px' }}>Lên kế hoạch ôn thi &amp; chuẩn bị nguyện vọng</h1>
         <p style={{ color: '#64748B', maxWidth: '64ch', margin: '0 auto', fontSize: '0.98rem' }}>
           Ghi rõ ngành ưu tiên, phương án dự phòng và chia nhỏ những việc cần làm theo từng học kỳ. Bạn có thể lưu lại phiếu mục tiêu kèm mã QR để trao đổi cùng gia đình.
         </p>
@@ -228,7 +228,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
 
       {/* PHIẾU MỤC TIÊU XÉT TUYỂN ĐẠI HỌC 2026 */}
       <div style={{ marginBottom: '36px' }}>
-        <div className="card-box" style={{ background: '#FFFFFF', padding: '28px 32px', border: '2px solid #E2E8F0', position: 'relative', overflow: 'hidden' }}>
+        <div className="card-box roadmap-ticket-card" style={{ background: '#FFFFFF', border: '2px solid #E2E8F0', position: 'relative', overflow: 'hidden' }}>
           
           {/* Header row */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px dashed #E2E8F0', paddingBottom: '18px', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
@@ -347,7 +347,7 @@ export default function RoadmapView({ initialPrimary = '', initialBackup = '' })
           </div>
 
           {/* Ticket Footer: Scannable QR Code */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '2px dashed #E2E8F0', paddingTop: '18px', background: '#FAFAFA', margin: '0 -32px -28px', padding: '18px 32px', flexWrap: 'wrap', gap: '14px' }}>
+          <div className="roadmap-ticket-footer">
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ width: '64px', height: '64px', background: '#FFFFFF', borderRadius: '12px', border: '1.5px solid #CBD5E1', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px', overflow: 'hidden', flexShrink: 0 }}>
                 <img 

@@ -88,6 +88,8 @@ export function renderFormattedText(text) {
 }
 
 export default function AIChatModal({ 
+  isOpen: controlledIsOpen,
+  onOpenChange,
   currentContext = "",
   onNavigate,
   onSearchQuery,
@@ -95,7 +97,13 @@ export default function AIChatModal({
   onBookmarkMajor,
   bookmarkedMajors = []
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const setIsOpen = (val) => {
+    const next = typeof val === 'function' ? val(isOpen) : val;
+    if (onOpenChange) onOpenChange(next);
+    if (controlledIsOpen === undefined) setInternalIsOpen(next);
+  };
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeVideoModal, setActiveVideoModal] = useState(null); // { major, video, isPlaying }
   const [messages, setMessages] = useState([
@@ -275,8 +283,9 @@ export default function AIChatModal({
 
   return (
     <>
-      {/* Clean floating chat button (sits cleanly in page margin without overlapping cards) */}
+      {/* Clean floating chat button on desktop (hidden on mobile where sticky header button is used) */}
       <div
+        className="desktop-floating-chat-launcher"
         style={{
           position: 'fixed',
           right: '20px',
@@ -311,6 +320,7 @@ export default function AIChatModal({
       {/* Chat Window Shell */}
       {isOpen && (
         <div
+          className={`chat-modal-shell ${isExpanded ? 'is-expanded' : ''}`}
           style={{
             position: 'fixed',
             right: '24px',
@@ -368,6 +378,8 @@ export default function AIChatModal({
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
               <button
+                type="button"
+                className="chat-expand-desktop-btn"
                 onClick={() => setIsExpanded(!isExpanded)}
                 style={{ background: 'transparent', border: 'none', color: '#E0E7FF', cursor: 'pointer', padding: '5px', borderRadius: '6px' }}
                 title={isExpanded ? "Thu nhỏ cửa sổ" : "Mở rộng cửa sổ"}
@@ -375,11 +387,12 @@ export default function AIChatModal({
                 {isExpanded ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
               </button>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
-                style={{ background: 'transparent', border: 'none', color: '#FFFFFF', cursor: 'pointer', padding: '5px', borderRadius: '6px' }}
+                style={{ background: 'transparent', border: 'none', color: '#FFFFFF', cursor: 'pointer', padding: '6px', borderRadius: '8px' }}
                 title="Đóng cửa sổ"
               >
-                <X size={18} />
+                <X size={19} />
               </button>
             </div>
           </div>
@@ -394,15 +407,18 @@ export default function AIChatModal({
             </div>
           )}
 
-          {/* Quick Prompts Bar */}
+          {/* Quick Prompts Bar (1-line horizontal swipeable strip) */}
           <div 
+            className="touch-chip-scroller"
             style={{ 
-              padding: '10px 14px', 
+              padding: '8px 14px', 
               background: '#F8FAFC', 
               borderBottom: '1px solid #E2E8F0', 
               display: 'flex', 
-              flexWrap: 'wrap', 
-              gap: '6px'
+              flexWrap: 'nowrap', 
+              overflowX: 'auto',
+              gap: '6px',
+              flexShrink: 0
             }}
           >
             {quickPrompts.map((qp, i) => (
@@ -531,13 +547,15 @@ export default function AIChatModal({
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Hỏi về Vi mạch, CNTT, Y khoa, học phí, điểm chuẩn..."
+              placeholder="Hỏi về ngành, học phí, điểm chuẩn..."
+              className="chat-modal-text-input"
               style={{
                 flex: 1,
-                padding: '9px 14px',
+                minWidth: 0,
+                padding: '10px 14px',
                 borderRadius: '999px',
                 border: '1.5px solid #CBD5E1',
-                fontSize: '13px',
+                fontSize: '14px',
                 outline: 'none',
                 background: '#FFFDF9',
                 color: '#1E293B',
